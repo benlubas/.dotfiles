@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/benlubas/github/.dotfiles'
+let g:netrw_dirhist_5='/home/benlubas/github/.dotfiles/nvim'
+let g:netrw_dirhist_4='/home/benlubas/github/.dotfiles'
+let g:netrw_dirhist_3='/home/benlubas/github'
+let g:netrw_dirhist_2='/home/benlubas'
+let g:netrw_dirhist_1='/home/benlubas/.config/ngrok'
+let g:netrw_dirhist_0='/home/benlubas/.config'
+let g:netrw_dirhist_9='/home/benlubas'
+let g:netrw_dirhist_8='/home/benlubas/github'
+let g:netrw_dirhist_7='/home/benlubas/github/.dotfiles'
