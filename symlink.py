@@ -1,14 +1,38 @@
 #!/usr/bin/python3
 
-from types import Dict
+from typing import Dict
+
 # Script that will replace dotfiles specified in this directory with symlinks 
 # to the corresponding file in this git repo.
 
 here_to_sym: Dict[str, str] = {
+        "./nvim" : "~/.config/nvim", 
+        "./Brewfile" : "~/.config/Brewfile/Brewfile", 
+        "./.bashrc" : "~/.bashrc", 
+        "./.gitconfig" : "~/.gitconfig",
         "./.zshrc" : "~/.zshrc", 
-        "./nvim" : "~/.config/nvim"
 }
 
+# Print a warning
 print('WARNING: This script will delete the following files: ')
-print(path for path in here_to_sym.values())
+[print(path) for path in here_to_sym.values()]
+
+# ask the user to confirm 
+answer = input('Are you sure you want to continue? [y/n]\n')
+
+if answer.lower() == 'y' or answer.lower() == 'yes':
+    print('you said yes')
+    # continue on:
+else: # if they type anything that isn't y or yes, then cancel
+    print('exiting early. nothing will be changed.')
+    exit(0)
+
+
+# for each file in the list, find it, remove it, and then add the symlink. 
+
+for key in here_to_sym:
+    repo_path = key
+    og_path = here_to_sym[key]
+    print(og_path + 'deleted')
+    print(repo_path + 'is now sym linked to ' + og_path)
 
