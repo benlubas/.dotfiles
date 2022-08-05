@@ -22,7 +22,7 @@ The more important thing in here is going to be this readme, which will contain 
 3. Run the symlink script
   - `chmod +x ~/github/.dotfiles/symlink.py `
   - `~/github/.dotfiles/symlink.py`
-  - This should resource ~/.zshrc, and you will have to download oh-my-zsh again tho... I should add that to the script.. or something 
+  - `source ~/.zshrc`
 
 4. Check that that worked: 
   - The script should have deleted the current dotfiles (ie. ~/.zshrc) and replaced the with symlinked 
@@ -43,3 +43,7 @@ The more important thing in here is going to be this readme, which will contain 
     - `:so` to source the file. 
     - `:PackerSync` to install all the plugins and themes 
   - relaunch nvim 
+
+
+TODO: I still need to figure out the best way to handle oh-my-zsh, Not sure if I can just add a couple folders to this repo
+and call it a day or what. 
