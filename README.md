@@ -20,8 +20,8 @@ The more important thing in here is going to be this readme, which will contain 
   - `git clone git@github.com:benlubas/.dotfiles.git ~/github/.dotfiles`
 
 3. Run the symlink script
-  - `chmod ~/github/.dotfiles/symlink.sh -711`
-  - `~/github/.dotfiles/symlink.sh`
+  - `chmod +x ~/github/.dotfiles/symlink.py `
+  - `~/github/.dotfiles/symlink.py`
   - This should resource ~/.zshrc, and you will have to download oh-my-zsh again tho... I should add that to the script.. or something 
 
 4. Check that that worked: 
@@ -29,9 +29,17 @@ The more important thing in here is going to be this readme, which will contain 
   versions which live in the git repo. so to check that, run:
     - `ls -la` and make sure you see symlinks in the right places
 
-5. Let's get nvim working 
-  - You should be able to just run `v` to launch netrw
+5. Brew
+  - install [Homebrew](https://brew.sh)
+  - `brew file install`
+
+6. Things that aren't on Brew
+  - Svelte Language Server 
+  - probably more that I'll find later. 
+
+7. NVIM
+  - You should be able to just run `v` to launch nvim
   - open `~/.config/nvim/lua/benlubas/packer.lua` 
-  - run `:PackerSync` 
-    - that should install all the plugins and themes 
+    - `:so` to source the file. 
+    - `:PackerSync` to install all the plugins and themes 
   - relaunch nvim 
