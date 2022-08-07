@@ -43,6 +43,7 @@ The more important thing in here is going to be this readme, which will contain 
     - `:so` to source the file. 
     - `:PackerSync` to install all the plugins and themes 
   - relaunch nvim 
+  - install Jetbrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
 
 
 TODO: I still need to figure out the best way to handle oh-my-zsh, Not sure if I can just add a couple folders to this repo
