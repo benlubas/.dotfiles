@@ -1,12 +1,19 @@
 
 -- File with all things related to auto complete (excluding the LSP server stuff itself)
 
-local cmp = require'cmp'
+local cmp = require('cmp')
+local winhighlight = {
+  winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
+}
 cmp.setup({
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(winhighlight),
+    documentation = cmp.config.window.bordered(winhighlight),
   },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item(),
@@ -23,12 +30,14 @@ cmp.setup({
       select = true,
     })
   },
-    
-   -- Installed sources
- sources = {
-   { name = 'nvim_lsp' },
-   { name = 'vsnip' },
-   { name = 'path' },
-   { name = 'buffer' },
- },
+
+  -- Installed sources
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
+  },
 })
+
+

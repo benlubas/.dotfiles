@@ -14,3 +14,7 @@ nnoremap("gr",    "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0",    "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gW",    "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 nnoremap("gd",    "<cmd>lua vim.lsp.buf.definition()<CR>")
+
+
+-- Neo Git
+nnoremap("<leader>gi", "<cmd>Neogit<CR>")

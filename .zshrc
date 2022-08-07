@@ -44,6 +44,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
+export COLORTERM=truecolor
+
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 

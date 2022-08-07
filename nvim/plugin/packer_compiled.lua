@@ -89,6 +89,26 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["marks.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
+  },
+  neogit = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
+  },
   ["neoscroll.nvim"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
@@ -103,6 +123,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -134,15 +164,25 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-monokai"] = {
+  ["vim-moonfly-colors"] = {
     loaded = true,
-    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/vim-monokai",
-    url = "https://github.com/sickill/vim-monokai"
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/vim-moonfly-colors",
+    url = "https://github.com/bluz71/vim-moonfly-colors"
+  },
+  ["vim-svelte"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/vim-svelte",
+    url = "https://github.com/evanleck/vim-svelte"
   },
   ["vim-vsnip"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 

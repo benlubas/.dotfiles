@@ -8,7 +8,7 @@ import os
 
 here_to_sym: Dict[str, str] = {
         "./nvim/" : "~/.config/nvim/", 
-        "./Brewfile" : "~/.config/Brewfile/Brewfile", 
+        # "./Brewfile" : "~/.config/Brewfile/Brewfile", 
         "./.bashrc" : "~/.bashrc", 
         "./.gitconfig" : "~/.gitconfig",
         "./.zshrc" : "~/.zshrc", 
@@ -34,7 +34,7 @@ else: # if they type anything that isn't y or yes, then cancel
 for key in here_to_sym:
     repo_path = key
     og_path = here_to_sym[key]
-    if og_path[-1] == '/' and os.path.exists(og_path): 
+    if og_path[-1] == '/' and os.path.exists(og_path):
         print(f'removing directory: {og_path}')
         os.rmdir(og_path)
     elif os.path.exists(og_path):
