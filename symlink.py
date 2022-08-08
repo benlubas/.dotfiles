@@ -28,7 +28,6 @@ else: # if they type anything that isn't y or yes, then cancel
     print('exiting early. nothing will be changed.')
     exit(0)
 
-
 # for each file in the list, find it, remove it, and then add the symlink. 
 
 for key in here_to_sym:

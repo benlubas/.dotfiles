@@ -5,6 +5,18 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- 'Vanilla' Plugins
+  use 'tpope/vim-surround' -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
+  use 'tpope/vim-repeat' -- allows some plugin actions to be repeated with .
+
+  -- Autosave 
+  use{
+    'Pocco81/auto-save.nvim',
+    config = function()
+       require('auto-save').setup {}
+    end,
+  }
+
   -- Navigation
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
