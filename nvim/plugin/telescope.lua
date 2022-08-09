@@ -1,5 +1,6 @@
+local ts = require('telescope')
 
-require('telescope').setup {
+ts.setup {
   pickers = {
     find_files = {
       hidden = true
@@ -7,3 +8,4 @@ require('telescope').setup {
   }
 }
 
+ts.load_extension('neoclip')

@@ -29,7 +29,9 @@ becomes irrelevant very quickly as I commit these things to memory.
 - NeoGit 
   - Press `<leader>gi` to pull up the window.
   - move over the files, and press `s` to stage them
+  - Press `p` to pull changes
   - Press `c` to start a commit, there are commit options, press `c` again to just skip those and move forward. 
+  - Press `P` to push 
   - Press `b` for branch options. Honestly, might just want to use the commands for this one. It's a little weird. 
   - Press `<C-r>` to refresh the GUI (if you run some git commands in another tmux window for example)
 

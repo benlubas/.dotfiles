@@ -1,6 +1,6 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = { noremap = true, silent = true }
 local nvim_lsp = require('lspconfig')
 
 
@@ -10,37 +10,44 @@ vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_next, opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
--- TODO: I think that some of these aren't working the way that they should 
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Highlight word under cursor with vim-illuminate
+  require('illuminate').on_attach(client)
+
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  local other = { noremap = true, silent = true, buffer = bufnr }
+  -- okay, so these work when they're in here...
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, other)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, other)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, other)
   -- this error out:
-  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts) 
+  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
+  -- but these don't? When I move them to the remap file they start to work
+  -- again...
   -- TODO: fix the below binds
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts) -- this doesn't work.
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts) -- this also doesn't work.
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, bufopts) -- this also doesn't work.
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, other)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, other) -- this doesn't work.
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, other) -- this also doesn't work.
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, other)
+  -- leader fmt is the best bind out there.
+  vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other) -- this also doesn't work.
 end
 
-nvim_lsp['pyright'].setup{
+nvim_lsp['pyright'].setup {
   on_attach = on_attach,
 }
 
-nvim_lsp['tsserver'].setup{}
+nvim_lsp['tsserver'].setup {}
 
-nvim_lsp['svelte'].setup{}
+nvim_lsp['svelte'].setup {}
 
 nvim_lsp['sumneko_lua'].setup {
   settings = {
@@ -51,9 +58,9 @@ nvim_lsp['sumneko_lua'].setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
-        workspace = {
+      workspace = {
         -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
       },
@@ -65,35 +72,9 @@ nvim_lsp['sumneko_lua'].setup {
   },
 }
 
--- RUST 
-nvim_lsp['rust_analyzer'].setup{
-  on_attach = on_attach,
-  -- Server-specific settings...
-  settings = {
-    ["rust-analyzer"] = {
-      imports = {
-        granularity = {
-          group = "module",
-        },
-        prefix = "self",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-      },
-      procMacro = {
-        enable = true
-      },
-    }
-  }
-}
-
-
 local rust_tools_opts = {
   tools = {
     autoSetHints = true,
-    hover_with_actions = true,
     runnables = {
       use_telescope = true
     },
@@ -107,8 +88,10 @@ local rust_tools_opts = {
   -- these override the defaults set by rust-tools.nvim
   -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
   server = {
-    -- on_attach is a callback called when the language server attachs to the buffer
-    -- on_attach = on_attach,
+    -- on_attach is a callback called when the language server attaches to the buffer
+    on_attach = function(_, bufnr)
+      vim.keymap.set("n", "H", rt.hover_actions.hover_actions, { buffer = bufnr })
+    end,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc

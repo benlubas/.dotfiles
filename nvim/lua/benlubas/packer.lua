@@ -23,6 +23,13 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} }
   }
   use 'nvim-telescope/telescope-fzf-native.nvim'
+  use {
+    'AckslD/nvim-neoclip.lua',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('neoclip').setup()
+    end
+  }
   use 'chentoast/marks.nvim'
 
   -- lsp and auto completion 
@@ -31,8 +38,6 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
 
   use 'evanleck/vim-svelte'
 
@@ -43,8 +48,11 @@ return require('packer').startup(function(use)
     'TimUntersberger/neogit',
     requires = { 'nvim-lua/plenary.nvim' }
   }
+  use {
+    'lewis6991/gitsigns.nvim',
+  }
 
-  -- Tree sitter
+ -- Tree sitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -54,6 +62,7 @@ return require('packer').startup(function(use)
   -- Visual improvements
   use 'karb94/neoscroll.nvim'
   use 'bluz71/vim-moonfly-colors'
+  use 'kyazdani42/nvim-web-devicons'
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -62,6 +71,7 @@ return require('packer').startup(function(use)
 
   use 'lukas-reineke/indent-blankline.nvim'
 
+  -- MISC
   use 'folke/which-key.nvim'
 end)
 

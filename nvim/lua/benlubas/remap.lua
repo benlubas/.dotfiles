@@ -1,4 +1,8 @@
-local nnoremap = require("benlubas.keymap").nnoremap
+local nnoremap = require('benlubas.keymap').nnoremap
+local inoremap = require('benlubas.keymap').inoremap
+
+-- esc bind 
+inoremap('kj', '<esc>')
 
 -- netrw 
 nnoremap("<leader>e", "<cmd>w<CR><cmd>Ex<CR>")
@@ -25,13 +29,10 @@ vim.cmd[[
   endfunction
 ]]
 
-
--- nnoremap <silent> [<space>  :<c-u>put!=repeat([''],v:count)<bar>']+1<cr>
--- nnoremap <silent> ]<space>  :<c-u>put =repeat([''],v:count)<bar>'[-1<cr>
-
-
 -- TELESCOPE BINDS
-nnoremap("<leader>ff", "<cmd>Telescope find_files<CR>")
+nnoremap('<leader>fj', '<cmd>Telescope find_files<CR>')
+nnoremap('<leader>c',  '<cmd>Telescope neoclip<CR>')
+nnoremap('<leader>fk', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 
 -- LSP BINDS 
 nnoremap("H",     "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -43,6 +44,9 @@ nnoremap("gr",    "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0",    "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gW",    "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts) -- this doesn't work.
+vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other) -- this also doesn't work.
+
 
 -- Neo Git
 nnoremap("<leader>gi", "<cmd>Neogit<CR>")
@@ -53,5 +57,6 @@ nnoremap("<leader>sb", "[s") -- previous misspelled word
 nnoremap("<leader>sp", "z=") -- bring up suggestions
 nnoremap("<leader>sa", "zg") -- add word under cursor to dictionary 
 nnoremap("<leader>sr", "zr") -- remove word under cursor from dictionary
+
 
 
