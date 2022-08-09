@@ -114,6 +114,8 @@ if [ -f $(brew --prefix)/etc/brew-wrap ];then
 fi
 
 
+export PATH=/home/benlubas/nvim-linux64/bin:$PATH
+
 v() {
   if [ ! -z "$1" ]; then 
     # we have a value that should be a path. so treat it like one. 
@@ -122,6 +124,7 @@ v() {
     ~/nvim-linux64/bin/nvim .
   fi
 }
+
 
 alias zshrc="v ~/.zshrc"
 

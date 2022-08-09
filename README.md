@@ -1,9 +1,11 @@
 # .dotfiles
 
-Here are all the dotfiles that I use, I'm going to keep this up to date with the things that I use for NVIM, and maybe my zshrc and stuff like that. 
+Here are all the dotfiles that I use, I'm going to keep this up to date with the things that I use 
+for NVIM, and maybe my zshrc and stuff like that. 
 
 
-The more important thing in here is going to be this readme, which will contain all the information needed to setup a new machine. 
+The more important thing in here is going to be this readme, which will contain 
+all the information needed to setup a new machine. 
 
 
 ## Setup 
