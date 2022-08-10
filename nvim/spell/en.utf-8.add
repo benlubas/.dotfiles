@@ -33,3 +33,12 @@ Unstaged
 nvim
 neo
 lua
+dotfiles
+Brewfile
+bashrc
+gitconfig
+zshrc
+keymap
+lsp
+buf
+cmd

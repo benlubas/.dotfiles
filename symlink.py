@@ -6,8 +6,6 @@ import os
 # Script that will replace dotfiles specified in this directory with symlinks 
 # to the corresponding file in this git repo.
 
-# Mispelling things thatt shoold be rong 
-
 here_to_sym: Dict[str, str] = {
         "./nvim/" : "~/.config/nvim/", 
         # "./Brewfile" : "~/.config/Brewfile/Brewfile", 
@@ -25,9 +23,9 @@ answer = input('Are you sure you want to continue? [y/n]\n')
 
 if answer.lower() == 'y' or answer.lower() == 'yes':
     print('you said yes')
-    # continue on:
+    # continues on
 else: # if they type anything that isn't y or yes, then cancel
-    print('exiting early. nothing will be changed.')
+    print('exiting early. Nothing will be changed.')
     exit(0)
 
 # for each file in the list, find it, remove it, and then add the symlink. 

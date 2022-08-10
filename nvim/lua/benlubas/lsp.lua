@@ -13,12 +13,9 @@ vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_next, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Highlight word under cursor with vim-illuminate
-  require('illuminate').on_attach(client)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -90,7 +87,7 @@ local rust_tools_opts = {
   server = {
     -- on_attach is a callback called when the language server attaches to the buffer
     on_attach = function(_, bufnr)
-      vim.keymap.set("n", "H", rt.hover_actions.hover_actions, { buffer = bufnr })
+      vim.keymap.set("n", "H", require('rust-tools').hover_actions.hover_actions, { buffer = bufnr })
     end,
     settings = {
       -- to enable rust-analyzer settings visit:

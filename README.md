@@ -27,7 +27,8 @@ all the information needed to setup a new machine.
   - `source ~/.zshrc`
 
 4. Check that that worked: 
-  - The script should have deleted the current dotfiles (ie. ~/.zshrc) and replaced the with symlinked 
+  - The script should have deleted the current dotfiles (ie. ~/.zshrc) and 
+  replaced the with symlinked 
   versions which live in the git repo. so to check that, run:
     - `ls -la` and make sure you see symlinks in the right places
 
@@ -41,6 +42,8 @@ all the information needed to setup a new machine.
 
 7. NVIM
   - You should be able to just run `v` to launch nvim
+  - Go install packer, and while you're at it add the line that will auto install
+  the plugin manager when running nvim for the first time. That would be helpful.
   - open `~/.config/nvim/lua/benlubas/packer.lua` 
     - `:so` to source the file. 
     - `:PackerSync` to install all the plugins and themes 
@@ -48,5 +51,5 @@ all the information needed to setup a new machine.
   - install Jetbrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
 
 
-TODO: I still need to figure out the best way to handle oh-my-zsh, Not sure if I can just add a couple folders to this repo
-and call it a day or what. 
+TODO: Need to figure out if there's an easy way for oh-my-zsh configuration and 
+functionality to get brought along. 

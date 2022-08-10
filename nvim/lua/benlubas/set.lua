@@ -19,9 +19,12 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
-vim.g.netrw_keepdir = 0
+-- Net-rw stuff 
+
 vim.g.netrw_winsize = 30
 vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 vim.g.netrw_liststyle = 3 -- tree style
 
+vim.opt.spell = true
+vim.opt.spelloptions = 'camel'
