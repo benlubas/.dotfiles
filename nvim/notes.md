@@ -6,6 +6,20 @@ and there is a lot of configuration. I'm doing my best to comment everything tha
 can in the config files. There are some things that don't really have a spot in configs 
 that I still need to remember. I'm going to put them here. 
 
+## TODO
+
+- Configure the snippets plugin
+- setup harpoon (with tmux as well)
+- configure tmux to not look so ugly (green clashes)
+- Play around with lualine a little so that it's more my speed
+- figure out why the telescope border isn't showing properly 
+- perma set the theme to not use italics in comments 
+- fix the pasting issue with comments 
+- fix pasting issue with spacing 
+- maybe bring back highlight under the cursor (there has to be a plugin that 
+  does it without highlighting comment (even if not, I don't use italic comments 
+  anymore so it's not that big a deal. 
+
 ## Features 
 
 A list of commands/features that my plugins are adding to vim. Hopefully this list 

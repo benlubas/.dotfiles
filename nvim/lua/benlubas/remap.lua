@@ -1,8 +1,12 @@
 local nnoremap = require('benlubas.keymap').nnoremap
 local inoremap = require('benlubas.keymap').inoremap
+local vnoremap = require('benlubas.keymap').vnoremap
 
 -- esc bind 
 inoremap('kj', '<esc>')
+
+-- quit bind bc :q often comes out as :! Which is annoying 
+nnoremap('<leader>q', ':q<CR>')
 
 -- netrw 
 nnoremap("<leader>e", "<cmd>w<CR><cmd>Ex<CR>")
@@ -30,9 +34,22 @@ vim.cmd[[
 ]]
 
 -- TELESCOPE BINDS
-nnoremap('<leader>fj', '<cmd>Telescope find_files<CR>')
-nnoremap('<leader>c',  '<cmd>Telescope neoclip<CR>')
-nnoremap('<leader>fk', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
+nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
+nnoremap('<leader>j', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+nnoremap('<leader>h', '<cmd>Telescope help_tags<CR>')
+nnoremap('<leader>wh', function()
+  require('telescope.builtin')
+    .help_tags({ default_text = vim.fn.expand("<cword>") })
+end)
+nnoremap('<leader>Wh', function()
+  require('telescope.builtin')
+    .help_tags({ default_text = vim.fn.expand("<cWORD>") })
+end)
+vnoremap('<leader>h', function()
+  require('telescope.builtin')
+    .help_tags({ default_text = vim.fn.expand("<cword>") })
+end)
 
 -- LSP BINDS 
 nnoremap("H",     "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -44,8 +61,8 @@ nnoremap("gr",    "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0",    "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gW",    "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts) -- this doesn't work.
-vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other) -- this also doesn't work.
+-- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+-- vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other)
 
 
 -- Neo Git
@@ -54,9 +71,8 @@ nnoremap("<leader>gi", "<cmd>Neogit<CR>")
 -- Spelling binds because the normal ones kinda suck 
 nnoremap("<leader>sw", "]s") -- Next misspelled word
 nnoremap("<leader>sb", "[s") -- previous misspelled word
-nnoremap("<leader>sp", "z=") -- bring up suggestions
+nnoremap("<leader>ss", "z=") -- bring up suggestions
 nnoremap("<leader>sa", "zg") -- add word under cursor to dictionary 
 nnoremap("<leader>sr", "zr") -- remove word under cursor from dictionary
-
-
+nnoremap("<leader>se", "<cmd>set spell!<CR>") -- toggle spellcheck
 

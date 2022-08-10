@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
   -- 'Vanilla' Plugins
   use 'tpope/vim-surround' -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
   use 'tpope/vim-repeat' -- allows some plugin actions to be repeated with .
+  use 'numToStr/Comment.nvim' -- comment things with vim motions
 
   -- Autosave 
   use{
@@ -32,16 +33,20 @@ return require('packer').startup(function(use)
   }
   use 'chentoast/marks.nvim'
 
-  -- lsp and auto completion 
+  -- lsp type stuff
   use 'neovim/nvim-lspconfig'
+  use 'evanleck/vim-svelte'
+  use 'simrat39/rust-tools.nvim'
+
+  -- autocompletion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
+  use 'saadparwaiz1/cmp_luasnip'
 
-  use 'evanleck/vim-svelte'
-
-  use 'simrat39/rust-tools.nvim'
+  -- snippets 
+  use 'L3MON4D3/LuaSnip'
 
   -- GIT 
   use {
