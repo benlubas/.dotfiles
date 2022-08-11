@@ -3,7 +3,6 @@
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    --theme = 'moonfly',
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -43,8 +42,8 @@ require('lualine').setup {
 vim.cmd('syntax enable')
 vim.cmd[[colorscheme moonfly]]
 
-vim.g.moonflyTransparent = true
 vim.g.moonflyNormalFloat = true
+vim.g.moonflyItalics = false
 vim.opt.termguicolors = true
 
 
@@ -65,5 +64,5 @@ vim.diagnostic.config({ float = { border = "single" } })
 require("indent_blankline").setup {
   space_char_blankline = " ",
   show_current_context = true,
-  show_current_context_start = true,
+  -- show_current_context_start = true,
 }

@@ -10,7 +10,6 @@ that I still need to remember. I'm going to put them here.
 
 - Configure the snippets plugin
 - setup harpoon (with tmux as well)
-- configure tmux to not look so ugly (green clashes)
 - Play around with lualine a little so that it's more my speed
 - figure out why the telescope border isn't showing properly 
 - perma set the theme to not use italics in comments 

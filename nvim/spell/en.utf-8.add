@@ -42,3 +42,7 @@ keymap
 lsp
 buf
 cmd
+ctrl
+btw
+sym
+Alacritty

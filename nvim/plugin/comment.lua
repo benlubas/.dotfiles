@@ -10,5 +10,13 @@ require('Comment').setup {
   opleader = {
     line = 'gl',
     block = 'ga',
-  }
+  },
+  extra = {
+    -- Add comment on the line above
+    above = 'glO',
+    -- Add comment on the line below
+    below = 'glo',
+    -- Add comment at the end of line
+    eol = 'glA',
+  },
 }

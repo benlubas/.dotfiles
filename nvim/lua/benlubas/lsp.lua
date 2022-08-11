@@ -30,12 +30,12 @@ local on_attach = function(_, bufnr)
   -- but these don't? When I move them to the remap file they start to work
   -- again...
   -- TODO: fix the below binds
-  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, other)
+  vim.keymap.set('n',  'gt', vim.lsp.buf.type_definition, other)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, other) -- this doesn't work.
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, other) -- this also doesn't work.
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, other)
   -- leader fmt is the best bind out there.
-  vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other) -- this also doesn't work.
+  vim.keymap.set('n', '<leader>gf', vim.lsp.buf.formatting, other) -- this also doesn't work.
 end
 
 nvim_lsp['pyright'].setup {

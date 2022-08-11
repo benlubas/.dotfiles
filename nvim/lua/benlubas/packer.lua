@@ -11,10 +11,10 @@ return require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- comment things with vim motions
 
   -- Autosave 
-  use{
+  use {
     'Pocco81/auto-save.nvim',
     config = function()
-       require('auto-save').setup {}
+      require('auto-save').setup()
     end,
   }
 

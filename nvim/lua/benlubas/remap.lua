@@ -5,11 +5,12 @@ local vnoremap = require('benlubas.keymap').vnoremap
 -- esc bind 
 inoremap('kj', '<esc>')
 
--- quit bind bc :q often comes out as :! Which is annoying 
+-- just quit
 nnoremap('<leader>q', ':q<CR>')
-
--- netrw 
-nnoremap("<leader>e", "<cmd>w<CR><cmd>Ex<CR>")
+-- write quit to netrw
+nnoremap('<leader>e', '<cmd>w<CR><cmd>Ex<CR>')
+-- quit to netrw
+nnoremap('<leader>E', '<cmd>Ex<CR>')
 
 -- add empty line above/below 
 nnoremap("<leader>O", ":call BlankUp(v:count1)<CR>", {silent = true})
@@ -35,8 +36,9 @@ vim.cmd[[
 
 -- TELESCOPE BINDS
 nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
-nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
 nnoremap('<leader>j', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+nnoremap('<leader>k', '<cmd>Telescope live_grep<CR>')
+nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
 nnoremap('<leader>h', '<cmd>Telescope help_tags<CR>')
 nnoremap('<leader>wh', function()
   require('telescope.builtin')

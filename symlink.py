@@ -7,11 +7,12 @@ import os
 # to the corresponding file in this git repo.
 
 here_to_sym: Dict[str, str] = {
-        "./nvim/" : "~/.config/nvim/", 
-        # "./Brewfile" : "~/.config/Brewfile/Brewfile", 
-        "./.bashrc" : "~/.bashrc", 
-        "./.gitconfig" : "~/.gitconfig",
-        "./.zshrc" : "~/.zshrc", 
+    "./nvim/" : "~/.config/nvim/", 
+    "./Brewfile" : "~/.config/Brewfile/Brewfile", 
+    "./.bashrc" : "~/.bashrc", 
+    "./.gitconfig" : "~/.gitconfig",
+    "./.zshrc" : "~/.zshrc", 
+    "./tmux/" : "~/.config/tmux/",
 }
 
 # Print a warning
