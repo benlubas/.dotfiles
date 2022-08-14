@@ -13,12 +13,13 @@ return require('packer').startup(function(use)
   -- Autosave 
   use {
     'Pocco81/auto-save.nvim',
+    -- 'XXiaoA/auto-save.nvim', -- this is a branch that fixes a bug, it should be in main soon anyway
     config = function()
       require('auto-save').setup()
     end,
   }
 
-  -- Navigation
+  -- Telescope
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'}, {'BurntSushi/ripgrep'} }
@@ -31,12 +32,17 @@ return require('packer').startup(function(use)
       require('neoclip').setup()
     end
   }
+  use 'nvim-telescope/telescope-symbols.nvim'
+
+  --marks
   use 'chentoast/marks.nvim'
 
   -- lsp type stuff
   use 'neovim/nvim-lspconfig'
   use 'evanleck/vim-svelte'
+  use 'williamboman/nvim-lsp-installer'
   use 'simrat39/rust-tools.nvim'
+
 
   -- autocompletion
   use 'hrsh7th/nvim-cmp'
@@ -68,12 +74,10 @@ return require('packer').startup(function(use)
   use 'karb94/neoscroll.nvim'
   use 'bluz71/vim-moonfly-colors'
   use 'kyazdani42/nvim-web-devicons'
-
   use {
     'nvim-lualine/lualine.nvim',
      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
-
   use 'lukas-reineke/indent-blankline.nvim'
 
   -- MISC

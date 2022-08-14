@@ -3,8 +3,11 @@
 from typing import Dict
 import os
 
-# Script that will replace dotfiles specified in this directory with symlinks 
-# to the corresponding file in this git repo.
+"""
+Script that will replace dotfiles listed below repo with symlinks 
+to the corresponding file in this git repo.
+"""
+
 
 here_to_sym: Dict[str, str] = {
     "./nvim/" : "~/.config/nvim/", 
@@ -12,7 +15,8 @@ here_to_sym: Dict[str, str] = {
     "./.bashrc" : "~/.bashrc", 
     "./.gitconfig" : "~/.gitconfig",
     "./.zshrc" : "~/.zshrc", 
-    "./tmux/" : "~/.config/tmux/",
+    "./tmux.conf" : "~/.config/tmux/tmux.conf",
+    "./alacritty.yml" : "~/.config/alacritty.yml",
 }
 
 # Print a warning
