@@ -115,6 +115,7 @@ fi
 
 
 export PATH=/home/benlubas/nvim-linux64/bin:$PATH
+export EDITOR=nvim
 
 v() {
   if [ ! -z "$1" ]; then 
@@ -127,7 +128,7 @@ v() {
 
 
 alias zshrc="v ~/.zshrc"
-alias cdwin="cd /mnt/c/Documents and Settings/Ben Lubas" # take me to the windows files
+alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -140,3 +141,15 @@ eval "`fnm env`"
 
 # rust-analyzer 
 export PATH=/home/benlubas/.local/bin:$PATH
+
+# If a session exists, attach to it. 
+# Otherwise, create a new one and set it up 
+alias mux="tmux attach -t setup || \
+  tmux new-session -s setup \; \
+  rename-window \"Main Nvim\" \; \
+  neww -n shell \; \
+  neww -n Notes \; \
+  send-keys 'cd ~/github/notes/' C-m \; \
+  send-keys 'v && clear' C-m \; \
+  select-window -t 0 \; \
+  send-keys 'cd ~/github/ && clear' C-m \;"
