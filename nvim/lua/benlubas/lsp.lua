@@ -50,7 +50,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, other) -- this also doesn't work.
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, other)
   -- leader gf is the best bind out there.
-  vim.keymap.set('n', '<leader>gfmt', vim.lsp.buf.formatting, other) -- this also doesn't work.
+  vim.keymap.set('n', '<leader>gf', vim.lsp.buf.formatting, other)
 end
 
 require('nvim-lsp-installer').setup {

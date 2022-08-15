@@ -74,9 +74,6 @@ nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
 nnoremap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
--- vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
--- vim.keymap.set('n', '<leader>fmt', vim.lsp.buf.formatting, other)
-
 -- Neo Git
 nnoremap("<leader>gi", "<cmd>Neogit<CR>")
 

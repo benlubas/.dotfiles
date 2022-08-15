@@ -7,10 +7,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 5
 
--- tabs (I'm going to use 4 begrudgingly)
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+-- tabs
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.hlsearch = false

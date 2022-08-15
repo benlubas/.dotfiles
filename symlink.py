@@ -8,7 +8,6 @@ Script that will replace dotfiles listed below repo with symlinks
 to the corresponding file in this git repo.
 """
 
-
 here_to_sym: Dict[str, str] = {
     "./nvim/" : "~/.config/nvim/", 
     "./Brewfile" : "~/.config/Brewfile/Brewfile", 

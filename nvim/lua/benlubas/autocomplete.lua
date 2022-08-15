@@ -1,4 +1,3 @@
-
 -- File with all things related to auto complete (excluding the LSP server stuff itself)
 
 local cmp = require('cmp')
@@ -15,27 +14,28 @@ cmp.setup({
     completion = cmp.config.window.bordered(winhighlight),
     documentation = cmp.config.window.bordered(winhighlight),
   },
+  view = {
+    entries = { name = 'custom', selection_order = 'near_cursor' },
+  },
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    -- Add tab support (I'm going to try and leave this off to break the tab 
-    -- habit)
-    -- ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    -- ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-c>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     })
   },
-
+  formatting = {
+    format = require('lspkind').cmp_format(),
+  },
   -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
+    { name = 'neorg' },
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'buffer' },
   },
 })
-
