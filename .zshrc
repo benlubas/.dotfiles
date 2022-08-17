@@ -145,7 +145,7 @@ export PATH=/home/benlubas/.local/bin:$PATH
 # If a session exists, attach to it. 
 # Otherwise, create a new one and set it up 
 alias mux="tmux attach -t setup || \
-  tmux new-session -s setup \; \
+  tmux new-session -s \"=D\"\; \
   rename-window \"Main Nvim\" \; \
   neww -n shell \; \
   neww -n Notes \; \
