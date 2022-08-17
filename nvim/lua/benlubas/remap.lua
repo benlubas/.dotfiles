@@ -13,6 +13,22 @@ nnoremap('<leader>e', '<cmd>w<CR><cmd>Ex<CR>')
 -- quit to netrw
 nnoremap('<leader>E', '<cmd>Ex<CR>')
 
+-- folding
+nnoremap('<leader>i', 'za') -- toggle one fold
+nnoremap('<leader>u', 'zC') -- fold the whole doc
+nnoremap('<leader>U', 'zO') -- unfold the whole doc
+
+-- Toggle Neorg table of contents
+-- this command currently sucks
+nnoremap('<leader><leader>t', function()
+  -- is there a window called TOC option right now? Can I figure that out?
+  local filetype = vim.bo.filetype
+  if filetype == 'neorg_toc' then
+    -- idk close the thing
+    print("in a neorg toc")
+  end
+
+end)
 
 -- clipboard binds
 nnoremap('<leader>y', '"+y')
@@ -45,14 +61,20 @@ vim.cmd [[
 
 local tb = require('telescope.builtin')
 -- TELESCOPE BINDS --
+-- files/within files
 nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
 nnoremap('<leader>j', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 nnoremap('<leader>k', '<cmd>Telescope live_grep<CR>')
-nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
-nnoremap('<leader>gs', function()
-  tb.symbols({ sources = { 'emoji', 'nerd' }})
+nnoremap('<leader>l', function()
+  local dir = vim.env.HOME .. '/github/.dotfiles'
+  tb.find_files({
+    find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', dir },
+  })
 end)
--- help 
+nnoremap('<leader>gs', function()
+  tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } })
+end)
+-- help
 nnoremap('<leader>h', '<cmd>Telescope help_tags<CR>')
 nnoremap('<leader>wh', function()
   tb.help_tags({ default_text = vim.fn.expand("<cword>") })
@@ -63,6 +85,8 @@ end)
 vnoremap('<leader>h', function()
   tb.help_tags({ default_text = vim.fn.expand("<cword>") })
 end)
+-- clipboard
+nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
 
 -- LSP BINDS
 nnoremap("H", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -80,7 +104,9 @@ nnoremap("<leader>gi", "<cmd>Neogit<CR>")
 -- Spelling binds because the normal ones kinda suck
 nnoremap("<leader>sw", "]s") -- Next misspelled word
 nnoremap("<leader>sb", "[s") -- previous misspelled word
-nnoremap("<leader>ss", "z=") -- bring up suggestions
+nnoremap("<leader>ss", function() -- this is actually sick.
+  tb.spell_suggest(require('telescope.themes').get_cursor())
+end)
 nnoremap("<leader>sa", "zg") -- add word under cursor to dictionary 
 nnoremap("<leader>sr", "zr") -- remove word under cursor from dictionary
 nnoremap("<leader>st", "<cmd>set spell!<CR>") -- toggle spellcheck

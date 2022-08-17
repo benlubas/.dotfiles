@@ -4,6 +4,10 @@ local cmp = require('cmp')
 local winhighlight = {
   winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
 }
+
+local ELLIPSIS_CHAR = '...'
+local MAX_LABEL_WIDTH = 50
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -27,7 +31,14 @@ cmp.setup({
     })
   },
   formatting = {
-    format = require('lspkind').cmp_format(),
+    format = function(_, vim_item)
+      local label = vim_item.abbr
+      local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
+      if truncated_label ~= label then
+        vim_item.abbr = truncated_label .. ELLIPSIS_CHAR
+      end
+      return vim_item
+    end,
   },
   -- Installed sources
   sources = {

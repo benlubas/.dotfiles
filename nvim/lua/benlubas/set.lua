@@ -13,6 +13,10 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- folds 
+vim.opt.foldmethod = "indent"
+
+-- search
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
@@ -25,7 +29,6 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 
 -- Net-rw stuff 
-
 vim.g.netrw_winsize = 30
 vim.g.netrw_banner = 0
 vim.g.netrw_localcopydircmd = 'cp -r'

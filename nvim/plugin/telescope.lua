@@ -1,9 +1,12 @@
 local ts = require('telescope')
+local actions = require('telescope.actions')
 
 ts.setup {
-  pickers = {
-    find_files = {
-      hidden = true
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close
+      }
     }
   }
 }
