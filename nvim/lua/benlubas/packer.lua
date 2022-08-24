@@ -19,7 +19,6 @@ return require('packer').startup(function(use)
     end,
   }
 
-
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -88,6 +87,7 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use 'lukas-reineke/indent-blankline.nvim'
+  use 'folke/todo-comments.nvim'
 
   -- MISC
   use 'folke/which-key.nvim'

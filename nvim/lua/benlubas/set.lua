@@ -5,7 +5,7 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25-Cursor"
 -- numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.numberwidth = 5
+vim.opt.numberwidth = 6
 
 -- tabs
 vim.opt.tabstop = 2
@@ -15,10 +15,12 @@ vim.opt.expandtab = true
 
 -- folds 
 vim.opt.foldmethod = "indent"
+vim.opt.foldlevelstart = 99
 
 -- search
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.shortmess = vim.opt.shortmess + 'S'
 
 vim.opt.colorcolumn = { 100 }
 

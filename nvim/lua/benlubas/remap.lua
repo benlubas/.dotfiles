@@ -13,24 +13,17 @@ nnoremap('<leader>e', '<cmd>w<CR><cmd>Ex<CR>')
 -- quit to netrw
 nnoremap('<leader>E', '<cmd>Ex<CR>')
 
--- folding
+-- folding. I have folding set to use indent level
 nnoremap('<leader>i', 'za') -- toggle one fold
 nnoremap('<leader>u', 'zC') -- fold the whole doc
 nnoremap('<leader>U', 'zO') -- unfold the whole doc
 
 -- Toggle Neorg table of contents
--- this command currently sucks
-nnoremap('<leader><leader>t', function()
-  -- is there a window called TOC option right now? Can I figure that out?
-  local filetype = vim.bo.filetype
-  if filetype == 'neorg_toc' then
-    -- idk close the thing
-    print("in a neorg toc")
-  end
+-- This command sucks in main, but on my branch it works fine. Even when the thing is open.
+nnoremap('<leader><leader>t', '<cmd>Neorg toc split<CR>')
 
-end)
-
--- clipboard binds
+-- clipboard binds (copy and paste from sys clipboard) 
+-- NOTE, this doesn't work from within WSL 
 nnoremap('<leader>y', '"+y')
 nnoremap('<leader>p', '"+p')
 nnoremap('<leader>P', '"+P')
@@ -61,32 +54,33 @@ vim.cmd [[
 
 local tb = require('telescope.builtin')
 -- TELESCOPE BINDS --
--- files/within files
-nnoremap('<leader>f', '<cmd>Telescope find_files<CR>')
+-- find files in working dir
+nnoremap('<leader>f', function() require('benlubas.telescope-project-files').project_files() end)
+-- Find in current file
 nnoremap('<leader>j', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+-- Find a word in a file in the directory
 nnoremap('<leader>k', '<cmd>Telescope live_grep<CR>')
+-- search dot files
 nnoremap('<leader>l', function()
   local dir = vim.env.HOME .. '/github/.dotfiles'
   tb.find_files({
     find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', dir },
   })
 end)
-nnoremap('<leader>gs', function()
-  tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } })
-end)
--- help
+-- Symbols with extra sources
+nnoremap('<leader>gs', function() tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } }) end)
+-- search help tags
 nnoremap('<leader>h', '<cmd>Telescope help_tags<CR>')
-nnoremap('<leader>wh', function()
-  tb.help_tags({ default_text = vim.fn.expand("<cword>") })
-end)
-nnoremap('<leader>Wh', function()
-  tb.help_tags({ default_text = vim.fn.expand("<cWORD>") })
-end)
-vnoremap('<leader>h', function()
-  tb.help_tags({ default_text = vim.fn.expand("<cword>") })
-end)
+-- help with word under cursor 
+nnoremap('<leader>wh', function() tb.help_tags({ default_text = vim.fn.expand("<cword>") }) end)
+-- help with WORD under cursor
+nnoremap('<leader>Wh', function() tb.help_tags({ default_text = vim.fn.expand("<cWORD>") }) end)
+-- help with visual selection
+vnoremap('<leader>h',  function() tb.help_tags({ default_text = vim.fn.expand("<cword>") }) end)
 -- clipboard
 nnoremap('<leader>c', '<cmd>Telescope neoclip<CR>')
+-- todo's 
+nnoremap('<leader>t', '<cmd>TodoTelescope<CR>')
 
 -- LSP BINDS
 nnoremap("H", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -110,3 +104,18 @@ end)
 nnoremap("<leader>sa", "zg") -- add word under cursor to dictionary 
 nnoremap("<leader>sr", "zr") -- remove word under cursor from dictionary
 nnoremap("<leader>st", "<cmd>set spell!<CR>") -- toggle spellcheck
+
+-- toggle highlight search 
+-- NOTE: the c-f bind is remapped by 'neoscroll' plugin for smooth scrolling, so that plugin 
+-- needs extra setup for this to work with it
+nnoremap("<C-f>", function()
+  -- So, 0 == true in lua... what the fuck
+  local b = {[0] = false, [1] = true}
+  vim.opt.hlsearch = not b[vim.v.hlsearch]
+  require('benlubas.search_count').calc_search_count()
+
+  require('lualine').refresh()
+  -- without the above line we would still get an update after ~1 second (how often the bar 
+  -- refreshes normally), but that's slow, so this command triggers the update itself
+end)
+
