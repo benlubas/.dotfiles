@@ -36,7 +36,16 @@ vim.api.nvim_create_autocmd({'CmdlineLeave', 'CmdwinLeave'}, {
   group = search_count_group,
   callback = function()
     M.calc_search_count()
-    require('lualine').refresh({})
+    require('lualine').refresh()
+  end,
+})
+
+-- Recompute count on write.
+vim.api.nvim_create_autocmd({'BufWritePost'}, {
+  group = search_count_group,
+  callback = function()
+    M.calc_search_count()
+    require('lualine').refresh()
   end,
 })
 
