@@ -33,6 +33,8 @@ return require('packer').startup(function(use)
     end
   }
   use 'nvim-telescope/telescope-symbols.nvim'
+  -- harpoon
+  use 'ThePrimeagen/harpoon'
 
   --marks
   use 'chentoast/marks.nvim'

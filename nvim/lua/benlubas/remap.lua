@@ -1,10 +1,15 @@
 local nnoremap = require('benlubas.keymap').nnoremap
 local inoremap = require('benlubas.keymap').inoremap
 local vnoremap = require('benlubas.keymap').vnoremap
+-- Harpoon binds are in plugin/harpoon.lua
 
 -- esc bind
 inoremap('kj', '<esc>')
 inoremap('jk', '<esc>')
+
+-- move things up and down (this is insanely nice)
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
 
 -- just quit
 nnoremap('<leader>q', ':q<CR>')

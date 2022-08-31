@@ -7,6 +7,11 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 6
 
+-- colors
+vim.opt.termguicolors = true
+-- cursor line
+vim.opt.cursorline = true
+
 -- tabs
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2

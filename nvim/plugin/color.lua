@@ -14,11 +14,15 @@ require('nvim-web-devicons').setup()
 
 vim.cmd('syntax enable')
 vim.cmd[[colorscheme moonfly]]
-vim.cmd[[highlight CursorLine ctermbg=238 guibg=#305947]]
 
 vim.g.moonflyNormalFloat = true
 vim.g.moonflyItalics = false
-vim.opt.termguicolors = true
+
+vim.cmd[[highlight CursorLine ctermbg=238 guibg=#111111]] -- this interferes with fold highlighting 
+vim.cmd[[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]]
+vim.cmd[[highlight htmlBold gui=bold guifg=#af0000 ctermfg=124]]
+vim.cmd[[highlight htmlItalic gui=italic guifg=#ff8700 ctermfg=214]]
+
 
 
 -- boarders for the text that pops up for autocomplete and stuff
@@ -27,11 +31,13 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
     border = "single"
   }
 )
+
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signatureHelp, {
     border = "single"
   }
 )
+
 vim.diagnostic.config({ float = { border = "single" } })
 
 -- Indentation
@@ -48,6 +54,7 @@ require('todo-comments').setup({
     after = "",
   },
 })
+
 -- Highlight on yank 
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {

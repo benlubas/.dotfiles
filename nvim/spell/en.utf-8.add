@@ -70,3 +70,7 @@ WSL
 sys
 tabline
 lualine
+keypress
+GTD
+anticonceal
+autocmd
