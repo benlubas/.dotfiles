@@ -11,7 +11,6 @@
 local M = {}
 
 M.update_search_count = function()
-  print('update')
   M.calc_search_count()
   require('lualine').refresh()
 end
