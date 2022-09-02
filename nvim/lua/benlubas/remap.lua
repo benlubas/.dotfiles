@@ -60,20 +60,20 @@ vim.cmd [[
 local tb = require('telescope.builtin')
 -- TELESCOPE BINDS --
 -- find files in working dir
-nnoremap('<leader>f', function() require('benlubas.telescope-project-files').project_files() end)
+nnoremap('<leader>fd', function() require('benlubas.telescope-project-files').project_files() end)
 -- Find in current file
-nnoremap('<leader>j', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+nnoremap('<leader>fj', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
 -- Find a word in a file in the directory
-nnoremap('<leader>k', '<cmd>Telescope live_grep<CR>')
+nnoremap('<leader>fk', '<cmd>Telescope live_grep<CR>')
 -- search dot files
-nnoremap('<leader>l', function()
+nnoremap('<leader>fl', function()
   local dir = vim.env.HOME .. '/github/.dotfiles'
   tb.find_files({
     find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', dir },
   })
 end)
 -- Symbols with extra sources
-nnoremap('<leader>gs', function() tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } }) end)
+nnoremap('<leader>fs', function() tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } }) end)
 -- search help tags
 nnoremap('<leader>h', '<cmd>Telescope help_tags<CR>')
 -- help with word under cursor 
