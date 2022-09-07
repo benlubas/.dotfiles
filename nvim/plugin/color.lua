@@ -9,6 +9,7 @@ require('neoscroll').setup({
     end, 150)
   end,
 })
+
 require('which-key').setup()
 require('nvim-web-devicons').setup()
 
@@ -22,8 +23,6 @@ vim.cmd[[highlight CursorLine ctermbg=238 guibg=#111111]] -- this interferes wit
 vim.cmd[[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]]
 vim.cmd[[highlight htmlBold gui=bold guifg=#af0000 ctermfg=124]]
 vim.cmd[[highlight htmlItalic gui=italic guifg=#ff8700 ctermfg=214]]
-
-
 
 -- boarders for the text that pops up for autocomplete and stuff
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(

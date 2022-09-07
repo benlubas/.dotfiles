@@ -40,7 +40,7 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, other)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, other)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, other)
-  -- this error out:
+  -- this errors out: also the binding is now being used by harpoon.
   -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, other)

@@ -11,6 +11,9 @@ inoremap('jk', '<esc>')
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
 
+-- tab format the whole document
+nnoremap('=a', 'gg=G<C-o>zz')
+
 -- just quit
 nnoremap('<leader>q', ':q<CR>')
 -- write quit to netrw
@@ -72,6 +75,8 @@ nnoremap('<leader>fl', function()
     find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', dir },
   })
 end)
+-- include hidden files in directory search
+nnoremap('<leader>fh', function() tb.find_files({hidden = true}) end )
 -- Symbols with extra sources
 nnoremap('<leader>fs', function() tb.symbols({ sources = { 'emoji', 'nerd', 'julia' } }) end)
 -- search help tags
