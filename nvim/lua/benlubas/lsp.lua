@@ -17,11 +17,12 @@ local servers = {
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 
--- These are nice, but I'm probably going to forget they exist.
+-- use this first one a good bit but the second might as well not exist.
 vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_next, opts)
--- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts) -- idk what this does but it 
+-- conflicts with my quit bind. so. 
 
 
 -- adding autocomplete capabilities...
@@ -39,14 +40,11 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, other)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, other)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, other)
-  -- this error out:
+  -- this errors out: also the binding is now being used by harpoon.
   -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
 
-  -- but these don't? When I move them to the remap file they start to work
-  -- again...
-  -- TODO: fix the below binds
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, other)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, other) -- this doesn't work.
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, other)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, other) -- this also doesn't work.
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, other)
   -- leader gf is the best bind out there.
@@ -71,3 +69,14 @@ require('rust-tools').setup {
   }
 }
 
+require('lspconfig')['sumneko_lua'].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
