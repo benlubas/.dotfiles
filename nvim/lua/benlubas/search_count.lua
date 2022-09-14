@@ -19,7 +19,7 @@ M.calc_search_count = function()
   -- print('calculating search count')
   if vim.v.hlsearch == 1 then
     local sinfo = vim.fn.searchcount { maxcount = 0 }
-    Search_count = (sinfo.incomplete > 0 and vim.api.mode()[0] == 'n')
+    Search_count = (sinfo.incomplete ~= nil and sinfo.incomplete > 0 and vim.api.mode()[0] == 'n')
       and '[?/?]'
       or ('[%s/%s]'):format(sinfo.current, sinfo.total)
   else
