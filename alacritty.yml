@@ -4,13 +4,7 @@ window:
   # Window decorations
   #   - full: Borders and title bar
   #   - none: Neither borders nor title bar
-  decorations: none
-  dimensions:  # not in pixels 
-    columns: 180
-    lines: 47
-  position: # in pixels 
-    x: 200
-    y: 100
+  decorations: full
   padding: # in pixels
     x: 10
     y: 10

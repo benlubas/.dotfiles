@@ -6,7 +6,7 @@ local winhighlight = {
 }
 
 local ELLIPSIS_CHAR = '...'
-local MAX_LABEL_WIDTH = 50
+local MAX_LABEL_WIDTH = 20
 
 cmp.setup({
   snippet = {
@@ -24,8 +24,8 @@ cmp.setup({
   mapping = {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-s>d'] = cmp.mapping.scroll_docs(4),
+    ['<C-s>u'] = cmp.mapping.scroll_docs(-4),
     ['<C-c>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,

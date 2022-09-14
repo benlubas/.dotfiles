@@ -10,6 +10,15 @@ return require('packer').startup(function(use)
   use 'tpope/vim-repeat' -- allows some plugin actions to be repeated with .
   use 'numToStr/Comment.nvim' -- comment things with vim motions
 
+  -- Unit Testing
+  use {
+    'nvim-neotest/neotest',
+    requires = {
+      'antoinemadec/FixCursorHold.nvim',
+      'haydenmeade/neotest-jest',
+    }
+  }
+
   -- Autosave
   use {
     'Pocco81/auto-save.nvim',
@@ -44,7 +53,8 @@ return require('packer').startup(function(use)
   use 'evanleck/vim-svelte'
   use 'williamboman/nvim-lsp-installer'
   use 'simrat39/rust-tools.nvim'
-
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
 
   -- autocompletion
   use 'hrsh7th/nvim-cmp'
@@ -73,6 +83,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Neorg (setup must come after treesitter's)
   use {

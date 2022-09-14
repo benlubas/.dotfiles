@@ -10,6 +10,8 @@ require('neoscroll').setup({
   end,
 })
 
+require('treesitter-context').setup()
+
 require('which-key').setup()
 require('nvim-web-devicons').setup()
 
