@@ -120,25 +120,27 @@ export EDITOR=nvim
 v() {
   if [ ! -z "$1" ]; then 
     # we have a value that should be a path. so treat it like one. 
-    ~/nvim-linux64/bin/nvim "$1"
+    ~/nvim.appimage "$1"
   else 
-    ~/nvim-linux64/bin/nvim .
+    ~/nvim.appimage .
   fi
 }
 
-
+# alias all the things
 alias zshrc="v ~/.zshrc"
 alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
 alias kvm="ssh benlubas@login.ccs.neu.edu"
+alias venv="source ./.venv/bin/activate"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-cd
-
 # fnm
 export PATH=/home/benlubas/.fnm:$PATH
 eval "`fnm env`"
+
+source /etc/profile.d/rvm.sh
+export PATH=/usr/share/rvm/gems/ruby-3.1.2/bin:$PATH
 
 # rust-analyzer 
 export PATH=/home/benlubas/.local/bin:$PATH
@@ -151,6 +153,10 @@ alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
   neww -n shell \; \
   neww -n Notes \; \
   send-keys 'cd ~/github/notes/' C-m \; \
-  send-keys 'v && clear' C-m \; \
+  send-keys 'v deadlines.md' C-m \; \
   select-window -t 0 \; \
   send-keys 'cd ~/github/ && clear' C-m \;"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -125,3 +125,6 @@ export DISCORD_TOKEN=NzE4ODY2MjA4MzYyODU2NDc4.GsF9D-.H7LhZ5vseL6kBL_h8GYnsWHEtAI
 
 export GITHUB_WEBHOOK_TOKEN=RYE74n@WjhGisYUByH7C
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
