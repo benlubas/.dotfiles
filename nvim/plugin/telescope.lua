@@ -11,4 +11,4 @@ ts.setup {
   }
 }
 
-ts.load_extension('neoclip')
+-- ts.load_extension('neoclip')

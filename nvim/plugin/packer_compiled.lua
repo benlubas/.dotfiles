@@ -115,6 +115,15 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["colortils.nvim"] = {
+    commands = { "Colortils" },
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colortils\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/opt/colortils.nvim",
+    url = "https://github.com/max397574/colortils.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
@@ -125,10 +134,20 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["impatient.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/impatient.nvim",
+    url = "https://github.com/lewis6991/impatient.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
   },
   ["lspkind.nvim"] = {
     loaded = true,
@@ -140,20 +159,15 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  ["marks.nvim"] = {
+  ["mini.trailspace"] = {
     loaded = true,
-    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/marks.nvim",
-    url = "https://github.com/chentoast/marks.nvim"
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/mini.trailspace",
+    url = "https://github.com/echasnovski/mini.trailspace"
   },
   neogit = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/neogit",
     url = "https://github.com/TimUntersberger/neogit"
-  },
-  neorg = {
-    loaded = true,
-    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/neorg",
-    url = "https://github.com/nvim-neorg/neorg"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
@@ -185,6 +199,26 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
+  },
+  ["nvim-dap-virtual-text"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-dap-virtual-text",
+    url = "https://github.com/theHamsta/nvim-dap-virtual-text"
+  },
+  ["nvim-dap-vscode-js"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-dap-vscode-js",
+    url = "https://github.com/mxsdev/nvim-dap-vscode-js"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -211,6 +245,11 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
+  ["nvim-treesitter-textobjects"] = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -226,11 +265,6 @@ _G.packer_plugins = {
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["prettier.nvim"] = {
-    loaded = true,
-    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/prettier.nvim",
-    url = "https://github.com/MunifTanjim/prettier.nvim"
-  },
   ripgrep = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/ripgrep",
@@ -240,6 +274,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
+  },
+  sniprun = {
+    loaded = true,
+    path = "/home/benlubas/.local/share/nvim/site/pack/packer/start/sniprun",
+    url = "https://github.com/michaelb/sniprun"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -297,6 +336,12 @@ time([[Config for auto-save.nvim]], false)
 time([[Config for nvim-neoclip.lua]], true)
 try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
 time([[Config for nvim-neoclip.lua]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Colortils lua require("packer.load")({'colortils.nvim'}, { cmd = "Colortils", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+time([[Defining lazy-load commands]], false)
+
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

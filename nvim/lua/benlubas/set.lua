@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.opt.mouse = "a"
+
 -- numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -9,6 +11,9 @@ vim.opt.numberwidth = 6
 vim.opt.termguicolors = true
 -- cursor line
 vim.opt.cursorline = true
+
+-- I'm not actually a fan of this
+-- vim.opt.cmdheight = 0
 
 -- tabs
 vim.opt.tabstop = 2
@@ -25,27 +30,11 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.shortmess:append('Ss')
 
-vim.opt.colorcolumn = { 100 }
 
 -- formatting
 vim.opt.autoindent = true
 vim.opt.wrap = false
 vim.opt.textwidth = 99
-
--- auto command to remove the stupid comment + enter behavior including this in set becuase I should
--- just be able to set this this shit and not have it get overriden in the ftplugin shit that runs
--- for each file.
-local group = vim.api.nvim_create_augroup('fix comment enter', { clear = true })
-vim.api.nvim_create_autocmd('BufEnter', {
-  callback = function()
-    -- not really sure why lsp is complaining
-    vim.opt.formatoptions:remove({'o', 'r'})
-    vim.opt.formatoptions:append({'c'})
-  end,
-  group = group,
-  pattern = '*',
-})
-
 
 vim.opt.scrolloff = 8
 

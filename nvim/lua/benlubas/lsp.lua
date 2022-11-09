@@ -9,6 +9,8 @@ local servers = {
   'marksman',
   'rust_analyzer',
   'tsserver',
+  'solargraph',
+  'sorbet',
   'sumneko_lua',
   'svelte',
 }
@@ -19,17 +21,15 @@ local opts = { noremap = true, silent = true }
 
 -- use this first one a good bit but the second might as well not exist.
 vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_next, opts)
--- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts) -- idk what this does but it 
--- conflicts with my quit bind. so. 
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts) -- this is something that I don't use enough
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
 
 
 -- adding autocomplete capabilities...
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(_, bufnr)
+local on_attach = function(bufopts, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -40,15 +40,14 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, other)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, other)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, other)
-  -- this errors out: also the binding is now being used by harpoon.
-  -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  -- vim.keymap.set('n', '<leader>b', vim.lsp.buf.signature_help, bufopts) -- this doesn't always work
+  -- I think this might be something that not all language servers have support for
 
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, other)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, other)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, other) -- this also doesn't work.
+  vim.keymap.set('n', '<leader>l', vim.lsp.buf.code_action, other) -- I need to use this more often
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, other)
-  -- leader gf is the best bind out there.
-  vim.keymap.set('n', '<leader>gf', vim.lsp.buf.formatting, other)
+  vim.keymap.set('n', '<leader>gf', function() vim.lsp.buf.format { async = true } end, other)
 end
 
 require('nvim-lsp-installer').setup {
@@ -86,13 +85,16 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
   sources = {
-    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.diagnostics.eslint, -- I think ts server has these now by default? idk, I was getting duplicates 
     null_ls.builtins.code_actions.eslint,
-    null_ls.builtins.formatting.prettier,
+    -- null_ls.builtins.code_actions.gitsigns, -- this was just too much
+    null_ls.builtins.formatting.prettier.with({ extra_filetypes = { "javascriptreact", "typescriptreact" } }),
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.stylua,
   },
   on_attach = function(client, bufnr)
     if client.server_capabilities.documentFormattingProvider then
-      vim.cmd("nnoremap <silent><buffer> <Leader>gf :lua vim.lsp.buf.formatting()<CR>")
+      vim.cmd("nnoremap <silent><buffer> <Leader>gf :lua vim.lsp.buf.format{ async = true}<CR>")
     end
 
     if client.server_capabilities.documentRangeFormattingProvider then

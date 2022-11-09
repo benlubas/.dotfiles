@@ -1,107 +1,118 @@
 -- Only required if you have packer configured as `opt`
 -- vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+return require("packer").startup(function(use)
+	-- Packer can manage itself
+	use("wbthomason/packer.nvim")
 
-  -- 'Vanilla' Plugins
-  use 'tpope/vim-surround' -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  use 'tpope/vim-repeat' -- allows some plugin actions to be repeated with .
-  use 'numToStr/Comment.nvim' -- comment things with vim motions
+	use("lewis6991/impatient.nvim") -- for caching and better load times
 
-  -- Unit Testing
-  use {
-    'nvim-neotest/neotest',
-    requires = {
-      'antoinemadec/FixCursorHold.nvim',
-      'haydenmeade/neotest-jest',
-    }
-  }
+	-- 'Vanilla' Plugins
+	use("tpope/vim-surround") -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
+	use("tpope/vim-repeat") -- allows some plugin actions to be repeated with .
+	use("numToStr/Comment.nvim") -- comment things with vim motions
+	use("ggandor/leap.nvim") -- s becomes two char, multi line f
 
-  -- Autosave
-  use {
-    'Pocco81/auto-save.nvim',
-    -- 'XXiaoA/auto-save.nvim', -- this is a branch that fixes a bug, it should be in main soon anyway
-    config = function()
-      require('auto-save').setup()
-    end,
-  }
+	-- Unit Testing
+	use({
+		"nvim-neotest/neotest",
+		requires = {
+			"antoinemadec/FixCursorHold.nvim",
+			"haydenmeade/neotest-jest",
+		},
+	})
+  -- sniprun, run snippets of code in the editor
+  use { 'michaelb/sniprun', run = 'bash ./install.sh'}
 
-  -- Telescope
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.0',
-    requires = { { 'nvim-lua/plenary.nvim' }, { 'BurntSushi/ripgrep' } }
-  }
-  use 'nvim-telescope/telescope-fzf-native.nvim'
-  use {
-    'AckslD/nvim-neoclip.lua',
-    requires = { 'nvim-telescope/telescope.nvim' },
-    config = function()
-      require('neoclip').setup()
-    end
-  }
-  use 'nvim-telescope/telescope-symbols.nvim'
-  -- harpoon
-  use 'ThePrimeagen/harpoon'
+	use({
+		"Pocco81/auto-save.nvim",
+		config = function()
+			require("auto-save").setup()
+		end,
+	})
 
-  --marks
-  use 'chentoast/marks.nvim'
+	-- color picker
+	use({
+		"max397574/colortils.nvim",
+		cmd = "Colortils",
+		config = function()
+			require("colortils").setup()
+		end,
+	})
 
-  -- lsp type stuff
-  use 'neovim/nvim-lspconfig'
-  use 'evanleck/vim-svelte'
-  use 'williamboman/nvim-lsp-installer'
-  use 'simrat39/rust-tools.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'MunifTanjim/prettier.nvim'
+	-- Telescope
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/plenary.nvim" }, { "BurntSushi/ripgrep" } },
+	})
+	use("nvim-telescope/telescope-fzf-native.nvim")
+	use({
+		"AckslD/nvim-neoclip.lua",
+		requires = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			require("neoclip").setup()
+		end,
+	})
+	use("nvim-telescope/telescope-symbols.nvim")
+	-- harpoon
+	use("ThePrimeagen/harpoon")
 
-  -- autocompletion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-buffer'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'onsails/lspkind.nvim'
-  use 'windwp/nvim-autopairs' -- auto pairs (kinda it's own plugin)
+	-- lsp type stuff
+	use("neovim/nvim-lspconfig")
+	use("evanleck/vim-svelte")
+	use("williamboman/nvim-lsp-installer")
+	use("simrat39/rust-tools.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 
+	-- dap
+	use("mfussenegger/nvim-dap")
+	use("theHamsta/nvim-dap-virtual-text")
+	use("rcarriga/nvim-dap-ui")
+	use("mxsdev/nvim-dap-vscode-js")
 
-  -- snippets
-  use 'L3MON4D3/LuaSnip'
+	-- autocompletion
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-buffer")
+	use("saadparwaiz1/cmp_luasnip")
+	use("onsails/lspkind.nvim")
+	use("windwp/nvim-autopairs")
 
-  -- GIT
-  use {
-    'TimUntersberger/neogit',
-    requires = { 'nvim-lua/plenary.nvim' }
-  }
-  use {
-    'lewis6991/gitsigns.nvim',
-  }
+	-- snippets
+	use("L3MON4D3/LuaSnip")
 
-  -- Tree sitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  use 'nvim-treesitter/nvim-treesitter-context'
+	-- git
+	use({
+		"TimUntersberger/neogit",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+	use({
+		"lewis6991/gitsigns.nvim",
+	})
 
-  -- Neorg (setup must come after treesitter's)
-  use {
-    "nvim-neorg/neorg",
-    requires = "nvim-lua/plenary.nvim"
-  }
+	-- treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
+	use("nvim-treesitter/nvim-treesitter-context")
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 
-  -- Visual improvements
-  use 'karb94/neoscroll.nvim'
-  use 'bluz71/vim-moonfly-colors'
-  use 'kyazdani42/nvim-web-devicons'
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'folke/todo-comments.nvim'
+	-- visual improvements
+	use("karb94/neoscroll.nvim")
+	use("bluz71/vim-moonfly-colors")
+	use("kyazdani42/nvim-web-devicons")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
+	use("lukas-reineke/indent-blankline.nvim")
+	use("folke/todo-comments.nvim")
 
-  -- MISC
-  use 'folke/which-key.nvim'
+	-- MISC
+	use("folke/which-key.nvim")
+
+	-- mini
+	use("echasnovski/mini.trailspace")
 end)
