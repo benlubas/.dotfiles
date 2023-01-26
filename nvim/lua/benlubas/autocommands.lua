@@ -7,7 +7,7 @@
 local comment_group = vim.api.nvim_create_augroup('fix comment enter', { clear = true })
 vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
-    vim.opt.formatoptions:remove({'o', 'r'})
+    vim.opt.formatoptions:remove({'o'})
     vim.opt.formatoptions:append({'c'})
   end,
   group = comment_group,

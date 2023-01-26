@@ -139,9 +139,6 @@ alias venv="source ./.venv/bin/activate"
 export PATH=/home/benlubas/.fnm:$PATH
 eval "`fnm env`"
 
-source /etc/profile.d/rvm.sh
-export PATH=/usr/share/rvm/gems/ruby-3.1.2/bin:$PATH
-
 # rust-analyzer 
 export PATH=/home/benlubas/.local/bin:$PATH
 
@@ -156,7 +153,3 @@ alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
   send-keys 'v deadlines.md' C-m \; \
   select-window -t 0 \; \
   send-keys 'cd ~/github/ && clear' C-m \;"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

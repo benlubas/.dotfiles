@@ -16,6 +16,7 @@ require('gitsigns').setup {
     map('n', '<leader>gb', function() gs.blame_line{full=true} end) -- show the blame, full commit and everything for this line.
     map('n', '<leader>gD', function() gs.diffthis('~') end) -- show a diff for the whole file in a new window
     map({ 'n', 'v' }, '<leader>ga', ':Gitsigns stage_hunk<CR>') -- stage the current hunk
+    map('n', '<leader>gr', ':Gitsigns reset_hunk<CR>') -- stage the current hunk
     map('n', '<leader>gu', gs.undo_stage_hunk) -- unstage the current hunk
 
   end
