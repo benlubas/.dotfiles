@@ -1,8 +1,3 @@
-require("lsp_signature").setup({
-  hint_enable = false,
-  doc_lines = 0,
-})
-
 -- list of servers that will automatically be installed and setup with defaults
 -- to add custom settings, just call setup again after the for loop
 local servers = {
@@ -23,14 +18,27 @@ local servers = {
   "svelte",
 }
 
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
+return {
+  { "neovim/nvim-lspconfig",
+    keys = {
+      { "<leader>do", vim.diagnostic.open_float, desc = "open diagnostic on current line" },
+      { "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },
+      { "<leader>dn", vim.diagnostic.goto_next, desc = "open next diagnostic" },
+    },
+  },
+  { "evanleck/vim-svelte" },
+  { "williamboman/nvim-lsp-installer" },
+  { "simrat39/rust-tools.nvim" },
+  { "jose-elias-alvarez/null-ls.nvim" },
+  { "ray-x/lsp_signature.nvim",
+    opts = {
+      hint_enable = false,
+      doc_lines = 0,
+    }
+  },
+}
 
--- use this first one a good bit but the second might as well not exist.
-vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, opts) -- this is something that I don't use enough
-vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, opts)
+-- TODO: left off here.. 
 
 -- adding autocomplete capabilities...
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())

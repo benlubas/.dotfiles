@@ -1,15 +1,8 @@
 require("benlubas.globals")
-
-require("benlubas.treesitter")
-require("benlubas.packer")
 require("benlubas.set")
-require("benlubas.remap")
-
-require("benlubas.lsp")
-require("benlubas.autocomplete")
-require("benlubas.neotest")
-require("benlubas.dap")
+-- require("benlubas.remap")
 require("benlubas.autocommands")
+require("benlubas.filetype")
 
 -- clipboard fix for wsl
 vim.cmd([[
