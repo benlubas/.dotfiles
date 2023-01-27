@@ -12,8 +12,6 @@ vim.opt.termguicolors = true
 -- cursor line
 vim.opt.cursorline = true
 
--- I'm not actually a fan of this
--- vim.opt.cmdheight = 0
 
 -- tabs
 vim.opt.tabstop = 2
@@ -22,8 +20,10 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 -- folds 
-vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
+-- vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- search
 vim.opt.hlsearch = true

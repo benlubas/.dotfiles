@@ -3,7 +3,7 @@
 -- I have sneak installed that that remaps s and S to sneak
 
 -- just a reminder that
--- <C-w> in insert mode deletes a word at a time. 
+-- <C-w> in insert mode deletes a word at a time.
 
 -- why not both?
 vim.keymap.set("i", "kj", "<esc>")
@@ -16,7 +16,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- tab format the whole document
 vim.keymap.set("n", "=a", "gg=G<C-o>zz")
 
--- delete tailing white spaces
+-- delete trailing white spaces
 vim.keymap.set("n", "<leader>ds", function()
   require("mini.trailspace").trim()
 end)
@@ -65,31 +65,6 @@ vim.cmd([[
     silent! call repeat#set(" o", a:count)
   endfunction
 ]])
-
-local tb = require("telescope.builtin")
--- TELESCOPE BINDS --
-
--- Neotest
-local nt = require("neotest")
-vim.keymap.set("n", "<leader>tr", function() nt.run.run() end) -- Run the nearest test
-vim.keymap.set("n", "<leader>tR", function() nt.run.run(vim.fn.expand("%")) end) -- Run the current file
-vim.keymap.set("n", "<leader>ts", function() nt.run.stop() end) -- stop the nearest test
-vim.keymap.set("n", "<leader>ta", function() nt.run.attach() end) -- attach to the nearest test
-vim.keymap.set("n", "<leader>th", function() nt.output.open({ enter = true }) end) -- open output window
-vim.keymap.set("n", "<leader>td", function() nt.run.run({ strategy = "dap" }) end) -- run the test in debug mode.
-
--- sniprun
-local snip = require("sniprun")
-vim.keymap.set("n", "<leader>rr", snip.run) -- Run the block
-vim.keymap.set("v", "<leader>rr", function()
-  print("running...")
-  snip.run("v")
-end) -- Run the block
-vim.keymap.set("n", "<leader>rs", ":SnipReset<CR>") -- stop any running instances
-vim.keymap.set("n", "<leader>rc", ":SnipClear<CR>") -- stop any running instances
-
--- Neo Git
-vim.keymap.set("n", "<leader>gi", "<cmd>Neogit<CR>")
 
 -- Spelling binds because the normal ones kinda suck
 vim.keymap.set("n", "<leader>sw", "]s") -- Next misspelled word

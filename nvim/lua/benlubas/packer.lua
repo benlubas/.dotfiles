@@ -21,8 +21,6 @@ return require("packer").startup(function(use)
       "haydenmeade/neotest-jest",
     },
   })
-  -- sniprun, run snippets of code in the editor
-  use({ "michaelb/sniprun", run = "bash ./install.sh" })
 
   use({
     "Pocco81/auto-save.nvim",
