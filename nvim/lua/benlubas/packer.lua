@@ -3,43 +3,7 @@
 
 return require("packer").startup(function(use)
 
-  use("nvim-telescope/telescope-fzf-native.nvim")
-  use({
-    "AckslD/nvim-neoclip.lua",
-    requires = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("neoclip").setup()
-    end,
-  })
-  use("nvim-telescope/telescope-symbols.nvim")
-  -- harpoon
-  use("ThePrimeagen/harpoon")
-
-  -- lsp type stuff
-  use("neovim/nvim-lspconfig")
-  use("evanleck/vim-svelte")
-  use("williamboman/nvim-lsp-installer")
-  use("simrat39/rust-tools.nvim")
-  use("jose-elias-alvarez/null-ls.nvim")
-
-  -- dap
-  use("mfussenegger/nvim-dap")
-  use("theHamsta/nvim-dap-virtual-text")
-  use("rcarriga/nvim-dap-ui")
-  use("mxsdev/nvim-dap-vscode-js")
-
-  -- autocompletion
-  use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-buffer")
-  use("saadparwaiz1/cmp_luasnip")
-  use("onsails/lspkind.nvim")
-  use("windwp/nvim-autopairs")
-
-  use("ray-x/lsp_signature.nvim")
-
-  -- snippets
+-- snippets
   use("L3MON4D3/LuaSnip")
 
   -- git

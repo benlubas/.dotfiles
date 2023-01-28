@@ -14,15 +14,9 @@ return {
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-buffer" },
-			{ "saadparwaiz1/cmp_luasnip" },
 			{ "ray-x/lsp_signature.nvim" },
 		},
 		opts = {
-			snippet = {
-				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
-				end,
-			},
 			window = {
 				completion = require("cmp").config.window.bordered(winhighlight),
 				documentation = require("cmp").config.window.bordered(winhighlight),
@@ -65,10 +59,13 @@ return {
 
 	{
 		"windwp/nvim-autopairs",
+		dependencies = {
+			{ "hrsh7th/nvim-cmp" },
+		},
 		config = function()
 			-- If you want insert `(` after select function or method item
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+			require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 }
