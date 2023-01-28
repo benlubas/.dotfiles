@@ -1,4 +1,16 @@
 return {
+	{ "nvim-treesitter/nvim-treesitter-context",
+    opts = {
+      patterns = {
+        ruby = {
+          'context',
+          'describe',
+          'it',
+        }
+      }
+    },
+  },
+	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		cmd = "TSUpdate",

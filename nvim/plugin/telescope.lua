@@ -24,8 +24,7 @@ return {
       end,
         desc = "search dot files"
       },
-      { "<leader>fj", function() require('telescope.builtin').current_buffer_fuzzy_find() end,
-        desc = "current buffer fuzzy find" },
+      { "<leader>fj", require('telescope.builtin').current_buffer_fuzzy_find, desc = "current buffer fuzzy find" },
       { "<leader>fa", "<cmd>Telescope live_grep<CR>", desc = "Find a word in a file in the directory" },
       { "<leader>fh", function() require('telescope.builtin').find_files({ hidden = true }) end,
         desc = "include hidden files in directory search" },
@@ -38,6 +37,7 @@ return {
         desc = "help with WORD under cursor" },
       { "<leader>c", "<cmd>Telescope neoclip<CR>", desc = "clipboard" },
       { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "todo's" },
+      { "<leader>ss", require('telescope.builtin').spell_suggest(require("telescope.themes").get_cursor), desc = "spell suggest" },
     },
   },
   { "AckslD/nvim-neoclip.lua", config = true },

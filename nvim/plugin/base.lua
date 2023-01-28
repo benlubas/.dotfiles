@@ -5,4 +5,10 @@ return {
 		"Pocco81/auto-save.nvim",
 		config = true,
 	},
+	{
+		"kevinhwang91/rnvimr",
+		keys = {
+			{ "<leader>e", ":RnvimrToggle<CR>", desc = "open ranger" },
+		},
+	},
 }

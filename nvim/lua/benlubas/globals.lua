@@ -1,4 +1,4 @@
--- prints the thing as a string
+-- prints and returns the thing as a string
 P = function(thing)
   vim.inspect(thing)
   return thing

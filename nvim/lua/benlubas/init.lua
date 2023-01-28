@@ -1,6 +1,6 @@
 require("benlubas.globals")
 require("benlubas.set")
--- require("benlubas.remap")
+require("benlubas.remap")
 require("benlubas.autocommands")
 require("benlubas.filetype")
 
