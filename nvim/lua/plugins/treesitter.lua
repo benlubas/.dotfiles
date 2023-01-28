@@ -55,7 +55,6 @@ return {
 				"lua",
 				"markdown",
 				"markdown_inline",
-				"norg",
 				"python",
 				"ruby",
 				"rust",
