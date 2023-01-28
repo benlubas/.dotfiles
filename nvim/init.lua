@@ -20,6 +20,9 @@ require("lazy").setup("plugins", {
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "moonfly" },
   },
+  change_detection = {
+    enabled = false,
+  },
   custom_keys = {
     -- disable default keybinds
     ["<localleader>t"] = false,

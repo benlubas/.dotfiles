@@ -22,8 +22,14 @@ return {
       vim.api.nvim_set_hl(0, "DapStopped", { fg = "#80EFBE" })
 
       -- also, amogus symbol b/c it's funny
-      vim.fn.sign_define("DapBreakpoint", { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
-      vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" })
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define(
+        "DapLogPoint",
+        { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" }
+      )
       vim.fn.sign_define(
         "DapStopped",
         { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
@@ -51,12 +57,12 @@ return {
       end,
     },
   },
-  { "folke/which-key.nvim" },
+  { "folke/which-key.nvim", config = true, lazy = false },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      require('lualine').setup({
+      require("lualine").setup({
         options = {
           icons_enabled = true,
           disabled_filetypes = {
@@ -89,7 +95,7 @@ return {
           lualine_z = {},
         },
       })
-    end
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -100,10 +106,12 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    highlight = {
-      before = "fg",
-      keyword = "bg",
-      after = "",
+    opts = {
+      highlight = {
+        before = "fg",
+        keyword = "bg",
+        after = "",
+      },
     },
   },
 }
