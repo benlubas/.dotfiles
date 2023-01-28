@@ -2,47 +2,7 @@
 -- vim.cmd [[packadd packer.nvim]]
 
 return require("packer").startup(function(use)
-  -- Packer can manage itself
-  use("wbthomason/packer.nvim")
 
-  use("lewis6991/impatient.nvim") -- for caching and better load times
-
-  -- 'Vanilla' Plugins
-  use("tpope/vim-surround") -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  use("tpope/vim-repeat") -- allows some plugin actions to be repeated with .
-  use("numToStr/Comment.nvim") -- comment things with vim motions
-  use("ggandor/leap.nvim") -- s becomes two char, multi line f
-
-  -- Unit Testing
-  use({
-    "nvim-neotest/neotest",
-    requires = {
-      "antoinemadec/FixCursorHold.nvim",
-      "haydenmeade/neotest-jest",
-    },
-  })
-
-  use({
-    "Pocco81/auto-save.nvim",
-    config = function()
-      require("auto-save").setup()
-    end,
-  })
-
-  -- color picker
-  use({
-    "max397574/colortils.nvim",
-    cmd = "Colortils",
-    config = function()
-      require("colortils").setup()
-    end,
-  })
-
-  -- Telescope
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" }, { "BurntSushi/ripgrep" } },
-  })
   use("nvim-telescope/telescope-fzf-native.nvim")
   use({
     "AckslD/nvim-neoclip.lua",

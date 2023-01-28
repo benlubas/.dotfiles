@@ -29,9 +29,6 @@ vim.keymap.set("n", "<leader>E", "<cmd>Ex<CR>") -- quit to netrw
 -- run the test file.
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile")
 
--- pick color under cursor
-vim.keymap.set("n", "<leader>C", ":Colortils picker<CR>")
-
 -- folding
 vim.keymap.set("n", "<leader>i", "za") -- toggle one fold
 vim.keymap.set("n", "<leader><leader>f", "zC") -- fold the whole doc
