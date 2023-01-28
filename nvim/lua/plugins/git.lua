@@ -13,7 +13,7 @@ return {
 
         -- Actions
         map('n', '<leader>gd', gs.preview_hunk) -- show a small floating diff
-        map('n', '<leader>gb', function() gs.blame_line end) -- show the blame, full commit and everything for this line.
+        map('n', '<leader>gb', gs.blame_line) -- show the blame, full commit and everything for this line.
         map('n', '<leader>gD', function() gs.diffthis('~') end) -- show a diff for the whole file in a new window
         map({ 'n', 'v' }, '<leader>ga', ':Gitsigns stage_hunk<CR>') -- stage the current hunk
         map('n', '<leader>gr', ':Gitsigns reset_hunk<CR>') -- reset the current hunk

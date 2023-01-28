@@ -7,16 +7,20 @@ return {
 				require("dapui").open()
 			end
 		end,
-		keys = {
-			{ "<leader>.b", require("dap").toggle_breakpoint },
-			{ "<leader>.r", require("dap").continue, desc = "run the debugger, or run the code" },
-			{ "<leader>.s", require("dap").step_over, desc = "step over" },
-			{ "<leader>.S", require("dap").step_into, desc = "Step into" },
-		},
+		--keys = {
+			--{ "<leader>.b", require("dap").toggle_breakpoint },
+			--{ "<leader>.r", require("dap").continue, desc = "run the debugger, or run the code" },
+			--{ "<leader>.s", require("dap").step_over, desc = "step over" },
+			--{ "<leader>.S", require("dap").step_into, desc = "Step into" },
+		--},
 	},
 	{ "theHamsta/nvim-dap-virtual-text", config = true },
 	{
 		"rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" },
+		--keys = {
+			--{ "<leader>.u", require("dapui").toggle, desc = "toggle the ui" },
+		--},
 		opts = {
 			mappings = {
 				-- Use a table to apply multiple mappings
@@ -64,9 +68,6 @@ return {
 					terminate = "□",
 				},
 			},
-		},
-		keys = {
-			{ "<leader>.u", require("dapui").toggle, desc = "toggle the ui" },
 		},
 	},
 	{

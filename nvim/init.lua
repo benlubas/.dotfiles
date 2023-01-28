@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
-require("lazy").setup("plugin", {
+require("lazy").setup("plugins", {
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
