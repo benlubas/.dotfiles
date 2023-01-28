@@ -23,7 +23,7 @@ return {
       vim.keymap.set("n", "<leader>Wh", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cWORD>") }) end, {desc = "help with WORD under cursor" })
       vim.keymap.set("n", "<leader>c", "<cmd>Telescope neoclip<CR>", { desc = "clipboard" })
       vim.keymap.set("n", "<leader>fd", function() require("benlubas.telescope-project-files").project_files() end, { desc = "search project files" })     
-      vim.keymap.set("n", "<leader>ss", require('telescope.builtin').spell_suggest(require("telescope.themes").get_cursor), {desc = "spell suggest" })
+      vim.keymap.set("n", "<leader>ss", function() require('telescope.builtin').spell_suggest(require("telescope.themes").get_cursor) end, {desc = "spell suggest" })
       -- find files in working dir
       vim.keymap.set("n", "<leader>fl", function()
         local dir = vim.env.HOME .. "/github/.dotfiles"

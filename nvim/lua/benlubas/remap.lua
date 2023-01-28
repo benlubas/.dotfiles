@@ -22,8 +22,8 @@ end, { desc = "delete trailing white spaces (entire doc)" })
 
 -- quit/file tree
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
-vim.keymap.set("n", "<leader>e", "<cmd>!silent w<CR><cmd>Ex<CR>", { desc = "write quit to netrw" })
-vim.keymap.set("n", "<leader>E", "<cmd>Ex<CR>", { desc = "quit to netwr" })
+-- vim.keymap.set("n", "<leader>e", "<cmd>!silent w<CR><cmd>Ex<CR>", { desc = "write quit to netrw" })
+-- vim.keymap.set("n", "<leader>E", "<cmd>Ex<CR>", { desc = "quit to netwr" })
 
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })
 

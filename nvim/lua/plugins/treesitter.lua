@@ -14,7 +14,6 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		cmd = "TSUpdate",
-		init = true,
 		opts = {
 			highlight = {
 				enable = true,
