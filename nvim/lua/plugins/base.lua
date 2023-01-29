@@ -13,13 +13,36 @@ return {
   },
   {
     "echasnovski/mini.trailspace",
-    config = function()
-      vim.keymap.set(
-        "n",
+    keys = {
+      {
         "<leader>ds",
-        require("mini.trailspace").trim,
-        { desc = "trim trailing whitespace" }
-      )
-    end,
+        ":lua require('mini.trailspace').trim()<CR>",
+        desc = "trim trailing whitespace",
+      },
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    opts = {
+      toggler = {
+        -- Line-comment toggle keymap
+        line = "glg",
+        -- Block-comment toggle keymap (this one doesn't do the whole line, it does
+        -- to the end of the line.
+        block = "gaa",
+      },
+      opleader = {
+        line = "gl",
+        block = "ga",
+      },
+      extra = {
+        -- Add comment on the line above
+        above = "glO",
+        -- Add comment on the line below
+        below = "glo",
+        -- Add comment at the end of line
+        eol = "glA",
+      },
+    },
   },
 }
