@@ -56,6 +56,7 @@ return {
         ensure_installed = {
           "c",
           "css",
+          "help",
           "html",
           "java",
           "javascript",

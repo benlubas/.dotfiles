@@ -18,7 +18,7 @@ return {
       { "L3MON4D3/LuaSnip" },
     },
     config = function()
-      vim.api.nvim_set_hl(0, "CmpItemAbbr", { guifg = '#F0F0F0'})
+      vim.api.nvim_set_hl(0, "CmpItemAbbr", {})
 
       local cmp = require('cmp')
       cmp.setup({
