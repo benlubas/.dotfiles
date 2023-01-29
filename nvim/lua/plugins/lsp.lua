@@ -19,6 +19,7 @@ return {
 	-- { "evanleck/vim-svelte" },
 	{
 		"neovim/nvim-lspconfig",
+    lazy = false,
 		keys = {
 			{ "<leader>do", vim.diagnostic.open_float, desc = "open diagnostic on current line" },
 			{ "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },

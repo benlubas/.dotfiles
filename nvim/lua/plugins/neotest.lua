@@ -10,8 +10,9 @@ return {
   },
   dependencies = {
     { "haydenmeade/neotest-jest" },
+    { "benlubas/neotest-rspec", dev = true },
   },
-	config = function() 
+	config = function()
     require("neotest").setup({
       adapters = {
         -- these are the defaults
@@ -22,6 +23,7 @@ return {
             return vim.fn.getcwd()
           end,
         }),
+        require("neotest-rspec"),
       },
       status = {
         enabled = true,

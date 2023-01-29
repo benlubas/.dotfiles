@@ -11,4 +11,15 @@ return {
       { "<leader>e", ":RnvimrToggle<CR>", desc = "open ranger" },
     },
   },
+  {
+    "echasnovski/mini.trailspace",
+    config = function()
+      vim.keymap.set(
+        "n",
+        "<leader>ds",
+        require("mini.trailspace").trim,
+        { desc = "trim trailing whitespace" }
+      )
+    end,
+  },
 }

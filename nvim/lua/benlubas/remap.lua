@@ -15,10 +15,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move highlighted text up"
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
 
--- delete trailing white spaces
-vim.keymap.set("n", "<leader>ds", function()
-	require("mini.trailspace").trim()
-end, { desc = "delete trailing white spaces (entire doc)" })
 
 -- quit/file tree
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })

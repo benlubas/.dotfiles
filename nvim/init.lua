@@ -34,6 +34,9 @@ require("lazy").setup("plugins", {
       })
     end,
   },
+  dev = {
+    path = "~/github",
+  },
 })
 
 require("benlubas")
