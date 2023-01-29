@@ -20,10 +20,7 @@ class Default(ColorScheme):
                 attr |= bold
                 fg = black
             if context.media:
-                if context.image:
-                    fg = green
-                else:
-                    fg = green
+                fg = green
             if context.container:
                 attr |= bold
                 fg = magenta
@@ -57,7 +54,7 @@ class Default(ColorScheme):
                     attr |= normal
                 if context.marked:
                     attr |= bold
-                    fg = yellow
+                    fg = magenta
             if context.badinfo:
                 if attr & reverse:
                     bg = magenta
@@ -70,7 +67,7 @@ class Default(ColorScheme):
                 attr |= bold
                 fg = context.bad and black or black
             elif context.directory:
-                fg = cyan
+                fg = blue
             elif context.tab:
                 if context.good:
                     bg = green
