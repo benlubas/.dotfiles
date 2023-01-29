@@ -1,2 +1,3 @@
 packer_complied.lua
-__pycahe__/
+__pycache__/
+ranger/colorschemes/__init__.py

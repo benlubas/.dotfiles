@@ -5,9 +5,6 @@ window:
   #   - full: Borders and title bar
   #   - none: Neither borders nor title bar
   decorations: full
-  padding: # in pixels
-    x: 10
-    y: 10
 
   # Background opacity
   #
@@ -36,7 +33,7 @@ font:
     family: JetBrainsMono Nerd Font
 
   # Point size
-  size: 16
+  size: 15
 
   # Use built-in font for box drawing characters.
   #
@@ -44,6 +41,11 @@ font:
   # characters (Unicode points 2500 - 259f).
   #
   builtin_box_drawing: true
+
+colors:
+  primary:
+   background: '#1d1d1d'
+
 #selection:
 # This string contains all characters that are used as separators for
 # "semantic words" in Alacritty.

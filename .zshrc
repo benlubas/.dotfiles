@@ -131,6 +131,9 @@ alias zshrc="v ~/.zshrc"
 alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
 alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias venv="source ./.venv/bin/activate"
+alias gs="git status"
+alias gd="git diff"
+alias gdm="git diff main"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -148,8 +151,5 @@ alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
   tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
   rename-window \"Main Nvim\" \; \
   neww -n shell \; \
-  neww -n Notes \; \
-  send-keys 'cd ~/github/notes/' C-m \; \
-  send-keys 'v deadlines.md' C-m \; \
   select-window -t 0 \; \
   send-keys 'cd ~/github/ && clear' C-m \;"

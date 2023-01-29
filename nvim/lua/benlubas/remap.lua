@@ -38,6 +38,7 @@ vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>p", '"+p')
+vim.keymap.set("v", "<leader>P", '"+P')
 
 -- add empty line above/below
 vim.keymap.set("n", "<leader>O", ":call BlankUp(1)<CR>", { silent = true })
