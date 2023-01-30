@@ -1,6 +1,6 @@
 -- prints and returns the thing as a string
 P = function(thing)
-  vim.inspect(thing)
+  print(vim.inspect(thing))
   return thing
 end
 
