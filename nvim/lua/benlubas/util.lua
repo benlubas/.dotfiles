@@ -19,3 +19,5 @@ M.escape_gsub = function(s)
       :gsub("%?", "%%?")
   )
 end
+
+return M

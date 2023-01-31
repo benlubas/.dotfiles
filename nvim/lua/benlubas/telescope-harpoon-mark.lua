@@ -6,6 +6,7 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local action_state = require("telescope.actions.state")
+local previewers = require("telescope.previewers")
 
 M = {}
 
@@ -19,18 +20,27 @@ M.mark_file = function(tb)
   actions.remove_selection(tb)
 end
 
+local format_marks = function(marks)
+  local out = {}
+
+  for _, m in ipairs(marks) do
+    table.insert(out, m.filename)
+  end
+
+  return out
+end
+
 -- Telescope picker for importing harpoon branch marks from other branches for the same project
 M.harpoon_branch_marks_picker = function(opts)
-  P(require("harpoon").get_harpoon_config().mark_branch)
-
   if not require("harpoon").get_global_settings().mark_branch then
     print("import_branch_marks() requires 'mark_branch = true' in your harpoon config")
     return
   end
 
+  local data_path = vim.fn.stdpath("data")
+
   -- Load the harpoon config file which contains all the project directories
-  local config_path = vim.fn.stdpath("config")
-  local user_config = string.format("%s/harpoon.json", config_path)
+  local user_config = string.format("%s/harpoon.json", data_path)
   local projects = vim.json.decode(Path:new(user_config):read()).projects
 
   -- get all the keys that match the form: ${cwd}-
@@ -40,56 +50,49 @@ M.harpoon_branch_marks_picker = function(opts)
   local picker_list = {}
 
   for key, value in pairs(projects) do
-    if key:match(local_utils.escape_gsub(cwd .. "-")) then
+    if string.match(key, local_utils.escape_gsub(cwd .. "-")) then
       -- Add this to the list
-      picker_list[key] = value
+      table.insert(picker_list, { [key] = value })
     end
   end
-
-  -- the values are shaped like:
-  -- {
-  --   mark = {
-  --     marks = {
-  --       {
-  --         row: int
-  --         col: int
-  --         filename: string
-  --       }
-  --     }
-  --     term = {
-  --       cmds = []
-  --     }
-  --   }
-  -- }
-  opts = opts or {}
+  opts = opts or require("telescope.themes").get_dropdown({})
   pickers
-    .new(opts, {
-      prompt_title = "branch marks",
-      finder = finders.new_table({
-        results = picker_list,
-        entry_maker = function(entry)
-          P(entry)
-          return {
-            value = entry,
-            display = entry[1],
-            ordinal = entry[1],
-          }
+      .new(opts, {
+        prompt_title = "branch",
+        finder = finders.new_table({
+          results = picker_list,
+          entry_maker = function(entry)
+            for path, marks in pairs(entry) do
+              local s = string.gsub(path, local_utils.escape_gsub(cwd .. "-"), "")
+              local fmt = format_marks(marks.mark.marks)
+              return {
+                value = fmt,
+                display = s,
+                ordinal = s,
+              }
+            end
+          end,
+        }),
+        attach_mappings = function(prompt_bufnr, _)
+          actions.select_default:replace(function()
+            actions.close(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            P(selection.value)
+            for _, value in ipairs(selection.value) do
+              require("harpoon.mark").add_file(value)
+            end
+          end)
+          return true
         end,
-      }),
-      attach_mappings = function(prompt_bufnr, map)
-        actions.select_default:replace(function()
-          actions.close(prompt_bufnr)
-          local selection = action_state.get_selected_entry()
-          -- print(vim.inspect(selection))
-          vim.api.nvim_put({ selection[1] }, "", false, true)
-        end)
-        return true
-      end,
-      sorter = conf.generic_sorter(opts),
-    })
-    :find()
+        sorter = conf.generic_sorter(opts),
+        previewer = previewers.new_buffer_previewer({
+          define_preview = function(self, entry, _)
+            vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, entry.value)
+          end,
+          title = "Harpoon Marks",
+        }),
+      })
+      :find()
 end
-
--- M.harpoon_branch_marks_picker()
 
 return M
