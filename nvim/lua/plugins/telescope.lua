@@ -39,9 +39,6 @@ return {
           find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
         })
       end, { desc = "search dot files" })
-      vim.keymap.set("n", "<leader>fm",
-        function() require("benlubas.telescope-harpoon-mark").harpoon_branch_marks_picker() end,
-        { desc = "marks from other branches, select to add marks" })
     end,
   },
   { "AckslD/nvim-neoclip.lua", config = true },

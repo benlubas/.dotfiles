@@ -22,5 +22,9 @@ return {
     { "<C-j>", function() require("harpoon.ui").nav_file(2) end, mode = "i" },
     { "<C-k>", function() require("harpoon.ui").nav_file(3) end, mode = "i" },
     { "<C-l>", function() require("harpoon.ui").nav_file(4) end, mode = "i" },
+
+    { "<leader>fm",
+      function() require("benlubas.telescope-harpoon-mark").harpoon_branch_marks_picker() end,
+      desc = "marks from other branches, select to add marks" },
   }
 }
