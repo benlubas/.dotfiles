@@ -29,9 +29,11 @@ vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 -- "zO" Open all folds under the cursor
 
 -- clipboard binds (copy and paste from sys clipboard)
+vim.keymap.set("n", "<leader>Y", '"+Y$')
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
+vim.keymap.set("v", "<leader>Y", '"+y$')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>P", '"+P')

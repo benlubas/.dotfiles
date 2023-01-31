@@ -33,8 +33,6 @@ if [ -f $(pwd)/.zshsecrets ]; then
   source $(pwd)/.zshsecrets
 fi
 
-export PATH=/home/benlubas/nvim-linux64/bin:$PATH
-
 export EDITOR="$HOME/nvim.appimage"
 
 v() {
@@ -46,7 +44,6 @@ v() {
   fi
 }
 
-# alias all the things
 alias zshrc="$EDITOR ~/.zshrc"
 alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
 alias kvm="ssh benlubas@login.ccs.neu.edu"
@@ -71,4 +68,15 @@ alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
   rename-window \"Main Nvim\" \; \
   neww -n shell \; \
   select-window -t 0 \; \
-  send-keys 'cd ~/github/ && clear' C-m \;"
+  send-keys 'cd ~/work/ && clear' C-m \;"
+
+export CC="/usr/bin/gcc"
+
+export ZSH_TMUX_AUTOSTART="true"
+export LC_ALL="en_US.UTF-8"
+
+# export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+
+eval "$(direnv hook zsh)" >> /dev/null
