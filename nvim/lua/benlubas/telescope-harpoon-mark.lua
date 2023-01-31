@@ -5,7 +5,6 @@ local actions = require("telescope.actions")
 local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local conf = require("telescope.config").values
-local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
 M = {}
@@ -22,15 +21,7 @@ end
 
 -- Telescope picker for importing harpoon branch marks from other branches for the same project
 M.harpoon_branch_marks_picker = function(opts)
-  require('harpoon').setup({
-    menu = {
-      width = (function()
-        local width = vim.api.nvim_win_get_width(0) - 4;
-        return math.floor(width - width * 0.55);
-      end)(),
-    },
-    mark_branch = true
-  })
+  P(require("harpoon").get_harpoon_config().mark_branch)
 
   if not require("harpoon").get_global_settings().mark_branch then
     print("import_branch_marks() requires 'mark_branch = true' in your harpoon config")
@@ -99,6 +90,6 @@ M.harpoon_branch_marks_picker = function(opts)
     :find()
 end
 
-M.harpoon_branch_marks_picker()
+-- M.harpoon_branch_marks_picker()
 
 return M
