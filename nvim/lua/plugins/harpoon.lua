@@ -7,7 +7,7 @@ return {
         return math.floor(width - width * 0.55);
       end)(),
     },
-    mark_branch = true,
+    mark_branch = false, -- this is insanely slow on mac for some reason
   },
   keys = {
     { "<C-s>", function() require("harpoon.mark").add_file() end, desc = "add current file to harpoon menu" },
