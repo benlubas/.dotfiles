@@ -6,7 +6,8 @@ return {
         local width = vim.api.nvim_win_get_width(0) - 4;
         return math.floor(width - width * 0.55);
       end)(),
-    }
+    },
+    mark_branch = true
   },
   keys = {
     { "<C-s>", function() require("harpoon.mark").add_file() end, desc = "add current file to harpoon menu" },
