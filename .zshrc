@@ -29,15 +29,16 @@ if [ -f $(brew --prefix)/etc/brew-wrap ];then
     source $(brew --prefix)/etc/brew-wrap
 fi
 
+# --- end of oh-my-zsh --- #
+
 if [ -f $(pwd)/.zshsecrets ]; then
   source $(pwd)/.zshsecrets
 fi
 
-export EDITOR="$HOME/nvim.appimage"
+export EDITOR="nvim"
 
 v() {
   if [ ! -z "$1" ]; then 
-    # we have a value that should be a path. so treat it like one. 
     $EDITOR "$1"
   else 
     $EDITOR .
@@ -45,8 +46,6 @@ v() {
 }
 
 alias zshrc="$EDITOR ~/.zshrc"
-alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
-alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias gs="git status"
 alias gd="git diff"
 alias gdm="git diff main"
