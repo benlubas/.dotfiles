@@ -29,6 +29,9 @@ if [ -f $(brew --prefix)/etc/brew-wrap ];then
     source $(brew --prefix)/etc/brew-wrap
 fi
 
+if [ -f $(pwd)/.zshsecrets ]; then
+  source $(pwd)/.zshsecrets
+fi
 
 export PATH=/home/benlubas/nvim-linux64/bin:$PATH
 
