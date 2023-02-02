@@ -49,12 +49,6 @@ return {
       mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>", "zt", "zz", "zb" },
       hide_cursor = false,
       stop_eof = false,
-      post_hook = function() -- function to flash the line that we land on
-        vim.opt.cul = true
-        vim.defer_fn(function()
-          vim.opt.cul = false
-        end, 350)
-      end,
     },
   },
   { "folke/which-key.nvim", config = true, lazy = false },

@@ -7,6 +7,9 @@ There's a lot to remember, early on if you take a break it's easy to forget abou
 
 - Harpoon is slow with branch specific marks
   - I kinda want to write my own plugin (possibly in rust) to fix it.
+- Neotest initial load time in a large repo (ie. bookbub lello) is really really really slow
+- nvim-treesitter-context doesn't show virtual text that would show up on a line.
+  - i want this so neotest status symbols show up there.
 - Setup Luasnip 
 - Commit the default spelling binds to memory to use those and free up `<leader>s` as a prefix 
 
