@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/benlubas'
+let g:netrw_dirhist_2='/home/benlubas/.local/bin'
+let g:netrw_dirhist_1='/home/benlubas/.local'
+let g:netrw_dirhist_0='/home/benlubas'
+let g:netrw_dirhist_9='/home/benlubas/nvim-linux64'
+let g:netrw_dirhist_8='/home/benlubas/nvim-linux64/lib'
+let g:netrw_dirhist_7='/home/benlubas/nvim-linux64'
+let g:netrw_dirhist_6='/home/benlubas/nvim-linux64/bin'
+let g:netrw_dirhist_5='/home/benlubas/nvim-linux64'
+let g:netrw_dirhist_4='/home/benlubas'
