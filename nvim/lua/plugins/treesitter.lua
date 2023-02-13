@@ -7,9 +7,8 @@ return {
     opts = {
       patterns = {
         ruby = {
-          "context",
-          "describe",
-          "it",
+          "block",
+          "module",
         },
       },
     },
@@ -22,6 +21,7 @@ return {
     lazy = false,
     cmd = "TSUpdate",
     config = function()
+      -- require("nvim-treesitter.install").compilers = { "clang" }
       require("nvim-treesitter.configs").setup({
         highlight = {
           enable = true,

@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -14,28 +17,27 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-export COLORTERM=truecolor
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fnm rust zsh-autosuggestions)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -f $(brew --prefix)/etc/brew-wrap ];then
-    source $(brew --prefix)/etc/brew-wrap
+if [ -f $HOME/.zshsecrets ]; then
+  source $HOME/.zshsecrets
 fi
 
-if [ -f $(pwd)/.zshsecrets ]; then
-  source $(pwd)/.zshsecrets
-fi
+# homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-export PATH=/home/benlubas/nvim-linux64/bin:$PATH
-
-export EDITOR="$HOME/nvim.appimage"
+export EDITOR="nvim"
 
 v() {
   if [ ! -z "$1" ]; then 
@@ -48,7 +50,6 @@ v() {
 
 # alias all the things
 alias zshrc="$EDITOR ~/.zshrc"
-alias cdwin="cd /mnt/c/Documents\ and\ Settings/Ben\ Lubas" # take me to the windows files
 alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias gs="git status"
 alias gd="git diff"
@@ -59,7 +60,7 @@ alias gdm="git diff main"
 
 # fnm
 export PATH=/home/benlubas/.fnm:$PATH
-eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"
 
 # rust-analyzer 
 export PATH=/home/benlubas/.local/bin:$PATH
@@ -72,3 +73,6 @@ alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
   neww -n shell \; \
   select-window -t 0 \; \
   send-keys 'cd ~/github/ && clear' C-m \;"
+
+# nix direnv (this should stay at the end)
+eval "$(direnv hook zsh)"

@@ -32,6 +32,9 @@ source ~/.zshrc
 5. Things that you shouldn't/can't install with brew
   - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is 
   annoying for updating and switching between versions.
+  - Cargo installs:
+    - `cargo install ripgrep`
+    - `cargo install fnm`
 
 6. NVIM
   - install it somehow
@@ -39,9 +42,14 @@ source ~/.zshrc
   - Deps
     - install JetBrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
       - set that as the default terminal font
-    - ripgrep `cargo install ripgrep`
     - working with ruby? install solargraph yourself
     - possibly others that I'm forgetting.
 
 7. Alacritty
+  - this is just a terminal
+
+8. Oh-my-zsh
+  - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+  - Powerlevel10k: 
+    - `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
 
