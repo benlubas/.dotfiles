@@ -30,6 +30,7 @@ vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
 vim.keymap.set("v", "<leader>y", '"+y')
