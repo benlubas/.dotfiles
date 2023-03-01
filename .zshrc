@@ -47,6 +47,13 @@ v() {
 
 alias zshrc="$EDITOR ~/.zshrc"
 alias gs="git status"
+
+rcf() {
+  branch=$(git branch --show-current)
+  rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
+}
+alias zshrc="$EDITOR ~/.zshrc"
+alias ga="git add"
 alias gd="git diff"
 alias gdm="git diff main"
 
