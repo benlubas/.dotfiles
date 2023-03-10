@@ -2,19 +2,20 @@ vim.keymap.set("n", "<leader><leader>r", ":lua R('ramora')<CR>")
 
 -- I have sneak installed that that remaps s and S to sneak
 
--- just a reminder that
--- <C-w> in insert mode deletes a word at a time.
+-- just a reminder that <C-w> in insert mode deletes a word at a time.
+
+-- TEMPORARY BINDS --
+vim.keymap.set("n", "<leader><leader>h", ":set cmdheight=1<CR>", { desc = "a 'fix' for neotest bug"})
 
 -- why not both?
 vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("i", "jk", "<esc>")
 
 -- move things up and down (this is insanely nice)
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "move highlighted text down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "move highlighted text up" })
+vim.keymap.set("v", "J", ":m '>+1<CR>=kgv", { desc = "move highlighted text down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>=jgv", { desc = "move highlighted text up" })
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
-
 
 -- quit/file tree
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })

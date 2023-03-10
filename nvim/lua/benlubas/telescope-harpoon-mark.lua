@@ -33,8 +33,7 @@ end
 -- Telescope picker for importing harpoon branch marks from other branches for the same project
 M.harpoon_branch_marks_picker = function(opts)
   if not require("harpoon").get_global_settings().mark_branch then
-    print("import_branch_marks() requires 'mark_branch = true' in your harpoon config")
-    return
+    print("warning, 'mark_branch = false' is set in harpoon config")
   end
 
   local data_path = vim.fn.stdpath("data")

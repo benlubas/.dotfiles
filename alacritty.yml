@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 window:
-  decorations: full # full or none
+  decorations: none # full or none
   opacity: 1.0
   title: Alacritty # Window title
   dynamic_title: false
@@ -59,7 +59,13 @@ selection:
 
 # Key bindings
 key_bindings:
-  - { key: Space, mods: Control, chars: "\x00" }
+  - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # Skip word left
+  - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # Skip word right
+  - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
+  - { key: Back,     mods: Command, chars: "\x15"                        } # Delete line
+  - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    } # Delete word 
+  - { key: Space,    mods: Control, chars: "\x00" } # allows ctrl space to be tmux prefix
 
 #debug:
 # Display the time it takes to redraw each frame.

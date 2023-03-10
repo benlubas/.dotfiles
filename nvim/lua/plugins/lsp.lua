@@ -11,7 +11,7 @@ local servers = {
   "marksman",
   "rust_analyzer",
   "tsserver",
-  "sumneko_lua",
+  "lua_ls",
   -- "svelte",
 }
 
@@ -68,7 +68,7 @@ return {
         })
       end
 
-      require("lspconfig")["sumneko_lua"].setup({
+      require("lspconfig")["lua_ls"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {

@@ -7,33 +7,10 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      -- vert line at 100 chars
-      vim.opt.colorcolumn = { 100 }
-
       vim.g.moonflyTransparent = true
       vim.g.moonflyCursorColor = true
       vim.g.moonflyNormalFloat = true
       vim.g.moonflyItalics = false
-
-      -- TODO: move this to dap setup
-      -- highlight groups for nvim dap icons
-      vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#FF3939" })
-      vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
-      vim.api.nvim_set_hl(0, "DapStopped", { fg = "#80EFBE" })
-
-      -- also, amogus symbol b/c it's funny
-      vim.fn.sign_define(
-        "DapBreakpoint",
-        { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" }
-      )
-      vim.fn.sign_define(
-        "DapLogPoint",
-        { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" }
-      )
-      vim.fn.sign_define(
-        "DapStopped",
-        { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
-      )
 
       vim.cmd("syntax enable")
       vim.cmd([[colorscheme moonfly]])

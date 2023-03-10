@@ -2,16 +2,15 @@ vim.g.mapleader = " "
 
 vim.opt.mouse = "a"
 
--- numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 6
 
--- colors
 vim.opt.termguicolors = true
--- cursor line
 vim.opt.cursorline = true
 
+vim.opt.swapfile = false
+vim.opt.colorcolumn = { 100 }
 
 -- tabs
 vim.opt.tabstop = 2

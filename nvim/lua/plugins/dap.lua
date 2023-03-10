@@ -6,21 +6,40 @@ return {
 			require("dap").listeners.after.event_initialized["dapui_config"] = function()
 				require("dapui").open()
 			end
+
+      -- highlight groups for nvim dap icons
+      vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#FF3939" })
+      vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
+      vim.api.nvim_set_hl(0, "DapStopped", { fg = "#80EFBE" })
+
+      -- also, amogus symbol b/c it's funny
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define(
+        "DapLogPoint",
+        { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" }
+      )
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+      )
 		end,
-		--keys = {
-			--{ "<leader>.b", require("dap").toggle_breakpoint },
-			--{ "<leader>.r", require("dap").continue, desc = "run the debugger, or run the code" },
-			--{ "<leader>.s", require("dap").step_over, desc = "step over" },
-			--{ "<leader>.S", require("dap").step_into, desc = "Step into" },
-		--},
+		keys = {
+			{ "<leader>.b", function() require("dap").toggle_breakpoint() end , desc = "toggle breakpoint" },
+			{ "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code" },
+			{ "<leader>.s", function() require("dap").step_over() end, desc = "step over" },
+			{ "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
+		},
 	},
 	{ "theHamsta/nvim-dap-virtual-text", config = true },
 	{
 		"rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
-		--keys = {
-			--{ "<leader>.u", require("dapui").toggle, desc = "toggle the ui" },
-		--},
+		keys = {
+			{ "<leader>.u", function() require("dapui").toggle() end, desc = "toggle the ui" },
+		},
 		opts = {
 			mappings = {
 				-- Use a table to apply multiple mappings
@@ -53,7 +72,6 @@ return {
 				},
 			},
 			controls = {
-				-- Requires Neovim nightly (or 0.8 when released)
 				enabled = true,
 				-- Display controls in this element
 				element = "repl",

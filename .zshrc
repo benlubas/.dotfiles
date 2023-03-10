@@ -39,6 +39,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export EDITOR="nvim"
 
+# to use bat with man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 v() {
   if [ ! -z "$1" ]; then 
     # we have a value that should be a path. so treat it like one. 
@@ -53,7 +56,12 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias gs="git status"
 alias gd="git diff"
-alias gdm="git diff main"
+alias ga="git add"
+alias gd="git diff"
+alias gdm="git diff --merge-base main"
+alias gc="git checkout"
+alias gcm="git checkout main"
+alias gcb="git checkout -b"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
