@@ -2,9 +2,16 @@
 
 All the things
 
-Probably gonna rewrite this with nix in mind at some point
+At some point I might rewrite this in nix... I'm not sure.
 
-## Setup 
+## Todo: 
+- better notifications
+- rofi power menu
+- keys to launch finder 
+- alt arrow binds for the terminal.
+- sync nvim dots for work and here.. there are a lot of changes.
+
+## New Machine Setup 
 1. Add a new SSH key for Github 
   - `ssh-keygen -t ed25519 -C "benmlubas@gmail.com"`
     - Use the default file
@@ -35,6 +42,7 @@ source ~/.zshrc
   - Cargo installs:
     - `cargo install ripgrep`
     - `cargo install fnm`
+    - `cargo install git-delta`
 
 6. NVIM
   - install it somehow
@@ -43,7 +51,9 @@ source ~/.zshrc
     - install JetBrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
       - set that as the default terminal font
     - working with ruby? install solargraph yourself
-    - possibly others that I'm forgetting.
+    - pynvim `python3 -m pip install --user --upgrade pynvim`
+    - ranger `python3 -m pip install --user --upgrade ranger`
+    - Run `:checkhealth` and see if I forgot something
 
 7. Alacritty
   - this is just a terminal

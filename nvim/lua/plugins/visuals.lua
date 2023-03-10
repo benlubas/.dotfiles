@@ -51,6 +51,17 @@ return {
       stop_eof = false,
     },
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        names = false, -- "Name" codes like Blue or blue
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "virtualtext",
+        virtualtext = "■",
+      },
+    }
+  },
   { "folke/which-key.nvim", config = true, lazy = false },
   {
     "nvim-lualine/lualine.nvim",
