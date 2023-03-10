@@ -6,6 +6,26 @@ return {
 			require("dap").listeners.after.event_initialized["dapui_config"] = function()
 				require("dapui").open()
 			end
+
+      -- highlight groups for nvim dap icons
+      vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#FF3939" })
+      vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
+      vim.api.nvim_set_hl(0, "DapStopped", { fg = "#80EFBE" })
+
+      -- also, amogus symbol b/c it's funny
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define(
+        "DapLogPoint",
+        { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" }
+      )
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+      )
+
 		end,
 		--keys = {
 			--{ "<leader>.b", require("dap").toggle_breakpoint },

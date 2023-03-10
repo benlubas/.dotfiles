@@ -1,5 +1,6 @@
 return {
-  "ThePrimeagen/harpoon",
+  "benlubas/harpoon",
+  dev = true,
   opts = {
     menu = {
       width = (function()
@@ -7,7 +8,7 @@ return {
         return math.floor(width - width * 0.55);
       end)(),
     },
-    mark_branch = false, -- this is insanely slow on mac for some reason
+    mark_branch = true
   },
   keys = {
     { "<C-s>", function() require("harpoon.mark").add_file() end, desc = "add current file to harpoon menu" },

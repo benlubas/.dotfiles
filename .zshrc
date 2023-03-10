@@ -25,17 +25,21 @@ plugins=(git fnm rust zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
-if [ -f $(brew --prefix)/etc/brew-wrap ];then
-    source $(brew --prefix)/etc/brew-wrap
-fi
-
 # --- end of oh-my-zsh --- #
 
-if [ -f $(pwd)/.zshsecrets ]; then
-  source $(pwd)/.zshsecrets
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
+
+if [ -f $HOME/.zshsecrets ]; then
+  source $HOME/.zshsecrets
 fi
 
 export EDITOR="nvim"
+export LC_CTYPE=en_US.UTF-8
+
+# to use bat with man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 v() {
   if [ ! -z "$1" ]; then 
@@ -45,17 +49,41 @@ v() {
   fi
 }
 
-alias zshrc="$EDITOR ~/.zshrc"
-alias gs="git status"
+lelloi() {
+  cd $HOME/work/lello
+  bundle install &
+  yarn install &
+
+  cd $HOME/work/lello/partners
+  bundle install &
+  wait
+
+  cd $HOME/work/lello
+  bundle exec rails db:migrate:primary
+  bundle exec rails db:migrate:primary RAILS_ENV=test
+  bundle exec rails db:migrate:partner_service
+  bundle exec rails db:migrate:partner_service RAILS_ENV=test
+  cd $HOME/work/lello/partners
+  bundle exec rails app:db:migrate:primary
+  bundle exec rails app:db:migrate:partner_service
+  cd $HOME/work/lello
+}
 
 rcf() {
   branch=$(git branch --show-current)
   rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
 }
+
+alias gs="git status"
 alias zshrc="$EDITOR ~/.zshrc"
 alias ga="git add"
 alias gd="git diff"
-alias gdm="git diff main"
+alias gdm="git diff --merge-base main"
+alias gc="git checkout"
+alias gcm="git checkout main"
+alias gcb="git checkout -b"
+
+alias railsc="bundle exec rails c"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -69,8 +97,7 @@ export PATH=/home/benlubas/.local/bin:$PATH
 
 # If a session exists, attach to it. 
 # Otherwise, create a new one and set it up 
-alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
-  tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
+alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
   rename-window \"Main Nvim\" \; \
   neww -n shell \; \
   select-window -t 0 \; \
@@ -81,8 +108,7 @@ export CC="/usr/bin/gcc"
 export ZSH_TMUX_AUTOSTART="true"
 export LC_ALL="en_US.UTF-8"
 
-# export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-# export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
+# brew less
+export PATH="/opt/homebrew/opt/less/bin:$PATH"
 
 eval "$(direnv hook zsh)" >> /dev/null

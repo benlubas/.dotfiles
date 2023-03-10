@@ -7,11 +7,10 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 6
 
--- colors
 vim.opt.termguicolors = true
--- cursor line
 vim.opt.cursorline = true
-
+vim.opt.swapfile = false
+vim.opt.colorcolumn = { 100 }
 
 -- tabs
 vim.opt.tabstop = 2
@@ -21,9 +20,9 @@ vim.opt.expandtab = true
 
 -- folds 
 vim.opt.foldlevelstart = 99
--- vim.opt.foldmethod = "indent"
-vim.opt.foldmethod = "expr"
-vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
+vim.opt.foldmethod = "indent"
+-- vim.opt.foldmethod = "expr"
+-- vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
 vim.opt.foldenable = false
 
 -- search

@@ -5,6 +5,7 @@ There's a lot to remember, early on if you take a break it's easy to forget abou
 
 ## TODO
 
+- Plugin to open current file/line in web browser
 - Setup Luasnip 
 - Commit the default spelling binds to memory to use those and free up `<leader>s` as a prefix for
   specialized searching.

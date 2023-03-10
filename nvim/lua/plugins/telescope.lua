@@ -4,7 +4,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      "ThePrimeagen/harpoon"
     },
     config = function()
       require('telescope').setup({
@@ -29,9 +28,9 @@ return {
       vim.keymap.set("n", "<leader>wh",
       function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cword>") }) end, {desc = "help with word under cursor" })
       vim.keymap.set("n", "<leader>Wh", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cWORD>") }) end, { desc = "help with WORD under cursor" })
-      vim.keymap.set("n", "<leader>c", "<cmd>Telescope neoclip<CR>", { desc = "clipboard" })
       vim.keymap.set("n", "<leader>fd", function() require("benlubas.telescope-project-files").project_files() end, { desc = "search project files" })
-      vim.keymap.set("n", "<leader>ss", function() require('telescope.builtin').spell_suggest(require("telescope.themes").get_cursor) end, { desc = "spell suggest" })
+      vim.keymap.set("n", "<leader>ss", function() require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor()) end, { desc = "spell suggest" })
+      vim.keymap.set("n", "<leader>fs", function() require("telescope.builtin").git_status(require("telescope.themes").get_dropdown()) end, { desc = "search modified git files" })
       -- find files in working dir
       vim.keymap.set("n", "<leader>fl", function()
         local dir = vim.env.HOME .. "/github/.dotfiles"
@@ -41,7 +40,10 @@ return {
       end, { desc = "search dot files" })
     end,
   },
-  { "AckslD/nvim-neoclip.lua", config = true },
+  { "AckslD/nvim-neoclip.lua",
+    config = true,
+    vim.keymap.set("n", "<leader>c", "<cmd>Telescope neoclip<CR>", { desc = "open clipboard history" })
+  },
   {
     "nvim-telescope/telescope-symbols.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -49,7 +51,7 @@ return {
       require("telescope.builtin").symbols({ sources = { "emoji", "nerd", "juila" } })
     end,
     keys = {
-      { "<leader>fs", "<cmd>telescope symbols<cr>", desc = "open symbol picker" },
+      { "<leader>sy", "<cmd>telescope symbols<cr>", desc = "open symbol picker" },
     },
   },
 }

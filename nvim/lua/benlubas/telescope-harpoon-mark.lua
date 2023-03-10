@@ -41,8 +41,7 @@ M.harpoon_branch_marks_picker = function(opts)
   local projects = config.projects
 
   if not config.mark_branch then
-    print("import_branch_marks() requires 'mark_branch = true' in your harpoon config")
-    return
+    print("warning, 'mark_branch = false' is set in harpoon config")
   end
 
   -- get all the keys that match the form: ${cwd}-
