@@ -33,6 +33,7 @@ return {
         signs = false,
         virtual_text = true,
       },
+      log_level = 2,
       icons = {
         child_indent = "│",
         child_prefix = "├",

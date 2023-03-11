@@ -6,7 +6,7 @@
 ## CONFIGURATION ##############################################################
 
 # Options to pass to i3lock
-i3lock_options="-u -e -i ~/.config/i3/assets/lock-screen.png"
+i3lock_options="-u -e -i ~/.config/i3/assets/wallpaper.png"
 
 ###############################################################################
 
@@ -30,7 +30,7 @@ if [[ -e /dev/fd/${XSS_SLEEP_LOCK_FD:--1} ]]; then
     sleep 0.5
   done
 else
-  i3lock -n -u -e -i $HOME/.config/i3/assets/lock-screen.png &
+  i3lock -n -u -e -i $HOME/.config/i3/assets/wallpaper.png &
   trap 'kill %%' TERM INT
   wait
 fi

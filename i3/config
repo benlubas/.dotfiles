@@ -143,7 +143,7 @@ bindsym $mod+t mode "resize"
 exec_always --no-startup-id ~/.config/polybar/startup.sh
 
 # background image
-exec_always --no-startup-id feh --no-xinerama --bg-fill ~/.config/i3/assets/background.png
+exec_always --no-startup-id feh --no-xinerama --bg-fill ~/.config/i3/assets/wallpaper.png
 
 # mouse speed b/c the mouse isn't detected when I put this in .xprofile
 exec --no-startup-id xinput set-prop 'pointer:Logitech G Pro ' 158 0.62 0 0 0 0.62 0 0 0 1 

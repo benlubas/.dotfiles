@@ -20,12 +20,13 @@ return {
     end,
   },
   {
-    "karb94/neoscroll.nvim",
+    "benlubas/neoscroll.nvim",
     lazy = false,
     opts = {
-      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>", "zt", "zz", "zb" },
+      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
       hide_cursor = false,
       stop_eof = false,
+      time_scale = 0.3
     },
   },
   {
@@ -46,6 +47,7 @@ return {
     config = function()
       require("lualine").setup({
         options = {
+          theme = "moonfly",
           icons_enabled = true,
           disabled_filetypes = {
             statusline = {},

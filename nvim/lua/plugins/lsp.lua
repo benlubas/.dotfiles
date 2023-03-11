@@ -17,6 +17,7 @@ local servers = {
 
 return {
   -- { "evanleck/vim-svelte" },
+  { "williamboman/mason.nvim", config = true },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
@@ -27,12 +28,13 @@ return {
       { "H", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "open hover information" },
     },
     dependencies = {
-      { "folke/neodev.nvim", ft = "lua", opts = {
-        setup_jsonls = false,
-      } },
-      { "williamboman/nvim-lsp-installer", opts = {
-        ensure_installed = servers,
-      } },
+      { 
+        "folke/neodev.nvim", 
+        ft = "lua", 
+        opts = {
+          setup_jsonls = false,
+        }
+      },
       { "simrat39/rust-tools.nvim" },
     },
     config = function()
