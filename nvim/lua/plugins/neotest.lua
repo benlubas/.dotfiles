@@ -17,13 +17,17 @@ return {
       adapters = {
         -- these are the defaults
         require("neotest-jest")({
-          jestCommand = "npm test --",
+          jestCommand = "yarn jest",
           env = { CI = true },
           cwd = function(_path)
             return vim.fn.getcwd()
           end,
         }),
         require("neotest-rspec"),
+      },
+      quickfix = {
+        enabled = false,
+        open = true
       },
       discovery = {
         enabled = false,
@@ -33,7 +37,7 @@ return {
         signs = false,
         virtual_text = true,
       },
-      log_level = 2,
+      log_level = 0,
       icons = {
         child_indent = "│",
         child_prefix = "├",

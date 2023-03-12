@@ -28,9 +28,9 @@ return {
       { "H", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "open hover information" },
     },
     dependencies = {
-      { 
-        "folke/neodev.nvim", 
-        ft = "lua", 
+      {
+        "folke/neodev.nvim",
+        ft = "lua",
         opts = {
           setup_jsonls = false,
         }
@@ -41,6 +41,11 @@ return {
       -- adding autocomplete capabilities...
       local capabilities =
       require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+      }
+
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
       local on_attach = function(bufopts, bufnr)

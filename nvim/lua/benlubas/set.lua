@@ -18,18 +18,10 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
--- folds 
-vim.opt.foldlevelstart = 99
--- vim.opt.foldmethod = "indent"
-vim.opt.foldmethod = "expr"
-vim.cmd[[set foldexpr=nvim_treesitter#foldexpr()]]
-vim.opt.foldenable = false
-
 -- search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.shortmess:append('Ss')
-
 
 -- formatting
 vim.opt.autoindent = true

@@ -16,7 +16,7 @@ return {
       vim.cmd([[colorscheme moonfly]])
 
       vim.cmd([[highlight CursorLine ctermbg=238 guibg=#111111]]) -- this interferes with fold highlighting
-      vim.cmd([[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]])
+      -- vim.cmd([[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]])
     end,
   },
   {

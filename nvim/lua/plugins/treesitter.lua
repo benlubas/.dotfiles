@@ -16,7 +16,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-textobjects",
     },
     lazy = false,
     cmd = "TSUpdate",
@@ -29,6 +29,9 @@ return {
         },
         indent = {
           enable = true,
+          disable = {
+            "ruby",
+          },
         },
         -- this is amazing.
         textobjects = {
