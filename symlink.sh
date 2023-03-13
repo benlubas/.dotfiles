@@ -6,6 +6,7 @@ rm -rfv $HOME/.config/nvim
 rm -rfv $HOME/.config/ranger
 rm -rfv $HOME/.config/rofi
 rm -rfv $HOME/.config/i3
+rm -rfv $HOME/.config/dunst
 
 rm -rfv $HOME/.config/alacritty.yml
 rm -rfv $HOME/.config/tmux/tmux.conf
@@ -24,6 +25,7 @@ ln -sv $PWD/nvim $HOME/.config/nvim
 ln -sv $PWD/ranger $HOME/.config/ranger
 ln -sv $PWD/rofi $HOME/.config/rofi
 ln -sv $PWD/i3 $HOME/.config/i3
+ln -sv $PWD/dunst $HOME/.config/dunst
 
 ln -sv $PWD/alacritty.yml $HOME/.config/alacritty.yml
 mkdir -pv $HOME/.config/tmux
