@@ -46,11 +46,7 @@ return {
             return fallback()
           end
           if cmp.visible() then
-            if not cmp.get_selected_entry() then
-              cmp.select_next_item()
-            end
-
-            cmp.select_next_item({ count = i })
+            cmp.select_nth(i + 1)
           end
 
           fallback()
