@@ -1,7 +1,7 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 window:
-  decorations: none # full or none
+  decorations: full # full or none
   opacity: 1.0
   title: Alacritty # Window title
   dynamic_title: false

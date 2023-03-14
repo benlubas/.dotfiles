@@ -1,15 +1,14 @@
 -- File with all things related to auto complete (excluding the LSP server stuff itself)
 
-local winhighlight = {
-  winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-}
+local winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel"
 
 local ELLIPSIS_CHAR = "..."
 local MAX_LABEL_WIDTH = 25
 
 return {
   {
-    "hrsh7th/nvim-cmp",
+    "benlubas/nvim-cmp",
+    dev = true,
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
@@ -19,8 +18,45 @@ return {
     },
     config = function()
       vim.api.nvim_set_hl(0, "CmpItemAbbr", {})
+      local cmp = require("cmp")
 
-      local cmp = require('cmp')
+      local keys = {
+        ["<C-n>"] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            cmp.complete()
+          end
+        end),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<C-s>d"] = cmp.mapping.scroll_docs(4),
+        ["<C-s>u"] = cmp.mapping.scroll_docs(-4),
+        ["<C-c>"] = cmp.mapping.close(),
+        ["<CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Insert,
+          select = false,
+        }),
+      }
+
+      -- key mappings for Alt+number to select, have to press enter after to confirm though
+      for i = 0, 9, 1 do
+        local key = table.concat({ "<M-", i, ">" })
+        keys[key] = function(fallback)
+          if vim.tbl_count(cmp.get_entries()) <= i then
+            return fallback()
+          end
+          if cmp.visible() then
+            if not cmp.get_selected_entry() then
+              cmp.select_next_item()
+            end
+
+            cmp.select_next_item({ count = i })
+          end
+
+          fallback()
+        end
+      end
+
       cmp.setup({
         snippet = {
           -- REQUIRED - you must specify a snippet engine
@@ -29,31 +65,21 @@ return {
           end,
         },
         window = {
-          completion = cmp.config.window.bordered(winhighlight),
-          documentation = cmp.config.window.bordered(winhighlight),
+          completion = {
+            winhighlight = winhighlight,
+            col_offset = -2,
+          },
+          documentation = {
+            winhighlight = winhighlight,
+          },
         },
         view = {
           entries = { name = "custom", selection_order = "near_cursor" },
         },
-        mapping = {
-          ["<C-n>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_next_item()
-            else
-              cmp.complete()
-            end
-          end),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<C-s>d"] = cmp.mapping.scroll_docs(4),
-          ["<C-s>u"] = cmp.mapping.scroll_docs(-4),
-          ["<C-c>"] = cmp.mapping.close(),
-          ["<CR>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = false,
-          }),
-        },
+        mapping = keys,
         formatting = {
-          format = function(_, vim_item)
+          number_options = true,
+          format = function(entry, vim_item)
             local label = vim_item.abbr
             local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
             if truncated_label ~= label then
@@ -77,7 +103,7 @@ return {
   {
     "windwp/nvim-autopairs",
     dependencies = {
-      { "hrsh7th/nvim-cmp" },
+      { "benlubas/nvim-cmp", dev = true },
     },
     config = function()
       require("nvim-autopairs").setup({})

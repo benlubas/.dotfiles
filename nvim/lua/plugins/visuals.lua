@@ -9,18 +9,18 @@ return {
     config = function()
       vim.g.moonflyTransparent = true
       vim.g.moonflyCursorColor = true
-      vim.g.moonflyNormalFloat = true
       vim.g.moonflyItalics = false
+      vim.g.moonflyUnderlineMatchParen = true
+      vim.g.moonflyVirtualTextColor = true
 
       vim.cmd("syntax enable")
       vim.cmd([[colorscheme moonfly]])
 
-      vim.cmd([[highlight CursorLine ctermbg=238 guibg=#111111]]) -- this interferes with fold highlighting
-      -- vim.cmd([[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]])
+      vim.cmd([[highlight CursorLine ctermbg=238 guibg=#111111]])
     end,
   },
   {
-    "benlubas/neoscroll.nvim",
+    "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
     lazy = false,
     opts = {
       mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
