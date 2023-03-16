@@ -29,6 +29,7 @@ vim.opt.wrap = false
 vim.opt.textwidth = 99
 
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
 -- Net-rw stuff 
 vim.g.netrw_winsize = 30

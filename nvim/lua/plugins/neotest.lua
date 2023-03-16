@@ -10,7 +10,7 @@ return {
   },
   dependencies = {
     { "haydenmeade/neotest-jest" },
-    { "benlubas/neotest-rspec", dev = true },
+    { "olimorris/neotest-rspec" },
   },
 	config = function()
     require("neotest").setup({
@@ -27,7 +27,6 @@ return {
       },
       quickfix = {
         enabled = false,
-        open = true
       },
       discovery = {
         enabled = false,
