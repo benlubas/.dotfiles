@@ -1,3 +1,4 @@
 xrandr --output DP-0 --auto --rotate left --left-of DP-2 
 xrandr --output DP-0 --pos 0x-120 
 xrandr --output DP-2 --primary
+xset r rate 260 20
