@@ -42,14 +42,11 @@ return {
       for i = 0, 9, 1 do
         local key = table.concat({ "<M-", i, ">" })
         keys[key] = function(fallback)
-          if vim.tbl_count(cmp.get_entries()) <= i then
-            return fallback()
-          end
-          if cmp.visible() then
-            cmp.select_nth(i + 1)
+          if cmp.visible() and #cmp.get_entries() > i then
+            return cmp.select_nth(i + 1)
           end
 
-          fallback()
+          return fallback()
         end
       end
 
@@ -74,7 +71,11 @@ return {
         },
         mapping = keys,
         formatting = {
-          number_options = true,
+          number_options = {
+            start_index = 0,
+            end_index = 9,
+          },
+          fields = { "num", "abbr", "kind", "menu" },
           format = function(entry, vim_item)
             local label = vim_item.abbr
             local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)

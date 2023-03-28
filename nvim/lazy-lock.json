@@ -15,6 +15,7 @@
   "mini.trailspace": { "branch": "main", "commit": "37b6517750353fb53b546494093461ccc319a7f4" },
   "neodev.nvim": { "branch": "main", "commit": "abdc346ff59c414698de551f876bcf3f223ed224" },
   "neoscroll.nvim": { "branch": "master", "commit": "424bfe432ff5ae10540402be89bf9d9a6c9cff05" },
+  "neotest": { "branch": "master", "commit": "bbbfa55d850f1aaa6707ea85fb5230ac866459c6" },
   "neotest-jest": { "branch": "main", "commit": "821bb227e31259307db30c88671a1c3724f78637" },
   "neotest-rspec": { "branch": "main", "commit": "250b0085e11c130406c9420a895902ef2fe30d17" },
   "null-ls.nvim": { "branch": "main", "commit": "2fcc10637b325e656d45a760901e1e05170e36c9" },

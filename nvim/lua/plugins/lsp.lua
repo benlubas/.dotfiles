@@ -61,7 +61,7 @@ return {
 
         vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, other)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, other)
-        vim.keymap.set("n", "<leader>l", vim.lsp.buf.code_action, other) -- I need to use this more often
+        vim.keymap.set("n", "<leader>l", vim.lsp.buf.code_action, other)
         vim.keymap.set("n", "gr", vim.lsp.buf.references, other)
         vim.keymap.set("n", "<leader>gf", function()
           vim.lsp.buf.format({ async = true })
