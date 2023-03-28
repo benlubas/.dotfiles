@@ -21,7 +21,6 @@ return {
     lazy = false,
     cmd = "TSUpdate",
     config = function()
-      -- require("nvim-treesitter.install").compilers = { "clang" }
       require("nvim-treesitter.configs").setup({
         highlight = {
           enable = true,
@@ -39,11 +38,16 @@ return {
             enable = true,
             lookahead = true,
             keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
+              ["af"] = { query = "@function.outer", desc = "around function" },
+              ["if"] = { query = "@function.inner", desc = "in function" },
+              ["ac"] = { query = "@class.outer", desc = "around class" },
+              ["ic"] = { query = "@class.inner", desc = "in class" },
+              ["ik"] = { query = "@assignment.lhs", desc = "in key" },
+              ["iv"] = { query = "@assignment.rhs", desc = "in value" },
+              ["i/"] = { query = "@regex.inner", desc = "in regex" },
+              ["a/"] = { query = "@regex.outer", desc = "around regex" },
+              ["iP"] = { query = "@parameter.inner", desc = "in parameter" },
+              ["in"] = { query = "@number.inner", desc = "in number" },
             },
           },
           swap = {
