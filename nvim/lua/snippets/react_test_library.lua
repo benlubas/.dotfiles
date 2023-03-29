@@ -12,13 +12,6 @@ ls.add_snippets("javascript", {
   -- user
   s("clic", fmt([[await user.click({});]], {i(0)})),
   s("typ", fmt([[await user.type({}, '{}');]], {i(1), i(0)})),
-  s("replace", fmt([[
-await user.tripleClick({});
-await user.keyboard('{}');
-{}
-]], {
-      i(1), i(2), c(t("await user.click(document.body);"), t(""))
-    })),
 
   -- get by role
   s("grb", fmt([[screen.getByRole('button', { name: /{}/i })]], {})),
