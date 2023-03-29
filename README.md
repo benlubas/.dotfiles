@@ -4,13 +4,6 @@ All the things
 
 At some point I might rewrite this in nix... I'm not sure.
 
-## Todo: 
-- better notifications
-- rofi power menu
-- keys to launch finder 
-- alt arrow binds for the terminal.
-- sync nvim dots for work and here.. there are a lot of changes.
-
 ## New Machine Setup 
 1. Add a new SSH key for Github 
   - `ssh-keygen -t ed25519 -C "benmlubas@gmail.com"`
