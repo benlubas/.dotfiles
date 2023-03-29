@@ -12,6 +12,8 @@ vim.opt.cursorline = true
 vim.opt.swapfile = false
 vim.opt.colorcolumn = { 100 }
 
+vim.opt.pumblend = 20
+
 -- tabs
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
