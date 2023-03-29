@@ -12,7 +12,7 @@ vim.opt.cursorline = true
 vim.opt.swapfile = false
 vim.opt.colorcolumn = { 100 }
 
-vim.opt.pumblend = 20
+vim.opt.pumblend = 12
 
 -- tabs
 vim.opt.tabstop = 2
