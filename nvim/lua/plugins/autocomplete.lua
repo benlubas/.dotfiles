@@ -113,21 +113,24 @@ return {
           ls.expand_or_jump()
         end
       end, { silent = true, desc = "expand snippet or jump to the next snippet node" })
+
       vim.keymap.set({ "i", "s" }, "<C-k>", function()
         if ls.jumpable(-1) then
           ls.jump(-1)
         end
-      end, { silent = true, desc = "previous spot in the snipped" })
+      end, { silent = true, desc = "previous spot in the snippet" })
+
       vim.keymap.set({ "i", "s" }, "<C-l>", function()
         if ls.choice_active() then
           ls.change_choice(1)
         end
-      end)
+      end, { silent = true, desc = "next snippet choice"})
+
       vim.keymap.set({ "i", "s" }, "<C-h>", function()
         if ls.choice_active() then
           ls.change_choice(-1)
         end
-      end)
+      end, { silent = true, desc = "previous snippet choice"})
     end,
   },
   {
