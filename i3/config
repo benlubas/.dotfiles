@@ -145,8 +145,9 @@ exec_always --no-startup-id ~/.config/polybar/startup.sh
 # background image
 exec_always --no-startup-id feh --no-xinerama --bg-fill ~/.config/i3/assets/wallpaper.png
 
-# mouse speed b/c the mouse isn't detected when I put this in .xprofile
+# .xprofile stuff b/c xprofile just doesn't work for me, and I can't be asked
 exec --no-startup-id xinput set-prop 'pointer:Logitech G Pro ' 158 0.62 0 0 0 0.62 0 0 0 1 
+exec --no-startup-id xset r rate 260 20
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
