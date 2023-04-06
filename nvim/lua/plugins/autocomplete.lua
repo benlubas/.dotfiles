@@ -104,7 +104,7 @@ return {
       local ls = require("luasnip")
       ls.setup({
         history = true,
-        update_events = {"TextChanged", "TextChangedI"}
+        update_events = { "TextChanged", "TextChangedI" },
       })
       require("snippets") -- loading custom snippets
 
@@ -124,13 +124,13 @@ return {
         if ls.choice_active() then
           ls.change_choice(1)
         end
-      end, { silent = true, desc = "next snippet choice"})
+      end, { silent = true, desc = "next snippet choice" })
 
       vim.keymap.set({ "i", "s" }, "<C-h>", function()
         if ls.choice_active() then
           ls.change_choice(-1)
         end
-      end, { silent = true, desc = "previous snippet choice"})
+      end, { silent = true, desc = "previous snippet choice" })
     end,
   },
   {
@@ -139,8 +139,9 @@ return {
       { "benlubas/nvim-cmp", dev = true },
     },
     config = function()
-      require("nvim-autopairs").setup({})
-
+      require("nvim-autopairs").setup({
+        check_ts = true,
+      })
       -- If you want insert `(` after select function or method item
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())

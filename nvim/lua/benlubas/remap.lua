@@ -8,8 +8,8 @@ vim.keymap.set("n", "<leader><leader>r", ":lua R('ramora')<CR>")
 vim.keymap.set("n", "<leader><leader>h", ":set cmdheight=1<CR>", { desc = "a 'fix' for neotest bug"})
 
 -- why not both?
-vim.keymap.set("i", "kj", "<esc>")
-vim.keymap.set("i", "jk", "<esc>")
+-- vim.keymap.set("i", "kj", "<esc>")
+-- vim.keymap.set("i", "jk", "<esc>")
 
 -- move things up and down (this is insanely nice)
 vim.keymap.set("v", "J", ":m '>+1<CR>=kgv", { desc = "move highlighted text down" })

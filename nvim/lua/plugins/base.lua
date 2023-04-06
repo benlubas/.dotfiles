@@ -1,9 +1,12 @@
 return {
   { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  { "tpope/vim-repeat" },   -- allows some plugin actions to be repeated with .
+  { "tpope/vim-repeat" }, -- allows some plugin actions to be repeated with .
+  { "Pocco81/auto-save.nvim", config = true },
   {
-    "Pocco81/auto-save.nvim",
-    config = true,
+    "max397574/better-escape.nvim",
+    opts = {
+      mapping = { "jk", "kj" }, -- why not both
+    },
   },
   {
     "kevinhwang91/rnvimr",
@@ -25,7 +28,7 @@ return {
     "numToStr/Comment.nvim",
     opts = {
       toggler = {
-        line = "glg",  -- Line-comment toggle keymap
+        line = "glg", -- Line-comment toggle keymap
         block = "gaa", -- Block-comment toggle keymap
       },
       opleader = {
@@ -35,7 +38,7 @@ return {
       extra = {
         above = "glO", -- Add comment on the line above
         below = "glo", -- Add comment on the line below
-        eol = "glA",   -- Add comment at the end of line
+        eol = "glA", -- Add comment at the end of line
       },
     },
   },

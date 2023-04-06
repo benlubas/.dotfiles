@@ -17,6 +17,8 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "windwp/nvim-ts-autotag",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     lazy = false,
     cmd = "TSUpdate",
@@ -31,6 +33,9 @@ return {
           disable = {
             "ruby",
           },
+        },
+        autotag = {
+          enable = true,
         },
         -- this is amazing.
         textobjects = {
