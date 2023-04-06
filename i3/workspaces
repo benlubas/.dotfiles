@@ -11,7 +11,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9: Games"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+x workspace number $ws1
@@ -23,7 +22,6 @@ bindsym $mod+f workspace number $ws6
 bindsym $mod+w workspace number $ws7
 bindsym $mod+e workspace number $ws8
 bindsym $mod+r workspace number $ws9
-bindsym $mod+a workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+x move container to workspace number $ws1
@@ -35,4 +33,3 @@ bindsym $mod+Shift+f move container to workspace number $ws6
 bindsym $mod+Shift+w move container to workspace number $ws7
 bindsym $mod+Shift+e move container to workspace number $ws8
 bindsym $mod+Shift+r move container to workspace number $ws9
-bindsym $mod+Shift+a move container to workspace number $ws10

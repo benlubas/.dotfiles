@@ -54,6 +54,9 @@ focus_follows_mouse no
 # start a terminal
 bindsym $mod+Return exec alacritty
 
+# start brave
+bindsym $mod+a exec brave-browser
+
 # kill focused window
 bindsym $mod+q kill
 
