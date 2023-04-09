@@ -1,33 +1,18 @@
-vim.keymap.set("n", "<leader><leader>r", ":lua R('ramora')<CR>")
 
 -- I have sneak installed that that remaps s and S to sneak
+-- I use better escape. so in base.lua, jk and kj are remapped to esc
 
 -- just a reminder that <C-w> in insert mode deletes a word at a time.
 
--- TEMPORARY BINDS --
-vim.keymap.set("n", "<leader><leader>h", ":set cmdheight=1<CR>", { desc = "a 'fix' for neotest bug"})
-
--- why not both?
--- vim.keymap.set("i", "kj", "<esc>")
--- vim.keymap.set("i", "jk", "<esc>")
-
--- move things up and down (this is insanely nice)
-vim.keymap.set("v", "J", ":m '>+1<CR>=kgv", { desc = "move highlighted text down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>=jgv", { desc = "move highlighted text up" })
+-- move things up and down and tab format things
+vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
 
--- quit/file tree
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
--- vim.keymap.set("n", "<leader>e", "<cmd>!silent w<CR><cmd>Ex<CR>", { desc = "write quit to netrw" })
--- vim.keymap.set("n", "<leader>E", "<cmd>Ex<CR>", { desc = "quit to netwr" })
 
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })
-
--- folding
-vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
--- "zC" Close all folds under cursor
--- "zO" Open all folds under the cursor
 
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')

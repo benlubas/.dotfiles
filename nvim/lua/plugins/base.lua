@@ -52,9 +52,10 @@ return {
 
       vim.keymap.set("n", "<leader>fo", require("ufo").openAllFolds, { desc = "open all folds" })
       vim.keymap.set("n", "<leader>fc", require("ufo").closeAllFolds, { desc = "close all folds" })
+      vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 
       require("ufo").setup({
-        provider_selector = function(bufnr, filetype, buftype)
+        provider_selector = function()
           return { "treesitter", "indent" }
         end,
         fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
@@ -73,7 +74,6 @@ return {
               local hlGroup = chunk[2]
               table.insert(newVirtText, { chunkText, hlGroup })
               chunkWidth = vim.fn.strdisplaywidth(chunkText)
-              -- str width returned from truncate() may less than 2nd argument, need padding
               if curWidth + chunkWidth < targetWidth then
                 suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
               end

@@ -22,7 +22,11 @@ return {
     "neovim/nvim-lspconfig",
     lazy = false,
     keys = {
-      { "<leader>do", vim.diagnostic.open_float, desc = "open diagnostic on current line" },
+      {
+        "<leader>do",
+        vim.diagnostic.open_float,
+        desc = "open diagnostic on current line",
+      },
       { "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },
       { "<leader>dn", vim.diagnostic.goto_next, desc = "open next diagnostic" },
       { "H", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "open hover information" },
@@ -33,17 +37,17 @@ return {
         ft = "lua",
         opts = {
           setup_jsonls = false,
-        }
+        },
       },
       { "simrat39/rust-tools.nvim" },
     },
     config = function()
       -- adding autocomplete capabilities...
       local capabilities =
-      require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
-        lineFoldingOnly = true
+        lineFoldingOnly = true,
       }
 
       -- Use an on_attach function to only map the following keys
@@ -125,8 +129,20 @@ return {
       })
     end,
   },
-  { "ray-x/lsp_signature.nvim", opts = {
-    hint_enable = false,
-    doc_lines = 0,
-  } },
+  {
+    "ray-x/lsp_signature.nvim",
+    opts = {
+      hint_enable = false,
+      doc_lines = 0,
+      bind = true, -- required for the border customization to register
+      floating_window_off_x = 0, -- default 1 for some reason
+      transparency = 13,
+      handler_opts = {
+        border = "none",
+      },
+      close_timeout = 200, -- default 4000
+      max_height = 5, -- default 12
+      max_width = 150, -- default 80
+    },
+  },
 }
