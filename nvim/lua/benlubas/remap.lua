@@ -10,6 +10,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlig
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
 
+vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the same thing as ^
+
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })

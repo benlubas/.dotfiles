@@ -103,8 +103,9 @@ return {
     config = function()
       local ls = require("luasnip")
       ls.setup({
-        history = true,
-        update_events = { "TextChanged", "TextChangedI" },
+        history = false,
+        -- this is causing issues for some reason
+        -- update_events = { "TextChanged", "TextChangedI" },
       })
       require("snippets") -- loading custom snippets
 
