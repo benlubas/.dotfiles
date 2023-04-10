@@ -130,19 +130,22 @@ return {
     end,
   },
   {
-    "ray-x/lsp_signature.nvim",
+    "benlubas/lsp_signature.nvim",
+    dev = true,
     opts = {
-      hint_enable = false,
-      doc_lines = 0,
       bind = true, -- required for the border customization to register
-      floating_window_off_x = 0, -- default 1 for some reason
-      transparency = 13,
+      close_timeout = 200, -- default 4000
+      cursorhold_update = true,
+      doc_lines = 0,
       handler_opts = {
         border = "none",
       },
-      close_timeout = 200, -- default 4000
+      hint_enable = false,
+      floating_window_off_x = 0, -- default 1 for some reason
       max_height = 5, -- default 12
       max_width = 150, -- default 80
+      timer_interval = 100, -- default 200
+      transparency = 13,
     },
   },
 }
