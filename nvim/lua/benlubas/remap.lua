@@ -1,4 +1,4 @@
--- Harpoon binds are in ./../../plugin/harpoon.lua
+-- plugin specific binds are probably defined with that plugin in the plugins folder
 
 -- I have sneak installed that that remaps s and S to sneak
 
@@ -44,16 +44,13 @@ vim.api.nvim_create_user_command("JestPort", function()
   pcall(vim.cmd, [[%s/function (done)/async () =>/g]])
 end, {})
 
--- why not both? 
--- using better esc, so these are set in plugins/base.lua
--- vim.keymap.set("i", "kj", "<esc>")
--- vim.keymap.set("i", "jk", "<esc>")
-
--- move things up and down (this is insanely nice)
-vim.keymap.set("v", "J", ":m '>+1<CR>=kgv=gv", { desc = "move highlighted text down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>=jgv=gv", { desc = "move highlighted text up" })
+-- move things up and down and tab format things
+vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
 vim.keymap.set("n", "<leader><leader>cp", ':let @+ = expand("%:p")<cr>', { desc = "copy full file path to clipboard" })
+
+vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the same thing as ^
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
 
