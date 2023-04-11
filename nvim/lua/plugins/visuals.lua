@@ -15,6 +15,26 @@ return {
       vim.g.moonflyNormalFloat = true
       vim.g.moonflyItalics = false
 
+      -- TODO: move this to dap setup
+      -- highlight groups for nvim dap icons
+      vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#FF3939" })
+      vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef" })
+      vim.api.nvim_set_hl(0, "DapStopped", { fg = "#80EFBE" })
+
+      -- also, amogus symbol b/c it's funny
+      vim.fn.sign_define(
+        "DapBreakpoint",
+        { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" }
+      )
+      vim.fn.sign_define(
+        "DapLogPoint",
+        { text = "", texthl = "DapLogPoint", numhl = "DapLogPoint" }
+      )
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
+      )
+
       vim.cmd("syntax enable")
       vim.cmd([[colorscheme moonfly]])
 
@@ -23,13 +43,18 @@ return {
     end,
   },
   {
-    "benlubas/neoscroll.nvim",
+    "karb94/neoscroll.nvim",
     lazy = false,
     opts = {
-      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
+      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>", "zt", "zz", "zb" },
       hide_cursor = false,
       stop_eof = false,
-      time_scale = .3,
+      post_hook = function() -- function to flash the line that we land on
+        vim.opt.cul = true
+        vim.defer_fn(function()
+          vim.opt.cul = false
+        end, 350)
+      end,
     },
   },
   { "folke/which-key.nvim", config = true, lazy = false },
@@ -39,7 +64,6 @@ return {
     config = function()
       require("lualine").setup({
         options = {
-          theme = "moonfly",
           icons_enabled = true,
           disabled_filetypes = {
             statusline = {},

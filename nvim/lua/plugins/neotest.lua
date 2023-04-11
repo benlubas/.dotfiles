@@ -28,6 +28,9 @@ return {
       discovery = {
         enabled = false,
       },
+      quickfix = {
+        enabled = false,
+      },
       status = {
         enabled = true,
         signs = false,

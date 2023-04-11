@@ -4,7 +4,7 @@ window:
   # Window decorations
   #   - full: Borders and title bar
   #   - none: Neither borders nor title bar
-  decorations: none
+  decorations: full
 
   # Background opacity
   #
@@ -300,7 +300,20 @@ key_bindings:
   - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
   - { key: Back,     mods: Command, chars: "\x15"                        } # Delete line
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    } # Delete word 
+
   - { key: Space,    mods: Control, chars: "\x00" } # allows ctrl space to be tmux prefix
+
+  # so that alt + num works
+  - { key: Key1,      mods: Alt,       chars: "\x1b1"                       }
+  - { key: Key2,      mods: Alt,       chars: "\x1b2"                       }
+  - { key: Key3,      mods: Alt,       chars: "\x1b3"                       }
+  - { key: Key4,      mods: Alt,       chars: "\x1b4"                       }
+  - { key: Key5,      mods: Alt,       chars: "\x1b5"                       }
+  - { key: Key6,      mods: Alt,       chars: "\x1b6"                       }
+  - { key: Key7,      mods: Alt,       chars: "\x1b7"                       }
+  - { key: Key8,      mods: Alt,       chars: "\x1b8"                       }
+  - { key: Key9,      mods: Alt,       chars: "\x1b9"                       }
+  - { key: Key0,      mods: Alt,       chars: "\x1b0"                       }
 #- { key: Paste,                                       action: Paste          }
 #- { key: Copy,                                        action: Copy           }
 #- { key: L,         mods: Control,                    action: ClearLogNotice }

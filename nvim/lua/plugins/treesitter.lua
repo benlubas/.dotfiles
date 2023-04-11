@@ -1,15 +1,15 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter-context",
-    dev = true,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
       patterns = {
         ruby = {
-          "block",
-          "module",
+          "context",
+          "describe",
+          "it",
         },
       },
     },
@@ -29,7 +29,6 @@ return {
         },
         indent = {
           enable = true,
-          disable = { "ruby" }
         },
         -- this is amazing.
         textobjects = {

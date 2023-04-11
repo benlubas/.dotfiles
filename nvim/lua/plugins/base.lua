@@ -1,9 +1,12 @@
 return {
   { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
   { "tpope/vim-repeat" }, -- allows some plugin actions to be repeated with .
+  { "Pocco81/auto-save.nvim", config = true },
   {
-    "Pocco81/auto-save.nvim",
-    config = true,
+    "max397574/better-escape.nvim",
+    opts = {
+      mapping = { "jk", "kj" }, -- why not both
+    },
   },
   {
     "kevinhwang91/rnvimr",
@@ -25,24 +28,63 @@ return {
     "numToStr/Comment.nvim",
     opts = {
       toggler = {
-        -- Line-comment toggle keymap
-        line = "glg",
-        -- Block-comment toggle keymap (this one doesn't do the whole line, it does
-        -- to the end of the line.
-        block = "gaa",
+        line = "glg", -- Line-comment toggle keymap
+        block = "gaa", -- Block-comment toggle keymap
       },
       opleader = {
         line = "gl",
         block = "ga",
       },
       extra = {
-        -- Add comment on the line above
-        above = "glO",
-        -- Add comment on the line below
-        below = "glo",
-        -- Add comment at the end of line
-        eol = "glA",
+        above = "glO", -- Add comment on the line above
+        below = "glo", -- Add comment on the line below
+        eol = "glA", -- Add comment at the end of line
       },
     },
+  },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async" },
+    config = function()
+      vim.o.foldlevel = 99
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      vim.keymap.set("n", "<leader>fo", require("ufo").openAllFolds, { desc = "open all folds" })
+      vim.keymap.set("n", "<leader>fc", require("ufo").closeAllFolds, { desc = "close all folds" })
+      vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
+
+      require("ufo").setup({
+        provider_selector = function()
+          return { "treesitter", "indent" }
+        end,
+        fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
+          local newVirtText = {}
+          local suffix = (" / %d "):format(endLnum - lnum)
+          local sufWidth = vim.fn.strdisplaywidth(suffix)
+          local targetWidth = width - sufWidth
+          local curWidth = 0
+          for _, chunk in ipairs(virtText) do
+            local chunkText = chunk[1]
+            local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            if targetWidth > curWidth + chunkWidth then
+              table.insert(newVirtText, chunk)
+            else
+              chunkText = truncate(chunkText, targetWidth - curWidth)
+              local hlGroup = chunk[2]
+              table.insert(newVirtText, { chunkText, hlGroup })
+              chunkWidth = vim.fn.strdisplaywidth(chunkText)
+              if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+              end
+              break
+            end
+            curWidth = curWidth + chunkWidth
+          end
+          table.insert(newVirtText, { suffix, "MoreMsg" })
+          return newVirtText
+        end,
+      })
+    end,
   },
 }

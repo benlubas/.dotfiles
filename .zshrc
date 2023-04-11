@@ -69,7 +69,7 @@ lelloi() {
   cd $HOME/work/lello
 }
 
-rcf() {
+rgf() {
   branch=$(git branch --show-current)
   rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
 }
@@ -79,6 +79,7 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias ga="git add"
 alias gd="git diff"
 alias gdm="git diff --merge-base main"
+# alias gdm="git diff main..."
 alias gc="git checkout"
 alias gcm="git checkout main"
 alias gcb="git checkout -b"
