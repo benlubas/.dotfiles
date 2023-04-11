@@ -142,7 +142,7 @@ return {
       },
       hint_enable = false,
       floating_window_off_x = 0, -- default 1 for some reason
-      max_height = 5, -- default 12
+      max_height = 1, -- default 12
       max_width = 150, -- default 80
       timer_interval = 100, -- default 200
       transparency = 13,
