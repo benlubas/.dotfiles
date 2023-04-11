@@ -42,19 +42,14 @@ return {
       vim.cmd([[highlight Folded ctermfg=63 guifg=#2E5EDB ctermbg=236 guibg=#111111]])
     end,
   },
-  {
-    "karb94/neoscroll.nvim",
+{
+    "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
     lazy = false,
     opts = {
-      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>", "zt", "zz", "zb" },
+      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
       hide_cursor = false,
       stop_eof = false,
-      post_hook = function() -- function to flash the line that we land on
-        vim.opt.cul = true
-        vim.defer_fn(function()
-          vim.opt.cul = false
-        end, 350)
-      end,
+      time_scale = 0.35
     },
   },
   { "folke/which-key.nvim", config = true, lazy = false },
