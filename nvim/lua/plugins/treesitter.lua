@@ -89,4 +89,28 @@ return {
       })
     end,
   },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    config = function()
+      -- by default, no mappings are created.
+      require("various-textobjs").setup({
+        lookForwardLines = 8, -- default 5
+      })
+
+      -- these nave to be commands instead of calling the lua functions so that dot repeat works
+      -- correctly
+      vim.keymap.set(
+        { "o", "x" },
+        "is",
+        ":lua require('various-textobjs').subword(true)<CR>",
+        { silent = true, desc = "inner subword" }
+      )
+      vim.keymap.set(
+        { "o", "x" },
+        "as",
+        ":lua require('various-textobjs').subword(false)<CR>",
+        { silent = true, desc = "around subword" }
+      )
+    end,
+  },
 }

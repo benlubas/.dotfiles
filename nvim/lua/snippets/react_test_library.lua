@@ -84,6 +84,23 @@ await user.keyboard('{}');
     })
   ),
 
+  -- placeholder text
+  s("gp",
+    fmt([[{}ByPlaceholderText({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
+
+  s("gap",
+    fmt([[{}AllByPlaceholderText({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
+
   -- test id
   s(
     "gi",
