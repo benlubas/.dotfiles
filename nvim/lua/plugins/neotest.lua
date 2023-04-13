@@ -10,14 +10,14 @@ return {
   },
   dependencies = {
     { "haydenmeade/neotest-jest" },
-    { "benlubas/neotest-rspec", dev = true },
+    { "olimorris/neotest-rspec" },
   },
 	config = function()
     require("neotest").setup({
       adapters = {
         -- these are the defaults
         require("neotest-jest")({
-          jestCommand = "npm test --",
+          jestCommand = "yarn jest",
           env = { CI = true },
           cwd = function(_path)
             return vim.fn.getcwd()
@@ -25,10 +25,10 @@ return {
         }),
         require("neotest-rspec"),
       },
-      discovery = {
+      quickfix = {
         enabled = false,
       },
-      quickfix = {
+      discovery = {
         enabled = false,
       },
       status = {
@@ -36,6 +36,7 @@ return {
         signs = false,
         virtual_text = true,
       },
+      log_level = 0,
       icons = {
         child_indent = "│",
         child_prefix = "├",

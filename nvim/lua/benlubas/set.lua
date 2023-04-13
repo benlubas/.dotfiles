@@ -5,15 +5,21 @@ vim.opt.mouse = "a"
 -- gutter
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.numberwidth = 4
+vim.opt.numberwidth = 3
 vim.opt.foldcolumn = "1"
-vim.opt.signcolumn = "yes:2"
-vim.opt.fillchars = { eob = " " }
+vim.opt.signcolumn = "yes:3"
+vim.opt.fillchars = {
+  eob = " ",
+  foldopen = "",
+  foldclose = "",
+  foldsep = " ",
+  fold = " ",
+}
 
 -- colors
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
-vim.opt.colorcolumn = { 100 }
+vim.opt.colorcolumn = { 101 } -- 101 so that the 100th char isn't in the line (looks weird)
 
 -- comp menu
 vim.opt.pumblend = 13

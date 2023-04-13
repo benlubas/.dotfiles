@@ -25,22 +25,21 @@ return {
         "DapStopped",
         { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" }
       )
-
 		end,
-		--keys = {
-			--{ "<leader>.b", require("dap").toggle_breakpoint },
-			--{ "<leader>.r", require("dap").continue, desc = "run the debugger, or run the code" },
-			--{ "<leader>.s", require("dap").step_over, desc = "step over" },
-			--{ "<leader>.S", require("dap").step_into, desc = "Step into" },
-		--},
+		keys = {
+			{ "<leader>.b", function() require("dap").toggle_breakpoint() end , desc = "toggle breakpoint" },
+			{ "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code" },
+			{ "<leader>.s", function() require("dap").step_over() end, desc = "step over" },
+			{ "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
+		},
 	},
 	{ "theHamsta/nvim-dap-virtual-text", config = true },
 	{
 		"rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
-		--keys = {
-			--{ "<leader>.u", require("dapui").toggle, desc = "toggle the ui" },
-		--},
+		keys = {
+			{ "<leader>.u", function() require("dapui").toggle() end, desc = "toggle the ui" },
+		},
 		opts = {
 			mappings = {
 				-- Use a table to apply multiple mappings
@@ -73,7 +72,6 @@ return {
 				},
 			},
 			controls = {
-				-- Requires Neovim nightly (or 0.8 when released)
 				enabled = true,
 				-- Display controls in this element
 				element = "repl",

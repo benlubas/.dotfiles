@@ -8,6 +8,7 @@ local MAX_LABEL_WIDTH = 25
 return {
   {
     "benlubas/nvim-cmp",
+    dev = false,
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
@@ -135,7 +136,7 @@ return {
   {
     "windwp/nvim-autopairs",
     dependencies = {
-      { "benlubas/nvim-cmp" },
+      { "benlubas/nvim-cmp", dev = true },
     },
     config = function()
       require("nvim-autopairs").setup({
