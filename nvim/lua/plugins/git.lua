@@ -2,6 +2,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     opts = {
+      sign_priority = 100, -- set really high so it always shows on the far left
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
