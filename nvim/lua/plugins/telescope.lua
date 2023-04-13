@@ -23,7 +23,7 @@ return {
       vim.keymap.set("n", "<leader>fa", "<cmd>Telescope live_grep<CR>", {desc = "Find a word in a file in the directory" })
       vim.keymap.set("n", "<leader>f.", function() require('telescope.builtin').find_files({ hidden = true }) end, { desc = "include hidden files in directory search" })
 
-      vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", {desc = "search help tags" })
+      vim.keymap.set("n", "<leader>fhf", "<cmd>Telescope help_tags<CR>", {desc = "search help tags" })
       vim.keymap.set("v", "<leader>fh", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cword>") }) end, { desc = "help with visual selction"})
       vim.keymap.set("n", "<leader>fhw", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cword>") }) end, {desc = "help with word under cursor" })
       vim.keymap.set("n", "<leader>fhW", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cWORD>") }) end, { desc = "help with WORD under cursor" })

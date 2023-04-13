@@ -131,7 +131,7 @@ return {
   },
   {
     "benlubas/lsp_signature.nvim",
-    dev = true,
+    dev = false,
     opts = {
       bind = true, -- required for the border customization to register
       close_timeout = 200, -- default 4000

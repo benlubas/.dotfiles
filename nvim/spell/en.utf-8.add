@@ -172,3 +172,8 @@ Luasnip
 autocommand
 respawn
 respawns
+sig
+cursorhold
+popup
+autocommands
+augroup

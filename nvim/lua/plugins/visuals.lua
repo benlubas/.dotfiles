@@ -16,7 +16,10 @@ return {
       vim.cmd("syntax enable")
       vim.cmd([[colorscheme moonfly]])
 
-      vim.cmd([[highlight CursorLine ctermbg=238 guibg=#111111]])
+      vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 238, bg="#1a1a1a" })
+      vim.api.nvim_set_hl(0, "CursorLineSign", { link = "CursorLine" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { link = "CursorLine" })
+      vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
     end,
   },
   {

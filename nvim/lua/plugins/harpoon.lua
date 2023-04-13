@@ -1,6 +1,5 @@
 return {
   "benlubas/harpoon", -- fork that caches the git branch key
-  dev = true,
   opts = {
     menu = {
       width = (function()
