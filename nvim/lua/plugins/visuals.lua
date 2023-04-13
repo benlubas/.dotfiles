@@ -16,10 +16,11 @@ return {
       vim.cmd("syntax enable")
       vim.cmd([[colorscheme moonfly]])
 
-      vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 238, bg="#1a1a1a" })
+      vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 238, bg = "#1a1a1a" })
       vim.api.nvim_set_hl(0, "CursorLineSign", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "CursorLineNr", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
+      vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
     end,
   },
   {
@@ -29,7 +30,7 @@ return {
       mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
       hide_cursor = false,
       stop_eof = false,
-      time_scale = 0.3
+      time_scale = 0.3,
     },
   },
   {
@@ -41,9 +42,31 @@ return {
         mode = "virtualtext",
         virtualtext = "■",
       },
-    }
+    },
   },
   { "folke/which-key.nvim", config = true, lazy = false },
+  {
+    "luukvbaal/statuscol.nvim",
+    config = function()
+      local builtin = require("statuscol.builtin")
+      require("statuscol").setup({
+        -- configuration goes here, for example:
+        relculright = true,
+        segments = {
+          {
+            sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true },
+            click = "v:lua.ScSa",
+          },
+          {
+            sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+            click = "v:lua.ScSa",
+          },
+          { text = { builtin.lnumfunc } },
+          { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+        },
+      })
+    end,
+  },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -68,7 +91,10 @@ return {
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { { "filename", path = 1 }, require("benlubas.search_count").get_search_count },
+          lualine_c = {
+            { "filename", path = 1 },
+            require("benlubas.search_count").get_search_count,
+          },
           lualine_x = { "encoding", "fileformat", "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },
