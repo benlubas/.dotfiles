@@ -27,6 +27,8 @@ source $ZSH/oh-my-zsh.sh
 
 # --- end of oh-my-zsh --- #
 
+export PATH=$HOME/github/.dotfiles/bin:$PATH
+
 if [ -f $(brew --prefix)/etc/brew-wrap ];then
   source $(brew --prefix)/etc/brew-wrap
 fi
@@ -96,13 +98,7 @@ eval "`fnm env`"
 # rust-analyzer 
 export PATH=/home/benlubas/.local/bin:$PATH
 
-# If a session exists, attach to it. 
-# Otherwise, create a new one and set it up 
-alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
-  rename-window \"Main Nvim\" \; \
-  neww -n shell \; \
-  select-window -t 0 \; \
-  send-keys 'cd ~/work/ && clear' C-m \;"
+alias mx="$HOME/github/.dotfiles/bin/tmux_sessionizer"
 
 export CC="/usr/bin/gcc"
 
