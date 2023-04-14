@@ -29,7 +29,7 @@ return {
       },
       { "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },
       { "<leader>dn", vim.diagnostic.goto_next, desc = "open next diagnostic" },
-      { "H", "<cmd>lua vim.lsp.buf.hover()<CR>", desc = "open hover information" },
+      { "H", vim.lsp.buf.hover, desc = "open hover information" },
     },
     dependencies = {
       {
