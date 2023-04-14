@@ -75,12 +75,13 @@ export PATH=/home/benlubas/.local/bin:$PATH
 
 # If a session exists, attach to it. 
 # Otherwise, create a new one and set it up 
-alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
-  tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
-  rename-window \"Main Nvim\" \; \
-  neww -n shell \; \
-  select-window -t 0 \; \
-  send-keys 'cd ~/github/ && clear' C-m \;"
+alias mx=$HOME/github/.dotfiles/bin/tmux-sessionizer
+# alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
+#   tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
+#   rename-window \"Main Nvim\" \; \
+#   neww -n shell \; \
+#   select-window -t 0 \; \
+#   send-keys 'cd ~/github/ && clear' C-m \;"
 
 # nix direnv (this should stay at the end)
 eval "$(direnv hook zsh)"
