@@ -15,6 +15,7 @@ vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the sam
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })
+vim.keymap.set("n", "<leader><leader>cp", [[:let @+ = expand("%:p")<CR>]], { desc = "copy file path to clipboard", silent = true })
 
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')

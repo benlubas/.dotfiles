@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/work ~/github -mindepth 1 -maxdepth 1 -type d | fzf)
+  selected=$(find ~/github ~/work -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -23,10 +23,11 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
 fi
 
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-  tmux new-session -ds $selected_name -c $selected\; \
-  rename-window "Main Nvim"\; \
-  neww -n shell\; \
-  select-window -t 0\;
+  tmux new-session -ds $selected_name -c $selected\;
 fi
 
-tmux switch-client -t $selected_name
+if [[ -z $TMUX ]]; then
+  tmux attach -t $selected_name
+else
+  tmux switch-client -t $selected_name
+fi
