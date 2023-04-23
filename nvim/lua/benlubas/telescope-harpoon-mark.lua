@@ -56,42 +56,42 @@ M.harpoon_branch_marks_picker = function(opts)
   end
   opts = opts or require("telescope.themes").get_dropdown({})
   pickers
-      .new(opts, {
-        prompt_title = "branch",
-        finder = finders.new_table({
-          results = picker_list,
-          entry_maker = function(entry)
-            for path, marks in pairs(entry) do
-              local s = string.gsub(path, local_utils.escape_gsub(cwd .. "-"), "")
-              local fmt = format_marks(marks.mark.marks)
-              return {
-                value = fmt,
-                display = s,
-                ordinal = s,
-              }
-            end
-          end,
-        }),
-        attach_mappings = function(prompt_bufnr, _)
-          actions.select_default:replace(function()
-            actions.close(prompt_bufnr)
-            local selection = action_state.get_selected_entry()
-            P(selection.value)
-            for _, value in ipairs(selection.value) do
-              require("harpoon.mark").add_file(value)
-            end
-          end)
-          return true
+    .new(opts, {
+      prompt_title = "branch",
+      finder = finders.new_table({
+        results = picker_list,
+        entry_maker = function(entry)
+          for path, marks in pairs(entry) do
+            local s = string.gsub(path, local_utils.escape_gsub(cwd .. "-"), "")
+            local fmt = format_marks(marks.mark.marks)
+            return {
+              value = fmt,
+              display = s,
+              ordinal = s,
+            }
+          end
         end,
-        sorter = conf.generic_sorter(opts),
-        previewer = previewers.new_buffer_previewer({
-          define_preview = function(self, entry, _)
-            vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, entry.value)
-          end,
-          title = "Harpoon Marks",
-        }),
-      })
-      :find()
+      }),
+      attach_mappings = function(prompt_bufnr, _)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          P(selection.value)
+          for _, value in ipairs(selection.value) do
+            require("harpoon.mark").add_file(value)
+          end
+        end)
+        return true
+      end,
+      sorter = conf.generic_sorter(opts),
+      previewer = previewers.new_buffer_previewer({
+        define_preview = function(self, entry, _)
+          vim.api.nvim_buf_set_lines(self.state.bufnr, 0, -1, false, entry.value)
+        end,
+        title = "Harpoon Marks",
+      }),
+    })
+    :find()
 end
 
 return M

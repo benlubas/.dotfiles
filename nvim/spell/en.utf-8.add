@@ -177,3 +177,5 @@ cursorhold
 popup
 autocommands
 augroup
+filetype
+pos

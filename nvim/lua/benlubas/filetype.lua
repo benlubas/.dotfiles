@@ -4,6 +4,6 @@ vim.filetype.add({
     es6 = "javascript",
   },
   pattern = {
-    ['.*/i3/.*'] = 'i3config',
-  }
+    [".*/i3/.*"] = "i3config",
+  },
 })

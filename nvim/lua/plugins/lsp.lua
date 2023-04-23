@@ -131,20 +131,17 @@ return {
   },
   {
     "benlubas/lsp_signature.nvim",
-    dev = false,
+    dev = true,
     opts = {
-      bind = true, -- required for the border customization to register
-      close_timeout = 200, -- default 4000
+      close_timeout_ms = 4000,
       cursorhold_update = true,
-      doc_lines = 0,
+      doc_lines = 5,
       handler_opts = {
         border = "none",
       },
-      hint_enable = false,
-      floating_window_off_x = 0, -- default 1 for some reason
       max_height = 5, -- default 12
       max_width = 150, -- default 80
-      timer_interval = 100, -- default 200
+      timer_interval_ms = 100, -- default 200
       transparency = 13,
     },
   },

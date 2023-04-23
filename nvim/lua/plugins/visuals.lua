@@ -1,6 +1,8 @@
 -- All of the visual changes that I'm running. This includes, moonfly theme, neoscroll,
 -- which-key, devicons, indent_blankline, and lualine
 
+-- start screen is alpha nvim and has it's own file
+
 return {
   {
     "bluz71/vim-moonfly-colors",

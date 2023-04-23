@@ -6,5 +6,5 @@ end
 
 -- reloads the given modules.
 R = function(...)
-  return require('plenary.reload').reload_module(...)
+  return require("plenary.reload").reload_module(...)
 end
