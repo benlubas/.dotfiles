@@ -42,14 +42,7 @@ export EDITOR="nvim"
 # to use bat with man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-v() {
-  if [ ! -z "$1" ]; then 
-    # we have a value that should be a path. so treat it like one. 
-    $EDITOR "$1"
-  else 
-    $EDITOR .
-  fi
-}
+alias v=nvim
 
 # alias all the things
 alias zshrc="$EDITOR ~/.zshrc"
