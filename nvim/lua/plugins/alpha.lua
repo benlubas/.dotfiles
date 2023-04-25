@@ -5,7 +5,7 @@ return {
     config = function()
       local alpha = require("alpha")
       local dashboard = require("alpha.themes.dashboard")
-      local path = require('plenary.path')
+      local path = require("plenary.path")
       dashboard.section.header.val = {
         [[                                                    ]],
         [[ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ]],
@@ -23,7 +23,7 @@ return {
         if marks then
           for i, mark in ipairs(marks) do
             local file_name = mark.filename
-            local short_name = path.new(file_name):shorten(3)
+            local short_name = path.new(file_name):shorten(3, { 1, -1, -2 })
             tbl[i] = dashboard.button(("%d"):format(i), short_name, (":e %s<CR>"):format(file_name))
           end
         end
@@ -52,35 +52,38 @@ return {
         },
       }
       dashboard.section.buttons.val = {
-        dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+        dashboard.button("e", "  New file", ":ene<CR>"),
+        dashboard.button("SPC f d", "  File Search"),
+        dashboard.button("SPC e", "󰙅  Ranger"),
+        dashboard.button("c", "  Config", ":cd ~/github/.dotfiles<CR>"),
         dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
       }
 
       local coinflip = ""
       if math.random() > 0.5 then
-        coinflip = "heads"
+        coinflip = "it was heads 🪙"
       else
-        coinflip = "tails"
+        coinflip = "it was tails 🪙"
       end
 
       local conf = {
         layout = {
           { type = "padding", val = 2 },
           dashboard.section.header,
-          { type = "padding", val = 2 },
+          { type = "padding", val = 1 },
+          { type = "text", val = vim.fn.getcwd(), opts = { position = "center", hl = "SpecialComment" } },
+          { type = "padding", val = 1 },
           dashboard.section.buttons,
           { type = "padding", val = 1 },
           harpoon_section,
           { type = "padding", val = 1 },
-          { type = "text", val = coinflip, opts = { position = "center" } },
+          { type = "text", val = coinflip, opts = { position = "center", hl = "Statement" } },
         },
         opts = {
           margin = 5,
           noautocmd = true,
         },
       }
-
-      vim.cmd([[autocmd User AlphaReady echo 'ready']])
 
       alpha.setup(conf)
     end,
