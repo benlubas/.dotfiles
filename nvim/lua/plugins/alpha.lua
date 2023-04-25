@@ -27,6 +27,14 @@ return {
             tbl[i] = dashboard.button(("%d"):format(i), short_name, (":e %s<CR>"):format(file_name))
           end
         end
+
+        if #tbl == 0 then
+          tbl = {
+            dashboard.button("CTRL e", "Open Menu"),
+            { type = "padding", val = 1 },
+            dashboard.button("CTRL s", "Mark File"),
+          }
+        end
         return tbl
       end
 
@@ -35,7 +43,7 @@ return {
         val = {
           {
             type = "text",
-            val = "↽  Harpoon Files  ⇁",
+            val = "↽  Harpoon  ⇁",
             opts = {
               hl = "SpecialComment",
               shrink_margin = false,
