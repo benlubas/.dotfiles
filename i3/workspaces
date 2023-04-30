@@ -33,3 +33,8 @@ bindsym $mod+Shift+f move container to workspace number $ws6
 bindsym $mod+Shift+w move container to workspace number $ws7
 bindsym $mod+Shift+e move container to workspace number $ws8
 bindsym $mod+Shift+r move container to workspace number $ws9
+
+# assignments to different workspaces
+# get the class with xprop and look in the output for WM_CLASS
+assign [class="^steam_app_0$"] $ws9
+assign [class="^heroic$"] $ws9
