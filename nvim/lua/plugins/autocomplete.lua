@@ -28,8 +28,8 @@ return {
           end
         end),
         ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-s>d"] = cmp.mapping.scroll_docs(4),
-        ["<C-s>u"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-c>"] = cmp.mapping.close(),
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Insert,

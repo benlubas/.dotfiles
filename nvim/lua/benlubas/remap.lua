@@ -16,6 +16,8 @@ vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
 vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })
 
+vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signature help" });
+
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')

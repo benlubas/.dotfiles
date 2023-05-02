@@ -8,6 +8,7 @@ return {
       end)(),
     },
     mark_branch = true,
+    excluded_filetypes = { "harpoon", "alpha" },
   },
   keys = {
     { mode = { "n", "v" }, "<C-s>", function() require("harpoon.mark").add_file() end, desc = "add current file to harpoon menu" },

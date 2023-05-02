@@ -52,7 +52,7 @@ return {
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
-      local on_attach = function(bufopts, bufnr)
+      local on_attach = function(_, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -113,36 +113,16 @@ return {
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.stylua,
         },
-        on_attach = function(client, bufnr)
+        on_attach = function(client, _)
           if client.server_capabilities.documentFormattingProvider then
-            vim.cmd(
-              "nnoremap <silent><buffer> <Leader>gf :lua vim.lsp.buf.format{ async = true}<CR>"
-            )
+            vim.keymap.set("n", "<leader>gf", function() vim.lsp.buf.format({ async = true }) end)
           end
 
           if client.server_capabilities.documentRangeFormattingProvider then
-            vim.cmd(
-              "xnoremap <silent><buffer> <Leader>gf :lua vim.lsp.buf.range_formatting({})<CR>"
-            )
+            vim.keymap.set("v", "<leader>gf", function() vim.lsp.buf.format({ async = true }) end)
           end
         end,
       })
     end,
-  },
-  {
-    "benlubas/lsp_signature.nvim",
-    dev = true,
-    opts = {
-      close_timeout_ms = 4000,
-      cursorhold_update = true,
-      doc_lines = 5,
-      handler_opts = {
-        border = "none",
-      },
-      max_height = 5, -- default 12
-      max_width = 150, -- default 80
-      timer_interval_ms = 100, -- default 200
-      transparency = 13,
-    },
   },
 }
