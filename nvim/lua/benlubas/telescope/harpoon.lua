@@ -76,7 +76,6 @@ M.harpoon_branch_marks_picker = function(opts)
         actions.select_default:replace(function()
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
-          P(selection.value)
           for _, value in ipairs(selection.value) do
             require("harpoon.mark").add_file(value)
           end

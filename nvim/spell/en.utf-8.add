@@ -179,3 +179,4 @@ autocommands
 augroup
 filetype
 pos
+sessionizer
