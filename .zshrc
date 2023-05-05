@@ -43,13 +43,7 @@ export LC_CTYPE=en_US.UTF-8
 # to use bat with man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-v() {
-  if [ ! -z "$1" ]; then 
-    $EDITOR "$1"
-  else 
-    $EDITOR .
-  fi
-}
+alias v="nvim"
 
 lelloi() {
   cd $HOME/work/lello
@@ -81,10 +75,10 @@ alias zshrc="$EDITOR ~/.zshrc"
 alias ga="git add"
 alias gd="git diff"
 alias gdm="git diff --merge-base main"
-# alias gdm="git diff main..."
 alias gc="git checkout"
 alias gcm="git checkout main"
 alias gcb="git checkout -b"
+alias gcam="git commit -am"
 
 alias railsc="bundle exec rails c"
 

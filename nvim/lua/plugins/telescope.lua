@@ -6,16 +6,28 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     config = function()
-      require('telescope').setup({
+      require("telescope").setup({
         defaults = {
+          path_display = { shorten = { len = 3, exclude = { 1, 2, -1, -2 }}},
+          dynamic_preview_title = true,
+          winblend = 13,
           mappings = {
             i = {
               ["<esc>"] = require("telescope.actions").close,
               ["<c-s>"] = require("benlubas.telescope-harpoon-mark").mark_file,
+              ["<C-h>"] = require("telescope.actions").cycle_history_prev,
+              ["<C-l>"] = require("telescope.actions").cycle_history_next,
             },
             n = {
               ["<c-s>"] = require("benlubas.telescope-harpoon-mark").mark_file,
             }
+          },
+        },
+        pickers = {
+          live_grep = {
+            mappings = {
+              i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
+            },
           },
         },
       })

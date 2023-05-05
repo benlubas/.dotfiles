@@ -5,7 +5,7 @@ local servers = {
   "cssls",
   "html",
   "emmet_ls",
-  "pyright",
+  "jedi_language_server",
   "jsonls",
   -- 'ltex',
   "marksman",
@@ -52,7 +52,7 @@ return {
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
-      local on_attach = function(bufopts, bufnr)
+      local on_attach = function(client, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -84,6 +84,14 @@ return {
         capabilities = capabilities,
       })
 
+      require('lspconfig')['tsserver'].setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+          on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+      })
+
       require("lspconfig")["lua_ls"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
@@ -95,6 +103,7 @@ return {
           },
         },
       })
+
       require("rust-tools").setup({
         server = {
           on_attach = on_attach,
@@ -135,8 +144,7 @@ return {
     end,
   },
   {
-    "benlubas/lsp_signature.nvim",
-    dev = false,
+    "ray-x/lsp_signature.nvim",
     opts = {
       bind = true, -- required for the border customization to register
       close_timeout = 200, -- default 4000
