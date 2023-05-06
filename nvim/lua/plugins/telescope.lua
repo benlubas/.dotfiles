@@ -37,7 +37,7 @@ return {
       vim.keymap.set("n", "<leader>fa", "<cmd>Telescope live_grep<CR>", { desc = "Find a word in a file in the directory" })
       vim.keymap.set("n", "<leader>f.", function() require('telescope.builtin').find_files({ hidden = true }) end, { desc = "include hidden files in directory search" })
 
-      vim.keymap.set("n", "<leader>fhf", "<cmd>Telescope help_tags<CR>", {desc = "search help tags" })
+      vim.keymap.set("n", "<leader>fhf", "<cmd>Telescope help_tags<CR>", { desc = "search help tags" })
       vim.keymap.set("v", "<leader>fh", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cword>") }) end, { desc = "help with visual selction"})
       vim.keymap.set("n", "<leader>fhw", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cword>") }) end, { desc = "help with word under cursor" })
       vim.keymap.set("n", "<leader>fhW", function() require('telescope.builtin').help_tags({ default_text = vim.fn.expand("<cWORD>") }) end, { desc = "help with WORD under cursor" })
@@ -46,15 +46,26 @@ return {
       vim.keymap.set("n", "<leader>ss", function() require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor()) end, { desc = "spell suggest" })
       vim.keymap.set("n", "<leader>fs", function() require("telescope.builtin").git_status(require("telescope.themes").get_dropdown()) end, { desc = "search modified git files" })
       vim.keymap.set("n", "<leader><leader>s", ":Telescope symbols<CR>", { desc = "open symbol picker" })
-      vim.keymap.set("n", "<leader>fl", function()
-        local dir = vim.env.HOME .. "/github/.dotfiles"
-        require('telescope.builtin').find_files({
-          find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
-        })
-      end, { desc = "search dot files" })
+
+      vim.keymap.set("n", "<leader>fl",
+        function()
+          local dir = vim.env.HOME .. "/github/.dotfiles"
+          require('telescope.builtin').find_files({
+            find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+          })
+        end,
+        { desc = "search dot files" }
+      )
+
       vim.keymap.set("n", "<leader>fm",
         function() require("benlubas.telescope-harpoon-mark").harpoon_branch_marks_picker() end,
-        { desc = "marks from other branches, select to add marks" })
+        { desc = "search mark sets from other branches, select to add all" }
+      )
+
+      vim.keymap.set("n", "<leader>mx",
+        function() require("benlubas.telescope.tmux").tmux_sessions_picker({ "~/github", "~/work" }) end,
+        { desc = "tmux-sessionizer but telescope" }
+      )
     end,
   },
 }

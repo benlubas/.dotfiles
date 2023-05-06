@@ -79,6 +79,8 @@ alias gc="git checkout"
 alias gcm="git checkout main"
 alias gcb="git checkout -b"
 alias gcam="git commit -am"
+# git clean is now a command (kinda hacky but)
+alias clean="remote prune origin; git branch -vv | awk '/: gone]/' | cut -d' ' -f3 | xargs git branch -D"
 
 alias railsc="bundle exec rails c"
 

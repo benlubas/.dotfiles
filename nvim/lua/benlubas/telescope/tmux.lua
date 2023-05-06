@@ -58,8 +58,4 @@ M.tmux_sessions_picker = function(project_paths, opts)
     :find()
 end
 
-vim.keymap.set("n", "<leader>ft", function()
-  M.tmux_sessions_picker({ "~/github", "~/work" })
-end, { desc = "tmux sessionize" })
-
 return M

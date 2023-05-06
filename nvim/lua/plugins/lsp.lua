@@ -18,6 +18,7 @@ local servers = {
 return {
   -- { "evanleck/vim-svelte" },
   { "williamboman/mason.nvim", config = true },
+  { "j-hui/fidget.nvim", config = true },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
