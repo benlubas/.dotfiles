@@ -9,32 +9,131 @@ local c = ls.choice_node
 local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("javascript", {
+  -- debug
+  s("sd", fmt([[screen.debug({});]], { i(0) })),
+
   -- user
-  s("clic", fmt([[await user.click({});]], { i(0) })),
+  s("cl", fmt([[await user.click({});]], { c(1, { t(""), t("document.body") }) })),
   s("typ", fmt([[await user.type({}, '{}');]], { i(1), i(0) })),
+  s(
+    "rep",
+    fmt(
+      [[
+await user.tripleClick({});
+await user.keyboard('{}');
+{}
+]],
+      {
+        i(1),
+        i(2),
+        c(3, { t("await user.click(document.body);"), t("") }),
+      }
+    )
+  ),
 
-  -- get by role
-  s("grb", fmt([[screen.getByRole('button', {{ name: /{}/i }})]], { i(0) })),
-  s("grc", fmt([[screen.getByRole('checkbox', {{ name: /{}/i }})]], { i(0) })),
-  s("grt", fmt([[screen.getByRole('textbox', {{ name: /{}/i }})]], { i(0) })),
+  s(
+    "ex",
+    fmt([[expect({}){}{};{}]], {
+      i(1),
+      c(2, { t(""), t(".not") }),
+      c(3, { t(""), t(".toBeVisible()"), t(".toBeInTheDocument()") }),
+      i(0),
+    })
+  ),
 
-  -- find by role
-  s("frb", fmt([[await screen.findByRole('button', {{ name: /{}/i }})]], { i(0) })),
-  s("frc", fmt([[await screen.findByRole('checkbox', {{ name: /{}/i }})]], { i(0) })),
-  s("frt", fmt([[await screen.findByRole('textbox', {{ name: /{}/i }})]], { i(0) })),
+  -- by role
+  s(
+    "gr",
+    fmt([[{}ByRole('{}', {{ name: {}{}}}){}]], {
+      c(4, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
+      c(2, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      c(3, { t(" "), t(", checked: true "), t(", checked: false ") }),
+      i(0),
+    })
+  ),
 
-  -- get all by role
-  s("garb", fmt([[screen.getAllByRole('button', {{ name: /{}/i }})]], { i(0) })),
-  s("garc", fmt([[screen.getAllByRole('checkbox', {{ name: /{}/i }})]], { i(0) })),
-  s("gart", fmt([[screen.getAllByRole('textbox', {{ name: /{}/i }})]], { i(0) })),
+  s(
+    "gar",
+    fmt([[{}AllByRole('{}', {{ name: {}{}}}){}]], {
+      c(4, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
+      c(2, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      c(3, { t(" "), t(", checked: true "), t(", checked: false ") }),
+      i(0),
+    })
+  ),
 
-  -- query by role
-  s("qrb", fmt([[screen.queryByRole('button', {{ name: /{}/i }})]], { i(0) })),
-  s("qrc", fmt([[screen.queryByRole('checkbox', {{ name: /{}/i }})]], { i(0) })),
-  s("qrt", fmt([[screen.queryByRole('textbox', {{ name: /{}/i }})]], { i(0) })),
+  -- by text
+  s(
+    "gt",
+    fmt([[{}ByText({}{}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      c(3, { t(""), fmt(", {{ selector: '{}' }}", { i(1) }) }),
+      i(0),
+    })
+  ),
+  s(
+    "gat",
+    fmt([[{}AllByText({}{}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      c(3, { t(""), fmt(", {{ selector: '{}' }}", { i(1) }) }),
+      i(0),
+    })
+  ),
+
+  -- placeholder text
+  s("gp",
+    fmt([[{}ByPlaceholderText({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
+
+  s("gap",
+    fmt([[{}AllByPlaceholderText({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
 
   -- test id
-  s("gt", fmt([[screen.getByTestId('{}')]], { i(0) })),
-  s("gat", fmt([[screen.getAllByTestId('{}')]], { i(0) })),
-  s("qt", fmt([[screen.queryByTestId('{}')]], { i(0) })),
+  s(
+    "gi",
+    fmt([[{}ByTestId({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
+  s(
+    "gai",
+    fmt([[{}AllByTestId({}){}]], {
+      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      i(0),
+    })
+  ),
+
+  -- it
+  s(
+    "it",
+    fmt(
+      [[it('{}', {}() => {{
+  {}
+}});]],
+      {
+        i(1),
+        c(2, { t(""), t("async ") }),
+        i(0),
+      }
+    )
+  ),
 })
+
+ls.filetype_extend("javascript", { "javascriptreact" })
+ls.filetype_extend("javascript", { "html" })
