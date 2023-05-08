@@ -1,13 +1,12 @@
 -- This file contains the logic for correctly generating a count of the number
 -- of matches a `/` or `?` search comes back with
 -- The default has a max of 99, which is great for most cases, but not enough
--- for specific scenarios
---
---Usage:
--- Place the result of get_search_count() in your status bar or where ever you
--- want.
--- either leave hlsearch set to true, or use a keybind to toggle it. After toggling
--- make a call to `calc_search_count()` so the count is calculated
+
+-- Usage:
+--  Place the result of get_search_count() in your status bar or where ever you
+--  want.
+--  either leave hlsearch set to true, or use a keybind to toggle it. After toggling
+--  make a call to `calc_search_count()` so the count is calculated
 local M = {}
 
 M.update_search_count = function()
@@ -44,8 +43,34 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "CmdlineLeave", "CmdwinLeave" }, {
   callback = M.update_search_count,
 })
 
+-- Keybinds --
+
 -- this is a weird hack to get around the fact that CmdlineLeave isn't triggered when you hit enter
 -- to start a search.
 vim.keymap.set("c", "<cr>", "<cr>:<esc>")
+
+-- NOTE: the c-f bind is remapped by 'neoscroll' plugin for smooth scrolling, so that plugin
+-- needs extra setup for this to work with it
+local toggle_highlight = function()
+	local b = { [0] = false, [1] = true }
+	vim.opt.hlsearch = not b[vim.v.hlsearch]
+	require("benlubas.search_count").calc_search_count()
+
+	require("lualine").refresh()
+end
+
+-- remaps to also update the search count numerator
+vim.keymap.set("n", "n", function()
+  vim.api.nvim_feedkeys("n", "n", true)
+  vim.schedule(M.update_search_count)
+end, { desc = "move to the next search result" })
+
+vim.keymap.set("n", "N", function()
+  vim.api.nvim_feedkeys("N", "n", true)
+  vim.schedule(M.update_search_count)
+end, { desc = "move to the previous search result" })
+
+vim.keymap.set("n", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
+vim.keymap.set("i", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
 
 return M

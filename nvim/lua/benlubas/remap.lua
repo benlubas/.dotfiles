@@ -53,16 +53,3 @@ vim.cmd([[
 vim.keymap.set("n", "<leader>sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>st", "<cmd>set spell!<CR>")
 
--- toggle highlight search
--- Note: the c-f bind is remapped by 'neoscroll' plugin for smooth scrolling, so that plugin
--- needs extra setup for this to work with it
-local toggle_highlight = function()
-	-- So, 0 == true in lua... what the fuck
-	local b = { [0] = false, [1] = true }
-	vim.opt.hlsearch = not b[vim.v.hlsearch]
-	require("benlubas.search_count").calc_search_count()
-
-	require("lualine").refresh()
-end
-vim.keymap.set("n", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
-vim.keymap.set("i", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
