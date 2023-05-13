@@ -24,6 +24,10 @@ return {
           },
         },
         pickers = {
+          cache_picker = {
+            num_pickers = 15, -- default 1
+            limit_entries = 500, -- default 500
+          },
           live_grep = {
             mappings = {
               i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
