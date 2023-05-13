@@ -18,6 +18,7 @@ local servers = {
 return {
   -- { "evanleck/vim-svelte" },
   { "williamboman/mason.nvim", config = true },
+  { "j-hui/fidget.nvim", config = true },
   {
     "neovim/nvim-lspconfig",
     lazy = false,
@@ -43,8 +44,7 @@ return {
     },
     config = function()
       -- adding autocomplete capabilities...
-      local capabilities =
-        require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true,
@@ -90,6 +90,15 @@ return {
           },
         },
       })
+
+      require("lspconfig")["tsserver"].setup({
+        on_attach = function(client, bufnr)
+          client.server_capabilities.semanticTokensProvider = nil
+          on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+      })
+
       require("rust-tools").setup({
         server = {
           on_attach = on_attach,
@@ -115,11 +124,15 @@ return {
         },
         on_attach = function(client, _)
           if client.server_capabilities.documentFormattingProvider then
-            vim.keymap.set("n", "<leader>gf", function() vim.lsp.buf.format({ async = true }) end)
+            vim.keymap.set("n", "<leader>gf", function()
+              vim.lsp.buf.format({ async = true })
+            end)
           end
 
           if client.server_capabilities.documentRangeFormattingProvider then
-            vim.keymap.set("v", "<leader>gf", function() vim.lsp.buf.format({ async = true }) end)
+            vim.keymap.set("v", "<leader>gf", function()
+              vim.lsp.buf.format({ async = true })
+            end)
           end
         end,
       })

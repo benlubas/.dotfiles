@@ -20,3 +20,6 @@
 
 [diff]
   colorMoved = default
+
+[alias]
+  clean = "remote prune origin; git branch -vv | awk '/: gone]/' | cut -d' ' -f3 | xargs git branch -D"

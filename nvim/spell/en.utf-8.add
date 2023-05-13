@@ -180,3 +180,5 @@ augroup
 filetype
 pos
 sessionizer
+homebrew
+shellenv

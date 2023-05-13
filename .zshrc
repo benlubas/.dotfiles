@@ -26,7 +26,7 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,19 +34,33 @@ if [ -f $HOME/.zshsecrets ]; then
   source $HOME/.zshsecrets
 fi
 
+if [ -f $HOME/.zshwork ]; then
+  source $HOMe/.zshwork
+fi
+
 # homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# fnm
+export PATH=$HOME/.fnm:$PATH
+eval "$(fnm env --use-on-cd)"
+
+# rust-analyzer
+export PATH=$HOME/.local/bin:$PATH
+
+# personal scripts
+export PATH=$HOME/github/.dotfiles/bin:$PATH
 
 export EDITOR="nvim"
 
 # to use bat with man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-alias v=nvim
+# ==== Alias-es ==== #
 
-# alias all the things
-alias zshrc="$EDITOR ~/.zshrc"
+alias v=nvim
 alias kvm="ssh benlubas@login.ccs.neu.edu"
+
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"
@@ -55,26 +69,23 @@ alias gdm="git diff --merge-base main"
 alias gc="git checkout"
 alias gcm="git checkout main"
 alias gcb="git checkout -b"
+alias gl="git log --oneline --decorate --graph"
+alias gcam="git commit -am"
+alias gcaa="git commit -a --amend"
+alias amend="git commit -a --amend --no-edit"
+
+# grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything
+rgf() {
+  branch=$(git branch --show-current)
+  rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
+}
+
+alias mx=tmux-sessionizer
+
+# ============================================================= #
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# fnm
-export PATH=/home/benlubas/.fnm:$PATH
-eval "$(fnm env --use-on-cd)"
-
-# rust-analyzer 
-export PATH=/home/benlubas/.local/bin:$PATH
-
-# If a session exists, attach to it. 
-# Otherwise, create a new one and set it up 
-alias mx=$HOME/github/.dotfiles/bin/tmux-sessionizer
-# alias mx="tmux attach -t \"(╯°□°）╯︵ ┻━┻)\" || \
-#   tmux new-session -s \"(╯°□°）╯︵ ┻━┻)\"\; \
-#   rename-window \"Main Nvim\" \; \
-#   neww -n shell \; \
-#   select-window -t 0 \; \
-#   send-keys 'cd ~/github/ && clear' C-m \;"
 
 # nix direnv (this should stay at the end)
 eval "$(direnv hook zsh)"

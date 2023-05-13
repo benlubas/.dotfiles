@@ -31,6 +31,10 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+-- listchars
+vim.opt.list = true
+vim.opt.listchars = "trail:"
+
 -- search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true -- show the currently matched pattern

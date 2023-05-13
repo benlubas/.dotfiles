@@ -25,6 +25,10 @@ return {
         },
         pickers = {
           live_grep = {
+            cache_picker = {
+              num_pickers = 15, -- default 1
+              limit_entries = 500, -- default 500
+            },
             mappings = {
               i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
             },
@@ -55,6 +59,9 @@ return {
       vim.keymap.set("n", "<leader>fm",
         function() require("benlubas.telescope.harpoon").harpoon_branch_marks_picker() end,
         { desc = "marks from other branches, select to add marks" })
+      vim.keymap.set("n", "<leader>mx",
+        function() require("benlubas.telescope.tmux").tmux_sessions_picker({ "~/github" }) end,
+        { desc = "tmux-sessionizer but telescope" })
     end,
   },
 }
