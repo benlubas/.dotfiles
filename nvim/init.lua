@@ -13,6 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+-- ensure that P() and R() are available in plugins
+require("benlubas.globals")
 require("lazy").setup("plugins", {
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
