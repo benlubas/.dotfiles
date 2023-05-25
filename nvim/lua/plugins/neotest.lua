@@ -15,7 +15,6 @@ return {
 	config = function()
     require("neotest").setup({
       adapters = {
-        -- these are the defaults
         require("neotest-jest")({
           jestCommand = "yarn jest",
           env = { CI = true },

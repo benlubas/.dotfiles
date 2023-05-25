@@ -80,11 +80,11 @@ alias gcm="git checkout main"
 alias gcb="git checkout -b"
 alias gcam="git commit -am"
 
+
 ### got all of these from the dev survey
 
-# git clean is now a command (kinda hacky but)
-alias clean="remote prune origin; git branch -vv | awk '/: gone]/' | cut -d' ' -f3 | xargs git branch -D"
 alias glog="git log --oneline --decorate --graph"
+alias ssb="exec chromium --app=$@"
 
 alias railsc="bundle exec rails c"
 
