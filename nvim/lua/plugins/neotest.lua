@@ -42,7 +42,7 @@ return {
         child_prefix = "├",
         collapsed = "─",
         expanded = "╮",
-        failed = "❌",
+        failed = "",
         final_child_indent = " ",
         final_child_prefix = "╰",
         non_collapsible = "─",
