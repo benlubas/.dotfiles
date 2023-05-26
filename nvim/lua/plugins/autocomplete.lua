@@ -97,13 +97,11 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
-    version = "1.*",
     config = function()
       local ls = require("luasnip")
       ls.setup({
         history = false,
-        -- this is causing issues for some reason
-        -- update_events = { "TextChanged", "TextChangedI" },
+        update_events = { "TextChanged", "TextChangedI" },
       })
       require("snippets") -- loading custom snippets
 

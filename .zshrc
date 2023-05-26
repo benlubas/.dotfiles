@@ -56,7 +56,7 @@ export EDITOR="nvim"
 # to use bat with man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# ==== Alias-es ==== #
+# ==== Aliases ==== #
 
 alias v=nvim
 alias kvm="ssh benlubas@login.ccs.neu.edu"

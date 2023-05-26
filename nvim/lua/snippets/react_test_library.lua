@@ -1,12 +1,14 @@
 local ls = require("luasnip")
 
-local s = ls.s
+local s = ls.snippet
 local i = ls.insert_node
 local t = ls.text_node
 -- local d = ls.dynamic_node
 local c = ls.choice_node
 -- local f = ls.function_node
+local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
+local h = require("snippets.snippet_helpers")
 
 ls.add_snippets("javascript", {
   -- debug
@@ -33,10 +35,9 @@ await user.keyboard('{}');
 
   s(
     "ex",
-    fmt([[expect({}){}{};{}]], {
+    fmt([[expect({}){};{}]], {
       i(1),
-      c(2, { t(""), t(".not") }),
-      c(3, { t(""), t(".toBeVisible()"), t(".toBeInTheDocument()") }),
+      c(2, { t(""), t(".toBeVisible()"), t(".not.toBeInTheDocument()") }),
       i(0),
     })
   ),
@@ -44,22 +45,20 @@ await user.keyboard('{}');
   -- by role
   s(
     "gr",
-    fmt([[{}ByRole('{}', {{ name: {}{}}}){}]], {
-      c(4, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+    fmt([[{}ByRole('{}', {{ name: {}}}){}]], {
+      c(3, { t("screen.get"), t("await screen.find"), t("screen.query") }),
       c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
-      c(2, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
-      c(3, { t(" "), t(", checked: true "), t(", checked: false ") }),
+      h.js_selector(2),
       i(0),
     })
   ),
 
   s(
     "gar",
-    fmt([[{}AllByRole('{}', {{ name: {}{}}}){}]], {
-      c(4, { t("screen.get"), t("await screen.find"), t("screen.query") }),
+    fmt([[{}AllByRole('{}', {{ name: {}}}){}]], {
+      c(3, { t("screen.get"), t("await screen.find"), t("screen.query") }),
       c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
-      c(2, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
-      c(3, { t(" "), t(", checked: true "), t(", checked: false ") }),
+      h.js_selector(2),
       i(0),
     })
   ),
@@ -68,17 +67,18 @@ await user.keyboard('{}');
   s(
     "gt",
     fmt([[{}ByText({}{}){}]], {
-      c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
-      c(1, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      h.rtl_selector(2),
+      h.js_selector(1),
       c(3, { t(""), fmt(", {{ selector: '{}' }}", { i(1) }) }),
       i(0),
     })
   ),
+
   s(
     "gat",
     fmt([[{}AllByText({}{}){}]], {
       c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
-      c(1, { fmt("/{}/i", { i(1) }), fmt("'{}'", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      h.js_selector(1),
       c(3, { t(""), fmt(", {{ selector: '{}' }}", { i(1) }) }),
       i(0),
     })
@@ -88,7 +88,7 @@ await user.keyboard('{}');
   s("gp",
     fmt([[{}ByPlaceholderText({}){}]], {
       c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
-      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      h.js_selector(1),
       i(0),
     })
   ),
@@ -96,7 +96,7 @@ await user.keyboard('{}');
   s("gap",
     fmt([[{}AllByPlaceholderText({}){}]], {
       c(2, { t("screen.get"), t("await screen.find"), t("screen.query") }),
-      c(1, { fmt("'{}'", { i(1) }), fmt("/{}/i", { i(1) }), fmt("`{}`", { i(1) }), t("") }),
+      h.js_selector(1),
       i(0),
     })
   ),
@@ -123,17 +123,14 @@ await user.keyboard('{}');
   s(
     "it",
     fmt(
-      [[it('{}', {}() => {{
+      [[it({}, {}() => {{
   {}
 }});]],
       {
-        i(1),
+        h.js_quotes(1),
         c(2, { t(""), t("async ") }),
         i(0),
       }
     )
   ),
 })
-
-ls.filetype_extend("javascript", { "javascriptreact" })
-ls.filetype_extend("javascript", { "html" })

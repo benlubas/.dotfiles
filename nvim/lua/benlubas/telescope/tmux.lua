@@ -33,8 +33,6 @@ M.tmux_sessions_picker = function(project_paths, opts)
     table.insert(picker_list, dir_path)
   end
 
-  P(picker_list)
-
   opts = opts or require("telescope.themes").get_ivy({})
   pickers
     .new(opts, {
@@ -46,7 +44,7 @@ M.tmux_sessions_picker = function(project_paths, opts)
         actions.select_default:replace(function()
           actions.close(prompt_bufnr)
           local selection = action_state.get_selected_entry()
-          os.execute("tmux_sessionizer " .. selection[1])
+          os.execute("tmux-sessionizer " .. selection[1])
         end)
         return true
       end,
