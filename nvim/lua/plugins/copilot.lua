@@ -16,6 +16,5 @@ return {
         dismiss = "<M-h>",
       },
     },
-    copilot_node_command = "/Users/benlubas/Library/Caches/fnm_multishells/82911_1684856101337/bin/node",
   },
 }
