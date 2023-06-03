@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 vim.opt.mouse = "a"
 
@@ -10,8 +11,8 @@ vim.opt.foldcolumn = "1"
 vim.opt.signcolumn = "yes:3"
 vim.opt.fillchars = {
   eob = " ",
-  foldopen = "󰍝",
-  foldclose = "󰍟",
+  foldopen = "",
+  foldclose = "",
   foldsep = " ",
   fold = " ",
 }

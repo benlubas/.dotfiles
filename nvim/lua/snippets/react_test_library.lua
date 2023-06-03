@@ -15,6 +15,7 @@ ls.add_snippets("javascript", {
   s("sd", fmt([[screen.debug({});]], { i(0) })),
 
   -- user
+  s("usr", t("const user = userEvent.setup();")),
   s("cl", fmt([[await user.click({});]], { c(1, { t(""), t("document.body") }) })),
   s("typ", fmt([[await user.type({}, '{}');]], { i(1), i(0) })),
   s(

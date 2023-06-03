@@ -24,6 +24,7 @@
 
 [push]
   autoSetupUpstream = true
+	autoSetupRemote = true
 
 [merge]
   conflictstyle = diff3

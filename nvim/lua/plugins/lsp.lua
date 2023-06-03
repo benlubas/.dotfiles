@@ -12,6 +12,7 @@ local servers = {
   "rust_analyzer",
   "tsserver",
   "lua_ls",
+  "clojure_lsp",
   -- "svelte",
 }
 
