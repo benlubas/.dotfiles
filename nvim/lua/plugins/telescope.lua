@@ -60,7 +60,7 @@ return {
         function() require("benlubas.telescope.harpoon").harpoon_branch_marks_picker() end,
         { desc = "marks from other branches, select to add marks" })
       vim.keymap.set("n", "<leader>mx",
-        function() require("benlubas.telescope.tmux").tmux_sessions_picker({ "~/github" }) end,
+        function() require("benlubas.telescope.tmux").tmux_sessions_picker({ "~/github", "~/work" }) end,
         { desc = "tmux-sessionizer but telescope" })
     end,
   },

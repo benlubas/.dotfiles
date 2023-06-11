@@ -1,5 +1,19 @@
 return {
   {
+    "ruifm/gitlinker.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+    keys = {
+      { -- default <leader>gy is a default mapping that includes the line number
+        "<leader>gY",
+        function()
+          require("gitlinker").get_buf_range_url("n", { add_current_line_on_normal_mode = false })
+        end,
+        desc = "Copy git link to current file"
+      },
+    },
+  },
+  {
     "lewis6991/gitsigns.nvim",
     opts = {
       sign_priority = 100, -- set really high so it always shows on the far left

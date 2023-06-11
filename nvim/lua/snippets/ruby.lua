@@ -13,6 +13,10 @@ ls.add_snippets("ruby", {
   {}
 end
     ]], { i(1), i(0) })),
+  s("desc", fmt([[describe "{}" do
+  {}
+end
+    ]], { i(1), i(0) })),
 
   s("ex", fmt([[expect({}){}]], { i(1), i(0) })),
   s("pry", fmt([[binding.pry{}]], { i(0) })),
