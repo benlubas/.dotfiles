@@ -1,6 +1,6 @@
 return {
   { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  { "tpope/vim-repeat" }, -- allows some plugin actions to be repeated with .
+  { "tpope/vim-repeat" },   -- allows some plugin actions to be repeated with .
   { "Pocco81/auto-save.nvim", config = true },
   {
     "max397574/better-escape.nvim",
@@ -9,9 +9,26 @@ return {
     },
   },
   {
-    "kevinhwang91/rnvimr",
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>e", ":RnvimrToggle<CR>", desc = "open ranger" },
+      { "-", function() require("oil").open() end, desc = "Open parent directory" },
+    },
+    opts = {
+      view_options = {
+        -- Show files and directories that start with "."
+        show_hidden = false,
+      },
+      float = {
+        -- Padding around the floating window
+        padding = 2,
+        max_width = 0,
+        max_height = 0,
+        border = "none",
+        win_options = {
+          winblend = 14,
+        },
+      },
     },
   },
   {
@@ -28,7 +45,7 @@ return {
     "numToStr/Comment.nvim",
     opts = {
       toggler = {
-        line = "glg", -- Line-comment toggle keymap
+        line = "glg",  -- Line-comment toggle keymap
         block = "gaa", -- Block-comment toggle keymap
       },
       opleader = {
@@ -38,7 +55,7 @@ return {
       extra = {
         above = "glO", -- Add comment on the line above
         below = "glo", -- Add comment on the line below
-        eol = "glA", -- Add comment at the end of line
+        eol = "glA",   -- Add comment at the end of line
       },
     },
   },
