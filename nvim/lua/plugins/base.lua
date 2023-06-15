@@ -7,8 +7,8 @@ return {
       condition = function(buf)
         local disabled_ft = { 'oil' }
 
-        return P(vim.api.nvim_buf_get_option(buf, "modifiable")) and
-          not vim.tbl_contains(disabled_ft, P(vim.api.nvim_buf_get_option(buf, "filetype")))
+        return vim.api.nvim_buf_get_option(buf, "modifiable") and
+          not vim.tbl_contains(disabled_ft, vim.api.nvim_buf_get_option(buf, "filetype"))
 
       end,
     },
