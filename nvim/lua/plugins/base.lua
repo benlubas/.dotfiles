@@ -1,11 +1,22 @@
 return {
   { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
   { "tpope/vim-repeat" },   -- allows some plugin actions to be repeated with .
-  { "Pocco81/auto-save.nvim", config = true },
+  {
+    "Pocco81/auto-save.nvim",
+    opts = {
+      condition = function(buf)
+        local disabled_ft = { 'oil' }
+
+        return P(vim.api.nvim_buf_get_option(buf, "modifiable")) and
+          not vim.tbl_contains(disabled_ft, P(vim.api.nvim_buf_get_option(buf, "filetype")))
+
+      end,
+    },
+  },
   {
     "max397574/better-escape.nvim",
     opts = {
-      mapping = { "jk", "kj" }, -- why not both
+      mapping = { "jk", "kj" },   -- why not both
     },
   },
   {
@@ -18,6 +29,15 @@ return {
       view_options = {
         -- Show files and directories that start with "."
         show_hidden = false,
+      },
+      buf_options = {
+        filetype = "oil",
+      },
+      win_options = {
+        signcolumn = "yes",
+        cursorcolumn = true,
+        foldcolumn = "1",
+        spell = true,
       },
       float = {
         -- Padding around the floating window
@@ -45,17 +65,17 @@ return {
     "numToStr/Comment.nvim",
     opts = {
       toggler = {
-        line = "glg",  -- Line-comment toggle keymap
-        block = "gaa", -- Block-comment toggle keymap
+        line = "glg",    -- Line-comment toggle keymap
+        block = "gaa",   -- Block-comment toggle keymap
       },
       opleader = {
         line = "gl",
         block = "ga",
       },
       extra = {
-        above = "glO", -- Add comment on the line above
-        below = "glo", -- Add comment on the line below
-        eol = "glA",   -- Add comment at the end of line
+        above = "glO",   -- Add comment on the line above
+        below = "glo",   -- Add comment on the line below
+        eol = "glA",     -- Add comment at the end of line
       },
     },
   },
