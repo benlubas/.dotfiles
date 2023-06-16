@@ -18,6 +18,7 @@ vim.opt.fillchars = {
 }
 
 vim.opt.conceallevel = 2
+vim.opt.concealcursor = "nc"
 
 -- colors
 vim.opt.termguicolors = true
