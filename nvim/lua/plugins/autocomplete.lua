@@ -85,6 +85,7 @@ return {
         },
         -- Installed sources
         sources = {
+          { name = "neorg" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "luasnip" },

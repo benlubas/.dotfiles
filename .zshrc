@@ -80,6 +80,11 @@ rgf() {
   rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
 }
 
+syncnotes() {
+  pushd ~/notes
+  git add * && git commit -am "sync" && git pull && git push && popd && echo "notes synced" || echo "notes sync failed"
+}
+
 alias mx=tmux-sessionizer
 
 # ============================================================= #

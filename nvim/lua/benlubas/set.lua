@@ -17,6 +17,8 @@ vim.opt.fillchars = {
   fold = " ",
 }
 
+vim.opt.conceallevel = 2
+
 -- colors
 vim.opt.termguicolors = true
 vim.opt.cursorline = true

@@ -16,5 +16,8 @@ return {
         dismiss = "<M-h>",
       },
     },
+    filetypes = {
+      norg = false,
+    },
   },
 }
