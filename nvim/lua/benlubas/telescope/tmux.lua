@@ -22,13 +22,14 @@ M.tmux_sessions_picker = function(project_paths, opts)
     path = Path:new(path)
     if not path:is_dir() then
       vim.notify("[telescope sessionizer] expected a directory, given " .. value)
-      break
+      goto continue
     end
     paths_as_string = paths_as_string .. path .. " "
+    ::continue::
   end
 
   -- list sub directories
-  local dirs = io.popen("find " .. paths_as_string .. " -mindepth 1 -maxdepth 1 -type d"):lines()
+  local dirs = io.popen("find " .. paths_as_string .. " -mindepth 1 -maxdepth 1 -type d | grep -v '.git$'"):lines()
   for dir_path in dirs do
     table.insert(picker_list, dir_path)
   end
