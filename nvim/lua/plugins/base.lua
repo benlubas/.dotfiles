@@ -91,6 +91,17 @@ return {
       vim.keymap.set("n", "<leader>fc", require("ufo").closeAllFolds, { desc = "close all folds" })
       vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 
+      -- Need to disable this plugin in some files. Specifically ones that have custom folds or
+      -- don't need folds
+      local ufo_disable_augroup = vim.api.nvim_create_augroup('ufo_disable_augroup', { clear = true })
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = { "*.norg" },
+        group = ufo_disable_augroup,
+        callback = function()
+          require("ufo").detach()
+        end,
+      })
+
       require("ufo").setup({
         provider_selector = function()
           return { "treesitter", "indent" }

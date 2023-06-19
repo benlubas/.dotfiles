@@ -25,11 +25,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- TODO: I'm not sure what's wrong here, the synconcealed function doesn't get triggered ever.
---Only unconceal when you're hovering text that is concealed
+-- Only un-conceal when you're hovering text that is concealed
 -- local word_conceal_group = vim.api.nvim_create_augroup("WordConceal", { clear = true })
 -- vim.api.nvim_create_autocmd("CursorMoved", {
---   callback = function()
---     local cursor_pos = P(vim.api.nvim_win_get_cursor(0))
+--   callback = function(ev)
+--     local cursor_pos = vim.api.nvim_win_get_cursor(0)
 --     local concealed, _, _ = P(vim.fn.synconcealed(cursor_pos[1], cursor_pos[2]))
 --
 --     if concealed == 1 then
@@ -39,5 +39,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --     end
 --   end,
 --   group = word_conceal_group,
---   pattern = { "*.norg" },
+--   pattern = { "*" },
 -- })

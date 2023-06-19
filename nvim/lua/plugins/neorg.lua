@@ -11,6 +11,14 @@ return {
   opts = {
     load = {
       ["core.defaults"] = {},
+      ["core.keybinds"] = {
+        config = {
+          hook = function(keybinds)
+            -- Map \c to edit the code block in another buffer.
+            keybinds.remap_event("norg", "n", "<localleader>c", "core.looking-glass.magnify-code-block")
+          end,
+        },
+      },
       ["core.concealer"] = {
         config = {
           icon_preset = "diamond",
@@ -34,9 +42,10 @@ return {
           workspaces = {
             work = "~/notes/work",
             school = "~/notes/school",
+            general_notes = "~/notes/general_notes",
             notes = "~/notes",
           },
-          default_workspace = "work",
+          default_workspace = "notes",
         },
       },
     },
