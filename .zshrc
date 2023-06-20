@@ -82,7 +82,7 @@ rgf() {
 
 syncnotes() {
   pushd ~/notes
-  git add * && git commit -am "sync" && git pull && git push && popd && echo "notes synced" || echo "notes sync failed"
+  git add * && (git diff-index --quiet HEAD || git commit -am "sync") && git pull && git push && popd && echo "notes synced" || echo "notes sync failed"
 }
 
 alias mx=tmux-sessionizer
