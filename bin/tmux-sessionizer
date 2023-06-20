@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/github ~/notes -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | fzf)
+  selected=$(find ~/github ~/notes ~/work -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | fzf)
 fi
 
 if [[ -z $selected ]]; then
