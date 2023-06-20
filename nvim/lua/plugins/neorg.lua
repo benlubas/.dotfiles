@@ -5,8 +5,8 @@ return {
   build = ":Neorg sync-parsers",
   lazy = false,
   keys = {
-    { "<leader>n", ":Neorg index<CR>", desc = "go to notes" },
-    -- TOOD: Keymap for :Neorg return? using local leader and only defined in norg files
+    { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
+    { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
   },
   opts = {
     load = {
@@ -16,6 +16,7 @@ return {
           hook = function(keybinds)
             -- Map \c to edit the code block in another buffer.
             keybinds.remap_event("norg", "n", "<localleader>c", "core.looking-glass.magnify-code-block")
+            keybinds.map("norg", "n", "<localleader>r", ":Neorg return<CR>")
           end,
         },
       },
