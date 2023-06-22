@@ -8,7 +8,7 @@ return {
     { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
     { "<leader>nsi", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
     { "<leader>nwi", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
-    { "<leader>nww", ":e ~/notes/work/wiki.norg", desc = "Neorg Work Wiki", silent = true },
+    { "<leader>nww", ":e ~/notes/work/wiki/index.norg<CR>", desc = "Neorg Work Wiki", silent = true },
     { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
     { "<leader>jt", ":Neorg journal today<CR>", desc = "Journal Today", silent = true },
     { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
