@@ -8,6 +8,12 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            vertical = {
+              mirror = true,
+            },
+          },
           path_display = { shorten = { len = 3, exclude = { 1, 2, -1, -2 }}},
           dynamic_preview_title = true,
           winblend = 13,

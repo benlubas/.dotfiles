@@ -62,7 +62,7 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button("e", "  New file", ":ene<CR>"),
         dashboard.button("SPC f d", "  File Search"),
-        dashboard.button("SPC e", "󰙅  Ranger"),
+        dashboard.button("-", "󰙅  Oil"),
         dashboard.button("c", "  Config", ":cd ~/github/.dotfiles<CR>"),
         dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
       }
