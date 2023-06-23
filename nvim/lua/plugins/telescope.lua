@@ -62,6 +62,14 @@ return {
           find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
         })
       end, { desc = "search dot files" })
+
+    vim.keymap.set("n", "<leader>fn", function()
+        local dir = vim.env.HOME .. "/notes"
+        require("telescope.builtin").find_files({
+          find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+        })
+      end, { desc = "search in notes directory" })
+
       vim.keymap.set("n", "<leader>fm",
         function() require("benlubas.telescope.harpoon").harpoon_branch_marks_picker() end,
         { desc = "marks from other branches, select to add marks" })
