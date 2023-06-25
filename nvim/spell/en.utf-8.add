@@ -198,3 +198,6 @@ REPL
 repl
 clojure
 Leiningen
+utils
+Sed
+sed
