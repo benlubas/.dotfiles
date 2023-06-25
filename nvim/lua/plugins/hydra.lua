@@ -2,7 +2,6 @@ return {
   "anuvyklack/hydra.nvim",
   config = function()
     local hydra = require("hydra")
-
     local hint = [[
                  _d_: files          _a_: live grep
    🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    _._: all + .files   _j_: current buffer fuzzy find

@@ -9,8 +9,17 @@ return {
         function()
           require("gitlinker").get_buf_range_url("n", { add_current_line_on_normal_mode = false })
         end,
+        mode = { "n", "v" },
         desc = "Copy git link to current file"
       },
+      {
+        "<leader>gy",
+        function()
+          require("gitlinker").get_buf_range_url("n", { add_current_line_on_normal_mode = true })
+        end,
+        mode = { "n", "v" },
+        desc = "Copy git link to current line"
+      }
     },
   },
   {
