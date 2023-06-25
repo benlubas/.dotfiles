@@ -5,12 +5,14 @@ return {
     "Pocco81/auto-save.nvim",
     opts = {
       condition = function(buf)
-        local disabled_ft = { 'oil' }
+        local disabled_ft = { 'oil', 'harpoon' }
 
         return vim.api.nvim_buf_get_option(buf, "modifiable") and
           not vim.tbl_contains(disabled_ft, vim.api.nvim_buf_get_option(buf, "filetype"))
-
       end,
+      execution_message = {
+        message = '',
+      },
     },
   },
   {
