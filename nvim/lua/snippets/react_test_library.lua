@@ -46,7 +46,7 @@ await user.keyboard('{}');
   -- by role
   s(
     "gr",
-    fmt([[{}ByRole('{}', {{ name: {}}}){}]], {
+    fmt([[{}ByRole('{}', {{ name: {} }}){}]], {
       c(3, { t("screen.get"), t("await screen.find"), t("screen.query") }),
       c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
       h.js_selector(2),
@@ -56,7 +56,7 @@ await user.keyboard('{}');
 
   s(
     "gar",
-    fmt([[{}AllByRole('{}', {{ name: {}}}){}]], {
+    fmt([[{}AllByRole('{}', {{ name: {} }}){}]], {
       c(3, { t("screen.get"), t("await screen.find"), t("screen.query") }),
       c(1, { t("button"), t("checkbox"), t("textbox"), t("radio"), t("") }),
       h.js_selector(2),
