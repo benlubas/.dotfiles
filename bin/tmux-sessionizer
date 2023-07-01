@@ -3,7 +3,9 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  selected=$(find ~/github ~/notes ~/work -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | fzf)
+  # this sed command doesn't work on mac's version of sed, so we need gsed
+  sed=$(command -v gsed || command -v sed)
+  selected=$(find ~/github ~/notes ~/work -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | $sed -e "$ a $HOME\/github" | fzf)
 fi
 
 if [[ -z $selected ]]; then

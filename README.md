@@ -56,9 +56,13 @@ source ~/.zshrc
   - Powerlevel10k:
     - `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
 
+9. If you're on a mac:
+  - You need to install gsed:
+    - `brew install gsed`
+
 
 ## TODO:
-- [ ] Sync branches
+- [x] Sync branches
 - [ ] Moonfly theme for `bat` (and as a result, git delta)
 - [ ] nix? maybe one day
 
