@@ -100,6 +100,11 @@ return {
         capabilities = capabilities,
       })
 
+      require("lspconfig")["solargraph"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
       require("rust-tools").setup({
         server = {
           on_attach = on_attach,
