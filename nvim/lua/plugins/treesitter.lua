@@ -68,7 +68,7 @@ return {
         ensure_installed = {
           "c",
           "css",
-          "help",
+          "vimdoc",
           "html",
           "java",
           "javascript",

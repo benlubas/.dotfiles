@@ -91,6 +91,3 @@ alias mx=tmux-sessionizer
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# nix direnv (this should stay at the end)
-eval "$(direnv hook zsh)"
