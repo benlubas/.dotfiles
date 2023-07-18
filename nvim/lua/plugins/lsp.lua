@@ -4,7 +4,7 @@ local servers = {
   "clangd",
   "cssls",
   "html",
-  "emmet_ls",
+  -- "emmet_ls",
   "pyright",
   "jsonls",
   -- 'ltex',
@@ -13,11 +13,11 @@ local servers = {
   "tsserver",
   "lua_ls",
   "clojure_lsp",
-  -- "svelte",
+  "svelte",
 }
 
 return {
-  -- { "evanleck/vim-svelte" },
+  { "leafOfTree/vim-svelte-plugin" },
   { "williamboman/mason.nvim", config = true },
   { "j-hui/fidget.nvim", config = true },
   {
