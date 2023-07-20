@@ -32,10 +32,10 @@ source ~/.zshrc
 5. Things that you shouldn't/can't install with brew
   - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is
   annoying for updating and switching between versions.
-  - Cargo installs:
-    - `cargo install ripgrep`
-    - `cargo install fnm`
-    - `cargo install git-delta`
+
+6. [Homebrew](https://brew.sh/) (mac only due to the use of cask)
+  - quickly install almost everything with `brew bundle --file=./Brewfile`
+  - this installs nvim, alacritty, and the jetbrains mono nerd font
 
 6. NVIM
   - install it somehow
@@ -43,9 +43,7 @@ source ~/.zshrc
   - Deps
     - install JetBrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
       - set that as the default terminal font
-    - working with ruby? install solargraph yourself
-    - pynvim `python3 -m pip install --user --upgrade pynvim`
-    - ranger `python3 -m pip install --user --upgrade ranger`
+    - A bunch of language servers need to be installed with `:Mason`
     - Run `:checkhealth` and see if I forgot something
 
 7. Alacritty
@@ -55,11 +53,6 @@ source ~/.zshrc
   - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
   - Powerlevel10k:
     - `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
-
-9. If you're on a mac:
-  - You need to install gsed:
-    - `brew install gsed`
-
 
 ## TODO:
 - [x] Sync branches
