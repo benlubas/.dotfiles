@@ -1,8 +1,13 @@
-# settings
+# keys
 bindkey -e
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
-# pure prompt options:
+# show git stash icon
 zstyle :prompt:pure:git:stash show yes
+# highlight current tab selection
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
 
 # antidote
 antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote # this path will change on linux
