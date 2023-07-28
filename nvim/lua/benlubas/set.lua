@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.g.vim_json_conceal = false
 
 vim.opt.mouse = "a"
 

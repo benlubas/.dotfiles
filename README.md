@@ -21,21 +21,16 @@ At some point I might rewrite this in nix... I'm not sure.
 ```bash
 chmod +x ~/github/.dotfiles/symlink.sh
 ~/github/.dotfiles/symlink.sh
-source ~/.zshrc
 ```
-
-4. Check that that worked:
-  - The script should have deleted the current dotfiles (ie. ~/.zshrc) and
-  replaced the with symlinked versions which live in the git repo. so to check that, run:
-    - `ls -la` and make sure you see symlinks in the right places
-
-5. Things that you shouldn't/can't install with brew
-  - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is
-  annoying for updating and switching between versions.
+Note: sourcing zsh rc is probably going to fail the first time you try it
 
 6. [Homebrew](https://brew.sh/) (mac only due to the use of cask)
   - quickly install almost everything with `brew bundle --file=./Brewfile`
   - this installs nvim, alacritty, and the jetbrains mono nerd font
+
+5. Rust (shouldn't install with brew)
+  - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is
+  annoying for updating and switching between versions.
 
 6. NVIM
   - install it somehow
@@ -47,12 +42,12 @@ source ~/.zshrc
     - Run `:checkhealth` and see if I forgot something
 
 7. Alacritty
-  - this is just a terminal
+  - install it somehow
 
-8. Oh-my-zsh
-  - `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-  - Powerlevel10k:
-    - `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
+8. [Antidote](https://github.com/mattmc3/antidote) for zsh
+
+9. Tmux and [TPM](https://github.com/tmux-plugins/tpm)
+  - If you're on a mac, follow [this](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
 
 ## TODO:
 - [x] Sync branches

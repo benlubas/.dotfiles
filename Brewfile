@@ -12,6 +12,7 @@ brew "fzf"
 brew "git-delta"
 brew "tmux"
 brew "gnu-sed"
+brew "antidote"
 
 # OSX apps
 cask "spotify"

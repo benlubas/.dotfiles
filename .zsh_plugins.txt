@@ -1,0 +1,11 @@
+# prompt
+sindresorhus/pure
+
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# keep near the end
+zsh-users/zsh-completions path:src kind:fpath
+
+# keep at the end
+zsh-users/zsh-autosuggestions kind:defer
+zsh-users/zsh-history-substring-search

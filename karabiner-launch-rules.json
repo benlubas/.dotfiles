@@ -2,7 +2,7 @@
   "title": "Goto Application",
   "rules": [
     {
-      "description": "Launch/go to application with command + option + key",
+      "description": "Launch/go to application with control + option + key",
       "manipulators": [
         {
           "type": "basic",
@@ -10,14 +10,14 @@
             "key_code": "return_or_enter",
             "modifiers": {
               "mandatory": [
-                "command",
-                "option"
+                "left_control",
+                "right_option"
               ]
             }
           },
           "to": [
             {
-              "shell_command": "osascript -e \"tell application \"Alacritty\" to activate\""
+              "shell_command": "osascript -e \"tell application \\\"Alacritty\\\" to activate\""
             }
           ]
         },
@@ -27,14 +27,14 @@
             "key_code": "a",
             "modifiers": {
               "mandatory": [
-                "left_gui",
-                "left_alt"
+                "left_control",
+                "right_option"
               ]
             }
           },
           "to": [
             {
-              "shell_command": "osascript -e \"tell application \"Brave Browser\" to activate\""
+              "shell_command": "osascript -e \"tell application \\\"Brave Browser\\\" to activate\""
             }
           ]
         },
@@ -44,14 +44,48 @@
             "key_code": "s",
             "modifiers": {
               "mandatory": [
-                "left_gui",
-                "left_alt"
+                "left_control",
+                "right_option"
               ]
             }
           },
           "to": [
             {
-              "shell_command": "osascript -e \"tell application \"Discord\" to activate\""
+              "shell_command": "osascript -e \"tell application \\\"Spotify\\\" to activate\""
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e \"tell application \\\"Discord\\\" to activate\""
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": ",",
+            "modifiers": {
+              "mandatory": [
+                "left_control",
+                "right_option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e \"tell application \\\"System Settings\\\" to activate\""
             }
           ]
         }
