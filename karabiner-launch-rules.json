@@ -1,0 +1,61 @@
+{
+  "title": "Goto Application",
+  "rules": [
+    {
+      "description": "Launch/go to application with command + option + key",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "command",
+                "option"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e \"tell application \"Alacritty\" to activate\""
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": [
+                "left_gui",
+                "left_alt"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e \"tell application \"Brave Browser\" to activate\""
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": [
+                "left_gui",
+                "left_alt"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e \"tell application \"Discord\" to activate\""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
