@@ -9,6 +9,7 @@ return {
     { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
     { "<leader>nt", ":e ~/notes/tools/index.norg<CR>", desc = "Neorg Tools Index", silent = true },
     { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
+    { "<A-CR>", ":Neorg keybind norg core.itero.next-iteration<CR>", desc = "next iteration", silent = true, mode = "i" },
     { "<leader>jt", ":Neorg journal today<CR>", desc = "Journal Today", silent = true },
     { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
   },

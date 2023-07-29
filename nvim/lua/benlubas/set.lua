@@ -21,6 +21,8 @@ vim.opt.fillchars = {
 vim.opt.conceallevel = 2
 vim.opt.concealcursor = "c"
 
+vim.opt.ttimeoutlen = 100
+
 -- colors
 vim.opt.termguicolors = true
 vim.opt.cursorline = true

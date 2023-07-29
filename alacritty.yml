@@ -144,3 +144,4 @@ key_bindings:
   - { key: Backslash, mods: Alt|Shift, chars: "\x1b|"                       } # Alt + |
   - { key: Semicolon, mods: Alt,       chars: "\x1b;"                       } # Alt + ;
   - { key: Semicolon, mods: Alt|Shift, chars: "\x1b:"                       } # Alt + :
+  - { key: Return,    mods: Alt,       chars: "\x1b\x0d"                    } # Alt + Return
