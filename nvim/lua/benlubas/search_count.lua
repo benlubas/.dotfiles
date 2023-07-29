@@ -70,6 +70,20 @@ vim.keymap.set("n", "N", function()
   vim.schedule(M.update_search_count)
 end, { desc = "move to the previous search result" })
 
+-- turn on highlight and search count on * and #
+vim.keymap.set("n", "*", function()
+  vim.api.nvim_feedkeys("*", "n", true)
+  vim.schedule(M.update_search_count)
+  vim.opt.hlsearch = true;
+end, { desc = "search for the word under the cursor" })
+
+-- this remap makes it easier to navigate with n/N as normal after a # search
+vim.keymap.set("n", "#", function()
+  vim.api.nvim_feedkeys("*NN", "n", true)
+  vim.schedule(M.update_search_count)
+  vim.opt.hlsearch = true;
+end, { desc = "search backwards for the word under the cursor" })
+
 vim.keymap.set("n", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
 vim.keymap.set("i", "<C-f>", toggle_highlight, { desc = "toggle search highlight" })
 
