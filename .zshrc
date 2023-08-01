@@ -11,6 +11,14 @@ zstyle ':completion:*' menu select
 setopt autocd
 setopt menucomplete
 
+# history
+setopt sharehistory
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
 # antidote
 antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote # this path will change on linux
 zsh_plugins=$HOME/.zsh_plugins
