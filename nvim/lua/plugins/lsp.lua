@@ -4,7 +4,7 @@ local servers = {
   "clangd",
   "cssls",
   "html",
-  -- "emmet_ls",
+  "emmet_language_server",
   "pyright",
   "jsonls",
   -- 'ltex',
@@ -94,7 +94,9 @@ return {
 
       require("lspconfig")["tsserver"].setup({
         on_attach = function(client, bufnr)
-          client.server_capabilities.semanticTokensProvider = nil
+          client.server_capabilities.semanticTokensProvider = function()
+            return {}
+          end
           on_attach(client, bufnr)
         end,
         capabilities = capabilities,

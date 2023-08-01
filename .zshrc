@@ -8,6 +8,8 @@ zstyle :prompt:pure:git:stash show yes
 # highlight current tab selection
 autoload -U compinit && compinit
 zstyle ':completion:*' menu select
+setopt autocd
+setopt menucomplete
 
 # antidote
 antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote # this path will change on linux

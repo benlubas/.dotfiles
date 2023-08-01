@@ -17,6 +17,7 @@ brew "antidote"
 # OSX apps
 cask "spotify"
 cask "brave-browser"
+cask "firefox"
 cask "discord"
 cask "karabiner-elements"
 cask "alacritty"
