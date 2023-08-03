@@ -1,6 +1,7 @@
 -- list of servers that will automatically be installed and setup with defaults
 -- to add custom settings, just call setup again after the for loop
 local servers = {
+  "bashls",
   "clangd",
   "cssls",
   "html",
