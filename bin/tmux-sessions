@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+selected=$(tmux list-sessions | fzf | awk -F ":" '{ print $1 }')
+
+if [ -z "$selected" ]; then
+  exit 0
+fi
+
+tmux-sessionizer $selected
