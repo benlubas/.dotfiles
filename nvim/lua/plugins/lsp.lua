@@ -2,7 +2,7 @@
 -- to add custom settings, just call setup again after the for loop
 local servers = {
   "bashls",
-  "clangd",
+  -- "clangd", -- this is annoying to use with qmk
   "cssls",
   "html",
   "emmet_language_server",

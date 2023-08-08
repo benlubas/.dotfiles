@@ -11,6 +11,8 @@
 
 # Super/Win key
 set $mod Mod4
+set $alt Mod1
+set $ctrl Mod3
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -42,7 +44,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-### MOUSE ### 
+### MOUSE ###
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -51,11 +53,18 @@ floating_modifier $mod
 bindsym --whole-window $mod+button2 kill
 focus_follows_mouse no
 
-# start a terminal
+### LAUNCH THINGS ###
 bindsym $mod+Return exec alacritty
-
-# start brave
 bindsym $mod+a exec brave-browser
+bindsym $mod+o exec nemo # files
+
+### Go to window ###
+# TODO: Can we get a go-to window type thing like in karabiner with AppleScript?
+bindsym $alt+Control+Return exec wmctrl -a "Alacritty"
+bindsym $alt+Control+a exec wmctrl -a " - Brave"
+bindsym $alt+Control+o exec wmctrl -a " - Nemo"
+bindsym $alt+Control+s exec wmctrl -a "Spotify"
+bindsym $alt+Control+d exec wmctrl -a " - Discord"
 
 # kill focused window
 bindsym $mod+q kill
@@ -90,19 +99,13 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
-bindsym $mod+minus split h
-
-# split in vertical orientation
-bindsym $mod+bar split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+g fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+u layout stacking
-bindsym $mod+i layout tabbed
-bindsym $mod+o layout toggle split
+# change container layout I never use this, and I want the keys instead
+# bindsym $mod+u layout stacking
+# bindsym $mod+i layout tabbed
+# bindsym $mod+o layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+z floating toggle
@@ -149,7 +152,7 @@ exec_always --no-startup-id ~/.config/polybar/startup.sh
 exec_always --no-startup-id feh --no-xinerama --bg-fill ~/.config/i3/assets/wallpaper.png
 
 # .xprofile stuff b/c xprofile just doesn't work for me, and I can't be asked
-exec --no-startup-id xinput set-prop 'pointer:Logitech G Pro ' 158 0.62 0 0 0 0.62 0 0 0 1 
+exec --no-startup-id xinput set-prop 'pointer:Logitech G Pro ' 158 0.62 0 0 0 0.62 0 0 0 1
 exec --no-startup-id xset r rate 265 20
 
 # floating pop up automatically
@@ -159,7 +162,7 @@ for_window [window_role="task_dialog"] floating enable
 focus_wrapping no
 
 ### WINDOW STYLE ###
-default_border pixel 3 
+default_border pixel 3
 default_floating_border pixel 5
 
 # class                 border  backgr. text    indicator child_border
