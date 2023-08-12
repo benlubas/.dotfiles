@@ -1,17 +1,18 @@
 return {
-  "anuvyklack/hydra.nvim",
+  "benlubas/hydra.nvim",
+  dev = true,
   config = function()
     local hydra = require("hydra")
     local hint = [[
-                 _d_: files          _a_: live grep
-   🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    _._: all + .files   _j_: current buffer fuzzy find
-  🭉🭁🭠🭘    🭣🭕🭌🬾   _s_: modified files _l_: ~/dotfiles
-  🭅█ ▁     █🭐   _n_: ~/notes        _m_: harpoon marks
-  ██🬿      🭊██   ^
- 🭤🭒🬺🬹🬱🬭🬭🬭🬭🬵🬹🬹🭝🭙  _f_: resume last search _h_: help
- 🭋█🬝🮄🮄🮄🮄🮄🮄🮄🮄🬆█🭀  _r_: recent pickers
+  _d_: files              _a_: live grep
+  _._: all + .files       _j_: current buffer fuzzy find
+  _s_: modified files     _l_: ~/dotfiles
+  _n_: ~/notes            _m_: harpoon marks
+  ^
+  _f_: resume last search _h_: help
+  _r_: recent pickers
  ^
-                 _<Enter>_: Telescope           _<Esc>_
+  _<Enter>_: Telescope           _<Esc>_
 ]]
 
     local tb = require("telescope.builtin")
@@ -67,9 +68,10 @@ return {
   _i_ %{list} invisible characters
   _s_ %{spell} spell
   _w_ %{wrap} wrap
-  _c_ %{cul} cursor line
+  _l_ %{cul} cursor line
   _n_ %{nu} number
   _r_ %{rnu} relative number
+  _c_ %{con} conceal
   ^
        ^^^^                _<Esc>_
 ]]
@@ -164,12 +166,22 @@ return {
           end,
         },
         {
-          "c",
+          "l",
           function()
             if vim.o.cursorline == true then
               vim.o.cursorline = false
             else
               vim.o.cursorline = true
+            end
+          end,
+        },
+        {
+          "c",
+          function ()
+            if vim.o.conceallevel == 0 then
+              vim.o.conceallevel = 1
+            else
+              vim.o.conceallevel = 0
             end
           end,
         },
