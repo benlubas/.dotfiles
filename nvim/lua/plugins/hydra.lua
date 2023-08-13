@@ -1,6 +1,5 @@
 return {
   "benlubas/hydra.nvim",
-  dev = true,
   config = function()
     local hydra = require("hydra")
     local hint = [[
