@@ -10,7 +10,7 @@ local servers = {
   "jsonls",
   -- 'ltex',
   "marksman",
-  -- "rust_analyzer",
+  "rust_analyzer",
   "tsserver",
   "lua_ls",
   "clojure_lsp",
