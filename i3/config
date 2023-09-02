@@ -59,7 +59,6 @@ bindsym $mod+a exec brave-browser
 bindsym $mod+o exec nemo # files
 
 ### Go to window ###
-# TODO: Can we get a go-to window type thing like in karabiner with AppleScript?
 bindsym $alt+Control+Return exec wmctrl -a "Alacritty"
 bindsym $alt+Control+a exec wmctrl -a " - Brave"
 bindsym $alt+Control+o exec wmctrl -a " - Nemo"
