@@ -51,12 +51,15 @@ return {
           engine = "nvim-cmp",
         },
       },
+      -- TODO: this requires nvim 10 (nightly at the time of writing)
+      -- ["core.ui"] = {},
+      -- ["core.ui.calendar"] = {},
       ["core.dirman"] = {
         config = {
           workspaces = {
             work = "~/notes/work",
             school = "~/notes/school",
-            general_notes = "~/notes/general_notes",
+            tools = "~/notes/tools",
             notes = "~/notes",
           },
           default_workspace = "notes",

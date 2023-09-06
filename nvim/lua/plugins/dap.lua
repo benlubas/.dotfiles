@@ -18,13 +18,21 @@ return {
       vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
     end,
     keys = {
-      { "<leader>.b", function() require("dap").toggle_breakpoint() end, desc = "toggle breakpoint", },
-      { "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code", },
-      { "<leader>.s", function() require("dap").step_over() end, desc = "step over", },
-      { "<leader>.S", function() require("dap").step_into() end, desc = "Step into", },
+      { "<leader>.b", function() require("dap").toggle_breakpoint() end, desc = "toggle breakpoint" },
+      { "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code" },
+      { "<leader>.s", function() require("dap").step_over() end, desc = "step over" },
+      { "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
     },
   },
   { "theHamsta/nvim-dap-virtual-text", config = true },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+    opts = {
+      ensure_installed = { "codelldb" },
+      handlers = {}
+    },
+  },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
@@ -37,53 +45,53 @@ return {
         desc = "toggle the ui",
       },
     },
-    opts = {
-      mappings = {
-        -- Use a table to apply multiple mappings
-        expand = { "<CR>", "<2-LeftMouse>" },
-        open = "o",
-        remove = "d",
-        edit = "e",
-        repl = "r",
-        toggle = "t",
-      },
-      layouts = {
-        {
-          elements = {
-            -- Elements can be strings or table with id and size keys.
-            { id = "scopes", size = 0.25 },
-            "breakpoints",
-            "stacks",
-            "watches",
+    config = function ()
+      require("dapui").setup({
+        mappings = {
+          -- Use a table to apply multiple mappings
+          expand = { "<CR>", "<2-LeftMouse>" },
+          open = "o",
+          remove = "d",
+          edit = "e",
+          repl = "r",
+          toggle = "t",
+        },
+        layouts = {
+          {
+            elements = {
+              "breakpoints",
+              "stacks",
+              "scopes",
+            },
+            size = 38, -- 40 columns
+            position = "left",
           },
-          size = 40, -- 40 columns
-          position = "left",
-        },
-        {
-          elements = {
-            "repl",
-            "console",
+          {
+            elements = {
+              "repl",
+              "watches",
+            },
+            size = 0.24, -- 24% of total lines
+            position = "bottom",
           },
-          size = 0.25, -- 25% of total lines
-          position = "bottom",
         },
-      },
-      controls = {
-        enabled = true,
-        -- Display controls in this element
-        element = "repl",
-        icons = {
-          pause = "",
-          play = "",
-          step_into = "",
-          step_over = "",
-          step_out = "",
-          step_back = "",
-          run_last = "↻",
-          terminate = "□",
+        controls = {
+          enabled = true,
+          -- Display controls in this element
+          element = "repl",
+          icons = {
+            pause = "",
+            play = "",
+            step_into = "",
+            step_over = "",
+            step_out = "",
+            step_back = "",
+            run_last = "↻",
+            terminate = "",
+          },
         },
-      },
-    },
+      })
+    end
   },
   {
     "mxsdev/nvim-dap-vscode-js",

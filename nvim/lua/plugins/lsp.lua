@@ -94,6 +94,9 @@ return {
             diagnostics = {
               globals = { "vim", "require" },
             },
+            workspace = {
+              checkThirdParty = false,
+            },
           },
         },
       })
