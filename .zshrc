@@ -61,6 +61,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 alias v=nvim
 alias kvm="ssh benlubas@login.ccs.neu.edu"
+alias kvnvim="nvim oil-ssh://benlubas@login.ccs.neu.edu//home/benlubas/README.md"
 
 alias gs="git status"
 alias gd="git diff"
