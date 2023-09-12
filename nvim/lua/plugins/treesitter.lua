@@ -68,6 +68,7 @@ return {
         ensure_installed = {
           "c",
           "css",
+          "devicetree", -- ft = dts, for zmk keymaps
           "vimdoc",
           "html",
           "java",

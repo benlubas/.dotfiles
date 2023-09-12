@@ -52,8 +52,8 @@ return {
         },
       },
       -- TODO: this requires nvim 10 (nightly at the time of writing)
-      -- ["core.ui"] = {},
-      -- ["core.ui.calendar"] = {},
+      ["core.ui"] = {},
+      ["core.ui.calendar"] = {},
       ["core.dirman"] = {
         config = {
           workspaces = {
