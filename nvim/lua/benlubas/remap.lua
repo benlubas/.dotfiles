@@ -7,6 +7,15 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
+-- Allow j and k to always move a line up or down even if it's a wrapped line
+vim.keymap.set("n", "k", function()
+  return vim.v.count > 0 and "k" or "gk"
+end, { expr = true, desc = "k or gk" })
+
+vim.keymap.set("n", "j", function()
+  return vim.v.count > 0 and "j" or "gj"
+end, { expr = true, desc = "j or gj" })
+
 vim.keymap.set("n", "U", "<C-r>", { desc = "redo" })
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })

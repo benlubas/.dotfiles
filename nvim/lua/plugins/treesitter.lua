@@ -53,6 +53,8 @@ return {
               ["a/"] = { query = "@regex.outer", desc = "around regex" },
               ["iP"] = { query = "@parameter.inner", desc = "in parameter" },
               ["in"] = { query = "@number.inner", desc = "in number" },
+              ["ib"] = { query = "@block.inner", desc = "in block" },
+              ["ab"] = { query = "@block.outer", desc = "around block" },
             },
           },
           swap = {
