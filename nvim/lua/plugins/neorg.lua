@@ -22,6 +22,8 @@ return {
             -- Map \c to edit the code block in another buffer.
             keybinds.remap_event("norg", "n", "<localleader>c", "core.looking-glass.magnify-code-block")
             keybinds.map("norg", "n", "<localleader>r", ":Neorg return<CR>")
+            keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
+            keybinds.remap_event("norg", "i", "/date", "core.tempus.insert-date-insert-mode")
           end,
         },
       },
@@ -52,7 +54,6 @@ return {
         },
       },
       -- TODO: this requires nvim 10 (nightly at the time of writing)
-      ["core.ui"] = {},
       ["core.ui.calendar"] = {},
       ["core.dirman"] = {
         config = {
