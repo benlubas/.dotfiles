@@ -4,6 +4,10 @@ vim.g.vim_json_conceal = false
 
 vim.opt.mouse = "a"
 
+vim.o.linebreak = true
+vim.o.breakindent = true
+vim.o.showbreak = '|'
+
 -- gutter
 vim.opt.number = true
 vim.opt.relativenumber = true

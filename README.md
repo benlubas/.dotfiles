@@ -49,6 +49,8 @@ Note: sourcing zsh rc is probably going to fail the first time you try it
 9. Tmux and [TPM](https://github.com/tmux-plugins/tpm)
   - If you're on a mac, follow [this](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
 
+10. Quarto for editing .ipynb files as markdown and then re-exporting them.
+
 ## TODO:
 - [x] Sync branches
 - [ ] Moonfly theme for `bat` (and as a result, git delta)

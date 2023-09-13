@@ -42,6 +42,9 @@ fi
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# bob
+export PATH=/Users/benlubas/.local/share/bob/nvim-bin:$PATH
+
 # fnm
 export PATH=$HOME/.fnm:$PATH
 eval "$(fnm env --use-on-cd)"

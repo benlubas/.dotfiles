@@ -8,8 +8,6 @@ local servers = {
   "emmet_language_server",
   "pyright",
   "jsonls",
-  -- 'ltex',
-  "marksman",
   "rust_analyzer",
   "tsserver",
   "lua_ls",
