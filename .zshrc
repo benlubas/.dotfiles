@@ -19,8 +19,21 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-# antidote
-antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote # this path will change on linux
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # antidote
+  antidote_path=/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote
+  # homebrew
+  brew_expr="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+  # antidote
+  antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote
+  # homebrew
+  brew_expr="$(/opt/homebrew/bin/brew shellenv)"
+else
+  echo "[.zshrc] unknown OS - please add this OS to the ~/.zshrc file"
+  exit 1
+fi
+
 zsh_plugins=$HOME/.zsh_plugins
 if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
   (
@@ -38,12 +51,11 @@ if [ -f $HOME/.zshwork ]; then
   source $HOME/.zshwork
 fi
 
-# homebrew
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# brew
+eval $brew_expr
 
 # bob
-export PATH=/Users/benlubas/.local/share/bob/nvim-bin:$PATH
+export PATH=$HOME/.local/share/bob/nvim-bin:$PATH
 
 # fnm
 export PATH=$HOME/.fnm:$PATH
@@ -90,3 +102,4 @@ syncnotes() {
 }
 
 alias mx=tmux-sessionizer
+alias tx=tmux-sessions
