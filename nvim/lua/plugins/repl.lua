@@ -12,7 +12,9 @@ return {
     end,
   },
   {
-    "dccsillag/magma-nvim",
+    -- "dccsillag/magma-nvim",
+    "benlubas/magma-nvim",
+    dev = true,
     init = function()
       vim.g.magma_output_window_borders = false
       vim.g.magma_automatically_open_output = false
@@ -28,6 +30,8 @@ return {
           -- setup some magma specific keybindings
           vim.keymap.set("n", "<localleader>o", "vib:<C-u>MagmaEvaluateVisual<CR>gv<ESC>_",
             { desc = "execute code cell", silent = true, remap = true })
+          vim.keymap.set("n", "<localleader>v", ":MagmaShowOutput<CR>",
+            { desc = "open output window", silent = true })
         end,
       })
     end,

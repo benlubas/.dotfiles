@@ -39,6 +39,16 @@ return {
         },
         -- this is amazing.
         textobjects = {
+          move = {
+            enable = true,
+            set_jumps = false,
+            goto_next_start = {
+              ["]b"] = { query = "@block.inner", desc = "next block" },
+            },
+            goto_previous_start = {
+              ["[b"] = { query = "@block.outer", desc = "previous block" },
+            }
+          },
           select = {
             enable = true,
             lookahead = true,
@@ -100,7 +110,7 @@ return {
         lookForwardLines = 8, -- default 5
       })
 
-      -- these nave to be commands instead of calling the lua functions so that dot repeat works
+      -- these have to be commands instead of calling the lua functions so that dot repeat works
       -- correctly
       vim.keymap.set(
         { "o", "x" },

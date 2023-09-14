@@ -18,6 +18,7 @@ return {
     },
     filetypes = {
       norg = false,
+      quarto = false, -- it get's very confused
     },
   },
 }
