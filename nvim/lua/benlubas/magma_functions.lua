@@ -44,9 +44,7 @@ M.run_all_above = function(language)
     if cell == nil then
       break
     end
-    -- TODO: run the cell
     vim.fn.MagmaEvaluateRange(cell[1], cell[2])
-    -- vim.fn.MagmaRunRange(cell[1], cell[2])
     line = cell[2]
     if i > 10 then
       break
