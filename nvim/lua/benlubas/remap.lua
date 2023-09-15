@@ -32,7 +32,6 @@ vim.keymap.set("n", "<leader>cr", [[:let @+ = expand("%")<CR>]],
   { desc = "copy relative path to clipboard", silent = true })
 
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signature help" })
-vim.keymap.set("i", "<C-h>", function() require("benlubas.smart_backspace").smart_backspace() end, { remap = true })
 
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')
@@ -65,9 +64,3 @@ vim.cmd([[
 -- zg -- add work under cursor to dictionary
 vim.keymap.set("n", "<leader>sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>st", "<cmd>set spell!<CR>")
-
--- smart backspace
--- vim.keymap.set("i", "<BS>", function()
---   require("benlubas.smart_backspace").smart_backspace()
--- end,
---   { desc = "backspace, but remove as much whitespace as possible", expr = true, noremap = true, replace_keycodes = false })

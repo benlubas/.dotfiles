@@ -14,6 +14,7 @@ return {
       execution_message = {
         message = '',
       },
+      debounce_delay = 350,
     },
   },
   {
