@@ -10,6 +10,7 @@ rm -rfv $HOME/.config/dunst
 
 rm -rfv $HOME/.config/alacritty.yml
 rm -rfv $HOME/.config/tmux/tmux.conf
+rm -rfv $HOME/.config/wezterm/wezterm.lua
 
 rm -rfv $HOME/.bashrc
 rm -rfv $HOME/.gitconfig
@@ -31,6 +32,8 @@ ln -sv $PWD/dunst $HOME/.config/dunst
 ln -sv $PWD/alacritty.yml $HOME/.config/alacritty.yml
 mkdir -pv $HOME/.config/tmux
 ln -sv $PWD/tmux.conf $HOME/.config/tmux/tmux.conf
+mkdir -pv $HOME/.config/wezterm
+ln -sv $PWD/wezterm.lua $HOME/.config/wezterm/wezterm.lua
 
 ln -sv $PWD/.bashrc $HOME/.bashrc
 ln -sv $PWD/.gitconfig $HOME/.gitconfig
