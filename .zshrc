@@ -63,6 +63,7 @@ eval "$(fnm env --use-on-cd)"
 
 # rust-analyzer
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
 # personal scripts
 export PATH=$HOME/github/.dotfiles/bin:$PATH
