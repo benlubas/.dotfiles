@@ -6,7 +6,7 @@ return {
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
   },
-  ft = "quarto",
+  ft = {"quarto", "markdown"},
   config = function()
     local quarto = require("quarto")
     quarto.setup({

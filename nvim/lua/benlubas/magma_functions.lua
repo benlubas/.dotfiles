@@ -32,7 +32,7 @@ local function get_next_cell(language, starting_row, ending_row)
   return nil
 end
 
----run all qmd cells with magma.
+---run all qmd cells above the cursor with magma.
 ---requires that magma is initialized
 M.run_all_above = function(language)
   local i = 0

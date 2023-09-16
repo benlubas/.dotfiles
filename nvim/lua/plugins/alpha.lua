@@ -67,13 +67,6 @@ return {
         dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
       }
 
-      local coinflip = ""
-      if math.random() > 0.5 then
-        coinflip = "it was heads 🪙"
-      else
-        coinflip = "it was tails 🪙"
-      end
-
       local conf = {
         layout = {
           { type = "padding", val = 2 },
@@ -85,7 +78,7 @@ return {
           { type = "padding", val = 1 },
           harpoon_section,
           { type = "padding", val = 1 },
-          { type = "text", val = coinflip, opts = { position = "center", hl = "Statement" } },
+          { type = "text", val = "" .. math.random(), opts = { position = "center", hl = "Statement" } },
         },
         opts = {
           margin = 5,

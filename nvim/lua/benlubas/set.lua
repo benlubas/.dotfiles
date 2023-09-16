@@ -14,6 +14,7 @@ vim.opt.relativenumber = true
 vim.opt.numberwidth = 3
 vim.opt.foldcolumn = "1"
 vim.opt.signcolumn = "yes:3"
+
 vim.opt.fillchars = {
   eob = " ",
   foldopen = "󰍝",

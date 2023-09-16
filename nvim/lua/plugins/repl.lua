@@ -18,6 +18,8 @@ return {
     init = function()
       vim.g.magma_output_window_borders = false
       vim.g.magma_automatically_open_output = false
+      vim.g.magma_image_provider = "kitty"
+      vim.g.magma_enter_output_behavior = "open_then_jump"
 
       vim.keymap.set("n", "<localleader>mp", function()
         vim.cmd("MagmaInit python3")
@@ -33,7 +35,7 @@ return {
           vim.keymap.set("n", "<localleader>O", function()
             require("benlubas.magma_functions").run_all_above("python")
           end, { desc = "find the next cell" })
-          vim.keymap.set("n", "<localleader>v", ":MagmaShowOutput<CR>",
+          vim.keymap.set("n", "<localleader>v", ":noautocmd MagmaEnterOutput<CR>",
             { desc = "open output window", silent = true })
         end,
       })
