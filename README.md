@@ -26,7 +26,7 @@ Note: sourcing zsh rc is probably going to fail the first time you try it
 
 6. [Homebrew](https://brew.sh/) (mac only due to the use of cask)
   - quickly install almost everything with `brew bundle --file=./Brewfile`
-  - this installs nvim, alacritty, and the jetbrains mono nerd font
+  - this installs nvim, wezterm, and the jetbrains mono nerd font
 
 5. Rust (shouldn't install with brew)
   - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is

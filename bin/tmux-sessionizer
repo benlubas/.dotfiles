@@ -14,8 +14,9 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
+in_tmux = [ $TERM_PROGRAM = "tmux" ]
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [ $TERM_PROGRAM = "tmux" ] && [[ -z $tmux_running ]]; then
   tmux new-session -s $selected_name -c $selected\; \
   rename-window "Main Nvim"\; \
   neww -n shell\; \
@@ -28,8 +29,8 @@ if ! tmux has-session -t=$selected_name 2> /dev/null; then
   tmux new-session -ds $selected_name -c $selected\;
 fi
 
-if [[ -z $TMUX ]]; then
-  tmux attach -t $selected_name
-else
+if [ $TERM_PROGRAM = "tmux" ]; then
   tmux switch-client -t $selected_name
+else
+  tmux attach -t $selected_name
 fi

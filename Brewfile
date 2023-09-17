@@ -14,6 +14,10 @@ brew "tmux"
 brew "gnu-sed"
 brew "antidote"
 
+# terminal emulator
+tap "wez/wezterm-linuxbrew"
+brew "wezterm"
+
 # OSX apps
 cask "spotify"
 cask "brave-browser"
