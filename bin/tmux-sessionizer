@@ -14,7 +14,6 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
-in_tmux = [ $TERM_PROGRAM = "tmux" ]
 
 if [ $TERM_PROGRAM = "tmux" ] && [[ -z $tmux_running ]]; then
   tmux new-session -s $selected_name -c $selected\; \
