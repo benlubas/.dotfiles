@@ -6,7 +6,13 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.font_size = 14
+if wezterm.target_triple == "aarch64-apple-darwin" then
+  config.font_size = 14
+  config.adjust_window_size_when_changing_font_size = true
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+  print("Linux")
+  config.font_size = 16
+end
 
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
 
