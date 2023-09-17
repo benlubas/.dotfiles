@@ -24,6 +24,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
+-- this hopefully fixes the random crashed with exit code 134
+-- it's dark magic from https://www.reddit.com/r/neovim/comments/14bcfmb/nonzero_exit_code/
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.cmd("sleep 50m")
+  end,
+})
+
 -- TODO: I'm not sure what's wrong here, the synconcealed function doesn't get triggered ever.
 -- Only un-conceal when you're hovering text that is concealed
 -- local word_conceal_group = vim.api.nvim_create_augroup("WordConceal", { clear = true })

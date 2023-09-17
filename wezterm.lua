@@ -83,17 +83,19 @@ config.send_composed_key_when_right_alt_is_pressed = false
 local dd = wezterm.action.DisableDefaultAssignment
 -- all these binds to change the font size
 config.keys = {
-  { key = "+", mods = "CTRL",       action = dd },
-  { key = "+", mods = "SHIFT|CTRL", action = dd },
-  { key = "-", mods = "CTRL",       action = dd },
-  { key = "-", mods = "SHIFT|CTRL", action = dd },
-  { key = "-", mods = "SUPER",      action = dd },
-  { key = "=", mods = "CTRL",       action = dd },
-  { key = "=", mods = "SHIFT|CTRL", action = dd },
-  { key = "=", mods = "SUPER",      action = dd },
-  { key = "_", mods = "CTRL",       action = dd },
-  { key = "_", mods = "SHIFT|CTRL", action = dd },
-  { key = "w", mods = "SUPER",      action = dd },
+  { key = "+", mods = "CTRL",        action = dd },
+  { key = "+", mods = "SHIFT|CTRL",  action = dd },
+  { key = "-", mods = "CTRL",        action = dd },
+  { key = "-", mods = "SHIFT|CTRL",  action = dd },
+  { key = "-", mods = "SUPER",       action = dd },
+  { key = "=", mods = "CTRL",        action = dd },
+  { key = "=", mods = "SHIFT|CTRL",  action = dd },
+  { key = "=", mods = "SUPER",       action = dd },
+  { key = "_", mods = "CTRL",        action = dd },
+  { key = "_", mods = "SHIFT|CTRL",  action = dd },
+  { key = "w", mods = "SUPER",       action = dd },
+  { key = "w", mods = "SUPER|SHIFT", action = dd },
+  { key = "m", mods = "SUPER",       action = dd },
 }
 
 return config
