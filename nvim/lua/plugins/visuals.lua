@@ -44,6 +44,10 @@ return {
         mode = "virtualtext",
         virtualtext = "■",
       },
+      filetypes = {
+        "*",
+        "!TelescopeResults",
+      },
     },
   },
   { "folke/which-key.nvim", config = true, lazy = false },

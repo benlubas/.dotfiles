@@ -15,6 +15,7 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 end
 
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
+config.warn_about_missing_glyphs = false
 
 config.colors = {
   foreground = "#b2b2b2",

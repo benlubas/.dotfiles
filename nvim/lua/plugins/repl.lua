@@ -19,7 +19,8 @@ return {
       vim.g.magma_output_window_borders = false
       vim.g.magma_automatically_open_output = false
       vim.g.magma_image_provider = "kitty"
-      vim.g.magma_enter_output_behavior = "open_then_jump"
+      -- vim.g.magma_enter_output_behavior = "open_then_enter"
+      vim.g.magma_enter_output_behavior = "open_and_enter"
 
       vim.keymap.set("n", "<localleader>mp", function()
         vim.cmd("MagmaInit python3")
@@ -31,12 +32,14 @@ return {
         callback = function()
           -- setup some magma specific keybindings
           vim.keymap.set("n", "<localleader>o", "vib:<C-u>MagmaEvaluateVisual<CR>gv<ESC>_",
-            { desc = "execute code cell", silent = true, remap = true })
+          { desc = "execute code cell", silent = true, remap = true })
           vim.keymap.set("n", "<localleader>O", function()
             require("benlubas.magma_functions").run_all_above("python")
-          end, { desc = "find the next cell" })
+          end, { desc = "execute all cells above cursor" })
           vim.keymap.set("n", "<localleader>v", ":noautocmd MagmaEnterOutput<CR>",
-            { desc = "open output window", silent = true })
+          { desc = "open output window", silent = true })
+          vim.keymap.set("v", "<localleader>o", ":<C-u>MagmaEvaluateVisual<CR>gv",
+          { desc = "execute visual selection", silent = true })
         end,
       })
     end,

@@ -6,7 +6,9 @@ local servers = {
   "cssls",
   "html",
   "emmet_language_server",
-  "pyright",
+  "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
+  -- "jedi_language_server",
+  -- "pylyzer",
   "jsonls",
   "rust_analyzer",
   "tsserver",

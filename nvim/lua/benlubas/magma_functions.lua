@@ -9,6 +9,7 @@ local function get_next_cell(language, starting_row, ending_row)
   ending_row = ending_row or -1
   local buf = vim.api.nvim_win_get_buf(0)
   local lines = vim.api.nvim_buf_get_lines(buf, starting_row, -1, false)
+  -- TODO: rewrite this with treesitter?
   for i, line in ipairs(lines) do
     if line:match("^```{" .. language .. "}") then
       local start = i + 1
