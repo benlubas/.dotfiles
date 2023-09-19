@@ -2,7 +2,6 @@ return {
   {
     -- "3rd/image.nvim",
     "benlubas/image.nvim",
-    -- enabled = false, -- still can't get this to work on mac
     dev = true,
     opts = {
       backend = "kitty",
