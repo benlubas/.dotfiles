@@ -23,8 +23,8 @@ return {
       },
       max_width = nil,
       max_height = nil,
-      max_width_window_percentage = nil,
-      max_height_window_percentage = nil,
+      max_width_window_percentage = 30,
+      max_height_window_percentage = 20,
       kitty_method = "normal", -- "normal" or "unicode-placeholders" unicode-placeholders is really weird, and doesn't seem to work
       kitty_tmux_write_delay = 10,          -- makes rendering more reliable with Kitty+Tmux
       window_overlap_clear_enabled = true, -- toggles images when windows are overlapped

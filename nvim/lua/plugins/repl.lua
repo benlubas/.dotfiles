@@ -15,6 +15,7 @@ return {
     -- "dccsillag/magma-nvim",
     "benlubas/magma-nvim",
     dev = true,
+    build = ":UpdateRemotePlugins",
     init = function()
       vim.g.magma_output_window_borders = false
       vim.g.magma_automatically_open_output = false

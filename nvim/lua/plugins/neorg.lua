@@ -1,6 +1,5 @@
 return {
   "nvim-neorg/neorg",
-  -- this doesn't work on m1 macs
   build = ":Neorg sync-parsers",
   lazy = false,
   keys = {
