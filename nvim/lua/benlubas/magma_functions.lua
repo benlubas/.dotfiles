@@ -36,20 +36,15 @@ end
 ---run all qmd cells above the cursor with magma.
 ---requires that magma is initialized
 M.run_all_above = function(language)
-  local i = 0
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   local line = 0
   while true do
-    i = i + 1
     local cell = get_next_cell(language, line, cursor_pos[1])
     if cell == nil then
       break
     end
     vim.fn.MagmaEvaluateRange(cell[1], cell[2])
     line = cell[2]
-    if i > 10 then
-      break
-    end
   end
 end
 

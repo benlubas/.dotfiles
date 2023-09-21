@@ -20,8 +20,7 @@ return {
       vim.g.magma_output_window_borders = false
       vim.g.magma_automatically_open_output = false
       vim.g.magma_image_provider = "kitty"
-      -- vim.g.magma_enter_output_behavior = "open_then_enter"
-      vim.g.magma_enter_output_behavior = "open_and_enter"
+      vim.g.magma_enter_output_behavior = "open_then_enter"
 
       vim.keymap.set("n", "<localleader>mp", function()
         vim.cmd("MagmaInit python3")
