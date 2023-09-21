@@ -54,12 +54,12 @@ bindsym --whole-window $mod+button2 kill
 focus_follows_mouse no
 
 ### LAUNCH THINGS ###
-bindsym $mod+Return exec wezterm
+bindsym $mod+Return exec kitty
 bindsym $mod+a exec brave-browser
 bindsym $mod+o exec nemo # files
 
 ### Go to window ###
-bindsym $alt+Control+Return exec wmctrl -a "Wezterm"
+bindsym $alt+Control+Return exec wmctrl -a "Kitty"
 bindsym $alt+Control+a exec wmctrl -a " - Brave"
 bindsym $alt+Control+o exec wmctrl -a " - Nemo"
 bindsym $alt+Control+s exec wmctrl -a "Spotify"

@@ -9,8 +9,9 @@ rm -rfv $HOME/.config/i3
 rm -rfv $HOME/.config/dunst
 
 rm -rfv $HOME/.config/alacritty.yml
-rm -rfv $HOME/.config/tmux/tmux.conf
 rm -rfv $HOME/.config/wezterm/wezterm.lua
+rm -rfv $HOME/.config/kitty/kitty.conf
+rm -rfv $HOME/.config/tmux/tmux.conf
 
 rm -rfv $HOME/.bashrc
 rm -rfv $HOME/.gitconfig
@@ -34,6 +35,8 @@ mkdir -pv $HOME/.config/tmux
 ln -sv $PWD/tmux.conf $HOME/.config/tmux/tmux.conf
 mkdir -pv $HOME/.config/wezterm
 ln -sv $PWD/wezterm.lua $HOME/.config/wezterm/wezterm.lua
+mkdir -pv $HOME/.config/kitty
+ln -sv $PWD/kitty.conf $HOME/.config/kitty/kitty.conf
 
 ln -sv $PWD/.bashrc $HOME/.bashrc
 ln -sv $PWD/.gitconfig $HOME/.gitconfig
