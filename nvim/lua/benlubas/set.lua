@@ -45,7 +45,7 @@ vim.opt.expandtab = true
 
 -- listchars
 vim.opt.list = true
-vim.opt.listchars = "trail:"
+vim.opt.listchars = "trail:,tab: "
 
 -- search
 vim.opt.hlsearch = true

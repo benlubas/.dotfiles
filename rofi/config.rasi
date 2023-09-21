@@ -3,7 +3,7 @@
  *
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
- * 
+ *
  **/
 
 /*****----- Configuration -----*****/
@@ -131,7 +131,7 @@ listview {
     reverse:                     false;
     fixed-height:                false;
     fixed-columns:               true;
-    
+
     spacing:                     0px;
     margin:                      0px;
     padding:                     0px;
