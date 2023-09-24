@@ -3,18 +3,16 @@
 local servers = {
   "bashls",
   "clangd",
-  "cssls",
-  "html",
-  "emmet_language_server",
-  "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
-  -- "jedi_language_server",
-  -- "pylyzer",
-  "jsonls",
-  "rust_analyzer",
-  "tsserver",
-  "lua_ls",
   "clojure_lsp",
+  "cssls",
+  "emmet_language_server",
+  "html",
+  "lua_ls",
+  "marksman",
+  "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
+  "rust_analyzer",
   "svelte",
+  "tsserver",
 }
 
 return {
@@ -109,6 +107,12 @@ return {
           on_attach(client, bufnr)
         end,
         capabilities = capabilities,
+      })
+
+      require("lspconfig")["marksman"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "markdown", "quarto" },
       })
 
       require("lspconfig")["solargraph"].setup({

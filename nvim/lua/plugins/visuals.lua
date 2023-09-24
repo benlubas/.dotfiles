@@ -28,11 +28,25 @@ return {
   {
     "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
     lazy = false,
+    dev = true,
     opts = {
       mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
-      hide_cursor = false,
       stop_eof = false,
       time_scale = 0.3,
+      pre_hook = function()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        vim.opt.eventignore:append({
+          "WinScrolled",
+          "CursorMoved",
+        })
+      end,
+      post_hook = function()
+        ---@diagnostic disable-next-line: param-type-mismatch
+        vim.opt.eventignore:remove({
+          "WinScrolled",
+          "CursorMoved",
+        })
+      end,
     },
   },
   {

@@ -1,30 +1,28 @@
 return {
   {
-    -- "3rd/image.nvim",
-    "benlubas/image.nvim",
-    dev = true,
+    "3rd/image.nvim",
+    -- "benlubas/image.nvim",
+    -- dev = true,
     opts = {
       backend = "kitty",
       integrations = {
         markdown = {
           enabled = true,
-          sizing_strategy = "auto",
-          download_remote_images = false,
           clear_in_insert_mode = false,
+          download_remote_images = false,
           only_render_image_at_cursor = false,
-          filetype = { "markdown", "quarto" },
+          filetypes = { "markdown", "quarto" }, -- markdown extensions (ie. quarto) can go here
         },
         neorg = {
           enabled = true,
-          download_remote_images = true,
           clear_in_insert_mode = false,
+          download_remote_images = true,
           only_render_image_at_cursor = false,
+          filetypes = { "norg" },
         },
       },
-      max_width = 100, -- terminal cells
+      max_width = 100,
       max_height = 7,
-      kitty_method = "normal", -- "normal" or "unicode-placeholders" unicode-placeholders is really weird, and doesn't seem to work
-      kitty_tmux_write_delay = 10,          -- makes rendering more reliable with Kitty+Tmux
       window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
       window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
     },
