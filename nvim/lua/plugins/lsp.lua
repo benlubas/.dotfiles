@@ -8,7 +8,7 @@ local servers = {
   "emmet_language_server",
   "html",
   "lua_ls",
-  "marksman",
+  -- "marksman",
   "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
   "rust_analyzer",
   "svelte",

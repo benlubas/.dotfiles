@@ -28,7 +28,7 @@ return {
   {
     "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
     lazy = false,
-    dev = true,
+    -- dev = true,
     opts = {
       mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
       stop_eof = false,
