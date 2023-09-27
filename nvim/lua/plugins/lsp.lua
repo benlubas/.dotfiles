@@ -109,11 +109,11 @@ return {
         capabilities = capabilities,
       })
 
-      require("lspconfig")["marksman"].setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "markdown", "quarto" },
-      })
+      -- require("lspconfig")["marksman"].setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   filetypes = { "markdown", "quarto" },
+      -- })
 
       require("lspconfig")["solargraph"].setup({
         on_attach = on_attach,
