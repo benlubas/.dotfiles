@@ -4,16 +4,28 @@
 return {
   {
     "Olical/conjure",
-    setup = function()
-      -- this plugin is configured with global variables, :h conjure-config to see them
+    -- this plugin is configured with global variables, :h conjure-config to see them
+    config = function()
+      vim.keymap.set("n", "<localleader>ir", function()
+        local evcxr = require("conjure.client.rust.evcxr")
+        evcxr.start()
+
+        -- TODO: can this go in a conjure hook?
+        require('benlubas.quarto_code_runner').attach_run_mappings()
+        require('benlubas.quarto_code_runner').attach_conjure_mappings()
+      end, { desc = "start evcxr for rust" })
 
       -- local leader is `\` which is sym + c on my keyboard
       vim.g["conjure#mapping#eval_comment_current_form"] = "o"
+
+      -- This doesn't show up all the time though, this is just when we're in a rust buffer
+      vim.g["conjure#client#rust#evcxr#mapping#start"] = "ir" -- init rust
     end,
   },
   {
     -- "dccsillag/magma-nvim",
     "benlubas/magma-nvim",
+    dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -23,7 +35,7 @@ return {
       vim.g.magma_image_provider = "image.nvim"
       vim.g.magma_enter_output_behavior = "open_then_enter"
 
-      vim.keymap.set("n", "<localleader>mp", function()
+      vim.keymap.set("n", "<localleader>ip", function()
         vim.cmd("MagmaInit python3")
       end, { desc = "Initialize Magma for python3", silent = true, noremap = true })
 
@@ -31,12 +43,8 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "MagmaInitPost",
         callback = function()
+          require("benlubas.quarto_code_runner").attach_run_mappings()
           -- setup some magma specific keybindings
-          vim.keymap.set("n", "<localleader>o", "vib:<C-u>MagmaEvaluateVisual<CR>gv<ESC>_",
-          { desc = "execute code cell", silent = true, remap = true })
-          vim.keymap.set("n", "<localleader>O", function()
-            require("benlubas.magma_functions").run_all_above("python")
-          end, { desc = "execute all cells above cursor" })
           vim.keymap.set("n", "<localleader>v", ":noautocmd MagmaEnterOutput<CR>",
           { desc = "open output window", silent = true })
           vim.keymap.set("v", "<localleader>o", ":<C-u>MagmaEvaluateVisual<CR>gv",
