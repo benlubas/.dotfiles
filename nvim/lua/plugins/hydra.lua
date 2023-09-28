@@ -34,7 +34,7 @@ return {
         { "a", function() vim.cmd("Telescope live_grep") end,   {  exit = true } },
         { ".", function() tb.find_files({ hidden = true }) end, {  exit = true } },
         { "j", tb.current_buffer_fuzzy_find, { exit = true } },
-        { "s", function() tb.git_status(require("telescope.themes").get_dropdown()) end, { exit = true } },
+        { "s", function() tb.git_status() end, { exit = true } },
         { "l",
           function()
             local dir = vim.env.HOME .. "/github/.dotfiles"
@@ -145,8 +145,13 @@ return {
           function()
             if vim.o.wrap ~= true then
               vim.o.wrap = true
+              -- Allow j and k to always move a line up or down even if it's a wrapped line
+              vim.keymap.set("n", "k", "gk", { silent = true, desc = "up" })
+              vim.keymap.set("n", "j", "gj", { silent = true, desc = "down" })
             else
               vim.o.wrap = false
+              vim.keymap.del("n", "k")
+              vim.keymap.del("n", "j")
             end
           end,
         },

@@ -14,7 +14,7 @@ return {
           path_display = { shorten = { len = 3, exclude = { 1, 2, -1, -2 }}},
           dynamic_preview_title = true,
           winblend = 13,
-          sorting_strategy = "ascending",
+          sorting_strategy = "descending", -- TODO: switch this back to ascending once this bug get's fixed
           cache_picker = {
             num_pickers = 15, -- default 1
             limit_entries = 500, -- default 500
