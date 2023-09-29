@@ -30,7 +30,7 @@ return {
     lazy = false,
     -- dev = true,
     opts = {
-      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-y>" },
+      mappings = { "<C-u>", "<C-d>" },
       stop_eof = false,
       time_scale = 0.3,
       pre_hook = function()
