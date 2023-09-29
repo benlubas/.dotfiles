@@ -39,16 +39,17 @@ return {
         vim.cmd("MagmaInit python3")
       end, { desc = "Initialize Magma for python3", silent = true, noremap = true })
 
-      -- Magma is currently setup for python3
       vim.api.nvim_create_autocmd("User", {
         pattern = "MagmaInitPost",
         callback = function()
           require("benlubas.quarto_code_runner").attach_run_mappings()
           -- setup some magma specific keybindings
           vim.keymap.set("n", "<localleader>v", ":noautocmd MagmaEnterOutput<CR>",
-          { desc = "open output window", silent = true })
+            { desc = "open output window", silent = true })
           vim.keymap.set("v", "<localleader>o", ":<C-u>MagmaEvaluateVisual<CR>gv",
-          { desc = "execute visual selection", silent = true })
+            { desc = "execute visual selection", silent = true })
+          vim.keymap.set("n", "<localleader>c", ":MagmaCloseOutput<CR>",
+            { desc = "close output window", silent = true })
         end,
       })
     end,
