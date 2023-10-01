@@ -24,6 +24,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
+-- trim leading whitespace on yank to clipboard
+local trim_group = vim.api.nvim_create_augroup("TrimYank", { clear = true })
+local clean = require("benlubas.smart_copy").clean
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    if vim.v.event.regname == "+" then
+      clean()
+    end
+  end,
+  group = trim_group,
+  pattern = "*",
+})
+
 -- TODO: I'm not sure what's wrong here, the synconcealed function doesn't get triggered ever.
 -- Only un-conceal when you're hovering text that is concealed
 -- local word_conceal_group = vim.api.nvim_create_augroup("WordConceal", { clear = true })

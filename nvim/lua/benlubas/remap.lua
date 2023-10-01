@@ -29,9 +29,9 @@ vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signatur
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+y$')
+vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>P", '"+P')
-vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>P", '"+P')
 

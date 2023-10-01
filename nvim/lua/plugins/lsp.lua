@@ -17,12 +17,12 @@ local servers = {
 
 return {
   { "leafOfTree/vim-svelte-plugin" },
-  { "williamboman/mason.nvim", config = true },
+  { "williamboman/mason.nvim",     config = true },
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "LspAttach",
-    config = true
+    config = true,
   },
   {
     "neovim/nvim-lspconfig",
@@ -35,7 +35,7 @@ return {
       },
       { "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },
       { "<leader>dn", vim.diagnostic.goto_next, desc = "open next diagnostic" },
-      { "H", vim.lsp.buf.hover, desc = "open hover information" },
+      { "H",          vim.lsp.buf.hover,        desc = "open hover information" },
     },
     dependencies = {
       {
@@ -109,11 +109,17 @@ return {
         capabilities = capabilities,
       })
 
-      -- require("lspconfig")["marksman"].setup({
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      --   filetypes = { "markdown", "quarto" },
-      -- })
+      require("lspconfig")["pyright"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              diagnosticMode = "openFilesOnly",
+            },
+          },
+        },
+      })
 
       require("lspconfig")["solargraph"].setup({
         on_attach = on_attach,

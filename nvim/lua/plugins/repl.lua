@@ -36,7 +36,14 @@ return {
       vim.g.magma_enter_output_behavior = "open_then_enter"
 
       vim.keymap.set("n", "<localleader>ip", function()
-        vim.cmd("MagmaInit python3")
+        local venv = os.getenv("VIRTUAL_ENV")
+        if venv ~= nil then
+          -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
+          venv = string.match(venv, "/.+/(.+)")
+          vim.cmd(("MagmaInit %s"):format(venv))
+        else
+          vim.cmd("MagmaInit python3")
+        end
       end, { desc = "Initialize Magma for python3", silent = true, noremap = true })
 
       vim.api.nvim_create_autocmd("User", {
@@ -48,7 +55,7 @@ return {
             { desc = "open output window", silent = true })
           vim.keymap.set("v", "<localleader>o", ":<C-u>MagmaEvaluateVisual<CR>gv",
             { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>c", ":MagmaCloseOutput<CR>",
+          vim.keymap.set("n", "<localleader>c", ":MagmaHideOutput<CR>",
             { desc = "close output window", silent = true })
         end,
       })

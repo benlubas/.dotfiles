@@ -154,9 +154,9 @@ M.run_all_above = function()
 end
 
 M.attach_run_mappings = function()
-  vim.keymap.set("n", "<localleader>oc", M.run_cell, { desc = "run code cell" })
-  vim.keymap.set("n", "<localleader>O", M.run_all_above, { desc = "run all code cells above the cursor" })
-  vim.keymap.set("n", "<localleader>ol", M.run_line, { desc = "run line " })
+  vim.keymap.set("n", "<localleader>rc", M.run_cell, { desc = "run code cell" })
+  vim.keymap.set("n", "<localleader>ra", M.run_all_above, { desc = "run all code cells above the cursor" })
+  vim.keymap.set("n", "<localleader>rl", M.run_line, { desc = "run line " })
 end
 
 M.attach_conjure_mappings = function()

@@ -23,12 +23,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # antidote
   antidote_path=/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote
   # homebrew
-  brew_expr="$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  # python virtual env wrapper
+  export WORKON_HOME=$HOME/.virtualenvs
+  export PROJECT_HOME=$HOME/github
+  source /home/linuxbrew/.linuxbrew/bin/virtualenvwrapper.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote
   # homebrew
-  brew_expr="$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
   echo "[.zshrc] unknown OS - please add this OS to the ~/.zshrc file"
   exit 1
@@ -50,9 +54,6 @@ fi
 if [ -f $HOME/.zshwork ]; then
   source $HOME/.zshwork
 fi
-
-# brew
-eval $brew_expr
 
 # bob
 export PATH=$HOME/.local/share/bob/nvim-bin:$PATH
@@ -89,7 +90,7 @@ alias gcm="git checkout main"
 alias gcb="git checkout -b"
 alias gl="git log --oneline --decorate --graph"
 alias gcam="git commit -am"
-alias amend="git commit -a --amend"
+alias amend="git commit --amend"
 
 # grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything
 rgf() {
