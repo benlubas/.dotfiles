@@ -1,4 +1,8 @@
 -- copy code and remove leading whitespace
+-- TODO: There's a bug either in this or neovim which causes this to break sometimes. It'll appear
+-- to copy the text, but pasting reveals that the whitespace wasn't removed, and trying to paste
+-- again will just error entirely, with an empty clipboard error
+-- seems to work a vast majority of the time, but when it fails, it fails consistently
 
 local M = {}
 
@@ -30,7 +34,8 @@ M.clean = function()
     lines[i] = line:sub(leading_spaces + 1)
   end
 
-  vim.fn.setreg("+", table.concat(lines, ""))
+  local val = P(table.concat(lines, ""))
+  vim.fn.setreg("+", val)
 end
 
 return M
