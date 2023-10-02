@@ -69,6 +69,8 @@ export PATH=$HOME/.cargo/bin:$PATH
 # personal scripts
 export PATH=$HOME/github/.dotfiles/bin:$PATH
 
+source $HOME/github/.dotfiles/zsh_extras.sh
+
 export EDITOR="nvim"
 
 # to use bat with man pages
