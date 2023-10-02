@@ -51,11 +51,11 @@ return {
         callback = function()
           require("benlubas.quarto_code_runner").attach_run_mappings()
           -- setup some magma specific keybindings
-          vim.keymap.set("n", "<localleader>v", ":noautocmd MagmaEnterOutput<CR>",
+          vim.keymap.set("n", "<localleader>ov", ":noautocmd MagmaEnterOutput<CR>",
             { desc = "open output window", silent = true })
-          vim.keymap.set("v", "<localleader>o", ":<C-u>MagmaEvaluateVisual<CR>gv",
+          vim.keymap.set("v", "<localleader>r", ":<C-u>MagmaEvaluateVisual<CR>gv",
             { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>c", ":MagmaHideOutput<CR>",
+          vim.keymap.set("n", "<localleader>oh", ":MagmaHideOutput<CR>",
             { desc = "close output window", silent = true })
         end,
       })
