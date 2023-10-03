@@ -35,7 +35,9 @@ M.clean = function()
   end
 
   local val = P(table.concat(lines, ""))
-  vim.fn.setreg("+", val)
+  vim.schedule(function()
+    vim.fn.setreg("+", val)
+  end)
 end
 
 return M
