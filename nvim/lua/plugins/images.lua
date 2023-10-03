@@ -1,7 +1,7 @@
 return {
   {
-    -- "3rd/image.nvim",
-    "benlubas/image.nvim",
+    "3rd/image.nvim",
+    -- "benlubas/image.nvim",
     dev = true,
     opts = {
       backend = "kitty",
@@ -24,7 +24,7 @@ return {
       max_width = 100,
       max_height = 8,
       window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
-      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "messages", "" },
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
     },
   },
 }

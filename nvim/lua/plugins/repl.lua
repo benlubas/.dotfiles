@@ -25,7 +25,7 @@ return {
   {
     -- "dccsillag/magma-nvim",
     "benlubas/magma-nvim",
-    dependencies = { "benlubas/image.nvim", dev = true },
+    dependencies = { "3rd/image.nvim" },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
