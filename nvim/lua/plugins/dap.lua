@@ -19,6 +19,11 @@ return {
     end,
     keys = {
       { "<leader>.b", function() require("dap").toggle_breakpoint() end, desc = "toggle breakpoint" },
+      { "<leader>.c", function()
+        vim.ui.input({ prompt = "Conditional Breakpoint: " }, function(input)
+          require("dap").toggle_breakpoint(input)
+        end)
+      end },
       { "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code" },
       { "<leader>.s", function() require("dap").step_over() end, desc = "step over" },
       { "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
