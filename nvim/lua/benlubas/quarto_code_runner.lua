@@ -105,7 +105,12 @@ M.run_cell = function()
   if alert_cell_error(cell) then
     return
   end
-  lang_to_method[cell_header.lang](cell_header.lang, cell[1], cell[2])
+  local run_method = lang_to_method[cell_header.lang]
+  if run_method == nil then
+    vim.notify("No code runner for language " .. cell_header.lang, vim.log.levels.INFO)
+    return
+  end
+  run_method(cell_header.lang, cell[1], cell[2])
 end
 
 ---runs the line of code you're on, makes sure that you're in a code cell

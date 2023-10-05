@@ -34,7 +34,7 @@ M.clean = function()
     lines[i] = line:sub(leading_spaces + 1)
   end
 
-  local val = P(table.concat(lines, ""))
+  local val = table.concat(lines, "")
   vim.schedule(function()
     vim.fn.setreg("+", val)
   end)

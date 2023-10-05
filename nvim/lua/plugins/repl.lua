@@ -51,6 +51,8 @@ return {
           -- setup some molten specific keybindings
           vim.keymap.set("n", "<localleader>ov", ":noautocmd MoltenEnterOutput<CR>",
             { desc = "open output window", silent = true })
+          vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>",
+            { desc = "re-eval cell", silent = true })
           vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
             { desc = "execute visual selection", silent = true })
           vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>",
