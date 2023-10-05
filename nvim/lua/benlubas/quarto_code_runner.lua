@@ -77,12 +77,12 @@ end
 
 ---@param start integer the starting row
 ---@param end_ integer the ending row
-local run_with_magma = function(_, start, end_)
-  vim.fn.MagmaEvaluateRange(start, end_)
+local run_with_molten = function(_, start, end_)
+  vim.fn.MoltenEvaluateRange(start, end_)
 end
 
 local lang_to_method = {
-  python = run_with_magma,
+  python = run_with_molten,
   rust = run_with_conjure,
 }
 
@@ -130,8 +130,8 @@ M.run_line = function()
   end
 end
 
----run all qmd cells above the cursor with magma.
----requires that magma is initialized
+---run all qmd cells above the cursor with molten.
+---requires that molten is initialized
 M.run_all_above = function()
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   local line = 0

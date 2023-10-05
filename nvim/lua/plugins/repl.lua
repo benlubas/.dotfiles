@@ -23,39 +23,37 @@ return {
     end,
   },
   {
-    -- "dccsillag/magma-nvim",
-    "benlubas/magma-nvim",
+    "benlubas/molten-nvim",
     dependencies = { "3rd/image.nvim" },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
-      vim.g.magma_output_window_borders = false
-      vim.g.magma_automatically_open_output = false
-      -- vim.g.magma_image_provider = "kitty"
-      vim.g.magma_image_provider = "image.nvim"
-      vim.g.magma_enter_output_behavior = "open_then_enter"
+      vim.g.molten_output_window_borders = false
+      vim.g.molten_automatically_open_output = false
+      vim.g.molten_image_provider = "image.nvim"
+      vim.g.molten_enter_output_behavior = "open_then_enter"
 
       vim.keymap.set("n", "<localleader>ip", function()
         local venv = os.getenv("VIRTUAL_ENV")
         if venv ~= nil then
           -- in the form of /home/benlubas/.virtualenvs/VENV_NAME
           venv = string.match(venv, "/.+/(.+)")
-          vim.cmd(("MagmaInit %s"):format(venv))
+          vim.cmd(("MoltenInit %s"):format(venv))
         else
-          vim.cmd("MagmaInit python3")
+          vim.cmd("MoltenInit python3")
         end
-      end, { desc = "Initialize Magma for python3", silent = true, noremap = true })
+      end, { desc = "Initialize Molten for python3", silent = true, noremap = true })
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "MagmaInitPost",
+        pattern = "MoltenInitPost",
         callback = function()
           require("benlubas.quarto_code_runner").attach_run_mappings()
-          -- setup some magma specific keybindings
-          vim.keymap.set("n", "<localleader>ov", ":noautocmd MagmaEnterOutput<CR>",
+          -- setup some molten specific keybindings
+          vim.keymap.set("n", "<localleader>ov", ":noautocmd MoltenEnterOutput<CR>",
             { desc = "open output window", silent = true })
-          vim.keymap.set("v", "<localleader>r", ":<C-u>MagmaEvaluateVisual<CR>gv",
+          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
             { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>oh", ":MagmaHideOutput<CR>",
+          vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>",
             { desc = "close output window", silent = true })
         end,
       })
