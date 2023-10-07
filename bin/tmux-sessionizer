@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
+sed=$(command -v gsed || command -v sed)
+options_cmd="find ~/github ~/notes -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | $sed -e '$ a $HOME\/github\n$HOME\/notes\n$HOME\/random'"
+
 if [[ $# -eq 1 ]]; then
-  selected=$1
+  # if the argument is --options, then print the options
+  if [[ $1 = "--options" ]]; then
+    echo $(eval $options_cmd) | $sed 's/ /\n/g'
+  else
+    selected=$1
+  fi
 else
-  # this sed command doesn't work on mac's version of sed, so we need gsed
-  sed=$(command -v gsed || command -v sed)
-  selected=$(find ~/github ~/notes -mindepth 1 -maxdepth 1 -type d | grep -v '.git$' | $sed -e "$ a $HOME\/github" | fzf)
+  selected=$(echo $(eval $options_cmd) | $sed 's/ /\n/g' | fzf)
 fi
 
 if [[ -z $selected ]]; then

@@ -11,8 +11,8 @@ return {
         evcxr.start()
 
         -- TODO: can this go in a conjure hook?
-        require('benlubas.quarto_code_runner').attach_run_mappings()
-        require('benlubas.quarto_code_runner').attach_conjure_mappings()
+        require("benlubas.quarto_code_runner").attach_run_mappings()
+        require("benlubas.quarto_code_runner").attach_conjure_mappings()
       end, { desc = "start evcxr for rust" })
 
       -- local leader is `\` which is sym + c on my keyboard
@@ -22,6 +22,7 @@ return {
       vim.g["conjure#client#rust#evcxr#mapping#start"] = "ir" -- init rust
     end,
   },
+  -- { "morsecodist/magma-nvim" },
   {
     "benlubas/molten-nvim",
     dependencies = { "3rd/image.nvim" },
@@ -29,10 +30,12 @@ return {
     build = ":UpdateRemotePlugins",
     init = function()
       vim.g.molten_output_window_borders = false
-      vim.g.molten_automatically_open_output = false
+      vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_enter_output_behavior = "open_then_enter"
 
+      vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>",
+        { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ip", function()
         local venv = os.getenv("VIRTUAL_ENV")
         if venv ~= nil then
@@ -49,14 +52,17 @@ return {
         callback = function()
           require("benlubas.quarto_code_runner").attach_run_mappings()
           -- setup some molten specific keybindings
-          vim.keymap.set("n", "<localleader>ov", ":noautocmd MoltenEnterOutput<CR>",
-            { desc = "open output window", silent = true })
-          vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>",
-            { desc = "re-eval cell", silent = true })
+          vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
           vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
-            { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>",
-            { desc = "close output window", silent = true })
+          { desc = "execute visual selection", silent = true })
+          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
+          { desc = "open output window", silent = true })
+          vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
+          local open = false
+          vim.keymap.set("n", "<localleader>ot", function()
+            open = not open
+            vim.fn.MoltenUpdateOption("auto_open_output", open)
+          end)
         end,
       })
     end,

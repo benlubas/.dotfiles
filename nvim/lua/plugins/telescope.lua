@@ -42,7 +42,7 @@ return {
       vim.keymap.set("n", "<leader>ss", function() require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor()) end, { desc = "spell suggest" })
       vim.keymap.set("n", "<leader><leader>s", ":Telescope symbols<CR>", { desc = "open symbol picker" })
       vim.keymap.set("n", "<leader>mx",
-        function() require("benlubas.telescope.tmux").tmux_sessionizer_picker({ "~/github", "~/notes" }) end,
+        function() require("benlubas.telescope.tmux").tmux_sessionizer_picker() end,
         { desc = "tmux-sessionizer but telescope" })
 
       vim.keymap.set("n", "<leader>tx",

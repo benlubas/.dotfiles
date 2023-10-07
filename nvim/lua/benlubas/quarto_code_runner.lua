@@ -82,6 +82,8 @@ local run_with_molten = function(_, start, end_)
 end
 
 local lang_to_method = {
+  -- TODO: make a custom latex function that ensures %%latex shows up in the code cell..
+  latex = run_with_molten, -- this is kind of a hack, but iPython supports latex when passed with %%latex
   python = run_with_molten,
   rust = run_with_conjure,
 }
