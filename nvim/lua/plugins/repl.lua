@@ -3,39 +3,29 @@
 -- own config file
 return {
   {
-    "Olical/conjure",
-    -- this plugin is configured with global variables, :h conjure-config to see them
-    config = function()
-      vim.keymap.set("n", "<localleader>ir", function()
-        local evcxr = require("conjure.client.rust.evcxr")
-        evcxr.start()
-
-        -- TODO: can this go in a conjure hook?
-        require("benlubas.quarto_code_runner").attach_run_mappings()
-        require("benlubas.quarto_code_runner").attach_conjure_mappings()
-      end, { desc = "start evcxr for rust" })
-
-      -- local leader is `\` which is sym + c on my keyboard
-      vim.g["conjure#mapping#eval_comment_current_form"] = "o"
-
-      -- This doesn't show up all the time though, this is just when we're in a rust buffer
-      vim.g["conjure#client#rust#evcxr#mapping#start"] = "ir" -- init rust
-    end,
-  },
-  -- { "morsecodist/magma-nvim" },
-  {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim" },
+    -- dependencies = { "3rd/image.nvim" },
+    dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
-      vim.g.molten_output_window_borders = false
+      -- vim.g.molten_output_win_border = { "", { "━", "MoonflySky" }, "", "", }
+      -- vim.g.molten_output_window_border = {
+      --   { "🬭", "MoonflySky" },
+      --   { "🬭", "MoonflySky" },
+      --   { "🬭", "MoonflySky" },
+      --   "",
+      --   { "🬂", "MoonflySky" },
+      --   { "🬂", "MoonflySky" },
+      --   { "🬂", "MoonflySky" },
+      --   "",
+      -- }
+      -- vim.g.molten_output_win_highlight = "Normal"
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
-      vim.g.molten_enter_output_behavior = "open_then_enter"
+      vim.g.molten_wrap_output = true
 
-      vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>",
-        { desc = "Initialize Molten", silent = true })
+      vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ip", function()
         local venv = os.getenv("VIRTUAL_ENV")
         if venv ~= nil then
@@ -67,4 +57,25 @@ return {
       })
     end,
   },
+  {
+    "Olical/conjure",
+    -- this plugin is configured with global variables, :h conjure-config to see them
+    config = function()
+      vim.keymap.set("n", "<localleader>ir", function()
+        local evcxr = require("conjure.client.rust.evcxr")
+        evcxr.start()
+
+        -- TODO: can this go in a conjure hook?
+        require("benlubas.quarto_code_runner").attach_run_mappings()
+        require("benlubas.quarto_code_runner").attach_conjure_mappings()
+      end, { desc = "start evcxr for rust" })
+
+      -- local leader is `\` which is sym + c on my keyboard
+      vim.g["conjure#mapping#eval_comment_current_form"] = "o"
+
+      -- This doesn't show up all the time though, this is just when we're in a rust buffer
+      vim.g["conjure#client#rust#evcxr#mapping#start"] = "ir" -- init rust
+    end,
+  },
+  -- { "morsecodist/magma-nvim" },
 }

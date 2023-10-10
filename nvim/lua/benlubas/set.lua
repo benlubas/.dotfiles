@@ -10,6 +10,9 @@ vim.o.linebreak = true
 vim.o.breakindent = true
 vim.o.showbreak = '|'
 
+vim.o.splitright = true
+vim.o.splitbelow = true
+
 -- gutter
 vim.opt.number = true
 vim.opt.relativenumber = true

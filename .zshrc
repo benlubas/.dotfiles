@@ -28,6 +28,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   export WORKON_HOME=$HOME/.virtualenvs
   export PROJECT_HOME=$HOME/github
   source /home/linuxbrew/.linuxbrew/bin/virtualenvwrapper.sh
+  alias screen_cap="ffmpeg -select_region 1 -show_region 1 -framerate 25 -f x11grab -i :1.0 -preset slower -y ~/Videos/screen_cap.mp4"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote
@@ -93,9 +94,11 @@ alias gcb="git checkout -b"
 alias gl="git log --oneline --decorate --graph"
 alias gcam="git commit -am"
 alias amend="git commit --amend"
+alias pull="git pull"
+alias push="git push"
 
 # grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything
-rgf() {
+grg() {
   branch=$(git branch --show-current)
   rg --no-messages "$@" $(git diff --name-only $branch $(git merge-base $branch main) | tr '\n' ' ')
 }

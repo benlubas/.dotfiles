@@ -17,7 +17,7 @@ local servers = {
 
 return {
   { "leafOfTree/vim-svelte-plugin" },
-  { "williamboman/mason.nvim",     config = true },
+  { "williamboman/mason.nvim", config = true },
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
@@ -35,7 +35,7 @@ return {
       },
       { "<leader>dp", vim.diagnostic.goto_prev, desc = "open previous diagnostic" },
       { "<leader>dn", vim.diagnostic.goto_next, desc = "open next diagnostic" },
-      { "H",          vim.lsp.buf.hover,        desc = "open hover information" },
+      { "H", vim.lsp.buf.hover, desc = "open hover information" },
     },
     dependencies = {
       {
@@ -54,6 +54,7 @@ return {
         dynamicRegistration = false,
         lineFoldingOnly = true,
       }
+      -- capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
 
       -- Use an on_attach function to only map the following keys
       -- after the language server attaches to the current buffer
@@ -115,6 +116,9 @@ return {
         settings = {
           python = {
             analysis = {
+              diagnosticSeverityOverrides = {
+                reportUnusedExpression = "none", -- this removes a really annoying warning in notebook type files
+              },
               diagnosticMode = "openFilesOnly",
             },
           },

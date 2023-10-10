@@ -1,1 +1,2 @@
-vim.wo.wrap = true
+vim.wo.wrap = false
+vim.wo.conceallevel = 0

@@ -8,6 +8,7 @@ local MAX_LABEL_WIDTH = 25
 return {
   {
     "benlubas/nvim-cmp",
+    branch = "up_to_date",
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
