@@ -19,6 +19,10 @@ return {
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_wrap_output = true
+      vim.g.molten_use_border_highlights = true
+
+      vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "MoonflyKhaki" })
+      vim.api.nvim_set_hl(0, "MoltenOutputFooter", { link = "MoonflyKhaki" })
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ir", ":MoltenInit rust", { desc = "Initialize Molten for Rust", silent = true })
