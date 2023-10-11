@@ -54,27 +54,6 @@ local function find_code_cell()
   return nil
 end
 
----@param lang string the language of the code cell
----@param start integer the starting row
----@param end_ integer the ending row
-local run_with_conjure = function(lang, start, end_)
-  local eval = require("conjure.eval")
-  local client = require("conjure.client")
-  local log = require("conjure.log")
-
-  local lines = vim.api.nvim_buf_get_lines(0, start - 1, end_, false)
-  local code = table.concat(lines, "")
-
-  client["with-filetype"](lang, eval["eval-str"], {
-    origin = "arbitrary_code_runner",
-    code = code,
-    ["passive?"] = true, -- don't trigger virtual text or append to the log (b/c it's buggy)
-    ["on-result"] = function(r)
-      client["with-filetype"](lang, log.append, { ("// %s"):format(r) }, { ["break?"] = true })
-    end,
-  })
-end
-
 ---@param start integer the starting row
 ---@param end_ integer the ending row
 local run_with_molten = function(_, start, end_)
@@ -85,7 +64,7 @@ local lang_to_method = {
   -- TODO: make a custom latex function that ensures %%latex shows up in the code cell..
   latex = run_with_molten, -- this is kind of a hack, but iPython supports latex when passed with %%latex
   python = run_with_molten,
-  rust = run_with_conjure,
+  rust = run_with_molten,
 }
 
 local function alert_cell_error(cell)

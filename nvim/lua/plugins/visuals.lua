@@ -23,6 +23,7 @@ return {
       vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
       vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0"})
+      vim.api.nvim_set_hl(0, "FloatFooter", { link = "MoonflySky" })
     end,
   },
   {
