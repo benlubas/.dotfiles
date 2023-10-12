@@ -9,22 +9,13 @@ return {
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
-      vim.g.molten_output_win_border = { "", { "━", "MoonflySky" }, "", "" }
+      vim.g.molten_output_win_border = { "", "━", "", "" }
       vim.g.molten_output_crop_border = true
       vim.g.molten_output_win_max_height = 20
-      vim.g.molten_output_win_style = false
-      vim.g.molten_output_win_cover_gutter = true
-      vim.g.molten_output_show_more = true
-      vim.g.molten_output_win_highlight = "Normal"
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_wrap_output = true
       vim.g.molten_use_border_highlights = true
-
-      vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "MoonflyCrimson" })
-      vim.api.nvim_set_hl(0, "MoltenOutputFooter", { link = "MoonflyCrimson" })
-      P(vim.api.nvim_get_hl(0, { name = "MoltenOutputFooter", create = false }))
-      print('hi')
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ir", ":MoltenInit rust", { desc = "Initialize Molten for Rust", silent = true })

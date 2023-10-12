@@ -36,7 +36,7 @@ return {
         },
         autotag = {
           -- TODO: broken in nightly
-          enable = false,
+          -- enable = false,
         },
         -- this is amazing.
         textobjects = {

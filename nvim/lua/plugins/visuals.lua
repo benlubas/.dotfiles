@@ -14,8 +14,8 @@ return {
       vim.g.moonflyUnderlineMatchParen = true
       vim.g.moonflyVirtualTextColor = true
 
-      vim.cmd("syntax enable")
-      vim.cmd([[colorscheme moonfly]])
+      vim.cmd.syntax("enable")
+      vim.cmd.colorscheme("moonfly")
 
       vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 238, bg = "#1a1a1a" })
       vim.api.nvim_set_hl(0, "CursorLineSign", { link = "CursorLine" })
@@ -23,6 +23,12 @@ return {
       vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
       vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0"})
+
+      vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "MoonflyCrimson" })
+      vim.api.nvim_set_hl(0, "MoltenOutputBorderSuccess", { link = "MoonflyBlue" })
+      vim.api.nvim_set_hl(0, "MoltenOutputFooter", { link = "Comment" })
+      vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "Normal" })
     end,
   },
   {

@@ -2,7 +2,6 @@ return {
   {
     "goolord/alpha-nvim",
     dependencies = { "benlubas/harpoon" },
-    enabled = false,
     config = function()
       local alpha = require("alpha")
       local dashboard = require("alpha.themes.dashboard")
