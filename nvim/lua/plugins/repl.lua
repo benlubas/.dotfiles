@@ -4,6 +4,7 @@
 return {
   {
     "benlubas/molten-nvim",
+    enabled = PLUGIN_ENABLE,
     -- dependencies = { "3rd/image.nvim" },
     dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,

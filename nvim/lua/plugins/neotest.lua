@@ -1,6 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
   "nvim-neotest/neotest",
+  enabled = PLUGIN_ENABLE,
   keys = {
     { "<leader>tr", function() require('neotest').run.run() end,                     desc = "Run the nearest test" },
     { "<leader>tR", function() require('neotest').run.run(vim.fn.expand("%")) end,   desc = "Run the current file" },

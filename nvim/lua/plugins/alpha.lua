@@ -1,6 +1,7 @@
 return {
   {
     "goolord/alpha-nvim",
+    enabled = PLUGIN_ENABLE,
     dependencies = { "benlubas/harpoon" },
     config = function()
       local alpha = require("alpha")

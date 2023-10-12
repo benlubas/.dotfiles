@@ -2,6 +2,7 @@ return {
   {
     -- "3rd/image.nvim",
     "benlubas/image.nvim",
+    enabled = PLUGIN_ENABLE,
     dev = true,
     opts = {
       backend = "kitty",

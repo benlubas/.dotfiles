@@ -1,5 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
+  enabled = PLUGIN_ENABLE,
   cmd = "Copilot",
   event = "InsertEnter",
   opts = {

@@ -1,5 +1,5 @@
 -- All of the visual changes that I'm running. This includes, moonfly theme, neoscroll,
--- which-key, devicons, indent_blankline, and lualine
+-- which-key, devicons, indent_blankline, lualine, and status col
 
 -- start screen is alpha nvim and has it's own file
 
@@ -33,6 +33,7 @@ return {
   },
   {
     "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
+    enabled = PLUGIN_ENABLE,
     lazy = false,
     -- dev = true,
     opts = {
@@ -58,6 +59,7 @@ return {
   { "folke/which-key.nvim", config = true, lazy = false },
   {
     "luukvbaal/statuscol.nvim",
+    enabled = PLUGIN_ENABLE,
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
@@ -65,7 +67,7 @@ return {
         relculright = true,
         segments = {
           {
-            sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true },
+            sign = { namespace = {"gitsigns"}, name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true },
             click = "v:lua.ScSa",
           },
           {
@@ -80,6 +82,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
+    enabled = PLUGIN_ENABLE,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
@@ -123,6 +126,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = PLUGIN_ENABLE,
     main = "ibl",
     opts = {
       scope = { enabled = false },
@@ -130,6 +134,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
+    enabled = PLUGIN_ENABLE,
     opts = {
       highlight = {
         before = "fg",

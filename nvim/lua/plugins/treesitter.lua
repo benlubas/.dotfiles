@@ -1,8 +1,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter-context",
+    enabled = PLUGIN_ENABLE,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
+      enabled = PLUGIN_ENABLE,
     },
     opts = {
       patterns = {
@@ -15,10 +17,14 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = PLUGIN_ENABLE,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
+      enabled = PLUGIN_ENABLE,
       "windwp/nvim-ts-autotag",
+      enabled = PLUGIN_ENABLE,
       "JoosepAlviste/nvim-ts-context-commentstring",
+      enabled = PLUGIN_ENABLE,
     },
     lazy = false,
     cmd = "TSUpdate",
@@ -105,6 +111,7 @@ return {
   },
   {
     "chrisgrieser/nvim-various-textobjs",
+    enabled = PLUGIN_ENABLE,
     config = function()
       -- by default, no mappings are created.
       require("various-textobjs").setup({

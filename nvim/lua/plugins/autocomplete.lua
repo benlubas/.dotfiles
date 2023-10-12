@@ -8,6 +8,7 @@ local MAX_LABEL_WIDTH = 25
 return {
   {
     "benlubas/nvim-cmp",
+    enabled = PLUGIN_ENABLE,
     branch = "up_to_date",
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp" },
@@ -100,6 +101,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
+    enabled = PLUGIN_ENABLE,
     config = function()
       local ls = require("luasnip")
       ls.setup({
@@ -135,6 +137,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
+    enabled = PLUGIN_ENABLE,
     dependencies = {
       { "benlubas/nvim-cmp" },
     },

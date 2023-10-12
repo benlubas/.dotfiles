@@ -1,22 +1,25 @@
 return {
-  { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  { "tpope/vim-repeat" },   -- allows some plugin actions to be repeated with .
+  { "tpope/vim-surround", enabled = PLUGIN_ENABLE }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
+  { "tpope/vim-repeat",   enabled = PLUGIN_ENABLE }, -- allows some plugin actions to be repeated with .
   {
     "Pocco81/auto-save.nvim",
+    enabled = PLUGIN_ENABLE,
     opts = {
       condition = function(buf)
-        local disabled_ft = { 'oil', 'harpoon' }
+        local disabled_ft = { "oil", "harpoon" }
 
-        return vim.api.nvim_buf_get_option(buf, "modifiable") and
-          not vim.tbl_contains(disabled_ft, vim.api.nvim_buf_get_option(buf, "filetype")) and
-          not vim.regex("oil-ssh://"):match_str(vim.api.nvim_buf_get_name(0))
+        return vim.api.nvim_buf_get_option(buf, "modifiable")
+            and not vim.tbl_contains(disabled_ft, vim.api.nvim_buf_get_option(buf, "filetype"))
+            and not vim.regex("oil-ssh://"):match_str(vim.api.nvim_buf_get_name(0))
       end,
       execution_message = {
-        message = '',
+        message = "",
       },
     },
   },
-  { "LunarVim/bigfile.nvim",
+  {
+    "LunarVim/bigfile.nvim",
+    enabled = PLUGIN_ENABLE,
     opts = {
       filesize = 2, -- MiB (2 MiB is just over 2MB)
       features = {
@@ -29,24 +32,32 @@ return {
         "filetype",
         {
           name = "neoscroll",
-          disable = function ()
+          disable = function()
             vim.api.nvim_buf_set_var(0, "disable_neoscroll", true)
-          end
-        }
+          end,
+        },
       },
     },
   },
   {
     "max397574/better-escape.nvim",
+    enabled = PLUGIN_ENABLE,
     opts = {
-      mapping = { "jk", "kj" },   -- why not both
+      mapping = { "jk", "kj" }, -- why not both
     },
   },
   {
     "stevearc/oil.nvim",
+    -- enabled = PLUGIN_ENABLE,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "-", function() require("oil").open() end, desc = "Open parent directory" },
+      {
+        "-",
+        function()
+          require("oil").open()
+        end,
+        desc = "Open parent directory",
+      },
     },
     opts = {
       view_options = {
@@ -93,6 +104,7 @@ return {
   },
   {
     "echasnovski/mini.trailspace",
+    enabled = PLUGIN_ENABLE,
     keys = {
       {
         "<leader>ds",
@@ -103,24 +115,26 @@ return {
   },
   {
     "numToStr/Comment.nvim",
+    enabled = PLUGIN_ENABLE,
     opts = {
       toggler = {
-        line = "glg",    -- Line-comment toggle keymap
-        block = "gaa",   -- Block-comment toggle keymap
+        line = "glg",  -- Line-comment toggle keymap
+        block = "gaa", -- Block-comment toggle keymap
       },
       opleader = {
         line = "gl",
         block = "ga",
       },
       extra = {
-        above = "glO",   -- Add comment on the line above
-        below = "glo",   -- Add comment on the line below
-        eol = "glA",     -- Add comment at the end of line
+        above = "glO", -- Add comment on the line above
+        below = "glo", -- Add comment on the line below
+        eol = "glA",   -- Add comment at the end of line
       },
     },
   },
   {
     "kevinhwang91/nvim-ufo",
+    enabled = PLUGIN_ENABLE,
     dependencies = { "kevinhwang91/promise-async" },
     config = function()
       vim.o.foldlevel = 99
@@ -133,7 +147,7 @@ return {
 
       -- Need to disable this plugin in some files. Specifically ones that have custom folds or
       -- don't need folds
-      local ufo_disable_augroup = vim.api.nvim_create_augroup('ufo_disable_augroup', { clear = true })
+      local ufo_disable_augroup = vim.api.nvim_create_augroup("ufo_disable_augroup", { clear = true })
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = { "*.norg" },
         group = ufo_disable_augroup,

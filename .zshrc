@@ -24,10 +24,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   antidote_path=/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote
   # homebrew
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  # python virtual env wrapper
-  export WORKON_HOME=$HOME/.virtualenvs
-  export PROJECT_HOME=$HOME/github
-  source /home/linuxbrew/.linuxbrew/bin/virtualenvwrapper.sh
   alias screen_cap="ffmpeg -select_region 1 -show_region 1 -framerate 25 -f x11grab -i :1.0 -preset slower -y ~/Videos/screen_cap.mp4"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote

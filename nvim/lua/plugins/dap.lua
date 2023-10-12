@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    enabled = PLUGIN_ENABLE,
     config = function()
       -- open dap automatically (auto close was missfiring, use <leader>.u to toggle ui)
       require("dap").listeners.after.event_initialized["dapui_config"] = function()
@@ -29,9 +30,10 @@ return {
       { "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
     },
   },
-  { "theHamsta/nvim-dap-virtual-text", config = true },
+  { "theHamsta/nvim-dap-virtual-text", enabled = PLUGIN_ENABLE, config = true },
   {
     "jay-babu/mason-nvim-dap.nvim",
+    enabled = PLUGIN_ENABLE,
     dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
     opts = {
       ensure_installed = { "codelldb" },
@@ -40,6 +42,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    enabled = PLUGIN_ENABLE,
     dependencies = { "mfussenegger/nvim-dap" },
     keys = {
       {
@@ -100,6 +103,7 @@ return {
   },
   {
     "mxsdev/nvim-dap-vscode-js",
+    enabled = PLUGIN_ENABLE,
     config = function()
       require("dap-vscode-js").setup({
         -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
