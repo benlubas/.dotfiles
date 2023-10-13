@@ -1,6 +1,5 @@
 return {
   "benlubas/harpoon", -- fork that caches the git branch key
-  enabled = PLUGIN_ENABLE,
   opts = {
     menu = {
       width = (function()

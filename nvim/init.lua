@@ -19,7 +19,30 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/shar
 
 -- ensure that P() and R() are available in plugins
 require("benlubas.globals")
-require("lazy").setup("plugins", {
+
+-- this makes is easy to bisect my setup
+local plugins = {
+  { import = "plugins.alpha" },
+  { import = "plugins.autocomplete" },
+  { import = "plugins.base" },
+  { import = "plugins.copilot" },
+  { import = "plugins.dap" },
+  { import = "plugins.git" },
+  { import = "plugins.harpoon" },
+  { import = "plugins.hydra" },
+  { import = "plugins.images" },
+  { import = "plugins.leap" },
+  { import = "plugins.lsp" },
+  { import = "plugins.neorg" },
+  { import = "plugins.neotest" },
+  { import = "plugins.quarto" },
+  { import = "plugins.repl" },
+  { import = "plugins.telescope" },
+  { import = "plugins.treesitter" },
+  { import = "plugins.visuals" },
+}
+
+require("lazy").setup(plugins, {
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
@@ -33,12 +56,6 @@ require("lazy").setup("plugins", {
     -- disable default keybinds
     ["<localleader>t"] = false,
     ["<localleader>l"] = false,
-    -- open lazygit log
-    ["<leader><leader>l"] = function(plugin)
-      require("lazy.util").float_term({ "lazygit", "log" }, {
-        cwd = plugin.dir,
-      })
-    end,
   },
   dev = {
     path = "~/github",

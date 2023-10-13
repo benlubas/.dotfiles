@@ -4,14 +4,15 @@
 return {
   {
     "benlubas/molten-nvim",
-    enabled = PLUGIN_ENABLE,
     -- dependencies = { "3rd/image.nvim" },
     dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
+      vim.g.molten_show_mimetype_debug = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
       vim.g.molten_output_crop_border = true
+      vim.g.molten_show_more = false
       vim.g.molten_output_win_max_height = 20
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"

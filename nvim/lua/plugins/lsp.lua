@@ -16,18 +16,16 @@ local servers = {
 }
 
 return {
-  { "leafOfTree/vim-svelte-plugin", enabled = PLUGIN_ENABLE },
-  { "williamboman/mason.nvim",      enabled = PLUGIN_ENABLE, config = true },
+  { "leafOfTree/vim-svelte-plugin" },
+  { "williamboman/mason.nvim", config = true },
   {
     "j-hui/fidget.nvim",
-    enabled = PLUGIN_ENABLE,
     tag = "legacy",
     event = "LspAttach",
     config = true,
   },
   {
     "neovim/nvim-lspconfig",
-    enabled = PLUGIN_ENABLE,
     lazy = false,
     keys = {
       {
@@ -42,7 +40,6 @@ return {
     dependencies = {
       {
         "folke/neodev.nvim",
-        enabled = PLUGIN_ENABLE,
         ft = "lua",
         opts = {
           setup_jsonls = false,
@@ -143,7 +140,6 @@ return {
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    enabled = PLUGIN_ENABLE,
     config = function()
       local null_ls = require("null-ls")
 

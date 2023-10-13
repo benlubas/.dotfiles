@@ -33,7 +33,6 @@ return {
   },
   {
     "benlubas/neoscroll.nvim", -- fork that adds the time_scale option to scroll faster
-    enabled = PLUGIN_ENABLE,
     lazy = false,
     -- dev = true,
     opts = {
@@ -59,7 +58,6 @@ return {
   { "folke/which-key.nvim", config = true, lazy = false },
   {
     "luukvbaal/statuscol.nvim",
-    enabled = PLUGIN_ENABLE,
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
@@ -82,7 +80,6 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    enabled = PLUGIN_ENABLE,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
@@ -126,7 +123,6 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    enabled = PLUGIN_ENABLE,
     main = "ibl",
     opts = {
       scope = { enabled = false },
@@ -134,7 +130,6 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    enabled = PLUGIN_ENABLE,
     opts = {
       highlight = {
         before = "fg",

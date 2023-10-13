@@ -10,10 +10,6 @@ P = function(...)
   return thing
 end
 
--- so that I can easily disable all plugins when trying to find a bug
----Disables everything except: colorscheme, oil, which-key, telescope and hydra
-PLUGIN_ENABLE = true
-
 -- reloads the given modules.
 R = function(...)
   return require("plenary.reload").reload_module(...)

@@ -1,7 +1,6 @@
 return {
   {
     "ruifm/gitlinker.nvim",
-    enabled = PLUGIN_ENABLE,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = true,
     keys = {
@@ -25,7 +24,6 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    -- enabled = PLUGIN_ENABLE,
     opts = {
       sign_priority = 100, -- set really high so it always shows on the far left
       signcolumn = true,

@@ -1,6 +1,5 @@
 return {
   "nvim-neorg/neorg",
-  enabled = PLUGIN_ENABLE,
   build = ":Neorg sync-parsers",
   lazy = false,
   keys = {

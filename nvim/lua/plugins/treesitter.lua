@@ -1,33 +1,44 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter-context",
-    enabled = PLUGIN_ENABLE,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      enabled = PLUGIN_ENABLE,
-    },
-    opts = {
-      patterns = {
-        ruby = {
-          "block",
-          "module",
-        },
-      },
     },
   },
   {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    config = function()
+      require("Comment").setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+        toggler = {
+          line = "glg",  -- Line-comment toggle keymap
+          block = "gaa", -- Block-comment toggle keymap
+        },
+        opleader = {
+          line = "gl",
+          block = "ga",
+        },
+        extra = {
+          above = "glO", -- Add comment on the line above
+          below = "glo", -- Add comment on the line below
+          eol = "glA",   -- Add comment at the end of line
+        },
+      })
+    end,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
-    enabled = PLUGIN_ENABLE,
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      enabled = PLUGIN_ENABLE,
       "windwp/nvim-ts-autotag",
-      enabled = PLUGIN_ENABLE,
       "JoosepAlviste/nvim-ts-context-commentstring",
-      enabled = PLUGIN_ENABLE,
     },
     lazy = false,
-    cmd = "TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
         highlight = {
@@ -40,9 +51,12 @@ return {
             "ruby",
           },
         },
+        context_commentstring = {
+          enable = true,
+          enable_autocmd = false,
+        },
         autotag = {
-          -- TODO: broken in nightly
-          -- enable = false,
+          enable = false,
         },
         -- this is amazing.
         textobjects = {
@@ -53,8 +67,8 @@ return {
               ["]b"] = { query = "@block.inner", desc = "next block" },
             },
             goto_previous_start = {
-              ["[b"] = { query = "@block.outer", desc = "previous block" },
-            }
+              ["[b"] = { query = "@block.inner", desc = "previous block" },
+            },
           },
           select = {
             enable = true,
@@ -111,7 +125,6 @@ return {
   },
   {
     "chrisgrieser/nvim-various-textobjs",
-    enabled = PLUGIN_ENABLE,
     config = function()
       -- by default, no mappings are created.
       require("various-textobjs").setup({
@@ -120,18 +133,10 @@ return {
 
       -- these have to be commands instead of calling the lua functions so that dot repeat works
       -- correctly
-      vim.keymap.set(
-        { "o", "x" },
-        "is",
-        ":lua require('various-textobjs').subword(true)<CR>",
-        { silent = true, desc = "inner subword" }
-      )
-      vim.keymap.set(
-        { "o", "x" },
-        "as",
-        ":lua require('various-textobjs').subword(false)<CR>",
-        { silent = true, desc = "around subword" }
-      )
+      vim.keymap.set({ "o", "x" }, "is", ":lua require('various-textobjs').subword(true)<CR>",
+      { silent = true, desc = "inner subword" })
+      vim.keymap.set({ "o", "x" }, "as", ":lua require('various-textobjs').subword(false)<CR>",
+      { silent = true, desc = "around subword" })
     end,
   },
 }
