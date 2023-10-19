@@ -65,6 +65,7 @@ local lang_to_method = {
   latex = run_with_molten, -- this is kind of a hack, but iPython supports latex when passed with %%latex
   python = run_with_molten,
   rust = run_with_molten,
+  r = run_with_molten,
 }
 
 local function alert_cell_error(cell)

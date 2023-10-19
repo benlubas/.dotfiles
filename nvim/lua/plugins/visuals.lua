@@ -22,7 +22,7 @@ return {
       vim.api.nvim_set_hl(0, "CursorLineNr", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
-      vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0"})
+      vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0" })
 
       vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "Normal" })
       vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "MoonflyCrimson" })
@@ -65,7 +65,7 @@ return {
         relculright = true,
         segments = {
           {
-            sign = { namespace = {"gitsigns"}, name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true },
+            sign = { namespace = { "gitsigns" }, name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true },
             click = "v:lua.ScSa",
           },
           {

@@ -12,7 +12,7 @@ return {
   },
   keys = {
     { mode = { "n", "v" }, "<C-s>", function() require("harpoon.mark").add_file() end, desc = "add current file to harpoon menu" },
-    { mode = { "n", "v" }, "<C-e>",
+    { mode = { "n", "v" }, "<C-f>",
       function() require("harpoon.ui").toggle_quick_menu(vim.api.nvim_buf_get_name(0)) end,
       desc = "open harpoon menu",
     },

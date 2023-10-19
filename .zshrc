@@ -25,6 +25,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # homebrew
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   alias screen_cap="ffmpeg -select_region 1 -show_region 1 -framerate 25 -f x11grab -i :1.0 -preset slower -y ~/Videos/screen_cap.mp4"
+  alias copy="xclip -r -selection clipboard"
+  alias paste="xclip -selection clipboard -o"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote

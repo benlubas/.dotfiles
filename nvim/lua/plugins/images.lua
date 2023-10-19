@@ -7,7 +7,7 @@ return {
       backend = "kitty",
       integrations = {
         markdown = {
-          enabled = false,
+          enabled = true,
           clear_in_insert_mode = false,
           download_remote_images = false,
           only_render_image_at_cursor = false,

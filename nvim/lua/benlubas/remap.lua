@@ -7,8 +7,6 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
-vim.keymap.set("n", "<C-f>", "<C-e>", { desc = "scroll down", silent = true, noremap = true })
-
 vim.keymap.set("n", "U", "<C-r>", { desc = "redo" })
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })
@@ -17,14 +15,14 @@ vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the sam
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
-vim.keymap.set("n", "<leader><leader>t", "<Plug>PlenaryTestFile", { desc = "run plennary test file" })
-
 vim.keymap.set("n", "<leader>cf", [[:let @+ = expand("%:p")<CR>]],
   { desc = "copy full path to clipboard", silent = true })
 vim.keymap.set("n", "<leader>cr", [[:let @+ = expand("%")<CR>]],
   { desc = "copy relative path to clipboard", silent = true })
 
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signature help" })
+
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "exit terminal mode" })
 
 -- clipboard binds (copy and paste from sys clipboard)
 vim.keymap.set("n", "<leader>y", '"+y')

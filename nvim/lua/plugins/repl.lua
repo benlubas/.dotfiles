@@ -9,18 +9,20 @@ return {
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
-      vim.g.molten_show_mimetype_debug = true
-      vim.g.molten_output_win_border = { "", "━", "", "" }
-      vim.g.molten_output_crop_border = true
-      vim.g.molten_show_more = false
-      vim.g.molten_output_win_max_height = 20
+      -- vim.g.molten_show_mimetype_debug = true
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
-      vim.g.molten_wrap_output = true
+      vim.g.molten_output_crop_border = true
+      vim.g.molten_output_show_more = true
+      vim.g.molten_output_win_border = { "", "━", "", "" }
+      vim.g.molten_output_win_max_height = 20
+      vim.g.molten_output_virt_lines = true
       vim.g.molten_use_border_highlights = true
+      vim.g.molten_virt_lines_off_by_1 = true
+      vim.g.molten_wrap_output = true
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
-      vim.keymap.set("n", "<localleader>ir", ":MoltenInit rust", { desc = "Initialize Molten for Rust", silent = true })
+      vim.keymap.set("n", "<localleader>ir", function() vim.cmd("MoltenInit rust") end, { desc = "Initialize Molten for Rust", silent = true })
       vim.keymap.set("n", "<localleader>ip", function()
         local venv = os.getenv("VIRTUAL_ENV")
         if venv ~= nil then
@@ -50,5 +52,11 @@ return {
       })
     end,
   },
+  {
+    "jpalardy/vim-slime",
+    init = function ()
+      vim.g.slime_target = "neovim"
+    end
+  }
   -- { "morsecodist/magma-nvim" },
 }

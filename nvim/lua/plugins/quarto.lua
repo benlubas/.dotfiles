@@ -19,7 +19,7 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<localleader>p", quarto.quartoPreview,
+    vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview,
       { desc = "Preview the Quarto document", silent = true, noremap = true })
     -- to create a cell in insert mode, I have the ` snippet
     vim.keymap.set("n", "<localleader>cc", "i```{}\r```<up><right>",
