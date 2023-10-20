@@ -13,6 +13,13 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
+      {
+        "petertriho/cmp-git",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+          filetypes = { "gitcommit", "gitrebase", "markdown" }, -- markdown covers gh edits, which are markdown files
+        },
+      },
       { "L3MON4D3/LuaSnip" },
     },
     config = function()
@@ -86,6 +93,7 @@ return {
         },
         -- Installed sources
         sources = {
+          { name = "git" },
           { name = "neorg" },
           { name = "otter" },
           { name = "nvim_lsp" },
@@ -93,7 +101,6 @@ return {
           { name = "luasnip" },
           { name = "path" },
           { name = "buffer" },
-          { name = "nvim_lsp_signature_help" },
         },
       })
     end,
