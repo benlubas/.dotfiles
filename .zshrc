@@ -2,6 +2,7 @@
 bindkey -e
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey "''${key[Up]}" up-line-or-search
 
 # show git stash icon
 zstyle :prompt:pure:git:stash show yes
@@ -21,12 +22,15 @@ SAVEHIST=10000
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # antidote
-  antidote_path=/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote
-  # homebrew
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  antidote_path=/home/benlubas/.antidote
+  # homebrew - I'm not using this on NixOS
+  # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   alias screen_cap="ffmpeg -select_region 1 -show_region 1 -framerate 25 -f x11grab -i :1.0 -preset slower -y ~/Videos/screen_cap.mp4"
   alias copy="xclip -r -selection clipboard"
   alias paste="xclip -selection clipboard -o"
+  # this only works b/c I've chowned the etc/nixos folder
+  alias conf="nvim /etc/nixos/configuration.nix"
+  alias rebuild="sudo nixos-rebuild switch"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote
@@ -38,12 +42,9 @@ else
 fi
 
 zsh_plugins=$HOME/.zsh_plugins
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
-  (
-    source ${antidote_path}/antidote.zsh
-    antidote bundle <${zsh_plugins}.txt >${zsh_plugins}.zsh
-  )
-fi
+source ${antidote_path}/antidote.zsh
+antidote load
+
 source ${zsh_plugins}.zsh
 
 if [ -f $HOME/.zshsecrets ]; then

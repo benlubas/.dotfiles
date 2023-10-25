@@ -53,8 +53,8 @@ return {
           engine = "nvim-cmp",
         },
       },
-      -- TODO: this requires nvim 10 (nightly at the time of writing)
-      ["core.ui.calendar"] = {},
+      -- NOTE: this requires nvim 10 (nightly at the time of writing)
+      -- ["core.ui.calendar"] = {},
       ["core.dirman"] = {
         config = {
           workspaces = {

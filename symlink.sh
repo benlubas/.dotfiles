@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "deleting things"
 
 rm -rfv $HOME/.config/nvim
 rm -rfv $HOME/.config/ranger
+rm -rfv $HOME/.config/polybar
 rm -rfv $HOME/.config/rofi
 rm -rfv $HOME/.config/i3
 rm -rfv $HOME/.config/dunst
@@ -26,6 +27,7 @@ mkdir -pv $HOME/.config
 
 ln -sv $PWD/nvim $HOME/.config/nvim
 ln -sv $PWD/ranger $HOME/.config/ranger
+ln -sv $PWD/polybar $HOME/.config/polybar
 ln -sv $PWD/rofi $HOME/.config/rofi
 ln -sv $PWD/i3 $HOME/.config/i3
 ln -sv $PWD/dunst $HOME/.config/dunst

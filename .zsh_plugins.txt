@@ -10,6 +10,5 @@ ohmyzsh/ohmyzsh path:plugins/extract kind:defer
 zsh-users/zsh-completions path:src kind:fpath
 
 # keep at the end
-# TODO: these two aren't working..
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-history-substring-search
