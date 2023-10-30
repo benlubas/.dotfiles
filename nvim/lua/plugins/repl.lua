@@ -4,8 +4,8 @@
 return {
   {
     "benlubas/molten-nvim",
-    -- dependencies = { "3rd/image.nvim" },
-    dependencies = { "benlubas/image.nvim", dev = true },
+    dependencies = { "3rd/image.nvim" },
+    -- dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()

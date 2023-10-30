@@ -15,6 +15,10 @@ R = function(...)
   return require("plenary.reload").reload_module(...)
 end
 
+IsLinux = function()
+  return jit.os == "Linux"
+end
+
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg('v')

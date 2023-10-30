@@ -25,7 +25,11 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   antidote_path=/home/benlubas/.antidote
   # homebrew - I'm not using this on NixOS
   # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  alias screen_cap="ffmpeg -select_region 1 -show_region 1 -framerate 25 -f x11grab -i :1.0 -preset slower -y ~/Videos/screen_cap.mp4"
+  alias screen_cap="ffmpeg -select_region 1 -show_region 1 \
+    -framerate 30 -f x11grab -i :0.0 \
+    -pix_fmt +yuv420p -vf scale='-2:1080' \
+    -movflags +faststart \
+    -preset slower -y ~/Videos/screen_cap.mp4"
   alias copy="xclip -r -selection clipboard"
   alias paste="xclip -selection clipboard -o"
   # this only works b/c I've chowned the etc/nixos folder

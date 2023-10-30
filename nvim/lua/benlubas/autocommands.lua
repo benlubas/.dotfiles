@@ -3,6 +3,13 @@
 -- I have other auto commands in:
 -- color.lua - highlight on yank
 
+-- TODO: remove this when https://github.com/neovim/neovim/issues/21856 is fixed
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.fn.jobstart('notify-send "hello"', {detach=true})
+  end,
+})
+
 -- when in a comment and you press o to go into a new line, don't make that line a comment line.
 local comment_group = vim.api.nvim_create_augroup("fix comment enter", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter", {

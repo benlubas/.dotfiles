@@ -2,7 +2,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.vim_json_conceal = false
 
-vim.g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+if not IsLinux() then
+  vim.g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+end
 
 vim.opt.mouse = "a"
 
