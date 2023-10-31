@@ -1,6 +1,7 @@
-
 return {
-  "quarto-dev/quarto-nvim",
+  -- "quarto-dev/quarto-nvim",
+  "benlubas/quarto-nvim",
+  dev = true,
   dependencies = {
     "jmbuhr/otter.nvim",
     "benlubas/nvim-cmp",
@@ -17,13 +18,21 @@ return {
         rename = "<leader>rn",
         references = "gr",
       },
+      codeRunner = {
+        enabled = true,
+        ft_runners = {
+          python = "molten-nvim",
+          r = "vim-slime",
+        },
+        default_method = "molten-nvim",
+        auto_target_switching = false,
+      },
     })
 
     vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview,
       { desc = "Preview the Quarto document", silent = true, noremap = true })
     -- to create a cell in insert mode, I have the ` snippet
-    vim.keymap.set("n", "<localleader>cc", "i```{}\r```<up><right>",
-      { desc = "Create a new code cell", silent = true })
+    vim.keymap.set("n", "<localleader>cc", "i```{}\r```<up><right>", { desc = "Create a new code cell", silent = true })
     vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>",
       { desc = "Split code cell", silent = true, noremap = true })
 
