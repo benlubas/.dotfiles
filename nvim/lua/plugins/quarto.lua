@@ -21,11 +21,10 @@ return {
       codeRunner = {
         enabled = true,
         ft_runners = {
-          python = "molten-nvim",
-          r = "vim-slime",
+          python = "molten",
+          r = "slime",
         },
-        default_method = "molten-nvim",
-        auto_target_switching = false,
+        default_method = "molten",
       },
     })
 
