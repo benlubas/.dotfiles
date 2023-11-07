@@ -13,7 +13,7 @@ return {
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_output_crop_border = true
-      vim.g.molten_output_show_more = true
+      -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
       vim.g.molten_output_win_max_height = 20
       vim.g.molten_output_virt_lines = true

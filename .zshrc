@@ -113,3 +113,6 @@ syncnotes() {
 
 alias mx=tmux-sessionizer
 alias tx=tmux-sessions
+
+# direnv
+eval "$(direnv hook zsh)"
