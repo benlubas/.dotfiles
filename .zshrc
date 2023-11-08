@@ -40,6 +40,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote
   # homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  # allow the magick rock to find ImageMagick
+  export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
 else
   echo "[.zshrc] unknown OS - please add this OS to the ~/.zshrc file"
   exit 1

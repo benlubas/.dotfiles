@@ -21,8 +21,7 @@ return {
       codeRunner = {
         enabled = true,
         ft_runners = {
-          python = "molten",
-          r = "slime",
+          bash = "slime",
         },
         default_method = "molten",
       },

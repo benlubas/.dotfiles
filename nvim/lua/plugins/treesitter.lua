@@ -12,6 +12,7 @@ return {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("Comment").setup({
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
         toggler = {
@@ -40,6 +41,7 @@ return {
     lazy = false,
     build = ":TSUpdate",
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup({
         highlight = {
           enable = true,
@@ -64,10 +66,15 @@ return {
             enable = true,
             set_jumps = false,
             goto_next_start = {
-              ["]b"] = { query = "@block.inner", desc = "next block" },
+              ["]b"] = { query = "@block.inner", desc = "next code block" },
+              -- These are the recommended binds, but they also catch on markdown headings. block
+              -- does not
+              -- ["]b"] = { query = "@class.inner", desc = "next block" },
             },
             goto_previous_start = {
-              ["[b"] = { query = "@block.inner", desc = "previous block" },
+              ["[b"] = { query = "@block.inner", desc = "previous code block" },
+              -- These are the recommended binds, but they also catch on markdown headings.
+              -- ["[b"] = { query = "@class.inner", desc = "previous block" },
             },
           },
           select = {
