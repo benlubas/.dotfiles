@@ -15,7 +15,7 @@ return {
       vim.g.molten_output_crop_border = true
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
-      vim.g.molten_output_win_max_height = 20
+      vim.g.molten_output_win_max_height = 10
       vim.g.molten_output_virt_lines = true
       vim.g.molten_use_border_highlights = true
       vim.g.molten_virt_lines_off_by_1 = true
