@@ -49,6 +49,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# mouse will warp to a new monitor
+mouse_warping output
+
 # The middle button and a modifier over any part of the window kills the window
 bindsym --whole-window $mod+button2 kill
 focus_follows_mouse no
@@ -80,7 +83,7 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# alternatively, you can use the arrow keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
