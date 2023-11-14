@@ -2,6 +2,7 @@
 -- quarto.nvim is kinda related, as it lets me edit jupyter notebook type files, but that has it's
 -- own config file
 return {
+  { "goerz/jupytext.vim" },
   {
     "benlubas/molten-nvim",
     dependencies = { "3rd/image.nvim" },
@@ -22,7 +23,9 @@ return {
       vim.g.molten_wrap_output = true
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
-      vim.keymap.set("n", "<localleader>ir", function() vim.cmd("MoltenInit rust") end, { desc = "Initialize Molten for Rust", silent = true })
+      vim.keymap.set("n", "<localleader>ir", function()
+        vim.cmd("MoltenInit rust")
+      end, { desc = "Initialize Molten for Rust", silent = true })
       vim.keymap.set("n", "<localleader>ip", function()
         local venv = os.getenv("VIRTUAL_ENV")
         if venv ~= nil then
@@ -37,7 +40,7 @@ return {
       vim.api.nvim_create_autocmd("User", {
         pattern = "MoltenInitPost",
         callback = function()
-          -- require("benlubas.quarto_code_runner").attach_run_mappings()
+          -- quarto code runner mappings
           local r = require("quarto.runner")
           vim.keymap.set("n", "<localleader>rc", r.run_cell, { desc = "run cell", silent = true })
           vim.keymap.set("n", "<localleader>ra", r.run_above, { desc = "run cell and above", silent = true })
@@ -49,9 +52,12 @@ return {
           end, { desc = "run all cells of all languages", silent = true })
 
           -- setup some molten specific keybindings
+          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { desc = "evaluate operator", silent = true })
           vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
-          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>", { desc = "open output window", silent = true })
+          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
+            { desc = "execute visual selection", silent = true })
+          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
+            { desc = "open output window", silent = true })
           vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
           local open = false
           vim.keymap.set("n", "<localleader>ot", function()
@@ -64,9 +70,9 @@ return {
   },
   {
     "jpalardy/vim-slime",
-    init = function ()
+    init = function()
       vim.g.slime_target = "neovim"
-    end
-  }
+    end,
+  },
   -- { "morsecodist/magma-nvim" },
 }
