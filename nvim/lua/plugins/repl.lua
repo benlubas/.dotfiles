@@ -5,8 +5,8 @@ return {
   { "goerz/jupytext.vim" },
   {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim" },
-    -- dependencies = { "benlubas/image.nvim", dev = true },
+    -- dependencies = { "3rd/image.nvim" },
+    dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -17,7 +17,8 @@ return {
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
       vim.g.molten_output_win_max_height = 10
-      vim.g.molten_output_virt_lines = true
+      -- vim.g.molten_output_virt_lines = true
+      vim.g.molten_output_as_virtual_text = true
       vim.g.molten_use_border_highlights = true
       vim.g.molten_virt_lines_off_by_1 = true
       vim.g.molten_wrap_output = true

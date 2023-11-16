@@ -45,9 +45,9 @@ return {
     hydra({
       name = "QuartoNavigator",
       hint = [[
-      _j_/_k_: move down/up _o_/_O_: add cell after/before
-      _r_: run cell  _l_: run line  _R_: run above
-      ^^                _<esc>_/_q_: exit ]],
+_j_/_k_: move down/up _o_/_O_: add cell after/before
+_l_: run cell  _e_: enter output  _R_: run above
+^^                _<esc>_/_q_: exit ]],
       config = {
         color = "pink",
         invoke_on_body = true,
@@ -60,10 +60,10 @@ return {
       heads = {
         { "j", keys("]b"), { remap = true, noremap = false } },
         { "k", keys("[b"), { remap = true, noremap = false } },
-        { "o", keys("/```<CR><leader><leader>fo<CR>`<c-j>"), { exit = true } },
-        { "O", keys("?```{<CR><leader><leader>f<leader>kO<CR>`<c-j>"), { exit = true } },
-        { "r", ":QuartoSend<CR>" },
-        { "l", ":QuartoSendLine<CR>" },
+        { "o", keys("/```<CR>:nohl<CR>o<CR>`<c-j>"), { exit = true } },
+        { "O", keys("?```{<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { exit = true } },
+        { "l", ":QuartoSend<CR>" },
+        { "e", ":noautocmd MoltenEnterOutput<CR>"},
         { "R", ":QuartoSendAbove<CR>" },
         { "<esc>", nil, { exit = true } },
         { "q", nil, { exit = true } },

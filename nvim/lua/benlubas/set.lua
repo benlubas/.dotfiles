@@ -15,6 +15,9 @@ vim.o.showbreak = '|'
 vim.o.splitright = true
 vim.o.splitbelow = true
 
+-- Allow the cursor to select off the edge of the text in visual block mode
+vim.o.virtualedit = "block"
+
 -- gutter
 vim.opt.number = true
 vim.opt.relativenumber = true

@@ -1,9 +1,9 @@
 return {
   {
-    "3rd/image.nvim",
-    -- "benlubas/image.nvim",
+    -- "3rd/image.nvim",
+    "benlubas/image.nvim",
     -- enabled = false,
-    -- dev = true,
+    dev = true,
     opts = {
       backend = "kitty",
       integrations = {
