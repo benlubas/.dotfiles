@@ -44,27 +44,27 @@ return {
     local hydra = require("hydra")
     hydra({
       name = "QuartoNavigator",
-      hint = [[
-_j_/_k_: move down/up _o_/_O_: add cell after/before
-_l_: run cell  _e_: enter output  _R_: run above
-^^                _<esc>_/_q_: exit ]],
+      hint = false,
+--       hint = [[
+-- _j_/_k_: move down/up _o_/_O_: add cell after/before
+-- _l_: run cell  _e_: enter output  _R_: run above
+-- ^^                _<esc>_/_q_: exit ]],
       config = {
         color = "pink",
         invoke_on_body = true,
-        hint = {
-          border = "rounded",
-        },
+        hint = false,
       },
       mode = { "n" },
       body = "<localleader>j",
       heads = {
-        { "j", keys("]b"), { remap = true, noremap = false } },
-        { "k", keys("[b"), { remap = true, noremap = false } },
-        { "o", keys("/```<CR>:nohl<CR>o<CR>`<c-j>"), { exit = true } },
-        { "O", keys("?```{<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { exit = true } },
-        { "l", ":QuartoSend<CR>" },
-        { "e", ":noautocmd MoltenEnterOutput<CR>"},
-        { "R", ":QuartoSendAbove<CR>" },
+        { "j", keys("]b"), { desc = "↓", remap = true, noremap = false } },
+        { "k", keys("[b"), { desc = "↑", remap = true, noremap = false } },
+        { "o", keys("/```<CR>:nohl<CR>o<CR>`<c-j>"), { desc = "new cell ↓", exit = true } },
+        { "O", keys("?```{<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { desc = "new cell ↑", exit = true } },
+        { "l", ":QuartoSend<CR>", { desc = "run" } },
+        { "s", ":noautocmd MoltenEnterOutput<CR>", { desc = "show" } },
+        { "h", ":MoltenHideOutput<CR>", { desc = "hide" } },
+        { "a", ":QuartoSendAbove<CR>", { desc = "run above" } },
         { "<esc>", nil, { exit = true } },
         { "q", nil, { exit = true } },
       },

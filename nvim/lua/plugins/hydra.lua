@@ -1,6 +1,12 @@
 return {
   "benlubas/hydra.nvim",
   config = function()
+    vim.api.nvim_set_hl(0, "HydraRed", { link = "MoonflyRed" })
+    vim.api.nvim_set_hl(0, "HydraBlue", { link = "MoonflySky" })
+    vim.api.nvim_set_hl(0, "HydraAmaranth", { link = "MoonflyCranberry" })
+    vim.api.nvim_set_hl(0, "HydraTeal", { link = "MoonflyTurquoise" })
+    vim.api.nvim_set_hl(0, "HydraPink", { link = "MoonflyCrimson" })
+
     local hydra = require("hydra")
     local hint = [[
   _d_: files              _a_: live grep

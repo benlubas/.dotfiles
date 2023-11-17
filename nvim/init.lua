@@ -33,6 +33,7 @@ local plugins = {
   { import = "plugins.images" },
   { import = "plugins.leap" },
   { import = "plugins.lsp" },
+  { import = "plugins.lualine" },
   { import = "plugins.neorg" },
   { import = "plugins.neotest" },
   { import = "plugins.quarto" },
