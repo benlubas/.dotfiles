@@ -4,5 +4,6 @@ require("benlubas.remap")
 require("benlubas.autocommands")
 require("benlubas.filetype")
 require("benlubas.lsp_handlers")
+require("benlubas.messages")
 
 pcall(require, "benlubas.work")

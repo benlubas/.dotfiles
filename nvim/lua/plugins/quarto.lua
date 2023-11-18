@@ -18,11 +18,23 @@ return {
   config = function()
     local quarto = require("quarto")
     quarto.setup({
+      lspFeatures = {
+        languages = { 'r', 'python', 'rust' },
+        chunks = 'all', -- 'curly' or 'all'
+        diagnostics = {
+          enabled = true,
+          triggers = { "BufWritePost" }
+        },
+        completion = {
+          enabled = true,
+        },
+      },
       keymap = {
         hover = "H",
         definition = "gd",
         rename = "<leader>rn",
         references = "gr",
+        format = "<leader>gf",
       },
       codeRunner = {
         enabled = true,
@@ -45,10 +57,6 @@ return {
     hydra({
       name = "QuartoNavigator",
       hint = false,
---       hint = [[
--- _j_/_k_: move down/up _o_/_O_: add cell after/before
--- _l_: run cell  _e_: enter output  _R_: run above
--- ^^                _<esc>_/_q_: exit ]],
       config = {
         color = "pink",
         invoke_on_body = true,

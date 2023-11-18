@@ -1,21 +1,7 @@
 return {
   { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
   { "tpope/vim-repeat" }, -- allows some plugin actions to be repeated with .
-  {
-    "Pocco81/auto-save.nvim",
-    opts = {
-      condition = function(buf)
-        local disabled_ft = { "oil", "harpoon" }
-
-        return vim.api.nvim_buf_get_option(buf, "modifiable")
-          and not vim.tbl_contains(disabled_ft, vim.api.nvim_buf_get_option(buf, "filetype"))
-          and not vim.regex("oil-ssh://"):match_str(vim.api.nvim_buf_get_name(0))
-      end,
-      execution_message = {
-        message = "",
-      },
-    },
-  },
+  { "benlubas/auto-save.nvim" },
   {
     "LunarVim/bigfile.nvim",
     opts = {

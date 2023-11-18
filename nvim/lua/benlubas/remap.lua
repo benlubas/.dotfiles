@@ -15,9 +15,11 @@ vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the sam
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
-vim.keymap.set("n", "<leader>cf", [[:let @+ = expand("%:p")<CR>]],
+vim.keymap.set("n", "M", ":M<CR>", { desc = "open messages in a float", silent = true })
+
+vim.keymap.set("n", "<leader>cp", [[:let @+ = expand("%:p")<CR>]],
   { desc = "copy full path to clipboard", silent = true })
-vim.keymap.set("n", "<leader>cr", [[:let @+ = expand("%")<CR>]],
+vim.keymap.set("n", "<leader>ct", [[:let @+ = expand("%:t")<CR>]],
   { desc = "copy relative path to clipboard", silent = true })
 
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signature help" })
