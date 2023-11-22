@@ -3,6 +3,7 @@ local function keys(str)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(str, true, false, true), "m", true)
   end
 end
+
 return {
   -- "quarto-dev/quarto-nvim",
   "benlubas/quarto-nvim",

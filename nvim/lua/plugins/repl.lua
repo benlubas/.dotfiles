@@ -4,6 +4,17 @@
 return {
   { "goerz/jupytext.vim" },
   {
+    "benlubas/NotebookNavigator.nvim",
+    dev = true,
+    opts = {},
+    keys = {
+      -- { "]h", function() require("notebook-navigator").move_cell "d" end },
+      -- { "[h", function() require("notebook-navigator").move_cell "u" end },
+      { "<leader>X", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
+      { "<leader>x", "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
+    },
+  },
+  {
     "benlubas/molten-nvim",
     dependencies = { "3rd/image.nvim" },
     -- dependencies = { "benlubas/image.nvim", dev = true },
@@ -16,7 +27,7 @@ return {
       vim.g.molten_output_crop_border = true
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
-      vim.g.molten_output_win_max_height = 10
+      vim.g.molten_output_win_max_height = 12
       -- vim.g.molten_output_virt_lines = true
       vim.g.molten_virt_text_output = true
       vim.g.molten_use_border_highlights = true
