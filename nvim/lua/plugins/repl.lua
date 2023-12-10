@@ -16,8 +16,8 @@ return {
   },
   {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim" },
-    -- dependencies = { "benlubas/image.nvim", dev = true },
+    -- dependencies = { "3rd/image.nvim" },
+    dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -64,7 +64,8 @@ return {
           end, { desc = "run all cells of all languages", silent = true })
 
           -- setup some molten specific keybindings
-          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { desc = "evaluate operator", silent = true })
+          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>",
+            { desc = "evaluate operator", silent = true })
           vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
           vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
             { desc = "execute visual selection", silent = true })

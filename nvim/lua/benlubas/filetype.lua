@@ -1,6 +1,6 @@
 vim.filetype.add({
   extension = {
-    md = "quarto.markdown",
+    md = "markdown",
     es6 = "javascript",
     keymap = "dts",
   },
