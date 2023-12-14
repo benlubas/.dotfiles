@@ -27,6 +27,7 @@ local plugins = {
   { import = "plugins.base" },
   { import = "plugins.copilot" },
   { import = "plugins.dap" },
+  { import = "plugins.firenvim" },
   { import = "plugins.git" },
   { import = "plugins.harpoon" },
   { import = "plugins.hydra" },
