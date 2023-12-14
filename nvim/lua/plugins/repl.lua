@@ -3,17 +3,14 @@
 -- own config file
 return {
   { "goerz/jupytext.vim" },
-  {
-    "benlubas/NotebookNavigator.nvim",
-    dev = true,
-    opts = {},
-    keys = {
-      -- { "]h", function() require("notebook-navigator").move_cell "d" end },
-      -- { "[h", function() require("notebook-navigator").move_cell "u" end },
-      { "<leader>X", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
-      { "<leader>x", "<cmd>lua require('notebook-navigator').run_and_move()<cr>" },
-    },
-  },
+  -- {
+  --   "benlubas/NotebookNavigator.nvim",
+  --   dev = true,
+  --   opts = {},
+  --   keys = {
+  --     { "<localleader>x", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
+  --   },
+  -- },
   {
     "benlubas/molten-nvim",
     -- dependencies = { "3rd/image.nvim" },
@@ -24,7 +21,6 @@ return {
       -- vim.g.molten_show_mimetype_debug = true
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
-      vim.g.molten_output_crop_border = true
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
       vim.g.molten_output_win_max_height = 12
@@ -72,19 +68,36 @@ return {
           vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
             { desc = "open output window", silent = true })
           vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
+          vim.keymap.set("n", "<localleader>md", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
           local open = false
           vim.keymap.set("n", "<localleader>ot", function()
             open = not open
             vim.fn.MoltenUpdateOption("auto_open_output", open)
           end)
+
+          -- if we're in a python file, change the configuration a little
+          if vim.bo.filetype == "python" then
+            vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", false)
+            vim.fn.MoltenUpdateOption("molten_virt_text_output", false)
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "*.py",
+        callback = function()
+          if require("molten.status").initialized() == "Molten" then
+            vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", false)
+            vim.fn.MoltenUpdateOption("molten_virt_text_output", false)
+          end
         end,
       })
     end,
   },
-  {
-    "jpalardy/vim-slime",
-    init = function()
-      vim.g.slime_target = "neovim"
-    end,
-  },
+  -- {
+  --   "jpalardy/vim-slime",
+  --   init = function()
+  --     vim.g.slime_target = "neovim"
+  --   end,
+  -- },
 }

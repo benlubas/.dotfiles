@@ -23,6 +23,24 @@ return {
     config = true,
   },
   {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      action_keys = {
+        hover = "H",
+      },
+      auto_close = true,
+    },
+    keys = {
+      { "<leader>xx", function() require("trouble").toggle() end, desc = "trouble" },
+      { "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end, desc = "trouble all diagnostics" },
+      { "<leader>xd", function() require("trouble").toggle("document_diagnostics") end, desc = "trouble doc diagnostics" },
+      { "<leader>xq", function() require("trouble").toggle("quickfix") end, desc = "trouble quickfix" },
+      { "<leader>xl", function() require("trouble").toggle("loclist") end, desc = "trouble loclist" },
+      { "gR", function() require("trouble").toggle("lsp_references") end, desc = "trouble lsp references" },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     lazy = false,
     keys = {
@@ -118,7 +136,7 @@ return {
               diagnosticSeverityOverrides = {
                 reportUnusedExpression = "none", -- this removes a really annoying warning in notebook type files
               },
-              diagnosticMode = "openFilesOnly",
+              -- diagnosticMode = "openFilesOnly",
             },
           },
         },
