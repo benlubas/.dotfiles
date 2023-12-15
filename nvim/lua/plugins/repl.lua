@@ -18,6 +18,10 @@ return {
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
+      if IsLinux() then -- xdg-open doesn't work on NixOS from within programs
+        vim.g.molten_open_cmd = "firefox"
+      end
+
       -- vim.g.molten_show_mimetype_debug = true
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
