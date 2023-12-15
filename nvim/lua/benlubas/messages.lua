@@ -1,5 +1,5 @@
 local condense_blanklines = function(text)
-  return string.gsub(text, "\n\n\n+", "\n\n")
+  return string.gsub(text, "\n\n+", "\n\n")
 end
 
 B = function(cmd)

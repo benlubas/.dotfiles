@@ -8,9 +8,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cond = function()
-      return not vim.g.started_by_firenvim
-    end,
+    cond = not MarkdownMode(),
     config = function()
       require("lualine").setup({
         options = {

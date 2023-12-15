@@ -7,3 +7,7 @@ require("benlubas.lsp_handlers")
 require("benlubas.messages")
 
 pcall(require, "benlubas.work")
+
+if MarkdownMode() then
+  require("benlubas.firenvim")
+end

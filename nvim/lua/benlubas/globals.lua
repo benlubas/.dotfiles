@@ -19,6 +19,10 @@ IsLinux = function()
   return jit.os == "Linux"
 end
 
+MarkdownMode = function()
+  return vim.g.started_by_firenvim or vim.env["MD_MODE"] == "1"
+end
+
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg('v')

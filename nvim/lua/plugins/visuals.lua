@@ -58,6 +58,7 @@ return {
   { "folke/which-key.nvim", config = true, lazy = false },
   {
     "luukvbaal/statuscol.nvim",
+    cond = not MarkdownMode(),
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({

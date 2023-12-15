@@ -78,6 +78,7 @@ export PATH=$HOME/github/.dotfiles/bin:$PATH
 source $HOME/github/.dotfiles/zsh_extras.sh
 
 export EDITOR="nvim"
+export GIT_EDITOR="MD_MODE=1 nvim"
 
 # to use bat with man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -88,6 +89,7 @@ alias v=nvim
 alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias kvnvim="nvim oil-ssh://benlubas@login.ccs.neu.edu//home/benlubas/README.md"
 
+alias gh="MD_MODE=1 gh" # pass this to nvim so that I can set a few custom config options
 alias gs="git status"
 alias gd="git diff"
 alias ga="git add"

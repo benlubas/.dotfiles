@@ -9,52 +9,32 @@ return {
     vim.fn["firenvim#install"](0)
   end,
   init = function()
-    vim.g.firenvim_config = {
-      globalSettings = { alt = "all" },
-      localSettings = {
-        [".*"] = {
-          cmdline = "firenvim",
-          content = "text",
-          priority = 0,
-          selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
-          takeover = "empty",
-        },
-        [ [[.*notion\.so.*]] ] = {
-          priority = 9,
-          takeover = "never",
-        },
-        [ [[.*docs\.google\.com.*]] ] = {
-          priority = 9,
-          takeover = "never",
-        },
-        [ [[.*teams\.microsoft\.com.*]] ] = {
-          priority = 9,
-          takeover = "never",
-        },
+    local never_open = {
+      [[.*notion\.so.*]],
+      [[.*docs\.google\.com.*]],
+      [[.*teams\.microsoft\.com.*]],
+      [[.*gradescope\.com.*]],
+      [[.*web\.whatsapp\.com.*]],
+      [[.*messages\.google\.com.*]],
+    }
+    local localSettings = {
+      [".*"] = {
+        cmdline = "firenvim",
+        content = "text",
+        priority = 0,
+        selector = 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
+        takeover = "empty",
       },
     }
-  end,
-  config = function()
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.opt.breakindent = true
-    vim.opt.showbreak = ""
-
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-    vim.opt.numberwidth = 0
-    vim.opt.foldcolumn = "0"
-    vim.opt.signcolumn = "auto"
-
-    vim.opt.textwidth = 0
-    vim.opt.colorcolumn = ""
-
-    vim.opt.scrolloff = 2
-    vim.opt.sidescrolloff = 8
-
-    vim.api.nvim_create_autocmd({ "BufEnter" }, {
-      pattern = "github.com_*.txt",
-      cmd = "set filetype=markdown",
-    })
+    for _, v in ipairs(never_open) do
+      localSettings[v] = {
+        priority = 9,
+        takeover = "never",
+      }
+    end
+    vim.g.firenvim_config = {
+      globalSettings = { alt = "all" },
+      localSettings = localSettings,
+    }
   end,
 }

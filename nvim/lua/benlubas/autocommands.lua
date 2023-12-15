@@ -6,7 +6,7 @@
 -- TODO: remove this when https://github.com/neovim/neovim/issues/21856 is fixed
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
-    vim.fn.jobstart('notify-send "hello"', {detach=true})
+    vim.fn.jobstart('notify-send "hello"', { detach = true })
   end,
 })
 
