@@ -1,6 +1,9 @@
 return {
-  { "tpope/vim-surround" }, -- lets you surround things with ysiw<thing> or edit the surroundings with cs<thing>
-  { "tpope/vim-repeat" },   -- allows some plugin actions to be repeated with .
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    opts = {},
+  },
   { "benlubas/auto-save.nvim", cond = not MarkdownMode() },
   {
     "mbbill/undotree",
@@ -11,7 +14,7 @@ return {
         desc = "toggle undotree",
         silent = true,
       },
-    }
+    },
   },
   {
     "LunarVim/bigfile.nvim",
