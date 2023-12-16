@@ -140,18 +140,62 @@ return {
       end, { silent = true, desc = "previous snippet choice" })
     end,
   },
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   dependencies = {
+  --     { "benlubas/nvim-cmp" },
+  --   },
+  --   config = function()
+  --     require("nvim-autopairs").setup({
+  --       check_ts = true,
+  --       fast_wrap = {
+  --         map = '<A-e>',
+  --         chars = { '{', '[', '(', '"', "'", "`" },
+  --         pattern = [=[[%'%"%>%]%)%}%,]]=],
+  --         end_key = '$',
+  --         before_key = 'h',
+  --         after_key = 'l',
+  --         cursor_pos_before = true,
+  --         keys = 'qwertyuiopzxcvbnmasdfghjkl',
+  --         manual_position = true,
+  --         highlight = 'Search',
+  --         highlight_grey = 'Comment'
+  --       },
+  --     })
+  --     -- If you want insert `(` after select function or method item
+  --     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  --     require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+  --   end,
+  -- },
   {
-    "windwp/nvim-autopairs",
-    dependencies = {
-      { "benlubas/nvim-cmp" },
+    "altermo/ultimate-autopair.nvim", -- :h ultimate-autopairs
+    event = { "InsertEnter", "CmdlineEnter" },
+    branch = "v0.6",
+    opts = {
+      fastwarp = {
+        enable = true,
+        enable_normal = true,
+        enable_reverse = true,
+        hopout = false,
+        --{(|)} > fastwarp > {(}|)
+        map = "<A-e>",
+        rmap = "<A-b>",
+        cmap = "<A-e>",
+        rcmap = "<A-b>",
+        nocursormove = true,
+        do_nothing_if_fail = true,
+        no_filter_nodes = { "string", "raw_string", "string_literals", "character_literal" },
+        --which nodes to skip for tsnode filtering
+        faster = false, -- TODO: I'm not sure if I want to enable this or not
+        --only enables jump over pair, goto end/next line
+        --useful for the situation of:
+        --{|}M.foo('bar') > {M.foo('bar')|}
+      },
+      close = {
+        enable = true,
+        map = { "<A-)>", "<A-]>", "<A-}>" },
+        cmap = { "<A-)>", "<A-]>", "<A-}>" },
+      },
     },
-    config = function()
-      require("nvim-autopairs").setup({
-        check_ts = true,
-      })
-      -- If you want insert `(` after select function or method item
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-    end,
   },
 }

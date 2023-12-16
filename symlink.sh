@@ -21,6 +21,8 @@ rm -rfv $HOME/.zshrc
 rm -rfv $HOME/.p10k.zsh
 rm -rfv $HOME/.zsh_plugins.txt
 
+rm -rfv $HOME/.mozilla/firefox/chrome
+
 echo "linking things"
 
 mkdir -pv $HOME/.config
@@ -46,3 +48,7 @@ ln -sv $PWD/.xprofile $HOME/.xprofile
 ln -sv $PWD/.zshrc $HOME/.zshrc
 ln -sv $PWD/.p10k.zsh $HOME/.p10k.zsh
 ln -sv $PWD/.zsh_plugins.txt $HOME/.zsh_plugins.txt
+
+echo "IMPORTANT: you must symlink firefox/chrome manually with a command like:"
+echo "ln -sv $PWD/firefox/chrome $HOME/.mozilla/firefox/<profile>/"
+echo "where you replace <profile> with the name of your firefox profile"

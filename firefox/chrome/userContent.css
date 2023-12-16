@@ -1,0 +1,8 @@
+/* Dark mode on PDF files, toggle-able with a bookmark */
+@-moz-document unobservable-document() {
+  @media (prefers-color-scheme: dark) {
+    :root:not([nostyle]) .pdfViewer {
+      filter: invert(90%);
+    }
+  }
+}
