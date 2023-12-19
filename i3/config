@@ -53,7 +53,8 @@ floating_modifier $mod
 mouse_warping output
 
 # The middle button and a modifier over any part of the window kills the window
-bindsym --whole-window $mod+button2 kill
+# bindsym --whole-window $mod+button2 kill # this is really annoying in combination with a trackball
+# on the keyboard that's a little sensitive sometimes... + auto mouse layer
 focus_follows_mouse no
 
 ### LAUNCH THINGS ###
