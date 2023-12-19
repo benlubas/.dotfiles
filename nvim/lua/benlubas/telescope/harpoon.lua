@@ -51,6 +51,7 @@ M.harpoon_branch_marks_picker = function(opts)
 
   -- Load the harpoon config file which contains all the project directories
   local user_config = string.format("%s/harpoon.json", data_path)
+  ---@diagnostic disable-next-line: undefined-field
   local projects = vim.json.decode(Path:new(user_config):read()).projects
 
   -- get all the keys that match the form: ${cwd}-

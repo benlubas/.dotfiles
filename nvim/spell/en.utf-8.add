@@ -254,3 +254,6 @@ nixos
 extmarks
 plaintext
 args
+rebase
+filetypes
+cond/!

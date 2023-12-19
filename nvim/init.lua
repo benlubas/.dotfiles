@@ -22,7 +22,6 @@ require("benlubas.globals")
 
 -- this makes is easy to bisect my setup
 local plugins = {
-  { import = "plugins.alpha" },
   { import = "plugins.autocomplete" },
   { import = "plugins.base" },
   { import = "plugins.copilot" },
@@ -39,6 +38,7 @@ local plugins = {
   { import = "plugins.neotest" },
   { import = "plugins.quarto" },
   { import = "plugins.repl" },
+  { import = "plugins.starter" },
   { import = "plugins.telescope" },
   { import = "plugins.treesitter" },
   { import = "plugins.visuals" },

@@ -7,6 +7,13 @@
 vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv==jgvo<esc>=jgvo", { desc = "move highlighted text up" })
 
+-- terminal keybinds
+vim.keymap.set("i", "<C-a>", "<C-o>_", { desc = "home" })
+vim.keymap.set("i", "<C-e>", "<C-o>$", { desc = "end" })
+-- these two are not default, you have to use esc + f/b which is weird as hell
+vim.keymap.set("i", "<C-f>", "<C-o>w", { desc = "forward" })
+vim.keymap.set("i", "<C-b>", "<C-o>b", { desc = "backward" })
+
 vim.keymap.set("n", "U", "<C-r>", { desc = "redo" })
 
 vim.keymap.set("n", "=a", "gg=G<C-o>zz", { desc = "tab format the whole document" })

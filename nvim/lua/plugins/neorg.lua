@@ -1,7 +1,8 @@
 return {
   "nvim-neorg/neorg",
+  dev = true,
   build = ":Neorg sync-parsers",
-  lazy = false,
+  ft = "norg",
   keys = {
     { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
     { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
@@ -19,8 +20,10 @@ return {
         config = {
           hook = function(keybinds)
             -- Map \c to edit the code block in another buffer.
-            keybinds.remap_event("norg", "n", "<localleader>c", "core.looking-glass.magnify-code-block")
+            keybinds.remap_event("norg", "n", "<localleader>l", "core.looking-glass.magnify-code-block")
             keybinds.map("norg", "n", "<localleader>r", ":Neorg return<CR>")
+            -- keybinds.map("norg", "n", "u", "uu")
+            keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
             keybinds.map("norg", "n", "<localleader>c", "icode<C-j>", { remap = true })
             keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
             keybinds.remap_event("norg", "i", "/date", "core.tempus.insert-date-insert-mode")

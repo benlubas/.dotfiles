@@ -87,6 +87,23 @@ return {
     },
   },
   {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      local custom = {
+        codeblock_highlight = false,
+        dash_string = "━",
+      }
+      local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
+
+      require("headlines").setup({
+        markdown = custom,
+        quarto = vim.tbl_deep_extend("force", require("headlines").config.markdown, qmd),
+        neorg = custom,
+      })
+    end,
+  },
+  {
     "folke/todo-comments.nvim",
     opts = {
       highlight = {
