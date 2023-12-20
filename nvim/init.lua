@@ -36,6 +36,7 @@ local plugins = {
   { import = "plugins.lsp" },
   { import = "plugins.neorg" },
   { import = "plugins.neotest" },
+  -- { import = "plugins.noice" }, -- This is still a little too buggy for me
   { import = "plugins.quarto" },
   { import = "plugins.repl" },
   { import = "plugins.starter" },
