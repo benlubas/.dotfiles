@@ -14,7 +14,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     "benlubas/hydra.nvim",
   },
-  ft = { "quarto", "markdown", "quarto.markdown" },
+  ft = { "quarto", "markdown" },
   config = function()
     local quarto = require("quarto")
     quarto.setup({

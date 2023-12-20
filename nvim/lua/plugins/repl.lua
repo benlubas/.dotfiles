@@ -89,7 +89,8 @@ return {
 
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "*.py",
-        callback = function()
+        callback = function(e)
+          if string.match(e.file, ".otter.") then return end
           if require("molten.status").initialized() == "Molten" then
             vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", false)
             vim.fn.MoltenUpdateOption("molten_virt_text_output", false)
