@@ -6,6 +6,12 @@ return {
     },
   },
   {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    opts = {
+      enable_autocmd = false,
+    },
+  },
+  {
     "numToStr/Comment.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
@@ -52,10 +58,6 @@ return {
           disable = {
             "ruby",
           },
-        },
-        context_commentstring = {
-          enable = true,
-          enable_autocmd = false,
         },
         autotag = {
           enable = false,

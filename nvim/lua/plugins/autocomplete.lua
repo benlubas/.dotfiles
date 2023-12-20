@@ -110,7 +110,9 @@ return {
     config = function()
       local ls = require("luasnip")
       ls.setup({
-        history = false,
+        link_children = true,
+        link_roots = false,
+        keep_roots = false,
         update_events = { "TextChanged", "TextChangedI" },
       })
       require("snippets") -- loading custom snippets

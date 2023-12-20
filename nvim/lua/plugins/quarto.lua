@@ -8,7 +8,7 @@ return {
   "quarto-dev/quarto-nvim",
   -- dev = true,
   dependencies = {
-    { "benlubas/otter.nvim" }, -- , dev = true },
+    { "jmbuhr/otter.nvim" }, -- , dev = true },
     "benlubas/nvim-cmp",
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
