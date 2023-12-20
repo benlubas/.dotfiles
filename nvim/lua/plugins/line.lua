@@ -91,6 +91,9 @@ return {
         suffix = " ",
         config = {
           modifier = ":p",
+          format = function(filename, _)
+            return filename:gsub("^" .. vim.env.HOME, "~")
+          end
         }
       }))
 
