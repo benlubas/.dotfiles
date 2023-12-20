@@ -1,17 +1,17 @@
-local hydra = function()
-  local hint = require("hydra.statusline").get_hint()
-  if hint == nil then
-    return ""
-  end
-  return hint
-end
+-- local hydra = function()
+--   local hint = require("hydra.statusline").get_hint()
+--   if hint == nil then
+--     return ""
+--   end
+--   return hint
+-- end
 
 -- still TODO:
 -- [x] Add search_count back
 -- [ ] Add hydra back (and ideally change the entire bar so that it's showing the 'mode' as "HYDRA"
 -- or something like that. I think that would be cool)
 -- [ ] tmux bar to make it look more consistent?
--- [ ] Add molten status back
+-- [x] Add molten status back
 
 return {
   {
@@ -125,8 +125,7 @@ return {
         prefix = " ",
         content = function(_)
           local s = require("molten.status").kernels()
-          print(s)
-          if s == vim.NIL then
+          if s == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
             return ""
           end
           return s
