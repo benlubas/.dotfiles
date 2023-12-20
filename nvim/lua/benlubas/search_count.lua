@@ -11,19 +11,13 @@ local M = {}
 
 M.update_search_count = function()
   M.calc_search_count()
-  require("lualine").refresh()
+  require("nougat").refresh_statusline()
 end
 
 M.calc_search_count = function()
   if vim.v.hlsearch == 1 then
     local sinfo = vim.fn.searchcount({ maxcount = 0 })
-    Search_count = (
-      sinfo.incomplete ~= nil
-      and sinfo.incomplete > 0
-      and vim.api.nvim_get_mode()[0] == "n"
-    )
-        and "[?/?]"
-      or ("[%s/%s]"):format(sinfo.current, sinfo.total)
+    Search_count = (sinfo.incomplete ~= nil and sinfo.incomplete > 0 and vim.api.nvim_get_mode()[0] == "n") and "[?/?]" or ("[%s/%s]"):format(sinfo.current, sinfo.total)
   else
     Search_count = ""
   end
@@ -52,11 +46,11 @@ vim.keymap.set("c", "<cr>", "<cr>:<esc>")
 -- NOTE: the c-f bind is remapped by 'neoscroll' plugin for smooth scrolling, so that plugin
 -- needs extra setup for this to work with it
 local toggle_highlight = function()
-	local b = { [0] = false, [1] = true }
-	vim.opt.hlsearch = not b[vim.v.hlsearch]
-	require("benlubas.search_count").calc_search_count()
+  local b = { [0] = false, [1] = true }
+  vim.opt.hlsearch = not b[vim.v.hlsearch]
+  require("benlubas.search_count").calc_search_count()
 
-	require("lualine").refresh()
+  require("nougat").refresh_winbar()
 end
 
 -- remaps to also update the search count numerator
@@ -74,14 +68,14 @@ end, { desc = "move to the previous search result" })
 vim.keymap.set("n", "*", function()
   vim.api.nvim_feedkeys("*", "n", true)
   vim.schedule(M.update_search_count)
-  vim.opt.hlsearch = true;
+  vim.opt.hlsearch = true
 end, { desc = "search for the word under the cursor" })
 
 -- this remap makes it easier to navigate with n/N as normal after a # search
 vim.keymap.set("n", "#", function()
   vim.api.nvim_feedkeys("*NN", "n", true)
   vim.schedule(M.update_search_count)
-  vim.opt.hlsearch = true;
+  vim.opt.hlsearch = true
 end, { desc = "search backwards for the word under the cursor" })
 
 vim.keymap.set("n", "<leader><leader>f", toggle_highlight, { desc = "toggle search highlight" })
