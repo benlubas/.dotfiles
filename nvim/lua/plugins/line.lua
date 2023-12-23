@@ -1,17 +1,10 @@
--- local hydra = function()
---   local hint = require("hydra.statusline").get_hint()
---   if hint == nil then
---     return ""
---   end
---   return hint
--- end
-
--- still TODO:
--- [x] Add search_count back
--- [ ] Add hydra back (and ideally change the entire bar so that it's showing the 'mode' as "HYDRA"
--- or something like that. I think that would be cool)
--- [ ] tmux bar to make it look more consistent?
--- [x] Add molten status back
+local hydra = function()
+  local hint = require("hydra.statusline").get_hint()
+  if hint == nil then
+    return ""
+  end
+  return hint
+end
 
 return {
   {
@@ -67,25 +60,23 @@ return {
         suffix = " ",
         sep_right = sep.left_upper_triangle_solid(true),
       }))
-      stl:add_item(nut.git.status.create({
-        hl = { bg = color.grey233 },
-        suffix = " ",
-        sep_right = sep.right_upper_triangle_solid(true),
-        content = {
-          nut.git.status.count("added", {
-            hl = { fg = color.emerald },
-            prefix = " +",
-          }),
-          nut.git.status.count("changed", {
-            hl = { fg = color.blue },
-            prefix = " ~",
-          }),
-          nut.git.status.count("removed", {
-            hl = { fg = color.red },
-            prefix = " -",
-          }),
-        },
-      }))
+      local common_left = {
+        nut.git.status.create({
+          hl = { bg = color.grey233 },
+          suffix = " ",
+          sep_right = sep.right_upper_triangle_solid(true),
+          content = {
+            nut.git.status.count("added", { hl = { fg = color.emerald }, prefix = " +" }),
+            nut.git.status.count("changed", { hl = { fg = color.blue }, prefix = " ~" }),
+            nut.git.status.count("removed", { hl = { fg = color.red }, prefix = " -" }),
+          },
+        }),
+      }
+
+      for _, item in ipairs(common_left) do
+        stl:add_item(item)
+      end
+
       stl:add_item(nut.buf.filename({
         prefix = " ",
         suffix = " ",
@@ -93,9 +84,11 @@ return {
           modifier = ":p",
           format = function(filename, _)
             return filename:gsub("^" .. vim.env.HOME, "~")
-          end
-        }
+          end,
+        },
       }))
+
+      stl:add_item(nut.buf.filestatus({ prefix = "[", suffix = "] " }))
 
       stl:add_item(Item({
         hl = { bg = color.grey233, fg = color.orchid },
@@ -122,125 +115,86 @@ return {
           hint = { prefix = "󰌶 " },
         },
       }))
-      stl:add_item(Item({
-        hl = { bg = color.grey233, fg = color.red },
-        sep_left = sep.left_lower_triangle_solid(true),
-        prefix = " ",
-        content = function(_)
-          local s = require("molten.status").kernels()
-          if s == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
-            return ""
-          end
-          return s
-        end,
-        suffix = " ",
-        -- sep_right = sep.right_lower_triangle_solid(true),
-      }))
-      stl:add_item(nut.buf.filetype({
-        hl = { bg = "#4e4e4e" },
-        sep_left = sep.left_lower_triangle_solid(true),
-        prefix = " ",
-        suffix = " ",
-      }))
-      stl:add_item(Item({
-        hl = { link = color.blue },
-        sep_left = sep.left_lower_triangle_solid(true),
-        prefix = " ",
-        content = core.group({
-          core.code("l"),
-          ":",
-          core.code("c"),
+
+      local common_right = {
+        Item({
+          hl = { bg = color.grey233, fg = color.red },
+          sep_left = sep.left_lower_triangle_solid(true),
+          prefix = " ",
+          content = function(_)
+            local s = require("molten.status").kernels()
+            if s == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
+              return ""
+            end
+            return s
+          end,
+          suffix = " ",
         }),
-        suffix = " ",
-      }))
-      stl:add_item(Item({
-        hl = { bg = color.blue, fg = color.grey235 },
-        sep_left = sep.left_lower_triangle_solid(true),
+        nut.buf.filetype({
+          hl = { bg = "#4e4e4e" },
+          sep_left = sep.left_lower_triangle_solid(true),
+          prefix = " ",
+          suffix = " ",
+        }),
+        Item({
+          hl = { link = color.blue },
+          sep_left = sep.left_lower_triangle_solid(true),
+          prefix = " ",
+          content = core.group({
+            core.code("l"),
+            ":",
+            core.code("c"),
+          }),
+          suffix = " ",
+        }),
+        Item({
+          hl = { bg = color.blue, fg = color.grey235 },
+          sep_left = sep.left_lower_triangle_solid(true),
+          prefix = " ",
+          content = core.code("P"),
+          suffix = " ",
+        }),
+      }
+
+      for _, item in ipairs(common_right) do
+        stl:add_item(item)
+      end
+
+      -- hydra status line
+      local hsl = Bar("statusline")
+      hsl:add_item(Item({
+        hl = { bg = color.red, fg = color.black },
         prefix = " ",
-        content = core.code("P"),
+        content = "HYDRA",
         suffix = " ",
+        sep_right = sep.right_lower_triangle_solid(true),
+      }))
+      hsl:add_item(Item({
+        hl = { fg = color.red, bg = color.grey236 },
+        prefix = " ",
+        content = require("hydra.statusline").get_name,
+        suffix = " ",
+        sep_right = sep.right_lower_triangle_solid(true),
       }))
 
-      nougat.set_statusline(stl)
+      for _, item in ipairs(common_left) do
+        hsl:add_item(item)
+      end
+
+      hsl:add_item(nut.spacer())
+      hsl:add_item(Item({ prefix = " ", content = hydra, suffix = " " }))
+      hsl:add_item(nut.spacer())
+
+      for _, item in ipairs(common_right) do
+        hsl:add_item(item)
+      end
+
+      nougat.set_statusline(function(_) -- context
+        if require("hydra.statusline").is_active() then
+          return hsl
+        end
+        return stl
+      end)
     end,
   },
 }
-
--- old lualine (was really annoying to get custom separators to behave the way I wanted)
--- return {
---   {
---     "nvim-lualine/lualine.nvim",
---     dependencies = { "nvim-tree/nvim-web-devicons" },
---     cond = not MarkdownMode(),
---     config = function()
---       require("lualine").setup({
---         options = {
---           theme = "auto",
---           icons_enabled = true,
---           disabled_filetypes = {
---             statusline = {},
---             winbar = {},
---           },
---           ignore_focus = {},
---           always_divide_middle = true,
---           globalstatus = true,
---           refresh = {
---             statusline = 1000,
---             tabline = 1000,
---             winbar = 1000,
---           },
---         },
---         sections = {
---           lualine_a = { { "mode", separator = { right = "" } } },
---           lualine_b = {
---             { "branch", separator = { left = "", right = "" } },
---             -- MoonflyCrimsonLine xxx guifg=#ff5189 guibg=#303030
---             -- MoonflyEmeraldLine xxx guifg=#36c692 guibg=#303030
---             -- MoonflyGrey246Line xxx guifg=#949494 guibg=#1c1c1c
---             -- MoonflyYellowLine xxx guifg=#e3c78a guibg=#1c1c1c
---             -- MoonflyBlueLineActive xxx guifg=#80a0ff guibg=#444444
---             -- MoonflyRedLineActive xxx guifg=#ff5454 guibg=#444444
---             -- MoonflyWhiteLineActive xxx guifg=#e4e4e4 guibg=#444444
---             -- MoonflyYellowLineActive xxx guifg=#e3c78a guibg=#444444
---             {
---               "diff",
---               diff_color = {
---                 added = "MoonflyEmerald",
---                 modified = "MoonflySky",
---                 removed = "MoonflyRed",
---               },
---               separator = { left = "", right = "" },
---             },
---             {
---               "diagnostics",
---               separator = { left = "", right = "" },
---             },
---           },
---           lualine_c = {
---             { "filename", path = 1 },
---             require("benlubas.search_count").get_search_count,
---             hydra,
---           },
---           lualine_x = {
---             "encoding",
---             "fileformat",
---             -- require('molten.status').initialized,
---             require("molten.status").kernels,
---             -- require('molten.status').all_kernels,
---             "filetype",
---           },
---           lualine_y = { "progress" },
---           lualine_z = { "location" },
---         },
---         inactive_sections = {
---           lualine_a = {},
---           lualine_b = {},
---           lualine_c = { "filename" },
---           lualine_x = { "location" },
---           lualine_y = {},
---           lualine_z = {},
---         },
---       })
---     end,
---   },
--- }
