@@ -27,6 +27,7 @@ return {
       vim.g.molten_image_provider = "image.nvim"
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
+      vim.g.molten_auto_init_behavior = "init"
       vim.g.molten_output_win_max_height = 12
       -- vim.g.molten_output_virt_lines = true
       vim.g.molten_virt_text_output = true
@@ -90,7 +91,9 @@ return {
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "*.py",
         callback = function(e)
-          if string.match(e.file, ".otter.") then return end
+          if string.match(e.file, ".otter.") then
+            return
+          end
           if require("molten.status").initialized() == "Molten" then
             vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", false)
             vim.fn.MoltenUpdateOption("molten_virt_text_output", false)

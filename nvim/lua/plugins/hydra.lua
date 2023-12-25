@@ -37,32 +37,47 @@ return {
       body = "<leader>f",
       heads = {
         { "d", require("benlubas.telescope.project-files").project_files, { exit = true, nowait = true } },
-        { "a", function() vim.cmd("Telescope live_grep") end,   {  exit = true } },
-        { ".", function() tb.find_files({ hidden = true }) end, {  exit = true } },
+        { "a", tb.live_grep, { exit = true } },
+        {
+          ".",
+          function()
+            tb.find_files({ hidden = true })
+          end,
+          { exit = true },
+        },
         { "j", tb.current_buffer_fuzzy_find, { exit = true } },
-        { "s", function() tb.git_status() end, { exit = true } },
-        { "l",
+        { "s", tb.git_status, { exit = true } },
+        {
+          "l",
           function()
             local dir = vim.env.HOME .. "/github/.dotfiles"
             tb.find_files({
-              find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir } })
+              find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+              prompt_prefix = "~/.dotfiles/",
+            })
           end,
           { exit = true },
         },
-        { "n",
+        {
+          "n",
           function()
             local dir = vim.env.HOME .. "/notes"
-            tb.find_files({ find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir } })
+            tb.find_files({ find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+              prompt_prefix = "~/notes/" })
           end,
           { exit = true },
         },
-        { "m", require("benlubas.telescope.harpoon").harpoon_branch_marks_picker, { exit = true} },
-
-        { "f", tb.resume,                      { exit = true } },
+        { "m", require("benlubas.telescope.harpoon").harpoon_branch_marks_picker, { exit = true } },
+        { "f", tb.resume, { exit = true } },
         { "h", "<cmd>Telescope help_tags<CR>", { exit = true } },
-        { "r", tb.pickers,                     { exit = true } },
-        { "<Enter>", function() vim.cmd("Telescope") end },
-        { "<Esc>",   nil,                            { exit = true, nowait = true } },
+        { "r", tb.pickers, { exit = true } },
+        {
+          "<Enter>",
+          function()
+            vim.cmd("Telescope")
+          end,
+        },
+        { "<Esc>", nil, { exit = true, nowait = true } },
       },
     })
 
@@ -173,7 +188,7 @@ return {
         },
         {
           "c",
-          function ()
+          function()
             if vim.o.conceallevel == 0 then
               vim.o.conceallevel = 1
             else

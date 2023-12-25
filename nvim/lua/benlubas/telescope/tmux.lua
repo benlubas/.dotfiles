@@ -17,11 +17,14 @@ M.tmux_sessionizer_picker = function(opts)
   for line in io.popen("tmux-sessionizer --options"):lines() do
     table.insert(picker_list, line)
   end
+  -- ~/.local/share/nvim/lazy/nui.nvim/lua/nui/line/init.lua
 
-  opts = opts or require("telescope.themes").get_ivy({})
+  opts = opts or require("telescope.themes").get_ivy({
+    border = false,
+  })
   pickers
     .new(opts, {
-      prompt_title = "workspace",
+      prompt_title = "Workspace",
       finder = finders.new_table({
         results = picker_list,
       }),
@@ -48,7 +51,9 @@ M.tmux_sessions_picker = function(opts)
     table.insert(picker_list, session)
   end
 
-  opts = opts or require("telescope.themes").get_ivy({})
+  opts = opts or require("telescope.themes").get_ivy({
+    border = false
+  })
   pickers
     .new(opts, {
       prompt_title = "Session",

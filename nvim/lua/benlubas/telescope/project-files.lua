@@ -4,7 +4,13 @@
 local M = {}
 
 M.project_files = function()
-  local opts = {}
+  local opts = {
+    prompt_title = "",
+    prompt_prefix = "./",
+    results_title = "",
+    preview_title = "",
+    create_layout = require("benlubas.telescope.layouts.default"),
+  }
   local ok = pcall(require("telescope.builtin").git_files, opts)
   if not ok then
     require("telescope.builtin").find_files(opts)

@@ -69,7 +69,8 @@ M.harpoon_branch_marks_picker = function(opts)
   opts = opts or require("telescope.themes").get_dropdown({})
   pickers
     .new(opts, {
-      prompt_title = "branch",
+      prompt_prefix = "⇁ ",
+      prompt_title = "",
       finder = finders.new_table({
         results = picker_list,
         entry_maker = function(entry)
