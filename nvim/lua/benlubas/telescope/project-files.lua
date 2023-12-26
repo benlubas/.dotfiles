@@ -8,7 +8,7 @@ M.project_files = function()
     prompt_title = "",
     prompt_prefix = "./",
     results_title = "",
-    preview_title = "",
+    -- preview_title = "",
     create_layout = require("benlubas.telescope.layouts.default"),
   }
   local ok = pcall(require("telescope.builtin").git_files, opts)
