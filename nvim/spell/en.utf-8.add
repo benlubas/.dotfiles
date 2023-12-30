@@ -256,3 +256,10 @@ args
 rebase
 filetypes
 precompute
+keybind
+Accessor
+keymaps
+accessor
+statusline
+Jupytext
+bufnr

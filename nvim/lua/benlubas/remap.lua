@@ -24,10 +24,15 @@ vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
 vim.keymap.set("n", "M", ":M<CR>", { desc = "open messages in a float", silent = true })
 
-vim.keymap.set("n", "<leader>cp", [[:let @+ = expand("%:p")<CR>]],
-  { desc = "copy full path to clipboard", silent = true })
-vim.keymap.set("n", "<leader>ct", [[:let @+ = expand("%:t")<CR>]],
-  { desc = "copy relative path to clipboard", silent = true })
+vim.keymap.set("n", "<leader>yp", function()
+  vim.cmd.let("@+=", 'expand("%:p")')
+  vim.notify("copied full path to clipboard", vim.log.levels.INFO)
+end, { desc = "copy full path to clipboard", silent = true })
+
+vim.keymap.set("n", "<leader>yr", function()
+  vim.cmd.let("@+=", 'expand("%:t")')
+  vim.notify("copied filename to clipboard", vim.log.levels.INFO)
+end, { desc = "copy filename to clipboard", silent = true })
 
 vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "open signature help" })
 
@@ -43,24 +48,9 @@ vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>P", '"+P')
 
 -- add empty line above/below
-vim.keymap.set("n", "<leader>O", ":call BlankUp(1)<CR>", { silent = true })
-vim.keymap.set("n", "<leader>o", ":call BlankDown(1)<CR>", { silent = true })
+vim.keymap.set("n", "<leader>O", "m`O<esc>``", { silent = true, desc = "add empty line above" })
+vim.keymap.set("n", "<leader>o", "m`o<esc>``", { silent = true, desc = "add empty line below" })
 
--- be able to repeat those commands:
-vim.cmd([[
-  function! BlankUp(count) abort
-    put!=repeat(nr2char(10), 1)
-    ']+1
-    silent! call repeat#set(" O", a:count)
-  endfunction
-
-  function! BlankDown(count) abort
-    put =repeat(nr2char(10), 1)
-    '[-1
-    silent! call repeat#set(" o", a:count)
-  endfunction
-]])
-
--- zg -- add work under cursor to dictionary
+-- spelling related
 vim.keymap.set("n", "<leader>sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>st", "<cmd>set spell!<CR>")

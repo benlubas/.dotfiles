@@ -15,6 +15,8 @@ R = function(...)
   return require("plenary.reload").reload_module(...)
 end
 
+Border = { "▄", "▄", "▄", "█", "▀", "▀", "▀", "█" }
+
 IsLinux = function()
   return jit.os == "Linux"
 end

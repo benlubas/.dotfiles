@@ -2,19 +2,25 @@
 -- quarto.nvim is kinda related, as it lets me edit jupyter notebook type files, but that has it's
 -- own config file
 return {
-  { "goerz/jupytext.vim" },
-  -- {
-  --   "benlubas/NotebookNavigator.nvim",
-  --   dev = true,
-  --   opts = {},
-  --   keys = {
-  --     { "<localleader>x", "<cmd>lua require('notebook-navigator').run_cell()<cr>" },
-  --   },
-  -- },
+  -- { "goerz/jupytext.vim" },
+  {
+    "GCBallesteros/jupytext.nvim",
+    -- enabled = false,
+    dev = true,
+    opts = {
+      custom_language_formatting = {
+        python = {
+          extension = "md",
+          style = "markdown",
+          force_ft = "markdown",
+        },
+      },
+    },
+  },
   {
     "benlubas/molten-nvim",
-    -- dependencies = { "3rd/image.nvim" },
-    dependencies = { "benlubas/image.nvim", dev = true },
+    dependencies = { "3rd/image.nvim" },
+    -- dependencies = { "benlubas/image.nvim", dev = true },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -27,7 +33,6 @@ return {
       vim.g.molten_image_provider = "image.nvim"
       -- vim.g.molten_output_show_more = true
       vim.g.molten_output_win_border = { "", "━", "", "" }
-      vim.g.molten_auto_init_behavior = "init"
       vim.g.molten_output_win_max_height = 12
       -- vim.g.molten_output_virt_lines = true
       vim.g.molten_virt_text_output = true
@@ -65,13 +70,10 @@ return {
           end, { desc = "run all cells of all languages", silent = true })
 
           -- setup some molten specific keybindings
-          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>",
-            { desc = "evaluate operator", silent = true })
+          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { desc = "evaluate operator", silent = true })
           vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
-          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
-            { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
-            { desc = "open output window", silent = true })
+          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { desc = "execute visual selection", silent = true })
+          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>", { desc = "open output window", silent = true })
           vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
           vim.keymap.set("n", "<localleader>md", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
           local open = false
@@ -88,6 +90,7 @@ return {
         end,
       })
 
+      -- change the configuration when editing a python file
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = "*.py",
         callback = function(e)
@@ -97,6 +100,49 @@ return {
           if require("molten.status").initialized() == "Molten" then
             vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", false)
             vim.fn.MoltenUpdateOption("molten_virt_text_output", false)
+          end
+        end,
+      })
+
+      -- Undo those config changes when we go back to a markdown or quarto file
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = { "*.qmd", "*.md", "*.ipynb" },
+        callback = function(e)
+          if string.match(e.file, ".otter.") then
+            return
+          end
+          if require("molten.status").initialized() == "Molten" then
+            vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", true)
+            vim.fn.MoltenUpdateOption("molten_virt_text_output", true)
+          end
+        end,
+      })
+
+      -- automatically import output chunks from a jupyter notebook
+      vim.api.nvim_create_autocmd("BufWinEnter", {
+        pattern = { "*.ipynb" },
+        callback = function(e)
+          if string.match(e.file, ".otter.") then
+            return
+          end
+          local venv = os.getenv("VIRTUAL_ENV")
+          if venv ~= nil then
+            venv = string.match(venv, "/.+/(.+)")
+            vim.cmd(("MoltenInit %s"):format(venv))
+          end
+          vim.cmd("MoltenImportOutput")
+        end,
+      })
+
+      -- automatically export output chunks to a jupyter notebook
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = { "*.ipynb" },
+        callback = function(e)
+          if string.match(e.file, ".otter.") then
+            return
+          end
+          if require("molten.status").initialized() == "Molten" then
+            vim.cmd("MoltenExportOutput!")
           end
         end,
       })

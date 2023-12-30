@@ -16,9 +16,23 @@ return {
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      surrounds = {
+        ["l"] = {
+          add = function()
+            local clipboard = vim.fn.getreg("+")
+            return { { "[" }, { "](" .. clipboard .. ")" } }
+          end,
+          find = function()
+            local config = require("nvim-surround.config")
+            return config.get_selection({ node = "inline_link" })
+          end,
+          delete = "(%[)().-(%]%(.-%))()",
+        },
+      },
+    },
   },
-  { "benlubas/auto-save.nvim", cond = not MarkdownMode() },
+  { "benlubas/auto-save.nvim", dev = true, cond = not MarkdownMode() },
   {
     "mbbill/undotree",
     keys = {

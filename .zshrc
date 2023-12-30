@@ -104,6 +104,9 @@ alias amend="git commit --amend"
 alias pull="git pull"
 alias push="git push"
 
+alias ls="ls --color"
+alias la="ls -la"
+
 # grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything
 grg() {
   branch=$(git branch --show-current)

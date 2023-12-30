@@ -10,23 +10,12 @@ B = function(cmd)
 
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, true, lines)
   vim.api.nvim_buf_set_name(bufnr, "messages")
-  vim.api.nvim_buf_set_option(bufnr, "bufhidden", "delete")
+  vim.api.nvim_set_option_value("bufhidden", "delete", { buf = bufnr })
 
-  local width = vim.api.nvim_get_option("columns")
-  local height = vim.api.nvim_get_option("lines")
-
-  local winnr = vim.api.nvim_open_win(bufnr, true, {
-    title = { { "━━━━━━━━", "FloatBorder" }, { " messages (newlines condensed) ", "Title" } },
-    border = { "", "━", "", "", "", "", "", "" },
-    relative = "editor",
-    width = width,
-    height = height / 2 - 1,
-    col = 0,
-    row = height - height / 2 - 2,
-  })
-  vim.api.nvim_win_set_option(winnr, "winhighlight", "Normal:MsgArea,NormalNC:MsgArea")
-
-  return winnr
+  vim.cmd("12split")
+  vim.api.nvim_set_current_buf(bufnr)
 end
 
-vim.api.nvim_create_user_command("M", function(_) B("messages") end, {})
+vim.api.nvim_create_user_command("M", function(_)
+  B("messages")
+end, {})

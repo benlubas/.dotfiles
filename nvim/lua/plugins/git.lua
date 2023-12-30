@@ -4,7 +4,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = true,
     keys = {
-      { -- default <leader>gy is a default mapping that includes the line number
+      {
         "<leader>gY",
         function()
           require("gitlinker").get_buf_range_url("n", { add_current_line_on_normal_mode = false })

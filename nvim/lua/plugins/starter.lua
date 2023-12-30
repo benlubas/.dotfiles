@@ -6,7 +6,7 @@ local function harpoon_marks()
       if i > 4 then
         break
       end
-      local file_name = P(mark.filename)
+      local file_name = mark.filename
       local tail = file_name:match("^.+/(.+)$")
       if tail == nil then
         tail = file_name

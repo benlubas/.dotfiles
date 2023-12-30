@@ -68,15 +68,10 @@ return {
             enable = true,
             set_jumps = false,
             goto_next_start = {
-              ["]b"] = { query = "@block.inner", desc = "next code block" },
-              -- These are the recommended binds, but they also catch on markdown headings. block
-              -- does not
-              -- ["]b"] = { query = "@class.inner", desc = "next block" },
+              ["]b"] = { query = "@code_cell.inner", desc = "next code block" },
             },
             goto_previous_start = {
-              ["[b"] = { query = "@block.inner", desc = "previous code block" },
-              -- These are the recommended binds, but they also catch on markdown headings.
-              -- ["[b"] = { query = "@class.inner", desc = "previous block" },
+              ["[b"] = { query = "@code_cell.inner", desc = "previous code block" },
             },
           },
           select = {
@@ -93,17 +88,21 @@ return {
               ["a/"] = { query = "@regex.outer", desc = "around regex" },
               ["iP"] = { query = "@parameter.inner", desc = "in parameter" },
               ["in"] = { query = "@number.inner", desc = "in number" },
-              ["ib"] = { query = "@block.inner", desc = "in block" },
-              ["ab"] = { query = "@block.outer", desc = "around block" },
+              ["ib"] = { query = "@code_cell.inner", desc = "in block" },
+              ["ab"] = { query = "@code_cell.outer", desc = "around block" },
             },
           },
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>a"] = "@parameter.inner",
+              ["<leader>spl"] = "@parameter.inner",
+              ["<leader>sfl"] = "@function.outer",
+              ["<leader>sbl"] = "@code_cell.outer",
             },
             swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
+              ["<leader>sph"] = "@parameter.inner",
+              ["<leader>sfh"] = "@function.outer",
+              ["<leader>sbh"] = "@code_cell.outer",
             },
           },
         },

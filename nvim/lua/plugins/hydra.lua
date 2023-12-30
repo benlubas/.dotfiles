@@ -1,5 +1,8 @@
 return {
+  -- "nvimtools/hydra.nvim",
+  -- dev = true,
   "benlubas/hydra.nvim",
+  branch = "readme_overhaul",
   config = function()
     vim.api.nvim_set_hl(0, "HydraRed", { link = "MoonflyRed" })
     vim.api.nvim_set_hl(0, "HydraBlue", { link = "MoonflySky" })
@@ -7,8 +10,15 @@ return {
     vim.api.nvim_set_hl(0, "HydraTeal", { link = "MoonflyTurquoise" })
     vim.api.nvim_set_hl(0, "HydraPink", { link = "MoonflyCrimson" })
 
-    local hydra = require("hydra")
+    local colors = require("moonfly").palette
+    vim.api.nvim_set_hl(0, "HydraHint", { bg = colors.grey234 })
+    vim.api.nvim_set_hl(0, "HydraBorder", { fg = colors.grey234 })
+    vim.api.nvim_set_hl(0, "HydraTitle", { fg = colors.black, bg = colors.blue })
+    vim.api.nvim_set_hl(0, "HydraFooter", { fg = colors.black, bg = colors.red })
+
+    local Hydra = require("hydra")
     local hint = [[
+
   _d_: files              _a_: live grep
   _._: all + .files       _j_: current buffer fuzzy find
   _s_: modified files     _l_: ~/dotfiles
@@ -21,7 +31,7 @@ return {
 ]]
 
     local tb = require("telescope.builtin")
-    hydra({
+    Hydra({
       name = "Telescope",
       hint = hint,
       config = {
@@ -30,14 +40,18 @@ return {
         invoke_on_body = true,
         hint = {
           position = "middle",
-          border = "rounded",
+          float_opts = {
+            border = Border,
+            title = " Telescope hydra ",
+            title_pos = "center",
+          },
         },
       },
       mode = "n",
       body = "<leader>f",
       heads = {
         { "d", require("benlubas.telescope.project-files").project_files, { exit = true, nowait = true } },
-        { "a", tb.live_grep, { exit = true } },
+        { "a", tb.live_grep,                                              { exit = true } },
         {
           ".",
           function()
@@ -46,7 +60,7 @@ return {
           { exit = true },
         },
         { "j", tb.current_buffer_fuzzy_find, { exit = true } },
-        { "s", tb.git_status, { exit = true } },
+        { "s", tb.git_status,                { exit = true } },
         {
           "l",
           function()
@@ -62,15 +76,17 @@ return {
           "n",
           function()
             local dir = vim.env.HOME .. "/notes"
-            tb.find_files({ find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
-              prompt_prefix = "~/notes/" })
+            tb.find_files({
+              find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+              prompt_prefix = "~/notes/"
+            })
           end,
           { exit = true },
         },
         { "m", require("benlubas.telescope.harpoon").harpoon_branch_marks_picker, { exit = true } },
-        { "f", tb.resume, { exit = true } },
-        { "h", "<cmd>Telescope help_tags<CR>", { exit = true } },
-        { "r", tb.pickers, { exit = true } },
+        { "f", tb.resume,                                                         { exit = true } },
+        { "h", "<cmd>Telescope help_tags<CR>",                                    { exit = true } },
+        { "r", tb.pickers,                                                        { exit = true } },
         {
           "<Enter>",
           function()
@@ -82,9 +98,7 @@ return {
     })
 
     local options_hint = [[
-  ^ ^        Options
-  ^
-  _v_ %{ve} virtual edit
+
   _i_ %{list} invisible characters
   _s_ %{spell} spell
   _w_ %{wrap} wrap
@@ -92,11 +106,12 @@ return {
   _n_ %{nu} number
   _r_ %{rnu} relative number
   _c_ %{con} conceal
+  _t_ %{txtw} textwidth
   ^
        ^^^^                _<Esc>_
 ]]
 
-    hydra({
+    Hydra({
       name = "Options",
       hint = options_hint,
       config = {
@@ -104,7 +119,20 @@ return {
         invoke_on_body = true,
         hint = {
           position = "middle",
-          border = "rounded",
+          float_opts = {
+            border = Border,
+            title = " Options Hydra ",
+            title_pos = "center",
+          },
+          funcs = {
+            ["txtw"] = function()
+              if vim.o.textwidth == 0 then
+                return "[ ]"
+              else
+                return "[x]"
+              end
+            end
+          }
         },
       },
       mode = { "n" },
@@ -132,16 +160,6 @@ return {
           end,
         },
         {
-          "v",
-          function()
-            if vim.o.virtualedit == "all" then
-              vim.o.virtualedit = "block"
-            else
-              vim.o.virtualedit = "all"
-            end
-          end,
-        },
-        {
           "i",
           function()
             if vim.o.list == true then
@@ -164,15 +182,28 @@ return {
         {
           "w",
           function()
+            local maps = {
+              { "n", "j", "gj" },
+              { "n", "k", "gk" },
+              { "n", "$", "g$" },
+              { "n", "_", "g0" },
+              { "n", "0", "g0" },
+              { "v", "j", "gj" },
+              { "v", "k", "gk" },
+              { "v", "$", "g$" },
+              { "v", "_", "g0" },
+              { "v", "0", "g0" },
+            }
             if vim.o.wrap ~= true then
               vim.o.wrap = true
-              -- Allow j and k to always move a line up or down even if it's a wrapped line
-              vim.keymap.set("n", "k", "gk", { silent = true, desc = "up" })
-              vim.keymap.set("n", "j", "gj", { silent = true, desc = "down" })
+              for _, map in ipairs(maps) do
+                vim.keymap.set(map[1], map[2], map[3])
+              end
             else
               vim.o.wrap = false
-              vim.keymap.del("n", "k")
-              vim.keymap.del("n", "j")
+              for _, map in ipairs(maps) do
+                pcall(vim.keymap.del, map[1], map[2])
+              end
             end
           end,
         },
@@ -193,6 +224,16 @@ return {
               vim.o.conceallevel = 1
             else
               vim.o.conceallevel = 0
+            end
+          end,
+        },
+        {
+          "t",
+          function()
+            if vim.o.textwidth == 0 then
+              vim.o.textwidth = 100
+            else
+              vim.o.textwidth = 0
             end
           end,
         },

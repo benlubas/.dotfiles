@@ -24,36 +24,19 @@ chmod +x ~/github/.dotfiles/symlink.sh
 ```
 Note: sourcing zsh rc is probably going to fail the first time you try it
 
-6. [Homebrew](https://brew.sh/) (mac only due to the use of cask)
-  - quickly install almost everything with `brew bundle --file=./Brewfile`
-  - this installs nvim, wezterm, and the jetbrains mono nerd font
+## mac
 
-5. Rust (shouldn't install with brew)
+quickly install almost everything with `brew bundle --file=./Brewfile`
+
+Install rust separately
   - [Rust](https://rust-land.com/install) the brew way will mess with `rustup` which is
   annoying for updating and switching between versions.
+## Nixos
 
-6. NVIM
-  - install it somehow
-  - You should be able to just run `v` to launch nvim
-  - Deps
-    - install JetBrains font from [Nerdfonts](https://www.nerdfonts.com/font-downloads)
-      - set that as the default terminal font
-    - A bunch of language servers need to be installed with `:Mason`
-    - Run `:checkhealth` and see if I forgot something
+- Go clone [my nix config](https://github.com/benlubas/nix-config)
 
-7. Alacritty
-  - install it somehow
+## Both (for now)
 
-8. [Antidote](https://github.com/mattmc3/antidote) for zsh
-
-9. Tmux and [TPM](https://github.com/tmux-plugins/tpm)
-  - If you're on a mac, follow [this](https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95)
-
-10. Quarto for editing .ipynb files as markdown and then re-exporting them.
-
-## TODO:
-- [x] Sync branches
-- [ ] Moonfly theme for `bat` (and as a result, git delta)
-- [ ] nix? maybe one day
-
-See also the [nvim TODO items](./nvim/notes.md)
+- [Antidote](https://github.com/mattmc3/antidote) for zsh plugins, I might package these on nix at
+some point
+- Neovim plugins are managed by lazy, see the [nvim/](./nvim/)

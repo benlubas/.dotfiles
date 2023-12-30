@@ -12,7 +12,8 @@ return {
     "benlubas/nvim-cmp",
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
-    "benlubas/hydra.nvim",
+    -- { "nvimtools/hydra.nvim", dev = true },
+    { "benlubas/hydra.nvim", branch = "readme_overhaul" },
   },
   ft = { "quarto", "markdown" },
   config = function()
@@ -45,12 +46,10 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview,
-      { desc = "Preview the Quarto document", silent = true, noremap = true })
+    vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview, { desc = "Preview the Quarto document", silent = true, noremap = true })
     -- to create a cell in insert mode, I have the ` snippet
     vim.keymap.set("n", "<localleader>cc", "i```{}\r```<up><right>", { desc = "Create a new code cell", silent = true })
-    vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>",
-      { desc = "Split code cell", silent = true, noremap = true })
+    vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>", { desc = "Split code cell", silent = true, noremap = true })
 
     -- for more keybinds that I would use in a quarto document, see the configuration for molten
 
@@ -63,6 +62,12 @@ return {
         color = "pink",
         invoke_on_body = true,
         hint = false,
+        on_exit = function()
+          vim.schedule(function() require("nougat").refresh_statusline(true) end)
+        end,
+        on_enter = function()
+          require("nougat").refresh_statusline(true)
+        end,
       },
       mode = { "n" },
       body = "<localleader>j",
