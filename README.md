@@ -4,6 +4,8 @@ All the things
 
 At some point I might rewrite this in nix... I'm not sure.
 
+More about my neovim setup [here](./nvim/README.md).
+
 ## New Machine Setup
 1. Add a new SSH key for Github
   - `ssh-keygen -t ed25519 -C "benmlubas@gmail.com"`
@@ -22,9 +24,9 @@ At some point I might rewrite this in nix... I'm not sure.
 chmod +x ~/github/.dotfiles/symlink.sh
 ~/github/.dotfiles/symlink.sh
 ```
-Note: sourcing zsh rc is probably going to fail the first time you try it
+Note: sourcing zshrc is probably going to fail the first time you try it
 
-## mac
+## Mac
 
 quickly install almost everything with `brew bundle --file=./Brewfile`
 
@@ -39,4 +41,5 @@ Install rust separately
 
 - [Antidote](https://github.com/mattmc3/antidote) for zsh plugins, I might package these on nix at
 some point
-- Neovim plugins are managed by lazy, see the [nvim/](./nvim/)
+- Neovim plugins are managed by lazy, they should auto install on launch. You're mostly on your own
+  for language servers.

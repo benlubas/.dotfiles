@@ -1,11 +1,10 @@
 # Ben-vim
 
-Haha, get it ... get it ? ... hey! come back!
+Haha, get it ... get it?
 
 ---
 
-Welcome to my neovim setup. The `main` branch is for me, the `stable` branch is for people that want
-to try this out, but this isn't really intended for other people to use as is, it's more something
+Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
 that you can look through and take ideas from.
 
 ## Theme and Visual Elements
@@ -124,6 +123,7 @@ Integrations:
   <summary>Hydras</summary>
 
 I have a few hydras:
+
 - Telescope `<leader>f` just a fancy way to go my telescope binds
 - Options `<leader><leader>o` easily change common options
 - Windows `<C-w>` easily repeat window navigation, movement, resize actions
@@ -137,22 +137,22 @@ I have a few hydras:
 I have configuration for [firenvim](https://github.com/glacambre/firenvim), which makes it easier to
 edit markdown for web fields. These slightly altered settings are used for editing prs and issues
 with `gh`
-  
+
 </details>
 
 ## Neat Custom Stuff
 
 <details>
-  <summary>View `:mes` in a buffer</summary>
+  <summary>View `:messages` in a buffer</summary>
 
-You can view the output of `:mes` in a floating buffer with `M` or `:M`. The function that does this
+You can view the output of `:messages` in a floating buffer with `M` or `:M`. The function that does this
 is exposed as `:lua B()` and you can use it like `:lua B("highlight")` to see the output of the
 highlight command in a buffer (doesn't support highlighting though, ironically)
 
 </details>
 
 <details>
-  <summary>Search Count</summary>
+  <summary>Search count</summary>
 
 I have an in house solution for the search count problem. By default, `/` to search will only show
 `[n/99]` items. This is a royal pain for when I just want to count the number of times something
@@ -167,5 +167,13 @@ count in my status line when there's an active search.
 I can't think of the last time I've wanted to copy code to my clipboard and preserve the leading
 whitespace. So I wrote a function that removes it. [code](./lua/benlubas/smart_copy.lua) and
 [usage](./lua/benlubas/autocommands.lua)
+
+</details>
+
+<details>
+  <summary>Remove duplicates from lsp go to definition</summary>
+
+I use a custom go to definition [handler](./lua/benlubas/lsp_handlers.lua) from @ seblj which
+removes results that are on the same line as each other (luals does this a lot).
 
 </details>
