@@ -54,8 +54,8 @@ return {
     -- for more keybinds that I would use in a quarto document, see the configuration for molten
 
     -- hydra
-    local hydra = require("hydra")
-    hydra({
+    local Hydra = require("hydra")
+    Hydra({
       name = "QuartoNavigator",
       hint = false,
       config = {

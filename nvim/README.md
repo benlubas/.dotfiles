@@ -1,18 +1,12 @@
 # Ben-vim
 
-Haha, get it ... get it?
+Haha, get it ... get it ? ... hey! come back!
 
 ---
 
-Welcome to the neovim setup. The `main` branch is for me, the `stable` branch is for people that
-want to try this out, but this isn't really intended for other people to use as is, it's more
-something that you can look through and take ideas from.
-
-This is ever improving. Here are the current TODO items:
-
-- [x] Hydra floating window border customization
-- [x] harpoon files from Oil.nvim buffer
-- [x] Nvim surround link surround
+Welcome to my neovim setup. The `main` branch is for me, the `stable` branch is for people that want
+to try this out, but this isn't really intended for other people to use as is, it's more something
+that you can look through and take ideas from.
 
 ## Theme and Visual Elements
 
@@ -129,10 +123,24 @@ Integrations:
 <details>
   <summary>Hydras</summary>
 
-I have a few hydras.
+I have a few hydras:
+- Telescope `<leader>f` just a fancy way to go my telescope binds
+- Options `<leader><leader>o` easily change common options
+- Windows `<C-w>` easily repeat window navigation, movement, resize actions
+- Quarto Navigator `<localleader>j` quickly move around markdown notebooks and run code
+
 </details>
 
-## Other cool stuff
+<details>
+  <summary>Firenvim</summary>
+
+I have configuration for [firenvim](https://github.com/glacambre/firenvim), which makes it easier to
+edit markdown for web fields. These slightly altered settings are used for editing prs and issues
+with `gh`
+  
+</details>
+
+## Neat Custom Stuff
 
 <details>
   <summary>View `:mes` in a buffer</summary>
@@ -150,5 +158,14 @@ I have an in house solution for the search count problem. By default, `/` to sea
 `[n/99]` items. This is a royal pain for when I just want to count the number of times something
 shows up in a file, so I have written [this](./lua/benlubas/search_count.lua). I put the search
 count in my status line when there's an active search.
+
+</details>
+
+<details>
+  <summary>Yank to clipboard cleans leading whitespace</summary>
+
+I can't think of the last time I've wanted to copy code to my clipboard and preserve the leading
+whitespace. So I wrote a function that removes it. [code](./lua/benlubas/smart_copy.lua) and
+[usage](./lua/benlubas/autocommands.lua)
 
 </details>

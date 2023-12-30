@@ -69,7 +69,8 @@ return {
           ["<C-s>"] = { callback = function()
             local dir = require("oil").get_current_dir()
             local entry = require("oil").get_cursor_entry()
-            if entry == nil then
+            ---@diagnostic disable-next-line: undefined-field
+            if entry == nil or entry.type ~= "file" then
               return
             end
 
