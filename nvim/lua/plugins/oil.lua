@@ -66,7 +66,19 @@ return {
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
-          ["<C-s>"] = false,
+          ["<C-s>"] = { callback = function()
+            local dir = require("oil").get_current_dir()
+            local entry = require("oil").get_cursor_entry()
+            if entry == nil then
+              return
+            end
+
+            ---@diagnostic disable-next-line: undefined-field
+            local path = dir .. entry.name
+            local cwd = vim.fn.getcwd() .. "/"
+            path = path:gsub(cwd, "")
+            require("harpoon.mark").add_file(path)
+          end, desc = "harpoon file", mode = "n" },
           ["<C-h>"] = false,
           ["<C-t>"] = false,
           ["<C-p>"] = false,

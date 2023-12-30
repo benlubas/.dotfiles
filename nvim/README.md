@@ -5,83 +5,100 @@ Haha, get it ... get it?
 ---
 
 Welcome to the neovim setup. The `main` branch is for me, the `stable` branch is for people that
-want to try this out, but this isn't intended for other people to use as is, it's more something
-that you can look through and take ideas from.
+want to try this out, but this isn't really intended for other people to use as is, it's more
+something that you can look through and take ideas from.
 
 This is ever improving. Here are the current TODO items:
-- [ ] Hydra floating window border customization
-- [ ] harpoon files from Oil.nvim buffer
-- [ ] Nvim surround link surround
+
+- [x] Hydra floating window border customization
+- [x] harpoon files from Oil.nvim buffer
+- [x] Nvim surround link surround
 
 ## Theme and Visual Elements
 
 No borders on floating windows unless they need a title, Molten floats are the exception
 
-- bluz71/vim-moonfly-colors but I've customized a lot of the plugin highlight groups
-- MunifTanjim/nougat.nvim status line fixed to the bottom (no tabline)
+- [bluz71/vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors) but I've customized
+  a lot of the plugin highlights myself
+- [MunifTanjim/nougat.nvim](https://github.com/MunifTanjim/nougat.nvim) status line fixed to the
+  bottom (no tabline)
+- [luukvbaal/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) status col
 
 ## Plugins
 
-Plugins organized by the workflow that I use them for
+Plugins categorized somewhat arbitrarily:
 
 <details>
   <summary>Base - basic often small but powerful plugins</summary>
 
-- kylechui/nvim-surround
-- benlubas/auto-save.nvim
-- mbbill/undotree
-- LunarVim/bigfile.nvim (with custom config to disable neoscroll)
-- max397574/better-escape.nvim
-- echasnovski/mini.trailspace
+- [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
+  - Custom surround for markdown links
+- [benlubas/auto-save.nvim](https://github.com/benlubas/auto-save.nvim)
+- [mbbill/undotree](https://github.com/mbbill/undotree)
+- [LunarVim/bigfile.nvim](https://github.com/LunarVim/bigfile.nvim) (with custom config to disable
+  neoscroll)
+- [max397574/better-escape.nvim](https://github.com/max397574/better-escape.nvim)
+- [echasnovski/mini.trailspace](https://github.com/echasnovski/mini.trailspace)
+- [benlubas/wrapping-paper.nvim](https://github.com/benlubas/wrapping-paper.nvim)
 </details>
 
 <details>
   <summary>Auto Completion and Snippets</summary>
 
-- benlubas/nvim-cmp
+- [benlubas/nvim-cmp](https://github.com/benlubas/nvim-cmp)
   - I use my own fork of nvim-cmp that adds two features:
     - Select-nth item; used for mapping `<A-n>` to select the `nth` item in the completion menu.
     - Numbering the options; aid for the `<A-n>` keybinds
   - There's a branch called `up_to_date` that I sync with upstream every few months if you'd like to
     use this feature as well, and [here's](https://github.com/hrsh7th/nvim-cmp/pull/1491) the PR to
     add this functionality to cmp.
-- L3MON4D3/LuaSnip (custom snippets in [lua/snippets/](./lua/snippets/))
-- windwp/nvim-autopairs
+- [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip)
+  - custom snippets in [lua/snippets/](./lua/snippets/), there are a lot of react test library
+    snippets and some other random ones
+- [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 
 Completion sources:
 
-- hrsh7th/cmp-buffer
-- hrsh7th/cmp-nvim-lsp
-- hrsh7th/cmp-path
-- petertriho/cmp-git
+- [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer)
+- [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)
+- [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path)
+- [petertriho/cmp-git](https://github.com/petertriho/cmp-git)
 
 </details>
 
 <details>
   <summary>Jupyter Notebook Workflow</summary>
  
-I wrote a [Reddit post](https://www.reddit.com/r/neovim/comments/17ynpg2/how_to_edit_jupyter_notebooks_in_neovim_with_very/)
-about this setup, the short of it is: these plugin allow me to interact with `.ipynb` files seamlessly™.
+- [GCBallesteros/jupytext.nvim](https://github.com/GCBallesteros/jupytext.nvim)
+- [benlubas/molten-nvim](https://github.com/benlubas/molten-nvim)
+- [3rd/image.nvim](https://github.com/3rd/image.nvim)
+- [quarto-dev/quarto-nvim](https://github.com/quarto-dev/quarto-nvim)
+- [jmbuhr/otter.nvim](https://github.com/jmbuhr/otter.nvim)
 
-- goerz/jupytext.vim
-- benlubas/molten-nvim
-- 3rd/image.nvim
-- quarto-dev/quarto-nvim
-- jmbuhr/otter.nvim
+This setup is documented in the molten-nvim
+[docs](https://github.com/benlubas/molten-nvim/blob/main/docs/Notebook-Setup.md) and lets me:
+
+- open `.ipynb` files like normal, they're displayed as plaintext, outputs are loaded automatically
+  and shown, including images
+- run code cell by cell, and view and interact with output in editor (again including images)
+- easily add new cells, delete them, move them around
+- `:w` to save to `.ipynb` format with output chunks saved as well
 
 </details>
 
 <details>
   <summary>Telescope</summary>
 
-All of my telescope pickers make use of [telescope.nvim#2572](https://github.com/nvim-telescope/telescope.nvim/pull/2572),
-opting for custom layouts using MunifTanjim/nui.nvim instead of using builtin telescope themes.
-Layouts are located at [/lua/benlubas/telescope/layouts](./lua/benlubas/telescope/layouts).
+All of my telescope pickers make use of
+[telescope.nvim#2572](https://github.com/nvim-telescope/telescope.nvim/pull/2572), opting for custom
+layouts using [MunifTanjim/nui.nvim](https://github.com/MunifTanjim/nui.nvim) instead of using
+builtin telescope themes. Layouts are located at
+[/lua/benlubas/telescope/layouts](./lua/benlubas/telescope/layouts).
 
-- default: the default layout that's used for all of my file pickers
-- ivy: a custom ivy-like layout that sits at the bottom of the screen. Used for tmux-sessionizer
-- spelling: a tiny little window used for spelling suggestions, positioned to match the start of the
-  word so that spelling suggestions line up as if you were seeing completion menu suggestions
+- **default**: the default layout that's used for all of my file pickers
+- **ivy**: a custom ivy-like layout that sits at the bottom of the screen. Used for tmux-sessionizer
+- **spelling**: a tiny little window used for spelling suggestions, positioned to match the start of
+  the word so that spelling suggestions line up as if you were seeing completion menu suggestions
 
 I have mapping for all the normal ones, like project files, current buf fuzzy find, etc. I have
 custom pickers (located here [/lua/benlubas/telescope/](./lua/benlubas/telescope/)) for:
@@ -100,12 +117,19 @@ I also have a custom action that lets me harpoon a file from the telescope resul
 I use a fork that enables some better highlights, and git branch caching, as I use git branch
 specific keys, and fetching them on an M2 Mac is slow enough to be noticeable.
 
-- benlubas/harpoon
+- [benlubas/harpoon](https://github.com/benlubas/harpoon)
 
 Integrations:
-- custom picker in telescope for importing marks from other branches
-- custom telescope action to mark files
-- custom keybind in oil to mark files
+
+- [custom picker in telescope for importing marks from other branches](./lua/benlubas/telescope/harpoon.lua)
+- [custom telescope action to mark files](./lua/benlubas/telescope/harpoon.lua)
+- [custom keybind in oil to mark files](./lua/plugins/oil.lua)
+</details>
+
+<details>
+  <summary>Hydras</summary>
+
+I have a few hydras.
 </details>
 
 ## Other cool stuff
