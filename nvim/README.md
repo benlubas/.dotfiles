@@ -7,32 +7,49 @@ Haha, get it ... get it?
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
 that you can look through and take ideas from.
 
-## Theme and Visual Elements
+## Plugins
+
+Categorized somewhat arbitrarily:
+
+<details>
+  <summary>Theme and Visual Elements</summary>
 
 No borders on floating windows unless they need a title, Molten floats are the exception
 
-- [bluz71/vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors) but I've customized
-  a lot of the plugin highlights myself
-- [MunifTanjim/nougat.nvim](https://github.com/MunifTanjim/nougat.nvim) status line fixed to the
-  bottom (no tabline)
-- [luukvbaal/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim) status col
+- [bluz71/vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors)
+  - I've customized a lot of plugin highlights myself
+  - I also use this theme in my terminal, and tmux bar
+- [MunifTanjim/nougat.nvim](https://github.com/MunifTanjim/nougat.nvim)
+  - status line (fixed to the bottom) I don't use a window or tab line
+- [luukvbaal/statuscol.nvim](https://github.com/luukvbaal/statuscol.nvim)
+  - easy status column customization
+- [kevinhwang91/nvim-ufo](https://github.com/kevinhwang91/nvim-ufo)
+- [lukas-reineke/headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
+- [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [benlubas/neoscroll.nvim](https://github.com/benlubas/neoscroll.nvim)
+  - my own fork that adds time scaling and an on/off switch that I use in bigfile
+- [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
+- [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 
-## Plugins
+I have a [noice](https://github.com/folke/noice.nvim) config in here too, but I don't currently use
+it. It's caused too many problems and I'm not able to configure it quite the way that I want to, but
+I'm definitely keeping my eye on it.
 
-Plugins categorized somewhat arbitrarily:
+</details>
 
 <details>
-  <summary>Base - basic often small but powerful plugins</summary>
+  <summary>Base - simple but powerful plugins</summary>
 
 - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
   - Custom surround for markdown links
 - [benlubas/auto-save.nvim](https://github.com/benlubas/auto-save.nvim)
 - [mbbill/undotree](https://github.com/mbbill/undotree)
-- [LunarVim/bigfile.nvim](https://github.com/LunarVim/bigfile.nvim) (with custom config to disable
-  neoscroll)
+- [LunarVim/bigfile.nvim](https://github.com/LunarVim/bigfile.nvim)
+  - with custom config to disable neoscroll
 - [max397574/better-escape.nvim](https://github.com/max397574/better-escape.nvim)
-- [echasnovski/mini.trailspace](https://github.com/echasnovski/mini.trailspace)
 - [benlubas/wrapping-paper.nvim](https://github.com/benlubas/wrapping-paper.nvim)
+- [ruifm/gitlinker.nvim](https://github.com/ruifm/gitlinker.nvim)
+- [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 </details>
 
 <details>
@@ -61,9 +78,10 @@ Completion sources:
 
 <details>
   <summary>Jupyter Notebook Workflow</summary>
- 
+
 - [GCBallesteros/jupytext.nvim](https://github.com/GCBallesteros/jupytext.nvim)
 - [benlubas/molten-nvim](https://github.com/benlubas/molten-nvim)
+  - this plugin is amazing btw. go check it out
 - [3rd/image.nvim](https://github.com/3rd/image.nvim)
 - [quarto-dev/quarto-nvim](https://github.com/quarto-dev/quarto-nvim)
 - [jmbuhr/otter.nvim](https://github.com/jmbuhr/otter.nvim)
@@ -117,6 +135,9 @@ Integrations:
 - [custom picker in telescope for importing marks from other branches](./lua/benlubas/telescope/harpoon.lua)
 - [custom telescope action to mark files](./lua/benlubas/telescope/harpoon.lua)
 - [custom keybind in oil to mark files](./lua/plugins/oil.lua)
+
+I'll switch to harpoon 2 when it's more feature complete
+
 </details>
 
 <details>
@@ -135,8 +156,8 @@ I have a few hydras:
   <summary>Firenvim</summary>
 
 I have configuration for [firenvim](https://github.com/glacambre/firenvim), which makes it easier to
-edit markdown for web fields. These slightly altered settings are used for editing prs and issues
-with `gh`
+edit markdown for web fields. These slightly altered settings are also used for editing prs and
+issues with `gh`
 
 </details>
 

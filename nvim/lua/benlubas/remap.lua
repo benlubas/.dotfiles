@@ -54,3 +54,7 @@ vim.keymap.set("n", "<leader>o", "m`o<esc>``", { silent = true, desc = "add empt
 -- spelling related
 vim.keymap.set("n", "<leader>sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>st", "<cmd>set spell!<CR>")
+
+-- remove trailing spaces. Only affect the current line in markdown files
+vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']],
+  { desc = "remove trailing spaces", expr = true, silent = true })

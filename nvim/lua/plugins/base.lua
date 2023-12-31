@@ -71,14 +71,4 @@ return {
       mapping = { "jk", "kj" }, -- why not both
     },
   },
-  {
-    "echasnovski/mini.trailspace",
-    keys = {
-      {
-        "<leader>ds",
-        ":lua require('mini.trailspace').trim()<CR>",
-        desc = "trim trailing whitespace",
-      },
-    },
-  },
 }

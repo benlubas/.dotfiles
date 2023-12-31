@@ -34,14 +34,13 @@ return {
         local starter = require("mini.starter")
 
         -- highlights
-        vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "MoonflyCrimson" })
-
-        vim.api.nvim_set_hl(0, "MiniStarterCurrent", { link = "MoonflyBlueLineActive" })
+        vim.api.nvim_set_hl(0, "MiniStarterCurrent", { link = "MoonflyWhiteLineActive" })
         vim.api.nvim_set_hl(0, "MiniStarterFooter", { link = "MoonflyGrey239" })
         vim.api.nvim_set_hl(0, "MiniStarterHeader", { link = "MoonflyGrey237" })
-        vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", { link = "MoonflyKhaki" })
+        vim.api.nvim_set_hl(0, "MiniStarterItem", { link = "MoonflyGrey246" })
+        vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", { link = "MoonflyWhite" })
         vim.api.nvim_set_hl(0, "MiniStarterSection", { link = "MoonflyBlue" })
-        vim.api.nvim_set_hl(0, "MiniStarterQuery", { link = "MoonflyBlue" })
+        vim.api.nvim_set_hl(0, "MiniStarterQuery", { link = "MoonflyCrimson" })
 
         starter.setup({
           -- perform action when there's only one matching item
