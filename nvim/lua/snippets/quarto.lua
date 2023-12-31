@@ -13,15 +13,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 ls.add_snippets("quarto", {
   -- code cell
   s(
-    "c",
-    fmt(
-      [[```{{{}}}
-{}
-```]],
-      { c(1, { t("python"), t("") }), i(0) }
-    )
-  ),
-  s(
     "`",
     fmt(
       [[```{{{}}}

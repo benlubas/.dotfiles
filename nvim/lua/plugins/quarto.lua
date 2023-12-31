@@ -48,7 +48,7 @@ return {
 
     vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview, { desc = "Preview the Quarto document", silent = true, noremap = true })
     -- to create a cell in insert mode, I have the ` snippet
-    vim.keymap.set("n", "<localleader>cc", "i```{}\r```<up><right>", { desc = "Create a new code cell", silent = true })
+    vim.keymap.set("n", "<localleader>cc", "i`<c-j>", { desc = "Create a new code cell", silent = true })
     vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>", { desc = "Split code cell", silent = true, noremap = true })
 
     -- for more keybinds that I would use in a quarto document, see the configuration for molten
@@ -57,7 +57,7 @@ return {
     local Hydra = require("hydra")
     Hydra({
       name = "QuartoNavigator",
-      hint = false,
+      hint = "_j_/_k_: ↑/↓ _o_/_O_: new cell ↓/↑ _l_: run _s_how _h_ide run _a_bove _q_uit",
       config = {
         color = "pink",
         invoke_on_body = true,
@@ -75,7 +75,7 @@ return {
         { "j", keys("]b"), { desc = "↓", remap = true, noremap = false } },
         { "k", keys("[b"), { desc = "↑", remap = true, noremap = false } },
         { "o", keys("/```<CR>:nohl<CR>o<CR>`<c-j>"), { desc = "new cell ↓", exit = true } },
-        { "O", keys("?```{<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { desc = "new cell ↑", exit = true } },
+        { "O", keys("?```.<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { desc = "new cell ↑", exit = true } },
         { "l", ":QuartoSend<CR>", { desc = "run" } },
         { "s", ":noautocmd MoltenEnterOutput<CR>", { desc = "show" } },
         { "h", ":MoltenHideOutput<CR>", { desc = "hide" } },

@@ -2,11 +2,11 @@ local ls = require("luasnip")
 
 local s = ls.snippet
 local i = ls.insert_node
--- local t = ls.text_node
+local t = ls.text_node
 -- local d = ls.dynamic_node
 -- local f = ls.function_node
--- local c = ls.choice_node
-local rep = require("luasnip.extras").rep
+local c = ls.choice_node
+-- local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("markdown", {
@@ -26,3 +26,16 @@ ls.add_snippets("markdown", {
 })
 
 ls.filetype_extend("quarto", { "markdown" })
+
+ls.add_snippets("markdown", {
+  -- code cell
+  s(
+    "`",
+    fmt(
+      [[```{}
+{}
+``]],
+      { c(1, { t("python"), t("lua"), t("") }), i(0) }
+    )
+  ),
+})
