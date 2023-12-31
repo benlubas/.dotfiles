@@ -5,7 +5,11 @@ Haha, get it ... get it?
 ---
 
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
-that you can look through and take ideas from.
+that you can look through and take ideas from. This is what it generally looks like:
+
+
+https://github.com/benlubas/.dotfiles/assets/56943754/061b7aa5-b462-4de3-a9e4-aae692acd1d5
+
 
 ## Plugins
 
