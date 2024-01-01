@@ -23,7 +23,6 @@ Hydra({
     hint = {
       position = "middle",
       float_opts = {
-        border = Border,
         title = " Options Hydra ",
         title_pos = "center",
       },

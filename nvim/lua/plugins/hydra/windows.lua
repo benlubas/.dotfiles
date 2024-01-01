@@ -8,7 +8,7 @@ local window_hint = [[
  ^ ^ _j_ ^ ^  ^ ^ ^ _J_ ^ ^    ^   _-_   ^      _q_: close
  focus^^^^^^  ^window^^^^  ^^^_=_: equalize ^   _z_: max height
  ^ ^ ^ ^ ^ ^  ^ ^ ^ ^ ^ ^ ^  ^^ ^           ^   _x_: max width
- ^ ^ ^ ^ ^ ^  ^ ^ ^ ^ ^ ^ ^  ^^ ^           ^   _o_: remain only
+ ^ _b_: choose buffer ^ ^^^ ^ ^ ^ ^ ^ ^ ^^ ^^   _o_: remain only
 ]]
 
 Hydra({
@@ -16,11 +16,6 @@ Hydra({
   hint = window_hint,
   config = {
     invoke_on_body = true,
-    hint = {
-      float_opts = {
-        border = Border,
-      }
-    },
   },
   mode = "n",
   body = "<C-w>",
@@ -49,6 +44,12 @@ Hydra({
     { "z", "<c-w>_", { desc = "maximize height" } },
     { "x", "<c-w>|", { desc = "maximize width" } },
     { "o", "<C-w>o", { exit = true, desc = "remain only" } },
+
+    {
+      "b",
+      function() require("benlubas.telescope.project-files").project_files() end,
+      { exit = true, desc = "choose buffer" },
+    },
 
     { "q", ":q<CR>", { desc = "close window" } },
 

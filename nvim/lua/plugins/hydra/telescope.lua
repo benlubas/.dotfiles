@@ -24,8 +24,7 @@ Hydra({
     hint = {
       position = "middle",
       float_opts = {
-        border = Border,
-        title = " Telescope hydra ",
+        title = " Telescope Hydra ",
         title_pos = "center",
       },
     },

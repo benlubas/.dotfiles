@@ -1,6 +1,7 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter-context",
+    "benlubas/nvim-treesitter-context",
+    branch = "collapse_context",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
@@ -10,6 +11,16 @@ return {
     opts = {
       enable_autocmd = false,
     },
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "<leader>sh", ":TSJJoin<CR>", silent = true },
+      { "<leader>sl", ":TSJSplit<CR>", silent = true },
+    },
+    opts = {
+      use_default_keymaps = false,
+    }
   },
   {
     "numToStr/Comment.nvim",
@@ -86,7 +97,8 @@ return {
               ["iv"] = { query = "@assignment.rhs", desc = "in value" },
               ["i/"] = { query = "@regex.inner", desc = "in regex" },
               ["a/"] = { query = "@regex.outer", desc = "around regex" },
-              ["iP"] = { query = "@parameter.inner", desc = "in parameter" },
+              ["ia"] = { query = "@parameter.inner", desc = "in parameter" },
+              ["aa"] = { query = "@parameter.outer", desc = "around parameter" },
               ["in"] = { query = "@number.inner", desc = "in number" },
               ["ib"] = { query = "@code_cell.inner", desc = "in block" },
               ["ab"] = { query = "@code_cell.outer", desc = "around block" },
@@ -95,14 +107,16 @@ return {
           swap = {
             enable = true,
             swap_next = {
-              ["<leader>spl"] = "@parameter.inner",
+              ["<leader>sal"] = "@parameter.inner",
               ["<leader>sfl"] = "@function.outer",
               ["<leader>sbl"] = "@code_cell.outer",
+              ["<leader>snl"] = "@number.outer",
             },
             swap_previous = {
-              ["<leader>sph"] = "@parameter.inner",
+              ["<leader>sah"] = "@parameter.inner",
               ["<leader>sfh"] = "@function.outer",
               ["<leader>sbh"] = "@code_cell.outer",
+              ["<leader>snh"] = "@number.outer",
             },
           },
         },

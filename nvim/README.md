@@ -7,9 +7,29 @@ Haha, get it ... get it?
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
 that you can look through and take ideas from. This is what it generally looks like:
 
-
 https://github.com/benlubas/.dotfiles/assets/56943754/061b7aa5-b462-4de3-a9e4-aae692acd1d5
 
+## File Structure
+
+```
+├── after
+│   ├── ftplugin
+│   └── queries
+├── ftplugin
+├── lua
+│   ├── benlubas
+│   │   ├── telescope           # custom telescope layouts
+│   │   ├── set.lua             # setting vim options
+│   │   ├── remap.lua           # keymaps
+│   │   └── ... others          # other various code
+│   ├── plugins                 # lazy plugin specs
+│   │   ├── hydra               # hydra config, each hydra gets its own file
+│   │   └── ... specs
+│   └── snippets                # luasnip snippets
+├── data                        # I keep telescope sources here
+├── templates                   # neorg templates
+└── init.lua                    # entry point
+```
 
 ## Plugins
 
@@ -46,6 +66,7 @@ I'm definitely keeping my eye on it.
 
 - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
   - Custom surround for markdown links
+- [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
 - [benlubas/auto-save.nvim](https://github.com/benlubas/auto-save.nvim)
 - [mbbill/undotree](https://github.com/mbbill/undotree)
 - [LunarVim/bigfile.nvim](https://github.com/LunarVim/bigfile.nvim)
@@ -145,6 +166,23 @@ I'll switch to harpoon 2 when it's more feature complete
 </details>
 
 <details>
+  <summary>Treesitter and related</summary>
+
+- [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+  - I make heavy use of these in my notebook workflow, and just in general this plugin is awesome
+- [JoosepAlviste/nvim-ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring)
+- [Wansmer/treesj](https://github.com/Wansmer/treesj)
+- [windwp/nvim-ts-autotag](https://github.com/windwp/nvim-ts-autotag)
+- [benlubas/nvim-treesitter-context](https://github.com/benlubas/nvim-treesitter-context)
+  - Fork that hackily adds back the collapsing context nodes into one line. It doesn't have syntax
+    highlighting b/c that is a lot of work, and I want to keep this as compatible as possible with
+    upstream (even though it would not get accepted in it's current state)
+- [chrisgrieser/nvim-various-textobjs](https://github.com/chrisgrieser/nvim-various-textobjs)
+  - I use this for the `subword` text object. This is a must have
+
+</details>
+
+<details>
   <summary>Hydras</summary>
 
 I have a few hydras:
@@ -162,6 +200,23 @@ I have a few hydras:
 I have configuration for [firenvim](https://github.com/glacambre/firenvim), which makes it easier to
 edit markdown for web fields. These slightly altered settings are also used for editing prs and
 issues with `gh`
+
+</details>
+
+<details>
+  <summary>IDE type stuff</summary>
+  
+- [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
+- [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+- [nvim-neotest/neotest](https://github.com/nvim-neotest/neotest)
+
+This stuff is great when I use it
+
+Best dap configuration option:
+
+```lua
+vim.fn.sign_define("DapBreakpoint", { text = "ඞ", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
+```
 
 </details>
 
