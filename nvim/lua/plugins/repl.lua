@@ -8,19 +8,22 @@ return {
     -- enabled = false,
     dev = true,
     opts = {
-      custom_language_formatting = {
-        python = {
-          extension = "md",
-          style = "markdown",
-          force_ft = "markdown",
-        },
-      },
+      style = "markdown",
+      output_extension = "md",
+      force_ft = "markdown",
+      -- custom_language_formatting = {
+      --   python = {
+      --     extension = "md",
+      --     style = "markdown",
+      --     force_ft = "markdown",
+      --   },
+      -- },
     },
   },
   {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim" },
-    -- dependencies = { "benlubas/image.nvim", dev = true },
+    dependencies = { "3rd/image.nvim", dev = true },
+    -- dependencies = { "3rd/image.nvim" },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -107,10 +110,7 @@ return {
       -- Undo those config changes when we go back to a markdown or quarto file
       vim.api.nvim_create_autocmd("BufEnter", {
         pattern = { "*.qmd", "*.md", "*.ipynb" },
-        callback = function(e)
-          if string.match(e.file, ".otter.") then
-            return
-          end
+        callback = function()
           if require("molten.status").initialized() == "Molten" then
             vim.fn.MoltenUpdateOption("molten_virt_lines_off_by_1", true)
             vim.fn.MoltenUpdateOption("molten_virt_text_output", true)
@@ -121,10 +121,7 @@ return {
       -- automatically import output chunks from a jupyter notebook
       vim.api.nvim_create_autocmd("BufWinEnter", {
         pattern = { "*.ipynb" },
-        callback = function(e)
-          if string.match(e.file, ".otter.") then
-            return
-          end
+        callback = function()
           local venv = os.getenv("VIRTUAL_ENV")
           if venv ~= nil then
             venv = string.match(venv, "/.+/(.+)")
@@ -137,10 +134,7 @@ return {
       -- automatically export output chunks to a jupyter notebook
       vim.api.nvim_create_autocmd("BufWritePost", {
         pattern = { "*.ipynb" },
-        callback = function(e)
-          if string.match(e.file, ".otter.") then
-            return
-          end
+        callback = function()
           if require("molten.status").initialized() == "Molten" then
             vim.cmd("MoltenExportOutput!")
           end

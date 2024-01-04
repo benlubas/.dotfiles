@@ -4,18 +4,26 @@ description: {DESC}
 authors: benlubas
 categories: journal
 created: 2024-01-01T00:08:43-0500
-updated: 2024-01-01T00:33:15-0500
+updated: 2024-01-02T10:33:08-0500
 version: 1.1.1
 @end
+
+{{:{YESTERDAY_PATH}:}}[Yesterday] - {{:{TOMORROW_PATH}:}}[Tomorrow]
+
+* Daily Goals
+
+  - ( ) Workout
+  -- ( ) 20 Push-ups
+  -- ( ) 15 Squats
+  - ( ) Apply to at least one job
 
 * {TODAY}
   Rating: {RATING}/5
   Weather: {WEATHER}
-  Sleep: {SLEEP} hours
 
-** Agenda
+** Things I did
   {CURSOR}
 
-** Still Undone
+** Things I want to do tomorrow
 
-** Thoughts
+** Thoughts on the day

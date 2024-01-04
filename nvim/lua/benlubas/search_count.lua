@@ -78,6 +78,6 @@ vim.keymap.set("n", "#", function()
   vim.opt.hlsearch = true
 end, { desc = "search backwards for the word under the cursor" })
 
-vim.keymap.set("n", "<leader><leader>f", toggle_highlight, { desc = "toggle search highlight" })
+vim.keymap.set("n", "<c-n>", toggle_highlight, { desc = "toggle search highlight" })
 
 return M

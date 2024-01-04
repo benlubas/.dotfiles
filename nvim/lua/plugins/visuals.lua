@@ -99,7 +99,7 @@ return {
       require("headlines").setup({
         markdown = custom,
         quarto = vim.tbl_deep_extend("force", require("headlines").config.markdown, qmd),
-        neorg = custom,
+        neorg = vim.tbl_deep_extend("force", custom, { fat_headlines = false }),
       })
     end,
   },

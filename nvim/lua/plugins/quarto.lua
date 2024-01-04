@@ -15,7 +15,7 @@ return {
     -- { "nvimtools/hydra.nvim", dev = true },
     { "benlubas/hydra.nvim", branch = "readme_overhaul" },
   },
-  ft = { "quarto", "markdown" },
+  ft = { "quarto", "markdown", "norg" },
   config = function()
     local quarto = require("quarto")
     quarto.setup({

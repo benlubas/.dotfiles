@@ -4,7 +4,7 @@ local servers = {
   "bashls",
   "clangd",
   "clojure_lsp",
-  "cssls",
+  -- "cssls",
   "emmet_language_server",
   "html",
   "lua_ls",

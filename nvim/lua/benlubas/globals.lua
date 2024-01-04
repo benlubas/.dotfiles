@@ -1,13 +1,9 @@
 -- prints and returns the thing as a string
 P = function(...)
-  local thing = nil
   for _, v in ipairs({...}) do
-    if thing == nil then
-      thing = v
-    end
     print(vim.inspect(v))
   end
-  return thing
+  return ...
 end
 
 -- reloads the given modules.
