@@ -40,7 +40,7 @@ return {
               keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
               keybinds.map("norg", "i", "-(", "- ( ) ")
               keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
-              keybinds.remap_event("norg", "i", "/date", "core.tempus.insert-date-insert-mode")
+              keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
             end,
           },
         },
@@ -143,11 +143,11 @@ return {
       -- Map all the below keybinds only when the "norg" mode is active
       keybinds.map_event_to_mode("norg", {
         n = { -- Bind keys in normal mode
-          { "<leader>fnl", "core.integrations.telescope.find_linkable" },
+          { "<localleader>fl", "core.integrations.telescope.find_linkable" },
         },
 
         i = { -- Bind in insert mode
-          { "/li", "core.integrations.telescope.insert_link" },
+          { "\\li", "core.integrations.telescope.insert_link" },
         },
       }, {
         silent = true,

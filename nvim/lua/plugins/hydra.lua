@@ -1,5 +1,6 @@
 return {
   "nvimtools/hydra.nvim",
+  dependencies = { "MunifTanjim/nougat.nvim" },
   dev = true,
   config = function()
     vim.api.nvim_set_hl(0, "HydraRed", { link = "MoonflyRed" })
@@ -14,19 +15,26 @@ return {
     vim.api.nvim_set_hl(0, "HydraTitle", { fg = colors.black, bg = colors.blue })
     vim.api.nvim_set_hl(0, "HydraFooter", { fg = colors.black, bg = colors.red })
 
-    require("hydra.defaults").setup({
+    require("hydra").setup({
       hint = {
         type = "window",
         show_name = false,
-        position = { "bottom" },
+        position = { "middle" },
         float_opts = {
           border = Border,
         },
       },
+      on_enter = function()
+        require("nougat").refresh_statusline(true)
+      end,
+      on_exit = function()
+        vim.schedule(function()
+          require("nougat").refresh_statusline(true)
+        end)
+      end,
     })
 
-    require("plugins.hydra.telescope")
-    require("plugins.hydra.options")
-    require("plugins.hydra.windows")
+    require("benlubas.hydra.options")
+    require("benlubas.hydra.windows")
   end,
 }

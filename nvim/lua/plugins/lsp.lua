@@ -1,4 +1,4 @@
--- list of servers that will automatically be installed and setup with defaults
+-- list of servers that will automatically be setup with defaults (NOT INSTALLED)
 -- to add custom settings, just call setup again after the for loop
 local servers = {
   "bashls",
@@ -13,6 +13,7 @@ local servers = {
   "rust_analyzer",
   "svelte",
   "tsserver",
+  "typst_lsp",
 }
 
 return {

@@ -7,8 +7,6 @@ Haha, get it ... get it?
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
 that you can look through and take ideas from. This is what it generally looks like:
 
-https://github.com/benlubas/.dotfiles/assets/56943754/061b7aa5-b462-4de3-a9e4-aae692acd1d5
-
 ## File Structure
 
 ```
@@ -19,12 +17,11 @@ https://github.com/benlubas/.dotfiles/assets/56943754/061b7aa5-b462-4de3-a9e4-aa
 ├── lua
 │   ├── benlubas
 │   │   ├── telescope           # custom telescope layouts
+│   │   ├── hydra               # hydras that are loaded with other plugins
 │   │   ├── set.lua             # setting vim options
 │   │   ├── remap.lua           # keymaps
 │   │   └── ... others          # other various code
 │   ├── plugins                 # lazy plugin specs
-│   │   ├── hydra               # hydra config, each hydra gets its own file
-│   │   └── ... specs
 │   └── snippets                # luasnip snippets
 ├── data                        # I keep telescope sources here
 ├── templates                   # neorg templates

@@ -30,7 +30,7 @@ local plugins = {
   { import = "plugins.folds" },
   { import = "plugins.git" },
   { import = "plugins.harpoon" },
-  { import = "plugins.hydra.hydra" },
+  { import = "plugins.hydra" },
   { import = "plugins.images" },
   { import = "plugins.leap" },
   { import = "plugins.line" },
@@ -44,6 +44,7 @@ local plugins = {
   { import = "plugins.starter" },
   { import = "plugins.telescope" },
   { import = "plugins.treesitter" },
+  { import = "plugins.typst" },
   { import = "plugins.visuals" },
 }
 

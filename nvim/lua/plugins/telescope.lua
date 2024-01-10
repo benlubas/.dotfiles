@@ -1,4 +1,7 @@
--- NOTE: I have a lot of telescope mappings setup as "Hydras" see nvim/lua/plugins/hydra.lua
+-- NOTE: I have a lot of telescope mappings setup as "Hydras" see
+-- nvim/lua/benlubas/hydra/telescope.lua
+
+-- I use layouts defined at nvim/lua/benlubas/telescope/layouts
 
 return {
   {
@@ -172,6 +175,8 @@ return {
       vim.keymap.set("v", "<leader>*", function()
         require("telescope.builtin").grep_string({ search = vim.getVisualSelection() })
       end, { desc = "grep for highlighted text" })
+
+      require("benlubas.hydra.telescope")
     end,
   },
 }

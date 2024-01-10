@@ -1,29 +1,11 @@
--- this is the file for repl like functionality in code.
+-- this is the file for repl like functionality in code
 -- quarto.nvim is kinda related, as it lets me edit jupyter notebook type files, but that has it's
 -- own config file
 return {
-  -- { "goerz/jupytext.vim" },
-  {
-    "GCBallesteros/jupytext.nvim",
-    -- enabled = false,
-    dev = true,
-    opts = {
-      style = "markdown",
-      output_extension = "md",
-      force_ft = "markdown",
-      -- custom_language_formatting = {
-      --   python = {
-      --     extension = "md",
-      --     style = "markdown",
-      --     force_ft = "markdown",
-      --   },
-      -- },
-    },
-  },
   {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim", dev = true },
-    -- dependencies = { "3rd/image.nvim" },
+    -- dependencies = { "3rd/image.nvim", dev = true },
+    dependencies = { "3rd/image.nvim" },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -42,6 +24,7 @@ return {
       vim.g.molten_use_border_highlights = true
       vim.g.molten_virt_lines_off_by_1 = true
       vim.g.molten_wrap_output = true
+      vim.g.molten_tick_rate = 175
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ir", function()
@@ -121,11 +104,25 @@ return {
       -- automatically import output chunks from a jupyter notebook
       vim.api.nvim_create_autocmd("BufWinEnter", {
         pattern = { "*.ipynb" },
-        callback = function()
-          local venv = os.getenv("VIRTUAL_ENV")
-          if venv ~= nil then
-            venv = string.match(venv, "/.+/(.+)")
-            vim.cmd(("MoltenInit %s"):format(venv))
+        callback = function(e)
+          local kernels = vim.fn.MoltenAvailableKernels()
+
+          local try_kernel_name = function()
+            local metadata = vim.json.decode(io.open(e.file, "r"):read("a"))["metadata"]
+            return metadata.kernelspec.name
+          end
+          local ok, kernel_name = pcall(try_kernel_name)
+
+          if not ok or not vim.tbl_contains(kernels, kernel_name) then
+            kernel_name = nil
+            local venv = os.getenv("VIRTUAL_ENV")
+            if venv ~= nil then
+              kernel_name = string.match(venv, "/.+/(.+)")
+            end
+          end
+
+          if kernel_name ~= nil and vim.tbl_contains(kernels, kernel_name) then
+            vim.cmd(("MoltenInit %s"):format(kernel_name))
           end
           vim.cmd("MoltenImportOutput")
         end,

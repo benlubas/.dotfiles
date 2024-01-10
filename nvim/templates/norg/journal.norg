@@ -4,7 +4,7 @@ description: {DESC}
 authors: benlubas
 categories: journal
 created: 2024-01-01T00:08:43-0500
-updated: 2024-01-02T10:33:08-0500
+updated: 2024-01-04T12:36:18-0500
 version: 1.1.1
 @end
 
@@ -12,7 +12,7 @@ version: 1.1.1
 
 * Daily Goals
 
-  - ( ) Workout
+  - ( ) Workout / Physical Activity
   -- ( ) 20 Push-ups
   -- ( ) 15 Squats
   - ( ) Apply to at least one job
@@ -26,4 +26,4 @@ version: 1.1.1
 
 ** Things I want to do tomorrow
 
-** Thoughts on the day
+** Thoughts

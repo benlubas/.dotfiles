@@ -62,7 +62,7 @@ return {
       require("nvim-treesitter.configs").setup({
         highlight = {
           enable = true,
-          additional_vim_regex_highlighing = false,
+          additional_vim_regex_highlighing = { "typst" },
         },
         indent = {
           enable = true,

@@ -1,88 +1,64 @@
-local function keys(str)
-  return function()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(str, true, false, true), "m", true)
-  end
-end
-
 return {
-  "quarto-dev/quarto-nvim",
-  -- dev = true,
-  dependencies = {
-    { "jmbuhr/otter.nvim" }, -- , dev = true },
-    "benlubas/nvim-cmp",
-    "neovim/nvim-lspconfig",
-    "nvim-treesitter/nvim-treesitter",
-    -- { "nvimtools/hydra.nvim", dev = true },
-    { "benlubas/hydra.nvim", branch = "readme_overhaul" },
+  {
+    "GCBallesteros/jupytext.nvim",
+    -- enabled = false,
+    -- dev = true,
+    opts = {
+      style = "markdown",
+      output_extension = "md",
+      force_ft = "markdown",
+    },
   },
-  ft = { "quarto", "markdown", "norg" },
-  config = function()
-    local quarto = require("quarto")
-    quarto.setup({
-      lspFeatures = {
-        languages = { "r", "python", "rust" },
-        chunks = "all", -- 'curly' or 'all'
-        diagnostics = {
+  {
+    "quarto-dev/quarto-nvim",
+    -- dev = true,
+    dependencies = {
+      { "jmbuhr/otter.nvim" }, -- , dev = true },
+      "benlubas/nvim-cmp",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+      { "benlubas/hydra.nvim", branch = "readme_overhaul" },
+    },
+    ft = { "quarto", "markdown", "norg" },
+    config = function()
+      local quarto = require("quarto")
+      quarto.setup({
+        lspFeatures = {
+          languages = { "r", "python", "rust" },
+          chunks = "all", -- 'curly' or 'all'
+          diagnostics = {
+            enabled = true,
+            triggers = { "BufWritePost" },
+          },
+          completion = {
+            enabled = true,
+          },
+        },
+        keymap = {
+          hover = "H",
+          definition = "gd",
+          rename = "<leader>rn",
+          references = "gr",
+          format = "<leader>gf",
+        },
+        codeRunner = {
           enabled = true,
-          triggers = { "BufWritePost" },
+          ft_runners = {
+            bash = "slime",
+          },
+          default_method = "molten",
         },
-        completion = {
-          enabled = true,
-        },
-      },
-      keymap = {
-        hover = "H",
-        definition = "gd",
-        rename = "<leader>rn",
-        references = "gr",
-        format = "<leader>gf",
-      },
-      codeRunner = {
-        enabled = true,
-        ft_runners = {
-          bash = "slime",
-        },
-        default_method = "molten",
-      },
-    })
+      })
 
-    vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview, { desc = "Preview the Quarto document", silent = true, noremap = true })
-    -- to create a cell in insert mode, I have the ` snippet
-    vim.keymap.set("n", "<localleader>cc", "i`<c-j>", { desc = "Create a new code cell", silent = true })
-    vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>", { desc = "Split code cell", silent = true, noremap = true })
+      vim.keymap.set("n", "<localleader>qp", quarto.quartoPreview,
+        { desc = "Preview the Quarto document", silent = true, noremap = true })
+      -- to create a cell in insert mode, I have the ` snippet
+      vim.keymap.set("n", "<localleader>cc", "i`<c-j>", { desc = "Create a new code cell", silent = true })
+      vim.keymap.set("n", "<localleader>cs", "i```\r\r```{}<left>",
+        { desc = "Split code cell", silent = true, noremap = true })
 
-    -- for more keybinds that I would use in a quarto document, see the configuration for molten
-
-    -- hydra
-    local Hydra = require("hydra")
-    Hydra({
-      name = "QuartoNavigator",
-      hint = "_j_/_k_: ↑/↓ _o_/_O_: new cell ↓/↑ _l_: run _s_how _h_ide run _a_bove _q_uit",
-      config = {
-        color = "pink",
-        invoke_on_body = true,
-        hint = false,
-        on_exit = function()
-          vim.schedule(function() require("nougat").refresh_statusline(true) end)
-        end,
-        on_enter = function()
-          require("nougat").refresh_statusline(true)
-        end,
-      },
-      mode = { "n" },
-      body = "<localleader>j",
-      heads = {
-        { "j", keys("]b"), { desc = "↓", remap = true, noremap = false } },
-        { "k", keys("[b"), { desc = "↑", remap = true, noremap = false } },
-        { "o", keys("/```<CR>:nohl<CR>o<CR>`<c-j>"), { desc = "new cell ↓", exit = true } },
-        { "O", keys("?```.<CR>:nohl<CR><leader>kO<CR>`<c-j>"), { desc = "new cell ↑", exit = true } },
-        { "l", ":QuartoSend<CR>", { desc = "run" } },
-        { "s", ":noautocmd MoltenEnterOutput<CR>", { desc = "show" } },
-        { "h", ":MoltenHideOutput<CR>", { desc = "hide" } },
-        { "a", ":QuartoSendAbove<CR>", { desc = "run above" } },
-        { "<esc>", nil, { exit = true } },
-        { "q", nil, { exit = true } },
-      },
-    })
-  end,
+      -- for more keybinds that I would use in a quarto document, see the configuration for molten
+      require("benlubas.hydra.notebook")
+    end,
+  },
 }
