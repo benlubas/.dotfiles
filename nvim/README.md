@@ -37,7 +37,8 @@ Categorized somewhat arbitrarily:
 <details>
   <summary>Theme and Visual Elements</summary>
 
-No borders on floating windows unless they need a title, Molten floats are the exception
+No borders (or invisible looking borders) on floating windows unless they need a title, Molten
+floats are the exception.
 
 - [bluz71/vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors)
   - I've customized a lot of plugin highlights myself
@@ -50,7 +51,7 @@ No borders on floating windows unless they need a title, Molten floats are the e
 - [lukas-reineke/headlines.nvim](https://github.com/lukas-reineke/headlines.nvim)
 - [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
 - [benlubas/neoscroll.nvim](https://github.com/benlubas/neoscroll.nvim)
-  - my own fork that adds time scaling and an on/off switch that I use in bigfile
+  - my own fork that merged the time scaling PR and adds an on/off switch that I use in bigfile
 - [folke/which-key.nvim](https://github.com/folke/which-key.nvim)
 - [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 
@@ -145,7 +146,7 @@ builtin telescope themes. Layouts are located at
   the word so that spelling suggestions line up as if you were seeing completion menu suggestions  
   ![image](https://github.com/benlubas/.dotfiles/assets/56943754/3e5c60b3-c980-4fcf-97c0-f2c623890093)
 
-I have mapping for all the normal ones, like project files, current buf fuzzy find, etc. I have
+I have mappings for all the normal ones, like project files, current buf fuzzy find, etc. I have
 custom pickers (located here [/lua/benlubas/telescope/](./lua/benlubas/telescope/)) for:
 
 - Importing Harpoon marks that were used on other branches
@@ -187,9 +188,9 @@ I'll switch to harpoon 2 when it's more feature complete
 - [benlubas/nvim-treesitter-context](https://github.com/benlubas/nvim-treesitter-context)
   - Fork that hackily adds back the collapsing context nodes into one line. It doesn't have syntax
     highlighting b/c that is a lot of work, and I want to keep this as compatible as possible with
-    upstream (even though it would not get accepted in it's current state)
+    upstream (even though it would not get accepted in its current state)
 - [chrisgrieser/nvim-various-textobjs](https://github.com/chrisgrieser/nvim-various-textobjs)
-  - I use this for the `subword` text object. This is a must have
+  - The `subword` text object is a must have
 
 </details>
 
@@ -198,7 +199,7 @@ I'll switch to harpoon 2 when it's more feature complete
 
 I have a few hydras:
 
-- Telescope `<leader>f` just a fancy way to go my telescope binds
+- Telescope `<leader>f` just a fancy way to see my telescope binds
 - Options `<leader><leader>o` easily change common options
 - Windows `<C-w>` easily repeat window navigation, movement, resize actions
 - Quarto Navigator `<localleader>j` quickly move around markdown notebooks and run code
@@ -211,19 +212,19 @@ I have a few hydras:
   <summary>Firenvim</summary>
 
 I have configuration for [firenvim](https://github.com/glacambre/firenvim), which makes it easier to
-edit markdown for web fields. These slightly altered settings are also used for editing prs and
-issues with `gh`
+edit markdown for web fields. TL;DR: textwidth off, wrap on. These slightly altered settings are
+also used for editing prs and issues with `gh`
 
 </details>
 
 <details>
   <summary>IDE type stuff</summary>
-  
+
 - [mfussenegger/nvim-dap](https://github.com/mfussenegger/nvim-dap)
 - [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [nvim-neotest/neotest](https://github.com/nvim-neotest/neotest)
 
-This stuff is great when I use it
+This stuff is great when I need to use it. But it mostly just sits there.
 
 Best dap configuration option:
 
