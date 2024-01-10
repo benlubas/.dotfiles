@@ -2,6 +2,8 @@
 
 Haha, get it ... get it?
 
+![image](https://github.com/benlubas/.dotfiles/assets/56943754/65060852-7dac-411b-b32f-268ddb14edeb)
+
 ---
 
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
@@ -61,6 +63,8 @@ I'm definitely keeping my eye on it.
 <details>
   <summary>Base - simple but powerful plugins</summary>
 
+  ![image](https://github.com/benlubas/.dotfiles/assets/56943754/50e0a7de-f1cb-4061-b129-ccfc4167f8fb)
+
 - [kylechui/nvim-surround](https://github.com/kylechui/nvim-surround)
   - Custom surround for markdown links
 - [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim)
@@ -72,10 +76,13 @@ I'm definitely keeping my eye on it.
 - [benlubas/wrapping-paper.nvim](https://github.com/benlubas/wrapping-paper.nvim)
 - [ruifm/gitlinker.nvim](https://github.com/ruifm/gitlinker.nvim)
 - [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [stevearc/oil.nvim](https://github.com/stevearc/oil.nvim) "simple plugins"
 </details>
 
 <details>
   <summary>Auto Completion and Snippets</summary>
+
+![image](https://github.com/benlubas/.dotfiles/assets/56943754/08d780d5-27aa-4e2d-87fe-5c2af10c8d97)
 
 - [benlubas/nvim-cmp](https://github.com/benlubas/nvim-cmp)
   - I use my own fork of nvim-cmp that adds two features:
@@ -129,9 +136,14 @@ builtin telescope themes. Layouts are located at
 [/lua/benlubas/telescope/layouts](./lua/benlubas/telescope/layouts).
 
 - **default**: the default layout that's used for all of my file pickers
+  ![image](https://github.com/benlubas/.dotfiles/assets/56943754/19e4d5e2-e6db-4f40-85ae-6d66fb3f75cf)
+
 - **ivy**: a custom ivy-like layout that sits at the bottom of the screen. Used for tmux-sessionizer
+  ![image](https://github.com/benlubas/.dotfiles/assets/56943754/c2cc6a17-8cfc-4425-bf13-03cad034363f)
+
 - **spelling**: a tiny little window used for spelling suggestions, positioned to match the start of
-  the word so that spelling suggestions line up as if you were seeing completion menu suggestions
+  the word so that spelling suggestions line up as if you were seeing completion menu suggestions  
+  ![image](https://github.com/benlubas/.dotfiles/assets/56943754/3e5c60b3-c980-4fcf-97c0-f2c623890093)
 
 I have mapping for all the normal ones, like project files, current buf fuzzy find, etc. I have
 custom pickers (located here [/lua/benlubas/telescope/](./lua/benlubas/telescope/)) for:
@@ -146,6 +158,8 @@ I also have a custom action that lets me harpoon a file from the telescope resul
 
 <details>
   <summary>Harpoon</summary>
+
+![image](https://github.com/benlubas/.dotfiles/assets/56943754/a812e251-b18e-4559-b5d5-3b1940b786e9)
 
 I use a fork that enables some better highlights, and git branch caching, as I use git branch
 specific keys, and fetching them on an M2 Mac is slow enough to be noticeable.
@@ -189,6 +203,8 @@ I have a few hydras:
 - Windows `<C-w>` easily repeat window navigation, movement, resize actions
 - Quarto Navigator `<localleader>j` quickly move around markdown notebooks and run code
 
+![image](https://github.com/benlubas/.dotfiles/assets/56943754/fbcc6aab-ccf4-4620-a506-38e8da5798ba)
+
 </details>
 
 <details>
@@ -230,6 +246,8 @@ highlight command in a buffer (doesn't support highlighting though, ironically)
 
 <details>
   <summary>Search count</summary>
+  
+![image](https://github.com/benlubas/.dotfiles/assets/56943754/6f129f41-c851-42be-bcc8-01643adea021)
 
 I have an in house solution for the search count problem. By default, `/` to search will only show
 `[n/99]` items. This is a royal pain for when I just want to count the number of times something
