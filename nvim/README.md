@@ -7,7 +7,7 @@ Haha, get it ... get it?
 ---
 
 Welcome to my neovim setup. This isn't really intended for other people to use, it's more something
-that you can look through and take ideas from. This is what it generally looks like:
+that you can look through and take ideas from. This is what it generally looks like ^
 
 ## File Structure
 
