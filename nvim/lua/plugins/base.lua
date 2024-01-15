@@ -1,7 +1,7 @@
 return {
   {
     "benlubas/wrapping-paper.nvim",
-    dev = true,
+    -- dev = true,
     dependencies = {
       "MunifTanjim/nui.nvim",
     },

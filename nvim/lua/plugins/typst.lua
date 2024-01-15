@@ -4,7 +4,7 @@ return {
   lazy = false,
   init = function()
     vim.g.typst_cmd = "typst" -- Specifies the location of the Typst executable.
-    vim.g.typst_pdf_viewer = "\"firefox --new-window \"" -- Specifies pdf viewer that typst watch --open will use.
+    vim.g.typst_pdf_viewer = "firefox" -- Specifies pdf viewer that typst watch --open will use.
     vim.g.typst_conceal = 0 -- Enable concealment.
     vim.g.typst_auto_close_toc = 0 -- Specifies whether TOC will be automatically closed after using it.
     vim.g.typst_auto_open_quickfix = 0 -- Specifies whether the quickfix list should automatically open when there are errors from typst.

@@ -11,11 +11,29 @@ local window_hint = [[
  ^ _b_: choose buffer ^ ^^^ ^ ^ ^ ^ ^ ^ ^^ ^^   _o_: remain only
 ]]
 
-Hydra({
+local h = nil
+local shown = false
+local show = function()
+  if h ~= nil then
+    if shown then
+      h.hint:close()
+      shown = false
+    else
+      h.hint:show()
+      shown = true
+    end
+  end
+end
+
+h = Hydra({
   name = "Windows",
   hint = window_hint,
   config = {
     invoke_on_body = true,
+    hint = {
+      position = "bottom",
+      hide_on_load = true,
+    },
   },
   mode = "n",
   body = "<C-w>",
@@ -45,9 +63,13 @@ Hydra({
     { "x", "<c-w>|", { desc = "maximize width" } },
     { "o", "<C-w>o", { exit = true, desc = "remain only" } },
 
+    { "i", show, { desc = false } },
+
     {
       "b",
-      function() require("benlubas.telescope.project-files").project_files() end,
+      function()
+        require("benlubas.telescope.project-files").project_files()
+      end,
       { exit = true, desc = "choose buffer" },
     },
 

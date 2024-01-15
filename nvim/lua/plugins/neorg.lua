@@ -1,6 +1,6 @@
 return {
   "nvim-neorg/neorg",
-  -- dev = true,
+  dev = true,
   build = ":Neorg sync-parsers",
   ft = "norg",
   keys = {
@@ -29,6 +29,11 @@ return {
     require("neorg").setup({
       load = {
         ["core.defaults"] = {},
+        ["core.esupports.metagen"] = {
+          config = {
+            undojoin_updates = true,
+          },
+        },
         ["core.keybinds"] = {
           config = {
             hook = function(keybinds)
@@ -38,6 +43,16 @@ return {
               -- keybinds.map("norg", "n", "u", "uu") -- this messes with undo history too much to use useful
               keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
               keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
+              keybinds.map("norg", "n", "u", function()
+                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                local k = vim.api.nvim_replace_termcodes("u<c-o>", true, false, true)
+                vim.api.nvim_feedkeys(k, 'n', false)
+              end)
+              keybinds.map("norg", "n", "U", function()
+                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                local k = vim.api.nvim_replace_termcodes("<c-r><c-o>", true, false, true)
+                vim.api.nvim_feedkeys(k, 'n', false)
+              end)
               keybinds.map("norg", "i", "-(", "- ( ) ")
               keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
               keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")

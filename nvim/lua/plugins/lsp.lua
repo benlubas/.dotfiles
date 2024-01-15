@@ -157,7 +157,7 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     config = function()
       local null_ls = require("null-ls")
 
@@ -170,6 +170,7 @@ return {
           }),
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.typstfmt,
         },
         on_attach = function(client, _)
           if client.server_capabilities.documentFormattingProvider then
