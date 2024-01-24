@@ -17,7 +17,7 @@ return {
       "benlubas/nvim-cmp",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
-      { "benlubas/hydra.nvim", branch = "readme_overhaul" },
+      { "nvimtools/hydra.nvim" },
     },
     ft = { "quarto", "markdown", "norg" },
     config = function()

@@ -56,10 +56,13 @@ return {
           end, { desc = "run all cells of all languages", silent = true })
 
           -- setup some molten specific keybindings
-          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { desc = "evaluate operator", silent = true })
+          vim.keymap.set("n", "<localleader>e", ":MoltenEvaluateOperator<CR>",
+            { desc = "evaluate operator", silent = true })
           vim.keymap.set("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { desc = "re-eval cell", silent = true })
-          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { desc = "execute visual selection", silent = true })
-          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>", { desc = "open output window", silent = true })
+          vim.keymap.set("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv",
+            { desc = "execute visual selection", silent = true })
+          vim.keymap.set("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>",
+            { desc = "open output window", silent = true })
           vim.keymap.set("n", "<localleader>oh", ":MoltenHideOutput<CR>", { desc = "close output window", silent = true })
           vim.keymap.set("n", "<localleader>md", ":MoltenDelete<CR>", { desc = "delete Molten cell", silent = true })
           local open = false
@@ -101,10 +104,8 @@ return {
         end,
       })
 
-      -- automatically import output chunks from a jupyter notebook
-      vim.api.nvim_create_autocmd("BufWinEnter", {
-        pattern = { "*.ipynb" },
-        callback = function(e)
+      local imb = function(e)
+        vim.schedule(function()
           local kernels = vim.fn.MoltenAvailableKernels()
 
           local try_kernel_name = function()
@@ -125,7 +126,23 @@ return {
             vim.cmd(("MoltenInit %s"):format(kernel_name))
           end
           vim.cmd("MoltenImportOutput")
+        end)
+      end
+
+      -- we have to do this as well so that we catch files opened like nvim ./hi.ipynb
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = { "*.ipynb" },
+        callback = function(e)
+          if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then
+            imb(e)
+          end
         end,
+      })
+
+      -- automatically import output chunks from a jupyter notebook
+      vim.api.nvim_create_autocmd("BufAdd", {
+        pattern = { "*.ipynb" },
+        callback = imb,
       })
 
       -- automatically export output chunks to a jupyter notebook

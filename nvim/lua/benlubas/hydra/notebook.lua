@@ -7,7 +7,7 @@ end
 local Hydra = require("hydra")
 Hydra({
   name = "Notebook",
-  hint = "_j_/_k_: ↑/↓ | _o_/_O_: new cell ↓/↑ | _l_: run | _s_how | _h_ide | run _a_bove | _q_uit",
+  hint = "_j_/_k_: ↑/↓ | _o_/_O_: new cell ↓/↑ | _l_: run | _s_how/_h_ide | run _a_bove",
   config = {
     color = "pink",
     invoke_on_body = true,

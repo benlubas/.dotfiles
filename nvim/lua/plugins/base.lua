@@ -32,7 +32,7 @@ return {
       },
     },
   },
-  { "benlubas/auto-save.nvim", dev = true, cond = not MarkdownMode() },
+  { "benlubas/auto-save.nvim", cond = not MarkdownMode() },
   {
     "mbbill/undotree",
     keys = {

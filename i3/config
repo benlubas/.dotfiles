@@ -161,12 +161,14 @@ exec --no-startup-id xset r rate 265 20
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [floating] border pixel 10
+for_window [tiling] border pixel 3
 
 focus_wrapping no
 
 ### WINDOW STYLE ###
-default_border pixel 3
-default_floating_border pixel 5
+# default_border pixel 3
+# default_floating_border pixel 5
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #bf77d8 #7f3798 #c6c6c6 #7f3798   #cf87e8
