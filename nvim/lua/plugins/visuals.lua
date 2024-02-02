@@ -90,16 +90,64 @@ return {
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
+      -- Theses highlights turned our really bad.
+
+      -- local function ser(c)
+      --   local function h(n)
+      --     return string.format("%02x", n)
+      --   end
+      --   return "#" .. h(c.r) .. h(c.g) .. h(c.b)
+      -- end
+      --
+      -- local function de(color)
+      --   return {
+      --     r = tonumber(string.sub(color, 2, 3), 16),
+      --     g = tonumber(string.sub(color, 4, 5), 16),
+      --     b = tonumber(string.sub(color, 6, 6), 16),
+      --   }
+      -- end
+      --
+      -- local function darken(c, percent)
+      --   return {
+      --     r = c.r * (1 - percent),
+      --     g = c.g * (1 - percent),
+      --     b = c.b * (1 - percent),
+      --   }
+      -- end
+      --
+      -- local colors = require("moonfly").palette
+      -- local highlights = {
+      --   colors.crimson,
+      --   colors.blue,
+      --   colors.khaki,
+      --   colors.orchid,
+      --   colors.coral,
+      --   colors.emerald,
+      -- }
+      --
+      -- for i, color in ipairs(highlights) do
+      --   local hl = "Headlines" .. i
+      --   vim.api.nvim_set_hl(0, hl, { bg = ser(darken(de(color), 0.85)) })
+      -- end
+
       local custom = {
         codeblock_highlight = false,
         dash_string = "━",
+        -- headline_highlights = {
+        --   "Headlines1",
+        --   "Headlines2",
+        --   "Headlines3",
+        --   "Headlines4",
+        --   "Headlines5",
+        --   "Headlines6",
+        -- },
       }
       local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
 
       require("headlines").setup({
         markdown = custom,
         quarto = vim.tbl_deep_extend("force", require("headlines").config.markdown, qmd),
-        neorg = vim.tbl_deep_extend("force", custom, { fat_headlines = false }),
+        norg = custom,
       })
     end,
   },

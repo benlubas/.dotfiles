@@ -2,10 +2,10 @@ return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   event = "InsertEnter",
-  enabled = false,
+  -- enabled = false,
   opts = {
     suggestion = {
-      enabled = true,
+      enabled = false, -- off by default, enable with :Copilot enable
       auto_trigger = true,
       debounce = 75,
       keymap = {
