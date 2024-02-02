@@ -2,7 +2,7 @@ return {
   {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
-    -- dev = true,
+    dev = true,
     cond = not MarkdownMode(),
     -- enabled = false,
     opts = {

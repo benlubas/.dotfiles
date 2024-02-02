@@ -4,8 +4,8 @@
 return {
   {
     "benlubas/molten-nvim",
-    -- dependencies = { "3rd/image.nvim", dev = true },
-    dependencies = { "3rd/image.nvim" },
+    dependencies = { "3rd/image.nvim", dev = true },
+    -- dependencies = { "3rd/image.nvim" },
     dev = true,
     build = ":UpdateRemotePlugins",
     init = function()
@@ -13,7 +13,11 @@ return {
         vim.g.molten_open_cmd = "firefox"
       end
 
-      -- vim.g.molten_show_mimetype_debug = true
+      -- NOTE: temporary for testing
+      vim.g.molten_cover_empty_lines = true
+      vim.g.molten_comment_string = "# %%"
+
+      vim.g.molten_show_mimetype_debug = true
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"
       -- vim.g.molten_output_show_more = true

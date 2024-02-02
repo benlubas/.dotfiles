@@ -1,10 +1,26 @@
 return {
   {
     "mfussenegger/nvim-dap",
+    dependencies = {
+      "jbyuki/one-small-step-for-vimkind",
+    },
     config = function()
+      local dap = require("dap")
       -- open dap automatically (auto close was missfiring, use <leader>.u to toggle ui)
-      require("dap").listeners.after.event_initialized["dapui_config"] = function()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
         require("dapui").open()
+      end
+
+      dap.configurations.lua = {
+        {
+          type = "nlua",
+          request = "attach",
+          name = "Attach to running Neovim instance",
+        },
+      }
+
+      dap.adapters.nlua = function(callback, config)
+        callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
       end
 
       -- highlight groups for nvim dap icons
@@ -27,6 +43,7 @@ return {
       { "<leader>.r", function() require("dap").continue() end, desc = "run the debugger, or run the code" },
       { "<leader>.s", function() require("dap").step_over() end, desc = "step over" },
       { "<leader>.S", function() require("dap").step_into() end, desc = "Step into" },
+      { "<leader>.nv", function() require("osv").launch({ port = 8086 }) end, desc = "Launch osv nvim debugger" },
     },
   },
   { "theHamsta/nvim-dap-virtual-text", config = true },
@@ -35,7 +52,7 @@ return {
     dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
     opts = {
       ensure_installed = { "codelldb" },
-      handlers = {}
+      handlers = {},
     },
   },
   {
@@ -50,7 +67,7 @@ return {
         desc = "toggle the ui",
       },
     },
-    config = function ()
+    config = function()
       require("dapui").setup({
         mappings = {
           -- Use a table to apply multiple mappings
@@ -96,7 +113,7 @@ return {
           },
         },
       })
-    end
+    end,
   },
   {
     "mxsdev/nvim-dap-vscode-js",
