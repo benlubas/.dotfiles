@@ -1,3 +1,5 @@
+;; extends
+
 ((shortcut_link
    ((link_text) @text
                 (#eq? @text "!WARNING"))

@@ -91,7 +91,7 @@ return {
     -- enabled = false,
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
-      -- Theses highlights turned our really bad.
+      -- Theses highlights turned out really bad.
 
       -- local function ser(c)
       --   local function h(n)
@@ -144,11 +144,36 @@ return {
         -- },
       }
       local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
+      local norg = vim.tbl_deep_extend("force", custom, {
+        query = vim.treesitter.query.parse(
+            "norg",
+            [[
+                [
+                    (heading1_prefix)
+                    (heading2_prefix)
+                ] @headline
+
+                (weak_paragraph_delimiter) @dash
+                (strong_paragraph_delimiter) @doubledash
+
+                ([(ranged_tag
+                    name: (tag_name) @_name
+                    (#eq? @_name "code")
+                )
+                (ranged_verbatim_tag
+                    name: (tag_name) @_name
+                    (#eq? @_name "code")
+                )] @codeblock (#offset! @codeblock 0 0 1 0))
+
+                (quote1_prefix) @quote
+            ]]
+        ),
+      })
 
       require("headlines").setup({
         markdown = custom,
         quarto = vim.tbl_deep_extend("force", require("headlines").config.markdown, qmd),
-        norg = custom,
+        norg = norg,
       })
     end,
   },

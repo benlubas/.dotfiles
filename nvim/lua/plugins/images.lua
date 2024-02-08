@@ -1,4 +1,5 @@
 return {
+  { "benlubas/image-save.nvim", dev = true, cmd = "SaveImage" },
   {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
