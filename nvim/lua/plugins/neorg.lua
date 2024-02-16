@@ -3,6 +3,7 @@ return {
   dev = true,
   build = ":Neorg sync-parsers",
   ft = "norg",
+  lazy = false,
   keys = {
     { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
     { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
@@ -20,7 +21,7 @@ return {
     { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
   },
   dependencies = {
-    { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
+    { "pysan3/neorg-templates", dev = true, dependencies = { "L3MON4D3/LuaSnip" } },
     { "nvim-lua/plenary.nvim" },
     { "nvim-neorg/neorg-telescope" },
     { "3rd/image.nvim" },
@@ -28,6 +29,7 @@ return {
   config = function()
     require("neorg").setup({
       load = {
+        ["core.refactor"] = {},
         ["core.defaults"] = {},
         ["core.esupports.metagen"] = {
           config = {
@@ -39,23 +41,23 @@ return {
             hook = function(keybinds)
               -- Map \c to edit the code block in another buffer.
               keybinds.remap_event("norg", "n", "<localleader>l", "core.looking-glass.magnify-code-block")
-              keybinds.map("norg", "n", "<localleader>r", ":Neorg return<CR>")
-              -- keybinds.map("norg", "n", "u", "uu") -- this messes with undo history too much to use useful
+              keybinds.map("norg", "n", "<localleader>R", ":Neorg return<CR>")
               keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
               keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
               keybinds.map("norg", "n", "u", function()
                 require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
                 local k = vim.api.nvim_replace_termcodes("u<c-o>", true, false, true)
-                vim.api.nvim_feedkeys(k, 'n', false)
+                vim.api.nvim_feedkeys(k, "n", false)
               end)
               keybinds.map("norg", "n", "U", function()
                 require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
                 local k = vim.api.nvim_replace_termcodes("<c-r><c-o>", true, false, true)
-                vim.api.nvim_feedkeys(k, 'n', false)
+                vim.api.nvim_feedkeys(k, "n", false)
               end)
               keybinds.map("norg", "i", "-(", "- ( ) ")
               keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
               keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
+              keybinds.unmap("norg", "n", "gd")
             end,
           },
         },
@@ -92,18 +94,24 @@ return {
         },
         ["external.templates"] = {
           config = {
-            templates_dir = vim.fn.stdpath("config") .. "/templates/norg",
+            templates_dir = vim.env.HOME .. "/notes/templates",
             default_subcommand = "load", -- or "fload", "load"
             keywords = {
               TODAY = function()
-                return require("luasnip").text_node(os.date("%A %B %d, %Y"))
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local date = os.date("%A %B %d, %Y", os.time({ year = buf[1], month = buf[2], day = buf[3] }))
+                return require("luasnip").text_node(date)
               end,
               YESTERDAY_PATH = function()
-                local yesterday = os.date("%Y/%m/%d", os.time() - 86400)
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+                local yesterday = os.date("%Y/%m/%d", time - 86400)
                 return require("luasnip").text_node(("../../%s"):format(yesterday))
               end,
               TOMORROW_PATH = function()
-                local tomorrow = os.date("%Y/%m/%d", os.time() + 86400)
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+                local tomorrow = os.date("%Y/%m/%d", time + 86400)
                 return require("luasnip").text_node(("../../%s"):format(tomorrow))
               end,
               DESC = function()
@@ -119,10 +127,6 @@ return {
                 local t = require("luasnip").text_node
                 return c(1, { t("Sun"), t("Rain"), t("Storm"), t("Snow"), t("Clouds") })
               end,
-              SLEEP = function()
-                local i = require("luasnip").insert_node
-                return i(1)
-              end,
             },
             snippets_overwrite = {},
           },
@@ -136,12 +140,10 @@ return {
         ["core.dirman"] = {
           config = {
             workspaces = {
-              work = "~/notes/work",
-              school = "~/notes/school",
-              tools = "~/notes/tools",
               notes = "~/notes",
+              test_notes = "~/test_notes",
             },
-            default_workspace = "notes",
+            default_workspace = "test_notes",
           },
         },
         ["core.integrations.telescope"] = {},
@@ -159,10 +161,12 @@ return {
       keybinds.map_event_to_mode("norg", {
         n = { -- Bind keys in normal mode
           { "<localleader>fl", "core.integrations.telescope.find_linkable" },
+          { "<localleader>fb", "core.integrations.telescope.find_backlinks" },
+          { "<localleader>fh", "core.integrations.telescope.find_header_backlinks" },
         },
 
         i = { -- Bind in insert mode
-          { "\\li", "core.integrations.telescope.insert_link" },
+          { "<localleader>li", "core.integrations.telescope.insert_link" },
         },
       }, {
         silent = true,

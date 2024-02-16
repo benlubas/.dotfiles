@@ -161,8 +161,8 @@ exec --no-startup-id xset r rate 265 20
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
-for_window [floating] border pixel 10
-for_window [tiling] border pixel 3
+for_window [floating] border pixel 4
+for_window [tiling] border pixel 2
 
 focus_wrapping no
 

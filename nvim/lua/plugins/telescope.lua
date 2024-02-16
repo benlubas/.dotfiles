@@ -90,9 +90,9 @@ return {
         --   Use TelescopeTitle to override the default.
         --   Otherwise set them specifically
         TelescopeTitle = { bg = colors.blue, fg = colors.black },
-        -- TelescopePromptTitle = { link = "TelescopeTitle" },
-        -- TelescopeResultsTitle = { link = "TelescopeTitle" },
-        -- TelescopePreviewTitle = { link = "TelescopeTitle" },
+        TelescopePromptTitle = { link = "TelescopeTitle" },
+        TelescopeResultsTitle = { link = "TelescopeTitle" },
+        TelescopePreviewTitle = { link = "TelescopeTitle" },
 
         TelescopePromptCounter = { link = "NonText" },
 
@@ -106,27 +106,27 @@ return {
         TelescopePreviewLine = { link = "Visual" },
         TelescopePreviewMatch = { link = "Search" },
 
-        TelescopePreviewPipe = { link = "Constant" },
-        TelescopePreviewCharDev = { link = "Constant" },
+        TelescopePreviewPipe = { link = "MoonflyBlue" },
+        TelescopePreviewCharDev = { link = "MoonflyBlue" },
         TelescopePreviewDirectory = { link = "Directory" },
-        TelescopePreviewBlock = { link = "Constant" },
+        TelescopePreviewBlock = { link = "MoonflyBlue" },
         TelescopePreviewLink = { link = "Special" },
         TelescopePreviewSocket = { link = "Statement" },
-        TelescopePreviewRead = { link = "Constant" },
+        TelescopePreviewRead = { link = "MoonflyBlue" },
         TelescopePreviewWrite = { link = "Statement" },
         TelescopePreviewExecute = { link = "String" },
         TelescopePreviewHyphen = { link = "NonText" },
         TelescopePreviewSticky = { link = "Keyword" },
         TelescopePreviewSize = { link = "String" },
-        TelescopePreviewUser = { link = "Constant" },
-        TelescopePreviewGroup = { link = "Constant" },
+        TelescopePreviewUser = { link = "MoonflyBlue" },
+        TelescopePreviewGroup = { link = "MoonflyBlue" },
         TelescopePreviewDate = { link = "Directory" },
         TelescopePreviewMessage = { link = "TelescopePreviewNormal" },
         TelescopePreviewMessageFillchar = { link = "TelescopePreviewMessage" },
 
         -- Used for Picker specific Results highlighting
         TelescopeResultsClass = { link = "Function" },
-        TelescopeResultsConstant = { link = "Constant" },
+        TelescopeResultsConstant = { link = "MoonflyBlue" },
         TelescopeResultsField = { link = "Function" },
         TelescopeResultsFunction = { link = "Function" },
         TelescopeResultsMethod = { link = "Method" },
@@ -136,7 +136,7 @@ return {
 
         TelescopeResultsLineNr = { link = "LineNr" },
         TelescopeResultsIdentifier = { link = "Identifier" },
-        TelescopeResultsNumber = { link = "Number" },
+        TelescopeResultsNumber = { link = "MoonflyBlue" },
         TelescopeResultsComment = { link = "Comment" },
         TelescopeResultsSpecialComment = { link = "SpecialComment" },
 

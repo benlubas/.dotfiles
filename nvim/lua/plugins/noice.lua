@@ -1,7 +1,4 @@
 ---@diagnostic disable: missing-fields
-local hi = 5
-
-hi = hi + 7
 
 return {
   {

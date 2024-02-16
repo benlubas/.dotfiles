@@ -18,7 +18,7 @@ Hydra({
   name = "Telescope",
   hint = hint,
   config = {
-    color = "pink",
+    color = "blue",
     exit = true,
     invoke_on_body = true,
     hint = {
@@ -69,12 +69,7 @@ Hydra({
     { "f", tb.resume,                                                         { exit = true } },
     { "h", "<cmd>Telescope help_tags<CR>",                                    { exit = true } },
     { "r", tb.pickers,                                                        { exit = true } },
-    {
-      "<Enter>",
-      function()
-        vim.cmd("Telescope")
-      end,
-    },
+    { "<Enter>", function() vim.cmd("Telescope") end, { exit = true }, },
     { "<Esc>", nil, { exit = true, nowait = true } },
   },
 })

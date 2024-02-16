@@ -29,6 +29,7 @@ return {
       vim.api.nvim_set_hl(0, "MoltenOutputBorderSuccess", { link = "MoonflyBlue" })
       vim.api.nvim_set_hl(0, "MoltenOutputFooter", { link = "Comment" })
       vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "Normal" })
+      vim.api.nvim_set_hl(0, "Title", { link = "MoonflyBlue" })
     end,
   },
   {

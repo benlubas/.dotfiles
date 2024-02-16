@@ -11,6 +11,7 @@ local servers = {
   -- "marksman",
   "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
   "rust_analyzer",
+  "r_language_server",
   "svelte",
   "tsserver",
   "typst_lsp",

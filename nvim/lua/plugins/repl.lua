@@ -17,6 +17,7 @@ return {
       -- vim.g.molten_cover_empty_lines = true
       -- vim.g.molten_comment_string = "# %%"
 
+      -- vim.g.molten_auto_image_popup = true
       -- vim.g.molten_show_mimetype_debug = true
       vim.g.molten_auto_open_output = false
       vim.g.molten_image_provider = "image.nvim"

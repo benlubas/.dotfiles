@@ -7,8 +7,8 @@ return {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
 
-      vim.keymap.set("n", "<leader>fo", require("ufo").openAllFolds, { desc = "open all folds" })
-      vim.keymap.set("n", "<leader>fc", require("ufo").closeAllFolds, { desc = "close all folds" })
+      vim.keymap.set("n", "<leader>Fo", require("ufo").openAllFolds, { desc = "open all folds" })
+      vim.keymap.set("n", "<leader>Fc", require("ufo").closeAllFolds, { desc = "close all folds" })
       vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 
       -- Need to disable this plugin in some files. Specifically ones that have custom folds or

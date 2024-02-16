@@ -58,10 +58,6 @@ return function(picker)
     enter = true,
     border = {
       style = border.prompt,
-      text = {
-        top = picker.prompt_title,
-        top_align = "center",
-      },
     },
     win_options = {
       winhighlight = "Normal:TelescopePromptNormal,FloatBorder:TelescopePromptBorder",
@@ -73,8 +69,7 @@ return function(picker)
     border = {
       style = border.preview,
       text = {
-        -- TODO: set preview title to file name
-        top = picker.preview_title,
+        top = picker.prompt_title,
         top_align = "center",
       },
     },
