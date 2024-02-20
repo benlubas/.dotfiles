@@ -7,7 +7,7 @@ local t = ls.text_node
 local c = ls.choice_node
 -- local f = ls.function_node
 -- local r = ls.restore_node
-local fmt = require("luasnip.extras.fmt").fmt
+local fmt = require("luasnip.extras.fmt").fmta
 -- local h = require("snippets.snippet_helpers")
 
 ls.add_snippets("quarto", {
@@ -15,10 +15,13 @@ ls.add_snippets("quarto", {
   s(
     "`",
     fmt(
-      [[```{{{}}}
-{}
+      [[```{<lang>}
+<last>
 ``]],
-      { c(1, { t("python"), t("") }), i(0) }
+      {
+        lang = c(1, { t("python"), t("") }),
+        last = i(0),
+      }
     )
   ),
 })

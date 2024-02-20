@@ -8,7 +8,7 @@ local c = ls.choice_node
 -- local f = ls.function_node
 local r = ls.restore_node
 local fmt = require("luasnip.extras.fmt").fmt
-local h = require("snippets.snippet_helpers")
+local h = require("snippets.utils.snippet_helpers")
 
 ls.add_snippets("javascript", {
   -- debug

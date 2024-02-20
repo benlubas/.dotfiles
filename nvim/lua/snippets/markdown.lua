@@ -8,6 +8,7 @@ local t = ls.text_node
 local c = ls.choice_node
 -- local rep = require("luasnip.extras").rep
 local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
 
 ls.add_snippets("markdown", {
   s(
@@ -30,12 +31,18 @@ ls.filetype_extend("quarto", { "markdown" })
 ls.add_snippets("markdown", {
   -- code cell
   s(
-    "`",
-    fmt(
-      [[```{}
-{}
+    {
+      trig = "^%s*`",
+      trigEngine = "pattern",
+    },
+    fmta(
+      [[```<lang>
+<last>
 ``]],
-      { c(1, { t("python"), t("lua"), t("") }), i(0) }
+      {
+        lang = c(1, { t("python"), t("lua"), t("") }),
+        last = i(0),
+      }
     )
   ),
 })

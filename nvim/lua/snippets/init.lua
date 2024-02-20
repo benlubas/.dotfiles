@@ -6,3 +6,6 @@ require("snippets.svelte")
 require("snippets.quarto")
 require("snippets.verilog")
 require("snippets.markdown")
+
+-- TODO: if I add more of these, I might consider writing some code to auto import all of the files
+-- in this directory
