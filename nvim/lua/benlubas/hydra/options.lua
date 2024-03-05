@@ -9,7 +9,7 @@ local options_hint = [[
   _n_ %{nu} number
   _r_ %{rnu} relative number
   _c_ %{con} conceal
-  _t_ %{txtw} textwidth
+  _t_ %{twe} textwidth (%{tw})
   ^
        ^^^^                _<Esc>_
 ]]
@@ -27,12 +27,15 @@ Hydra({
         title_pos = "center",
       },
       funcs = {
-        ["txtw"] = function()
+        ["twe"] = function()
           if vim.o.textwidth == 0 then
             return "[ ]"
           else
             return "[x]"
           end
+        end,
+        ["tw"] = function()
+          return vim.o.textwidth
         end,
       },
     },

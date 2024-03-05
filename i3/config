@@ -111,10 +111,10 @@ bindsym $mod+g fullscreen toggle
 # bindsym $mod+o layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+z floating toggle
+bindsym $mod+Shift+z floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+Shift+z focus mode_toggle
+bindsym $mod+z focus mode_toggle
 
 # focus the parent container
 bindsym $mod+p focus parent

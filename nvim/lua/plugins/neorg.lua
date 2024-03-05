@@ -8,8 +8,14 @@ return {
     { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
     { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
     { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
-    { "<leader>nt", ":e ~/notes/tools/index.norg<CR>", desc = "Neorg Tools Index", silent = true },
     { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
+    { "<leader>nt", function()
+      vim.schedule(function()
+        vim.ui.input({ default = "thoughts/" }, function(text)
+          require("neorg.modules.core.dirman.module").public.create_file(text)
+        end)
+      end)
+    end, desc = "New Thought", silent = true },
     {
       "<A-CR>",
       ":Neorg keybind norg core.itero.next-iteration<CR>",
@@ -24,12 +30,28 @@ return {
     { "pysan3/neorg-templates", dev = true, dependencies = { "L3MON4D3/LuaSnip" } },
     { "nvim-lua/plenary.nvim" },
     { "nvim-neorg/neorg-telescope" },
-    { "3rd/image.nvim" },
+    { "image.nvim" },
+    { "otter.nvim" },
   },
   config = function()
     require("neorg").setup({
       load = {
-        ["core.refactor"] = {},
+        -- ["core.refactor"] = {},
+        ["core.integrations.otter"] = {
+          config = {
+            auto_start = true,
+            languages = { "python", "lua" },
+            keys = {
+              hover = "H",
+              definition = "gd",
+              type_definition = "gt",
+              references = "gr",
+              rename = "<leader>rn",
+              format = "<leader>gf",
+              document_symbols = "gs",
+            },
+          },
+        },
         ["core.defaults"] = {},
         ["core.esupports.metagen"] = {
           config = {
@@ -70,6 +92,14 @@ return {
                   icon = " ",
                 },
               },
+              code_block = {
+                conceal = true,
+                spell_check = false,
+                content_only = false,
+                width = "content",
+                min_width = 85,
+                highlight = "CodeCell",
+              },
             },
           },
         },
@@ -97,7 +127,7 @@ return {
             templates_dir = vim.env.HOME .. "/notes/templates",
             default_subcommand = "load", -- or "fload", "load"
             keywords = {
-              TODAY = function()
+              TODAY_TITLE = function()
                 local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
                 local date = os.date("%A %B %d, %Y", os.time({ year = buf[1], month = buf[2], day = buf[3] }))
                 return require("luasnip").text_node(date)
@@ -114,14 +144,9 @@ return {
                 local tomorrow = os.date("%Y/%m/%d", time + 86400)
                 return require("luasnip").text_node(("../../%s"):format(tomorrow))
               end,
-              DESC = function()
-                local i = require("luasnip").insert_node
-                return i(1)
-              end,
-              RATING = function()
-                local i = require("luasnip").insert_node
-                return i(1)
-              end,
+              INSERT_2 = function() return require("luasnip").insert_node(1) end,
+              INSERT_3 = function() return require("luasnip").insert_node(1) end,
+              INSERT_4 = function() return require("luasnip").insert_node(1) end,
               WEATHER = function()
                 local c = require("luasnip").choice_node
                 local t = require("luasnip").text_node
@@ -143,7 +168,7 @@ return {
               notes = "~/notes",
               test_notes = "~/test_notes",
             },
-            default_workspace = "test_notes",
+            default_workspace = "notes",
           },
         },
         ["core.integrations.telescope"] = {},
@@ -186,6 +211,8 @@ return {
     end
 
     vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
+      desc = "Autoload template for notes/journal",
+      pattern = "*/notes/journal/*.norg",
       callback = function(args)
         local toc = "index.norg"
 
@@ -198,8 +225,23 @@ return {
           end
         end)
       end,
-      desc = "Load new workspace entries with a Neorg template",
-      pattern = "*/notes/journal/*.norg",
+    })
+
+    vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
+      desc = "Autoload template for notes/thoughts",
+      pattern = "*/notes/thoughts/*.norg",
+      callback = function(args)
+        local toc = "index.norg"
+
+        vim.schedule(function()
+          if vim.fn.fnamemodify(args.file, ":t") == toc then
+            return
+          end
+          if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
+            vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", "thought" } }, {})
+          end
+        end)
+      end,
     })
   end,
 }

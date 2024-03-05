@@ -18,11 +18,8 @@ return {
         lsp = {
           hover = { border = "none" },
         },
-        buffers = {
-          write_to_disk = true, -- required for R ls to work I think
-        }
       }, dev = true },
-      "benlubas/nvim-cmp",
+      "nvim-cmp",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
       { "nvimtools/hydra.nvim" },

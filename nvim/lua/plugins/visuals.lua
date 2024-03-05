@@ -16,6 +16,7 @@ return {
 
       vim.cmd.syntax("enable")
       vim.cmd.colorscheme("moonfly")
+      local colors = require("moonfly").palette
 
       vim.api.nvim_set_hl(0, "CursorLine", { ctermbg = 238, bg = "#1a1a1a" })
       vim.api.nvim_set_hl(0, "CursorLineSign", { link = "CursorLine" })
@@ -23,6 +24,7 @@ return {
       vim.api.nvim_set_hl(0, "CursorLineFold", { link = "CursorLine" })
       vim.api.nvim_set_hl(0, "FoldColumn", { link = "Comment" })
       vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0" })
+      vim.api.nvim_set_hl(0, "CodeCell", { bg = colors.grey235 })
 
       vim.api.nvim_set_hl(0, "MoltenOutputBorder", { link = "Normal" })
       vim.api.nvim_set_hl(0, "MoltenOutputBorderFail", { link = "MoonflyCrimson" })

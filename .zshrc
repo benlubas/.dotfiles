@@ -81,6 +81,7 @@ export EDITOR="nvim"
 export GIT_EDITOR="MD_MODE=1 nvim"
 
 # to use bat with man pages
+export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # ==== Aliases ==== #

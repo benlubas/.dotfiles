@@ -13,7 +13,6 @@ return {
         vim.g.molten_open_cmd = "firefox"
       end
 
-      -- NOTE: temporary for testing
       -- vim.g.molten_cover_empty_lines = true
       -- vim.g.molten_comment_string = "# %%"
 
@@ -29,7 +28,7 @@ return {
       vim.g.molten_use_border_highlights = true
       vim.g.molten_virt_lines_off_by_1 = true
       vim.g.molten_wrap_output = true
-      vim.g.molten_tick_rate = 175
+      vim.g.molten_tick_rate = 142
 
       vim.keymap.set("n", "<localleader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten", silent = true })
       vim.keymap.set("n", "<localleader>ir", function()

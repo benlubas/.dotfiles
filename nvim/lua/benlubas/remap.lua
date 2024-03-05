@@ -1,5 +1,7 @@
 -- I have sneak installed that that remaps s and S to sneak
 -- I use better escape. so in base.lua, jk and kj are remapped to esc
+vim.keymap.set("i", "jk", "<esc>")
+vim.keymap.set("i", "kj", "<esc>")
 
 -- just a reminder that <C-w> in insert mode deletes a word at a time.
 
