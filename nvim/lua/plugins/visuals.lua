@@ -58,7 +58,13 @@ return {
       end,
     },
   },
-  { "folke/which-key.nvim", config = true, lazy = false },
+  -- fork for better register viewing (hard coded though)
+  { "benlubas/which-key.nvim", opts = {
+    layout = {
+      height = { min = 4, max = 50 }, -- min and max height of the columns
+      width = { min = 20, max = 100 }, -- min and max width of the columns
+    },
+  }, lazy = false },
   {
     "luukvbaal/statuscol.nvim",
     cond = not MarkdownMode(),

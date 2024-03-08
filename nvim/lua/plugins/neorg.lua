@@ -15,9 +15,42 @@ local function project_note()
     return
   end
   local prefix = "~/notes/projects/" .. proj_name
-  if not io.open(prefix .. ".norg", "r") then
+  local _, exists = io.open(prefix .. ".norg", "r")
+  if exists then
+    vim.cmd.e(prefix .. ".norg")
+  else
     require("neorg.modules.core.dirman.module").public.create_file(prefix)
   end
+end
+
+local file_exists_and_is_empty = function(filepath)
+  local file = io.open(filepath, "r") -- Open the file in read mode
+  if file ~= nil then
+    local content = file:read("*all") -- Read the entire content of the file
+    file:close() -- Close the file
+    return content == "" -- Check if the content is empty
+  else
+    return false
+  end
+end
+
+local function template(pattern, template_name)
+  vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
+    desc = "Autoload template for notes/journal",
+    pattern = pattern,
+    callback = function(args)
+      local index = "index.norg"
+
+      vim.schedule(function()
+        if vim.fn.fnamemodify(args.file, ":t") == index then
+          return
+        end
+        if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
+          vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", template_name } }, {})
+        end
+      end)
+    end,
+  })
 end
 
 return {
@@ -216,49 +249,7 @@ return {
       })
     end)
 
-    local file_exists_and_is_empty = function(filepath)
-      local file = io.open(filepath, "r") -- Open the file in read mode
-      if file ~= nil then
-        local content = file:read("*all") -- Read the entire content of the file
-        file:close() -- Close the file
-        return content == "" -- Check if the content is empty
-      else
-        return false
-      end
-    end
-
-    vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
-      desc = "Autoload template for notes/journal",
-      pattern = "*/notes/journal/*.norg",
-      callback = function(args)
-        local toc = "index.norg"
-
-        vim.schedule(function()
-          if vim.fn.fnamemodify(args.file, ":t") == toc then
-            return
-          end
-          if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
-            vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", "journal" } }, {})
-          end
-        end)
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
-      desc = "Autoload template for notes/thoughts",
-      pattern = "*/notes/thoughts/*.norg",
-      callback = function(args)
-        local toc = "index.norg"
-
-        vim.schedule(function()
-          if vim.fn.fnamemodify(args.file, ":t") == toc then
-            return
-          end
-          if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
-            vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", "thought" } }, {})
-          end
-        end)
-      end,
-    })
+    template("*/notes/journal/*.norg", "journal")
+    template("*/notes/thoughts/*.norg", "thought")
   end,
 }
