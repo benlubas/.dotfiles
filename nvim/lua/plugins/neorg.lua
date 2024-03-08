@@ -1,3 +1,25 @@
+local function new_thought()
+  vim.schedule(function()
+    vim.ui.input({ default = "thoughts/" }, function(text)
+      require("neorg.modules.core.dirman.module").public.create_file(text)
+    end)
+  end)
+end
+
+local function project_note()
+  -- get the current directory
+  local cwd = vim.fn.getcwd()
+  local proj_name = cwd:match("github/(.*)")
+  if not proj_name then
+    vim.notify("[Neorg-Projects] Not in a project.")
+    return
+  end
+  local prefix = "~/notes/projects/" .. proj_name
+  if not io.open(prefix .. ".norg", "r") then
+    require("neorg.modules.core.dirman.module").public.create_file(prefix)
+  end
+end
+
 return {
   "nvim-neorg/neorg",
   dev = true,
@@ -9,13 +31,8 @@ return {
     { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
     { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
     { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
-    { "<leader>nt", function()
-      vim.schedule(function()
-        vim.ui.input({ default = "thoughts/" }, function(text)
-          require("neorg.modules.core.dirman.module").public.create_file(text)
-        end)
-      end)
-    end, desc = "New Thought", silent = true },
+    { "<leader>nt", new_thought, desc = "New Thought", silent = true },
+    { "<leader>np", project_note, desc = "Project Note", silent = true },
     {
       "<A-CR>",
       ":Neorg keybind norg core.itero.next-iteration<CR>",

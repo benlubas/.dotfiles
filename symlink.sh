@@ -20,6 +20,7 @@ rm -rfv $HOME/.xprofile
 rm -rfv $HOME/.zshrc
 rm -rfv $HOME/.p10k.zsh
 rm -rfv $HOME/.zsh_plugins.txt
+rm -rfv $HOME/.gitignore_global
 
 rm -rfv $HOME/.mozilla/firefox/chrome
 
@@ -47,6 +48,7 @@ ln -sv $PWD/.xprofile $HOME/.xprofile
 ln -sv $PWD/.zshrc $HOME/.zshrc
 ln -sv $PWD/.p10k.zsh $HOME/.p10k.zsh
 ln -sv $PWD/.zsh_plugins.txt $HOME/.zsh_plugins.txt
+ln -sv $PWD/.gitignore_global $HOME/.gitignore_global
 
 echo "NOTE: you must symlink firefox/chrome manually with a command like:"
 echo "ln -sv $PWD/firefox/chrome $HOME/.mozilla/firefox/<profile>/"

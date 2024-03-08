@@ -5,6 +5,7 @@ return {
     -- "benlubas/image.nvim",
     dev = true,
     cond = not MarkdownMode(),
+    veryLazy = true,
     -- enabled = false,
     opts = {
       backend = "kitty",
