@@ -1,3 +1,58 @@
+local function new_thought()
+  vim.schedule(function()
+    vim.ui.input({ default = "thoughts/" }, function(text)
+      require("neorg.modules.core.dirman.module").public.create_file(text)
+    end)
+  end)
+end
+
+local function project_note()
+  -- get the current directory
+  local cwd = vim.fn.getcwd()
+  local proj_name = cwd:match("github/(.*)")
+  if not proj_name then
+    vim.notify("[Neorg-Projects] Not in a project.")
+    return
+  end
+  local prefix = "~/notes/projects/" .. proj_name
+  local _, exists = io.open(prefix .. ".norg", "r")
+  if exists then
+    vim.cmd.e(prefix .. ".norg")
+  else
+    require("neorg.modules.core.dirman.module").public.create_file(prefix)
+  end
+end
+
+local file_exists_and_is_empty = function(filepath)
+  local file = io.open(filepath, "r") -- Open the file in read mode
+  if file ~= nil then
+    local content = file:read("*all") -- Read the entire content of the file
+    file:close() -- Close the file
+    return content == "" -- Check if the content is empty
+  else
+    return false
+  end
+end
+
+local function template(pattern, template_name)
+  vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
+    desc = "Autoload template for notes/journal",
+    pattern = pattern,
+    callback = function(args)
+      local index = "index.norg"
+
+      vim.schedule(function()
+        if vim.fn.fnamemodify(args.file, ":t") == index then
+          return
+        end
+        if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
+          vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", template_name } }, {})
+        end
+      end)
+    end,
+  })
+end
+
 return {
   "nvim-neorg/neorg",
   dev = true,
@@ -9,13 +64,8 @@ return {
     { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
     { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
     { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
-    { "<leader>nt", function()
-      vim.schedule(function()
-        vim.ui.input({ default = "thoughts/" }, function(text)
-          require("neorg.modules.core.dirman.module").public.create_file(text)
-        end)
-      end)
-    end, desc = "New Thought", silent = true },
+    { "<leader>nt", new_thought, desc = "New Thought", silent = true },
+    { "<leader>np", project_note, desc = "Project Note", silent = true },
     {
       "<A-CR>",
       ":Neorg keybind norg core.itero.next-iteration<CR>",
@@ -199,49 +249,7 @@ return {
       })
     end)
 
-    local file_exists_and_is_empty = function(filepath)
-      local file = io.open(filepath, "r") -- Open the file in read mode
-      if file ~= nil then
-        local content = file:read("*all") -- Read the entire content of the file
-        file:close() -- Close the file
-        return content == "" -- Check if the content is empty
-      else
-        return false
-      end
-    end
-
-    vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
-      desc = "Autoload template for notes/journal",
-      pattern = "*/notes/journal/*.norg",
-      callback = function(args)
-        local toc = "index.norg"
-
-        vim.schedule(function()
-          if vim.fn.fnamemodify(args.file, ":t") == toc then
-            return
-          end
-          if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
-            vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", "journal" } }, {})
-          end
-        end)
-      end,
-    })
-
-    vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
-      desc = "Autoload template for notes/thoughts",
-      pattern = "*/notes/thoughts/*.norg",
-      callback = function(args)
-        local toc = "index.norg"
-
-        vim.schedule(function()
-          if vim.fn.fnamemodify(args.file, ":t") == toc then
-            return
-          end
-          if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
-            vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", "thought" } }, {})
-          end
-        end)
-      end,
-    })
+    template("*/notes/journal/*.norg", "journal")
+    template("*/notes/thoughts/*.norg", "thought")
   end,
 }
