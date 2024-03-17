@@ -19,16 +19,17 @@ return {
       local Item = require("nougat.item")
       local sep = require("nougat.separator")
 
-      local color = require("moonfly").palette
+      local theme = require("benlubas.color")
+      local line_theme = theme.status_line
 
       local default_highlight = {
-        normal = { bg = color.blue, fg = "bg" },
-        visual = { bg = color.purple, fg = "bg" },
-        insert = { bg = color.normal, fg = "bg" },
-        replace = { bg = color.crimson, fg = "bg" },
-        commandline = { bg = color.khaki, fg = "bg" },
-        terminal = { bg = color.orchid, fg = "bg" },
-        inactive = { bg = color.grey, fg = "bg" },
+        normal = { bg = line_theme.normal, fg = "bg" },
+        visual = { bg = line_theme.visual, fg = "bg" },
+        insert = { bg = line_theme.insert, fg = "bg" },
+        replace = { bg = line_theme.replace, fg = "bg" },
+        commandline = { bg = line_theme.commandline, fg = "bg" },
+        terminal = { bg = line_theme.terminal, fg = "bg" },
+        inactive = { bg = line_theme.inactive, fg = "bg" },
       }
 
       local nut = {
@@ -55,20 +56,20 @@ return {
         sep_right = sep.right_lower_triangle_solid(true),
       }))
       stl:add_item(nut.git.branch({
-        hl = { fg = color.blue, bg = color.grey236 },
+        hl = line_theme.branch,
         prefix = "  ",
         suffix = " ",
         sep_right = sep.left_upper_triangle_solid(true),
       }))
       local common_left = {
         nut.git.status.create({
-          hl = { bg = color.grey233 },
+          hl = { bg = line_theme.diff_bg },
           suffix = " ",
           sep_right = sep.right_upper_triangle_solid(true),
           content = {
-            nut.git.status.count("added", { hl = { fg = color.emerald }, prefix = " +" }),
-            nut.git.status.count("changed", { hl = { fg = color.blue }, prefix = " ~" }),
-            nut.git.status.count("removed", { hl = { fg = color.red }, prefix = " -" }),
+            nut.git.status.count("added", { hl = { fg = line_theme.added }, prefix = " +" }),
+            nut.git.status.count("changed", { hl = { fg = line_theme.changed }, prefix = " ~" }),
+            nut.git.status.count("removed", { hl = { fg = line_theme.removed }, prefix = " -" }),
           },
         }),
       }
@@ -91,7 +92,7 @@ return {
       stl:add_item(nut.buf.filestatus({ prefix = "[", suffix = "] " }))
 
       stl:add_item(Item({
-        hl = { bg = color.grey233, fg = color.orchid },
+        hl = line_theme.search_count,
         content = function(_)
           return require("benlubas.search_count").get_search_count()
         end,
@@ -118,7 +119,7 @@ return {
 
       local common_right = {
         Item({
-          hl = { bg = color.grey233, fg = color.red },
+          hl = line_theme.molten,
           sep_left = sep.left_lower_triangle_solid(true),
           prefix = " ",
           content = function(_)
@@ -131,13 +132,13 @@ return {
           suffix = " ",
         }),
         nut.buf.filetype({
-          hl = { bg = "#4e4e4e" },
+          hl = line_theme.filetype,
           sep_left = sep.left_lower_triangle_solid(true),
           prefix = " ",
           suffix = " ",
         }),
         Item({
-          hl = { link = color.blue },
+          hl = line_theme.position,
           sep_left = sep.left_lower_triangle_solid(true),
           prefix = " ",
           content = core.group({
@@ -148,7 +149,7 @@ return {
           suffix = " ",
         }),
         Item({
-          hl = { bg = color.blue, fg = color.grey235 },
+          hl = line_theme.scroll,
           sep_left = sep.left_lower_triangle_solid(true),
           prefix = " ",
           content = core.code("P"),
@@ -163,14 +164,14 @@ return {
       -- hydra status line
       local hsl = Bar("statusline")
       hsl:add_item(Item({
-        hl = { bg = color.red, fg = color.black },
+        hl = line_theme.hydra.mode,
         prefix = " ",
         content = "HYDRA",
         suffix = " ",
         sep_right = sep.right_lower_triangle_solid(true),
       }))
       hsl:add_item(Item({
-        hl = { fg = color.red, bg = color.grey236 },
+        hl = line_theme.hydra.name,
         prefix = " ",
         content = require("hydra.statusline").get_name,
         suffix = " ",

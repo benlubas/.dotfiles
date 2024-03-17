@@ -84,6 +84,7 @@ return {
     { "otter.nvim" },
   },
   config = function()
+    local theme = require("benlubas.color").neorg
     require("neorg").setup({
       load = {
         -- ["core.refactor"] = {},
@@ -157,12 +158,12 @@ return {
           config = {
             highlights = {
               headings = {
-                ["1"] = { title = "+MoonflyCrimson", prefix = "+MoonflyCrimson" },
-                ["2"] = { title = "+MoonflyBlue", prefix = "+MoonflyBlue" },
-                ["3"] = { title = "+MoonflyKhaki", prefix = "+MoonflyKhaki" },
-                ["4"] = { title = "+MoonflyOrchid", prefix = "+MoonflyOrchid" },
-                ["5"] = { title = "+MoonflyCoral", prefix = "+MoonflyCoral" },
-                ["6"] = { title = "+MoonflyEmerald", prefix = "+MoonflyEmerald" },
+                ["1"] = { title = theme.heading1, prefix = theme.heading1 },
+                ["2"] = { title = theme.heading2, prefix = theme.heading2 },
+                ["3"] = { title = theme.heading3, prefix = theme.heading3 },
+                ["4"] = { title = theme.heading4, prefix = theme.heading4 },
+                ["5"] = { title = theme.heading5, prefix = theme.heading5 },
+                ["6"] = { title = theme.heading6, prefix = theme.heading6 },
               },
             },
           },

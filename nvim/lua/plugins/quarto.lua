@@ -29,7 +29,7 @@ return {
       local quarto = require("quarto")
       quarto.setup({
         lspFeatures = {
-          languages = { "r", "python", "rust", "lua" },
+          languages = { "python", "rust", "lua" },
           chunks = "all", -- 'curly' or 'all'
           diagnostics = {
             enabled = true,

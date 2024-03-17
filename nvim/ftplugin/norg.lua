@@ -1,4 +1,5 @@
 vim.bo.tw = 85
+vim.opt_local.formatoptions:append({ "t" })
 
 vim.api.nvim_create_user_command("NeorgOtter", function()
   require("quarto").activate()

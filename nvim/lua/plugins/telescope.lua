@@ -61,9 +61,10 @@ return {
         },
       })
 
-      local colors = require("moonfly").palette
-      local main = colors.grey233
-      local prompt = colors.grey234
+      local theme = require("benlubas.color")
+      local tel_theme = theme.telescope
+      local main = tel_theme.main
+      local prompt = tel_theme.prompt
 
       local highlights = {
         -- Sets the highlight for selected items within the picker.
@@ -81,7 +82,7 @@ return {
         -- Border highlight groups.
         --   Use TelescopeBorder to override the default.
         --   Otherwise set them specifically
-        TelescopeBorder = { fg = main, bg = colors.black },
+        TelescopeBorder = { fg = main, bg = theme.background },
         TelescopePromptBorder = { fg = prompt, bg = main },
         -- TelescopeResultsBorder = { link = "TelescopeBorder" },
         -- TelescopePreviewBorder = { link = "TelescopeBorder" },
@@ -89,7 +90,7 @@ return {
         -- Title highlight groups.
         --   Use TelescopeTitle to override the default.
         --   Otherwise set them specifically
-        TelescopeTitle = { bg = colors.blue, fg = colors.black },
+        TelescopeTitle = tel_theme.title,
         TelescopePromptTitle = { link = "TelescopeTitle" },
         TelescopeResultsTitle = { link = "TelescopeTitle" },
         TelescopePreviewTitle = { link = "TelescopeTitle" },
@@ -100,33 +101,33 @@ return {
         TelescopeMatching = { link = "Special" },
 
         -- Used for the prompt prefix
-        TelescopePromptPrefix = { link = "MoonflyBlue" },
+        TelescopePromptPrefix = { link = tel_theme.promptPrefix },
 
         -- Used for highlighting the matched line inside Previewer. Works only for (vim_buffer_ previewer)
         TelescopePreviewLine = { link = "Visual" },
         TelescopePreviewMatch = { link = "Search" },
 
-        TelescopePreviewPipe = { link = "MoonflyBlue" },
-        TelescopePreviewCharDev = { link = "MoonflyBlue" },
+        TelescopePreviewPipe = { link = tel_theme.pipe },
+        TelescopePreviewCharDev = { link = tel_theme.charDev },
         TelescopePreviewDirectory = { link = "Directory" },
-        TelescopePreviewBlock = { link = "MoonflyBlue" },
+        TelescopePreviewBlock = { link = tel_theme.block },
         TelescopePreviewLink = { link = "Special" },
         TelescopePreviewSocket = { link = "Statement" },
-        TelescopePreviewRead = { link = "MoonflyBlue" },
+        TelescopePreviewRead = { link = tel_theme.read },
         TelescopePreviewWrite = { link = "Statement" },
         TelescopePreviewExecute = { link = "String" },
         TelescopePreviewHyphen = { link = "NonText" },
         TelescopePreviewSticky = { link = "Keyword" },
         TelescopePreviewSize = { link = "String" },
-        TelescopePreviewUser = { link = "MoonflyBlue" },
-        TelescopePreviewGroup = { link = "MoonflyBlue" },
+        TelescopePreviewUser = { link = tel_theme.user },
+        TelescopePreviewGroup = { link = tel_theme.group },
         TelescopePreviewDate = { link = "Directory" },
         TelescopePreviewMessage = { link = "TelescopePreviewNormal" },
         TelescopePreviewMessageFillchar = { link = "TelescopePreviewMessage" },
 
         -- Used for Picker specific Results highlighting
         TelescopeResultsClass = { link = "Function" },
-        TelescopeResultsConstant = { link = "MoonflyBlue" },
+        TelescopeResultsConstant = { link = tel_theme.constant },
         TelescopeResultsField = { link = "Function" },
         TelescopeResultsFunction = { link = "Function" },
         TelescopeResultsMethod = { link = "Method" },
@@ -136,7 +137,7 @@ return {
 
         TelescopeResultsLineNr = { link = "LineNr" },
         TelescopeResultsIdentifier = { link = "Identifier" },
-        TelescopeResultsNumber = { link = "MoonflyBlue" },
+        TelescopeResultsNumber = { link = tel_theme.number },
         TelescopeResultsComment = { link = "Comment" },
         TelescopeResultsSpecialComment = { link = "SpecialComment" },
 
