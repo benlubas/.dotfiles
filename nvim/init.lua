@@ -1,5 +1,3 @@
-print(vim.fn.stdpath("data"))
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -55,7 +53,7 @@ require("lazy").setup(plugins, {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
     -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { "moonfly" },
+    colorscheme = { "moonfly", "carbonfox" },
   },
   change_detection = {
     enabled = false,

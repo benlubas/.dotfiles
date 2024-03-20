@@ -33,6 +33,13 @@ local Themes = {}
 ---@field heading5 HiTable
 ---@field heading6 HiTable
 
+---@class OilTheme
+---@field executable string
+---@field d string
+---@field p string
+---@field l string
+---@field s string
+
 ---@class StatusLineTheme
 ---@field normal string
 ---@field visual string
@@ -82,6 +89,7 @@ local Themes = {}
 ---@field status_line StatusLineTheme
 ---@field hydra HydraTheme
 ---@field starter StarterTheme
+---@field oil OilTheme
 
 local ok, moonfly = pcall(require, "moonfly")
 if ok then
@@ -155,6 +163,13 @@ if ok then
       heading4 = { fg = moonfly.orchid },
       heading5 = { fg = moonfly.coral },
       heading6 = { fg = moonfly.emerald },
+    },
+    oil = {
+      executable = "MoonflyBlue",
+      d = "MoonflyBlue",
+      p = "MoonflyCranberry",
+      l = "MoonflyPurple",
+      s = "MoonflyCranberry",
     },
   }
 end
@@ -232,6 +247,13 @@ if fok then
       heading5 = { fg = fox.green.bright },
       heading6 = { fg = fox.cyan.bright },
     },
+    oil = {
+      executable = "@field",
+      d = "@constructor",
+      p = "@constant.macro",
+      l = "@exception",
+      s = "@attribute",
+    }
   }
 end
 

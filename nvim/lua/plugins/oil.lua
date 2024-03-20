@@ -3,20 +3,21 @@ return {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
+      local theme = require("benlubas.color").oil
       local permission_hlgroups = {
         ["-"] = "NonText",
         ["r"] = "Normal",
         ["w"] = "Normal",
-        ["x"] = "MoonflyOrchid",
+        ["x"] = theme.executable,
       }
       local type_hlgroups = {
         ["-"] = "NonText",
-        ["d"] = "MoonflyBlue",
-        ["p"] = "MoonflyCranberry",
-        ["l"] = "MoonflyPurple",
-        ["s"] = "MoonflyCranberry",
+        ["d"] = theme.d,
+        ["p"] = theme.p,
+        ["l"] = theme.l,
+        ["s"] = theme.s,
       }
-      local size_hlgroup = "MoonflyBlue"
+      local size_hlgroup = theme.executable
       local mtime_hlgroup = "NonText"
 
       require("oil").setup({
