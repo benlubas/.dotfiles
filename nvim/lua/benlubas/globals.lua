@@ -13,6 +13,8 @@ end
 
 Border = { "▄", "▄", "▄", "█", "▀", "▀", "▀", "█" }
 
+vim.g.color_theme_name = vim.env["COLOR_THEME"] or "moonfly"
+
 IsLinux = function()
   return jit.os == "Linux"
 end

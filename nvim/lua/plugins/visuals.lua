@@ -6,6 +6,7 @@ return {
     "bluz71/vim-moonfly-colors",
     lazy = false,
     priority = 1000,
+    enabled = vim.g.color_theme_name == "moonfly",
     config = function()
       vim.g.moonflyTransparent = true
       vim.g.moonflyItalics = false
@@ -30,6 +31,38 @@ return {
       vim.api.nvim_set_hl(0, "MoltenOutputFooter", { link = "Comment" })
       vim.api.nvim_set_hl(0, "MoltenOutputWin", { link = "Normal" })
       vim.api.nvim_set_hl(0, "Title", { link = "MoonflyBlue" })
+    end,
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    -- enabled = vim.g.color_theme_name == "carbonfox",
+    -- priority = 1000,
+    lazy = false,
+    config = function()
+      -- Default options
+      require("nightfox").setup({
+        options = {
+          transparent = false,
+          dim_inactive = true,
+          styles = {           -- Style to be applied to different syntax groups
+            comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "NONE",
+            constants = "NONE",
+            functions = "NONE",
+            keywords = "NONE",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "NONE",
+            variables = "NONE",
+          },
+        },
+      })
+
+      -- setup must be called before loading
+      vim.cmd("colorscheme carbonfox")
+
+      vim.api.nvim_set_hl(0, "@markup.italic", { italic = true })
     end,
   },
   {
@@ -59,12 +92,16 @@ return {
     },
   },
   -- fork for better register viewing (hard coded though)
-  { "benlubas/which-key.nvim", opts = {
-    layout = {
-      height = { min = 4, max = 50 }, -- min and max height of the columns
-      width = { min = 20, max = 100 }, -- min and max width of the columns
+  {
+    "benlubas/which-key.nvim",
+    opts = {
+      layout = {
+        height = { min = 4, max = 50 },  -- min and max height of the columns
+        width = { min = 20, max = 100 }, -- min and max width of the columns
+      },
     },
-  }, lazy = false },
+    lazy = false,
+  },
   {
     "luukvbaal/statuscol.nvim",
     cond = not MarkdownMode(),
@@ -99,7 +136,6 @@ return {
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
-
       local custom = {
         codeblock_highlight = false,
         dash_string = "━",
@@ -107,8 +143,8 @@ return {
       local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
       local norg = vim.tbl_deep_extend("force", custom, {
         query = vim.treesitter.query.parse(
-            "norg",
-            [[
+          "norg",
+          [[
                 [
                     (heading1_prefix)
                     (heading2_prefix)

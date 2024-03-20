@@ -81,6 +81,7 @@ return {
       stl:add_item(nut.buf.filename({
         prefix = " ",
         suffix = " ",
+        hl = line_theme.filename,
         config = {
           modifier = ":p",
           format = function(filename, _)
@@ -89,7 +90,7 @@ return {
         },
       }))
 
-      stl:add_item(nut.buf.filestatus({ prefix = "[", suffix = "] " }))
+      stl:add_item(nut.buf.filestatus({ prefix = "[", suffix = "] ", hl = line_theme.filename }))
 
       stl:add_item(Item({
         hl = line_theme.search_count,

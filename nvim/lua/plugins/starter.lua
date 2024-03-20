@@ -32,15 +32,16 @@ return {
       version = "*",
       config = function()
         local starter = require("mini.starter")
+        local theme = require("benlubas.color").starter
 
         -- highlights
-        vim.api.nvim_set_hl(0, "MiniStarterCurrent", { link = "MoonflyWhiteLineActive" })
-        vim.api.nvim_set_hl(0, "MiniStarterFooter", { link = "MoonflyGrey239" })
-        vim.api.nvim_set_hl(0, "MiniStarterHeader", { link = "MoonflyGrey237" })
-        vim.api.nvim_set_hl(0, "MiniStarterItem", { link = "MoonflyGrey246" })
-        vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", { link = "MoonflyWhite" })
-        vim.api.nvim_set_hl(0, "MiniStarterSection", { link = "MoonflyBlue" })
-        vim.api.nvim_set_hl(0, "MiniStarterQuery", { link = "MoonflyCrimson" })
+        vim.api.nvim_set_hl(0, "MiniStarterCurrent", theme.current)
+        vim.api.nvim_set_hl(0, "MiniStarterFooter", { link = "NonText" })
+        vim.api.nvim_set_hl(0, "MiniStarterHeader", theme.header)
+        vim.api.nvim_set_hl(0, "MiniStarterItem", { link = "Normal" } )
+        vim.api.nvim_set_hl(0, "MiniStarterItemPrefix", theme.prefix )
+        vim.api.nvim_set_hl(0, "MiniStarterSection", theme.section )
+        vim.api.nvim_set_hl(0, "MiniStarterQuery", theme.query )
 
         starter.setup({
           -- perform action when there's only one matching item

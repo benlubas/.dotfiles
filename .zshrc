@@ -79,6 +79,7 @@ source $HOME/github/.dotfiles/zsh_extras.sh
 
 export EDITOR="nvim"
 export GIT_EDITOR="MD_MODE=1 nvim"
+export COLOR_THEME="carbonfox"
 
 # to use bat with man pages
 export MANROFFOPT="-c"

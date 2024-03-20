@@ -101,33 +101,33 @@ return {
         TelescopeMatching = { link = "Special" },
 
         -- Used for the prompt prefix
-        TelescopePromptPrefix = { link = tel_theme.promptPrefix },
+        TelescopePromptPrefix = tel_theme.promptPrefix,
 
         -- Used for highlighting the matched line inside Previewer. Works only for (vim_buffer_ previewer)
         TelescopePreviewLine = { link = "Visual" },
         TelescopePreviewMatch = { link = "Search" },
 
-        TelescopePreviewPipe = { link = tel_theme.pipe },
-        TelescopePreviewCharDev = { link = tel_theme.charDev },
+        TelescopePreviewPipe = tel_theme.pipe,
+        TelescopePreviewCharDev = tel_theme.charDev,
         TelescopePreviewDirectory = { link = "Directory" },
-        TelescopePreviewBlock = { link = tel_theme.block },
+        TelescopePreviewBlock = tel_theme.block,
         TelescopePreviewLink = { link = "Special" },
         TelescopePreviewSocket = { link = "Statement" },
-        TelescopePreviewRead = { link = tel_theme.read },
+        TelescopePreviewRead = tel_theme.read,
         TelescopePreviewWrite = { link = "Statement" },
         TelescopePreviewExecute = { link = "String" },
         TelescopePreviewHyphen = { link = "NonText" },
         TelescopePreviewSticky = { link = "Keyword" },
         TelescopePreviewSize = { link = "String" },
-        TelescopePreviewUser = { link = tel_theme.user },
-        TelescopePreviewGroup = { link = tel_theme.group },
+        TelescopePreviewUser = tel_theme.user,
+        TelescopePreviewGroup = tel_theme.group,
         TelescopePreviewDate = { link = "Directory" },
         TelescopePreviewMessage = { link = "TelescopePreviewNormal" },
         TelescopePreviewMessageFillchar = { link = "TelescopePreviewMessage" },
 
         -- Used for Picker specific Results highlighting
         TelescopeResultsClass = { link = "Function" },
-        TelescopeResultsConstant = { link = tel_theme.constant },
+        TelescopeResultsConstant = tel_theme.constant,
         TelescopeResultsField = { link = "Function" },
         TelescopeResultsFunction = { link = "Function" },
         TelescopeResultsMethod = { link = "Method" },
@@ -137,7 +137,7 @@ return {
 
         TelescopeResultsLineNr = { link = "LineNr" },
         TelescopeResultsIdentifier = { link = "Identifier" },
-        TelescopeResultsNumber = { link = tel_theme.number },
+        TelescopeResultsNumber = tel_theme.number,
         TelescopeResultsComment = { link = "Comment" },
         TelescopeResultsSpecialComment = { link = "SpecialComment" },
 

@@ -3,11 +3,11 @@ return {
     "benlubas/harpoon", -- fork that caches the git branch key, and adds some highlights and stuff
     dev = true,
     config = function()
-      local colors = require("moonfly").palette
-      vim.api.nvim_set_hl(0, "HarpoonBorder", { fg = colors.grey233 })
-      vim.api.nvim_set_hl(0, "HarpoonWindow", { bg = colors.grey233 })
-      vim.api.nvim_set_hl(0, "HarpoonTitle", { fg = colors.black, bg = colors.blue })
-      vim.api.nvim_set_hl(0, "HarpoonCurrent", { fg = colors.orchid })
+      local theme = require("benlubas.color")
+      vim.api.nvim_set_hl(0, "HarpoonBorder", theme.fancy_float.border)
+      vim.api.nvim_set_hl(0, "HarpoonWindow", theme.fancy_float.window)
+      vim.api.nvim_set_hl(0, "HarpoonTitle", theme.fancy_float.title)
+      vim.api.nvim_set_hl(0, "HarpoonCurrent", { fg = theme.harpoon_current })
 
       require("harpoon").setup({
         menu = {

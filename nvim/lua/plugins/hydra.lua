@@ -3,17 +3,18 @@ return {
   dependencies = { "MunifTanjim/nougat.nvim" },
   dev = true,
   config = function()
-    vim.api.nvim_set_hl(0, "HydraRed", { link = "MoonflyRed" })
-    vim.api.nvim_set_hl(0, "HydraBlue", { link = "MoonflySky" })
-    vim.api.nvim_set_hl(0, "HydraAmaranth", { link = "MoonflyCranberry" })
-    vim.api.nvim_set_hl(0, "HydraTeal", { link = "MoonflyTurquoise" })
-    vim.api.nvim_set_hl(0, "HydraPink", { link = "MoonflyCrimson" })
+    local theme = require('benlubas.color')
 
-    local colors = require("moonfly").palette
-    vim.api.nvim_set_hl(0, "HydraHint", { bg = colors.grey234 })
-    vim.api.nvim_set_hl(0, "HydraBorder", { fg = colors.grey234 })
-    vim.api.nvim_set_hl(0, "HydraTitle", { fg = colors.black, bg = colors.blue })
-    vim.api.nvim_set_hl(0, "HydraFooter", { fg = colors.black, bg = colors.red })
+    vim.api.nvim_set_hl(0, "HydraRed", theme.hydra.red)
+    vim.api.nvim_set_hl(0, "HydraBlue", theme.hydra.blue)
+    vim.api.nvim_set_hl(0, "HydraAmaranth", theme.hydra.amaranth)
+    vim.api.nvim_set_hl(0, "HydraTeal", theme.hydra.teal)
+    vim.api.nvim_set_hl(0, "HydraPink", theme.hydra.pink)
+
+    vim.api.nvim_set_hl(0, "HydraHint", theme.fancy_float.window)
+    vim.api.nvim_set_hl(0, "HydraBorder", theme.fancy_float.border)
+    vim.api.nvim_set_hl(0, "HydraTitle", theme.fancy_float.title)
+    vim.api.nvim_set_hl(0, "HydraFooter", theme.fancy_float.title)
 
     require("hydra").setup({
       hint = {

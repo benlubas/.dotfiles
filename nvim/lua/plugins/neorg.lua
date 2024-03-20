@@ -53,6 +53,50 @@ local function template(pattern, template_name)
   })
 end
 
+local get_carryover_todos = function()
+  local queryString = [[ (_
+      state: (detached_modifier_extension [
+        (todo_item_undone)
+        (todo_item_pending)
+      ])
+      content: (paragraph)
+    ) @something
+  ]]
+
+  local todos = {}
+
+  local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+  local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+  local yesterday = os.date("%Y/%m/%d", time - 86400)
+  local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()
+  ws_path = ws_path[2]
+  local yesterday_path = ws_path .. "/journal/" .. yesterday .. ".norg"
+  local f = io.open(yesterday_path, "r")
+  if not f then
+    return {}
+  end
+  local content = f:read("*a")
+
+  local parser = vim.treesitter.get_string_parser(content, "norg")
+  local tree = parser:parse()[1]
+  local root = tree:root()
+  local lang = parser:lang()
+  local query = vim.treesitter.query.parse(lang, queryString)
+
+  local i = 0
+  ---@diagnostic disable-next-line: missing-parameter
+  for _, matches, _ in query:iter_matches(root, 0) do
+    local m = vim.treesitter.get_node_text(matches[1], content)
+    m = m:match("^.*[^\n]")
+    if i > 0 then
+      m = "   " .. m -- just hard coding the correct indent for me. idk how to dynamically set this
+    end
+    table.insert(todos, m)
+    i = i + 1
+  end
+  return todos
+end
+
 return {
   "nvim-neorg/neorg",
   dev = true,
@@ -85,6 +129,14 @@ return {
   },
   config = function()
     local theme = require("benlubas.color").neorg
+
+    vim.api.nvim_set_hl(0, "NeorgH1", theme.heading1)
+    vim.api.nvim_set_hl(0, "NeorgH2", theme.heading2)
+    vim.api.nvim_set_hl(0, "NeorgH3", theme.heading3)
+    vim.api.nvim_set_hl(0, "NeorgH4", theme.heading4)
+    vim.api.nvim_set_hl(0, "NeorgH5", theme.heading5)
+    vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
+
     require("neorg").setup({
       load = {
         -- ["core.refactor"] = {},
@@ -143,6 +195,9 @@ return {
                   icon = " ",
                 },
               },
+              heading = {
+                icons = { "◆", "❖", "◈", "◇", "⟡", "⋄" },
+              },
               code_block = {
                 conceal = true,
                 spell_check = false,
@@ -158,12 +213,12 @@ return {
           config = {
             highlights = {
               headings = {
-                ["1"] = { title = theme.heading1, prefix = theme.heading1 },
-                ["2"] = { title = theme.heading2, prefix = theme.heading2 },
-                ["3"] = { title = theme.heading3, prefix = theme.heading3 },
-                ["4"] = { title = theme.heading4, prefix = theme.heading4 },
-                ["5"] = { title = theme.heading5, prefix = theme.heading5 },
-                ["6"] = { title = theme.heading6, prefix = theme.heading6 },
+                ["1"] = { title = "+NeorgH1", prefix = "+NeorgH1" },
+                ["2"] = { title = "+NeorgH2", prefix = "+NeorgH2" },
+                ["3"] = { title = "+NeorgH3", prefix = "+NeorgH3" },
+                ["4"] = { title = "+NeorgH4", prefix = "+NeorgH4" },
+                ["5"] = { title = "+NeorgH5", prefix = "+NeorgH5" },
+                ["6"] = { title = "+NeorgH6", prefix = "+NeorgH6" },
               },
             },
           },
@@ -195,9 +250,19 @@ return {
                 local tomorrow = os.date("%Y/%m/%d", time + 86400)
                 return require("luasnip").text_node(("../../%s"):format(tomorrow))
               end,
-              INSERT_2 = function() return require("luasnip").insert_node(1) end,
-              INSERT_3 = function() return require("luasnip").insert_node(1) end,
-              INSERT_4 = function() return require("luasnip").insert_node(1) end,
+              CARRY_OVER_TODOS = function()
+                -- local todos = table.concat(get_carryover_todos(), "\n")
+                return require("luasnip").text_node(P(get_carryover_todos()))
+              end,
+              INSERT_2 = function()
+                return require("luasnip").insert_node(1)
+              end,
+              INSERT_3 = function()
+                return require("luasnip").insert_node(1)
+              end,
+              INSERT_4 = function()
+                return require("luasnip").insert_node(1)
+              end,
               WEATHER = function()
                 local c = require("luasnip").choice_node
                 local t = require("luasnip").text_node
@@ -229,6 +294,7 @@ return {
         -- ["core.latex.renderer"] = {},
       },
     })
+
     local neorg_callbacks = require("neorg.core.callbacks")
 
     ---@diagnostic disable-next-line: missing-parameter
