@@ -4,8 +4,9 @@ local hint = [[
 
   _d_: files              _a_: live grep
   _._: all + .files       _j_: current buffer fuzzy find
-  _s_: modified files     _l_: ~/dotfiles
+  _s_: modified files     _l_: .dotfiles
   _n_: ~/notes            _m_: harpoon marks
+  _c_: nix-config
   ^
   _f_: resume last search _h_: help
   _r_: recent pickers
@@ -49,7 +50,7 @@ Hydra({
         local dir = vim.env.HOME .. "/github/.dotfiles"
         tb.find_files({
           find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
-          prompt_prefix = "~/.dotfiles/",
+          prompt_prefix = "~/github/.dotfiles/",
         })
       end,
       { exit = true },
@@ -61,6 +62,17 @@ Hydra({
         tb.find_files({
           find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
           prompt_prefix = "~/notes/",
+        })
+      end,
+      { exit = true },
+    },
+    {
+      "c",
+      function()
+        local dir = vim.env.HOME .. "/github/nix-config"
+        tb.find_files({
+          find_command = { "rg", "--files", "--iglob", "!.git", "--hidden", dir },
+          prompt_prefix = "~/github/nix-config/",
         })
       end,
       { exit = true },

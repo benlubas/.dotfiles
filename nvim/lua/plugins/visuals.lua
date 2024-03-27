@@ -35,8 +35,8 @@ return {
   },
   {
     "EdenEast/nightfox.nvim",
-    -- enabled = vim.g.color_theme_name == "carbonfox",
-    -- priority = 1000,
+    enabled = vim.g.color_theme_name == "carbonfox",
+    priority = 1000,
     lazy = false,
     config = function()
       -- Default options
@@ -62,7 +62,11 @@ return {
       -- setup must be called before loading
       vim.cmd("colorscheme carbonfox")
 
+      local fox = require("nightfox.palette").load("carbonfox")
       vim.api.nvim_set_hl(0, "@markup.italic", { italic = true })
+      ---@diagnostic disable-next-line: need-check-nil, undefined-field
+      vim.api.nvim_set_hl(0, "CodeCell", { bg = fox.bg0 })
+      vim.api.nvim_set_hl(0, "Whitespace", { ctermfg = 104, fg = "#6767d0" })
     end,
   },
   {
@@ -108,7 +112,6 @@ return {
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
-        -- configuration goes here, for example:
         relculright = true,
         segments = {
           {
@@ -130,6 +133,7 @@ return {
     main = "ibl",
     opts = {
       scope = { enabled = false },
+      indent = { highlight = "NonText" },
     },
   },
   {

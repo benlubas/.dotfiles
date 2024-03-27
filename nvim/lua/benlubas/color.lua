@@ -232,7 +232,7 @@ if fok then
       molten = { bg = fox.bg2, fg = fox.red.base },
       filetype = { bg = fox.bg4 },
       position = { link = fox.cyan.base, bg = fox.bg2 },
-      scroll = { bg = fox.cyan.base, fg = fox.fg2 },
+      scroll = { bg = fox.cyan.base, fg = fox.bg2 },
       hydra = {
         mode = { bg = fox.red.base, fg = fox.bg2 },
         name = { bg = fox.bg2, fg = fox.red.dim },

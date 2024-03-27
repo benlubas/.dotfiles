@@ -34,7 +34,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   alias paste="xclip -selection clipboard -o"
   # this only works b/c I've chowned the etc/nixos folder
   alias conf="nvim /etc/nixos/configuration.nix"
-  alias rebuild="sudo nixos-rebuild switch"
+  alias rebuild="nixos-rebuild switch --use-remote-sudo"
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   # antidote
   antidote_path=/opt/homebrew/Cellar/antidote/1.9.0/share/antidote

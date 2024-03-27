@@ -11,6 +11,7 @@ local servers = {
   -- "marksman",
   "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
   "rust_analyzer",
+  "nil_ls",
   "r_language_server",
   "svelte",
   "tsserver",
@@ -178,6 +179,7 @@ return {
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.typstfmt,
+          null_ls.builtins.formatting.nixfmt,
         },
         on_attach = function(client, _)
           if client.server_capabilities.documentFormattingProvider then
