@@ -6,32 +6,27 @@ local Themes = {}
 
 ---@alias HiGroup string A Highlight Group
 
----@class HiTable
----@field bg string?
----@field fg string?
----@field link string?
-
 ---@class TelescopeTheme
 ---@field main string
 ---@field prompt string
----@field title HiTable
----@field promptPrefix HiTable
----@field pipe HiTable
----@field charDev HiTable
----@field block HiTable
----@field read HiTable
----@field user HiTable
----@field group HiTable
----@field constant HiTable
----@field number HiTable
+---@field title vim.api.keyset.highlight
+---@field promptPrefix vim.api.keyset.highlight
+---@field pipe vim.api.keyset.highlight
+---@field charDev vim.api.keyset.highlight
+---@field block vim.api.keyset.highlight
+---@field read vim.api.keyset.highlight
+---@field user vim.api.keyset.highlight
+---@field group vim.api.keyset.highlight
+---@field constant vim.api.keyset.highlight
+---@field number vim.api.keyset.highlight
 
 ---@class NeorgTheme
----@field heading1 HiTable
----@field heading2 HiTable
----@field heading3 HiTable
----@field heading4 HiTable
----@field heading5 HiTable
----@field heading6 HiTable
+---@field heading1 vim.api.keyset.highlight
+---@field heading2 vim.api.keyset.highlight
+---@field heading3 vim.api.keyset.highlight
+---@field heading4 vim.api.keyset.highlight
+---@field heading5 vim.api.keyset.highlight
+---@field heading6 vim.api.keyset.highlight
 
 ---@class OilTheme
 ---@field executable string
@@ -48,37 +43,37 @@ local Themes = {}
 ---@field commandline string
 ---@field terminal string
 ---@field inactive string
----@field branch HiTable
+---@field branch vim.api.keyset.highlight
 ---@field diff_bg string
 ---@field added string
 ---@field changed string
 ---@field removed string
----@field filename HiTable
----@field search_count HiTable
----@field molten HiTable
----@field filetype HiTable
----@field position HiTable
----@field scroll HiTable
+---@field filename vim.api.keyset.highlight
+---@field search_count vim.api.keyset.highlight
+---@field molten vim.api.keyset.highlight
+---@field filetype vim.api.keyset.highlight
+---@field position vim.api.keyset.highlight
+---@field scroll vim.api.keyset.highlight
 ---@field hydra table
 
 ---@class FloatTheme
----@field border HiTable
----@field window HiTable
----@field title HiTable
+---@field border vim.api.keyset.highlight
+---@field window vim.api.keyset.highlight
+---@field title vim.api.keyset.highlight
 
 ---@class HydraTheme
----@field red HiTable
----@field blue HiTable
----@field teal HiTable
----@field amaranth HiTable
----@field pink HiTable
+---@field red vim.api.keyset.highlight
+---@field blue vim.api.keyset.highlight
+---@field teal vim.api.keyset.highlight
+---@field amaranth vim.api.keyset.highlight
+---@field pink vim.api.keyset.highlight
 
 ---@class StarterTheme
----@field section HiTable
----@field query HiTable
----@field current HiTable
----@field header HiTable
----@field prefix HiTable
+---@field section vim.api.keyset.highlight
+---@field query vim.api.keyset.highlight
+---@field current vim.api.keyset.highlight
+---@field header vim.api.keyset.highlight
+---@field prefix vim.api.keyset.highlight
 
 ---@class Theme
 ---@field background string

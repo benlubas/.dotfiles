@@ -139,10 +139,14 @@ return {
   {
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
+    -- ft = { "quarto", "markdown", "norg" },
+    -- enabled = false,
+    event = "VeryLazy",
     config = function()
       local custom = {
         codeblock_highlight = false,
         dash_string = "━",
+        bullets = {},
       }
       local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
       local norg = vim.tbl_deep_extend("force", custom, {
@@ -165,8 +169,6 @@ return {
                     name: (tag_name) @_name
                     (#eq? @_name "code")
                 )] @codeblock (#offset! @codeblock 0 0 1 0))
-
-                (quote1_prefix) @quote
             ]]
         ),
       })

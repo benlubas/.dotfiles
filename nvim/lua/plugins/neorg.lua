@@ -9,7 +9,7 @@ end
 local function project_note()
   -- get the current directory
   local cwd = vim.fn.getcwd()
-  local proj_name = cwd:match("github/(.*)")
+  local proj_name = (cwd or ""):match("github/(.*)")
   if not proj_name then
     vim.notify("[Neorg-Projects] Not in a project.")
     return
@@ -115,6 +115,10 @@ local get_carryover_todos = function()
   return ""
 end
 
+local nightly = vim.version.ge(vim.version(), { 0, 9, 99 })
+-- for some reason vim.version() < {0, 10, 0}
+-- even though I'm on {0, 10, 0}... but it's nightly so maybe that matters? no clue
+
 return {
   {
     "vhyrro/luarocks.nvim",
@@ -161,165 +165,167 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH5", theme.heading5)
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
-      require("neorg").setup({
-        load = {
-          ["core.refactor"] = {},
-          ["core.integrations.otter"] = {
-            config = {
-              auto_start = true,
-              languages = { "python", "lua" },
-              keys = {
-                hover = "H",
-                definition = "gd",
-                type_definition = "gt",
-                references = "gr",
-                rename = "<leader>rn",
-                format = "<leader>gf",
-                document_symbols = "gs",
+      local load = {
+        -- ["core.refactor"] = {},
+        -- ["core.integrations.otter"] = {
+        --   config = {
+        --     auto_start = true,
+        --     languages = { "python", "lua" },
+        --     keys = {
+        --       hover = "H",
+        --       definition = "gd",
+        --       type_definition = "gt",
+        --       references = "gr",
+        --       rename = "<leader>rn",
+        --       format = "<leader>gf",
+        --       document_symbols = "gs",
+        --     },
+        --   },
+        -- },
+        ["core.defaults"] = {},
+        ["core.esupports.metagen"] = {
+          config = {
+            undojoin_updates = true,
+            type = "empty",
+          },
+        },
+        ["core.keybinds"] = {
+          config = {
+            hook = function(keybinds)
+              -- Map \c to edit the code block in another buffer.
+              keybinds.remap_event("norg", "n", "<localleader>l", "core.looking-glass.magnify-code-block")
+              keybinds.map("norg", "n", "<localleader>R", ":Neorg return<CR>")
+              keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
+              keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
+              keybinds.map("norg", "n", "u", function()
+                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                local k = vim.api.nvim_replace_termcodes("m`u`'", true, false, true)
+                vim.api.nvim_feedkeys(k, "n", false)
+              end)
+              keybinds.map("norg", "n", "U", function()
+                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+                local k = vim.api.nvim_replace_termcodes("m`<c-r>`'", true, false, true)
+                vim.api.nvim_feedkeys(k, "n", false)
+              end)
+              keybinds.map("norg", "i", "-(", "- ( ) ")
+              keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
+              keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
+              keybinds.unmap("norg", "n", "gd")
+            end,
+          },
+        },
+        ["core.concealer"] = {
+          config = {
+            icon_preset = "diamond",
+            icons = {
+              todo = {
+                undone = {
+                  icon = " ",
+                },
+              },
+              heading = {
+                icons = { "◆", "❖", "◈", "◇", "⟡", "⋄" },
+              },
+              code_block = {
+                conceal = true,
+                spell_check = false,
+                content_only = false,
+                width = "content",
+                min_width = 85,
+                highlight = "CodeCell",
               },
             },
           },
-          ["core.defaults"] = {},
-          ["core.esupports.metagen"] = {
-            config = {
-              undojoin_updates = true,
-              type = "empty",
+        },
+        ["core.highlights"] = {
+          config = {
+            highlights = {
+              headings = {
+                ["1"] = { title = "+NeorgH1", prefix = "+NeorgH1" },
+                ["2"] = { title = "+NeorgH2", prefix = "+NeorgH2" },
+                ["3"] = { title = "+NeorgH3", prefix = "+NeorgH3" },
+                ["4"] = { title = "+NeorgH4", prefix = "+NeorgH4" },
+                ["5"] = { title = "+NeorgH5", prefix = "+NeorgH5" },
+                ["6"] = { title = "+NeorgH6", prefix = "+NeorgH6" },
+              },
             },
           },
-          ["core.keybinds"] = {
-            config = {
-              hook = function(keybinds)
-                -- Map \c to edit the code block in another buffer.
-                keybinds.remap_event("norg", "n", "<localleader>l", "core.looking-glass.magnify-code-block")
-                keybinds.map("norg", "n", "<localleader>R", ":Neorg return<CR>")
-                keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
-                keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
-                keybinds.map("norg", "n", "u", function()
-                  require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
-                  local k = vim.api.nvim_replace_termcodes("u<c-o>", true, false, true)
-                  vim.api.nvim_feedkeys(k, "n", false)
-                end)
-                keybinds.map("norg", "n", "U", function()
-                  require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
-                  local k = vim.api.nvim_replace_termcodes("<c-r><c-o>", true, false, true)
-                  vim.api.nvim_feedkeys(k, "n", false)
-                end)
-                keybinds.map("norg", "i", "-(", "- ( ) ")
-                keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
-                keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
-                keybinds.unmap("norg", "n", "gd")
+        },
+        ["core.journal"] = {
+          config = {
+            workspace = "notes",
+          },
+        },
+        ["external.templates"] = {
+          config = {
+            templates_dir = vim.env.HOME .. "/notes/templates",
+            default_subcommand = "load", -- or "fload", "load"
+            keywords = {
+              TODAY_TITLE = function()
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local date = os.date("%A %B %d, %Y", os.time({ year = buf[1], month = buf[2], day = buf[3] }))
+                return require("luasnip").text_node(date)
+              end,
+              YESTERDAY_PATH = function()
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+                local yesterday = os.date("%Y/%m/%d", time - 86400)
+                return require("luasnip").text_node(("../../%s"):format(yesterday))
+              end,
+              TOMORROW_PATH = function()
+                local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+                local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+                local tomorrow = os.date("%Y/%m/%d", time + 86400)
+                return require("luasnip").text_node(("../../%s"):format(tomorrow))
+              end,
+              CARRY_OVER_TODOS = function()
+                -- local todos = table.concat(get_carryover_todos(), "\n")
+                return require("luasnip").text_node(P(get_carryover_todos()))
+              end,
+              INSERT_2 = function()
+                return require("luasnip").insert_node(1)
+              end,
+              INSERT_3 = function()
+                return require("luasnip").insert_node(1)
+              end,
+              INSERT_4 = function()
+                return require("luasnip").insert_node(1)
+              end,
+              WEATHER = function()
+                local c = require("luasnip").choice_node
+                local t = require("luasnip").text_node
+                return c(1, { t("Sun"), t("Rain"), t("Storm"), t("Snow"), t("Clouds") })
               end,
             },
+            snippets_overwrite = {},
           },
-          ["core.concealer"] = {
-            config = {
-              icon_preset = "diamond",
-              icons = {
-                todo = {
-                  undone = {
-                    icon = " ",
-                  },
-                },
-                heading = {
-                  icons = { "◆", "❖", "◈", "◇", "⟡", "⋄" },
-                },
-                code_block = {
-                  conceal = true,
-                  spell_check = false,
-                  content_only = false,
-                  width = "content",
-                  min_width = 85,
-                  highlight = "CodeCell",
-                },
-              },
-            },
-          },
-          ["core.highlights"] = {
-            config = {
-              highlights = {
-                headings = {
-                  ["1"] = { title = "+NeorgH1", prefix = "+NeorgH1" },
-                  ["2"] = { title = "+NeorgH2", prefix = "+NeorgH2" },
-                  ["3"] = { title = "+NeorgH3", prefix = "+NeorgH3" },
-                  ["4"] = { title = "+NeorgH4", prefix = "+NeorgH4" },
-                  ["5"] = { title = "+NeorgH5", prefix = "+NeorgH5" },
-                  ["6"] = { title = "+NeorgH6", prefix = "+NeorgH6" },
-                },
-              },
-            },
-          },
-          ["core.journal"] = {
-            config = {
-              workspace = "notes",
-            },
-          },
-          ["external.templates"] = {
-            config = {
-              templates_dir = vim.env.HOME .. "/notes/templates",
-              default_subcommand = "load", -- or "fload", "load"
-              keywords = {
-                TODAY_TITLE = function()
-                  local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
-                  local date = os.date("%A %B %d, %Y", os.time({ year = buf[1], month = buf[2], day = buf[3] }))
-                  return require("luasnip").text_node(date)
-                end,
-                YESTERDAY_PATH = function()
-                  local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
-                  local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
-                  local yesterday = os.date("%Y/%m/%d", time - 86400)
-                  return require("luasnip").text_node(("../../%s"):format(yesterday))
-                end,
-                TOMORROW_PATH = function()
-                  local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
-                  local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
-                  local tomorrow = os.date("%Y/%m/%d", time + 86400)
-                  return require("luasnip").text_node(("../../%s"):format(tomorrow))
-                end,
-                CARRY_OVER_TODOS = function()
-                  -- local todos = table.concat(get_carryover_todos(), "\n")
-                  return require("luasnip").text_node(P(get_carryover_todos()))
-                end,
-                INSERT_2 = function()
-                  return require("luasnip").insert_node(1)
-                end,
-                INSERT_3 = function()
-                  return require("luasnip").insert_node(1)
-                end,
-                INSERT_4 = function()
-                  return require("luasnip").insert_node(1)
-                end,
-                WEATHER = function()
-                  local c = require("luasnip").choice_node
-                  local t = require("luasnip").text_node
-                  return c(1, { t("Sun"), t("Rain"), t("Storm"), t("Snow"), t("Clouds") })
-                end,
-              },
-              snippets_overwrite = {},
-            },
-          },
-          ["core.summary"] = {},
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp",
-            },
-          },
-          ["core.dirman"] = {
-            config = {
-              workspaces = {
-                notes = "~/notes",
-                test_notes = "~/test_notes",
-              },
-              default_workspace = "notes",
-            },
-          },
-          ["core.integrations.telescope"] = {},
-          -- NOTE: these require nvim 0.10 (nightly at the time of writing)
-          ["core.ui.calendar"] = {},
-          -- These two are broken.. not sure what's wrong
-          -- ["core.integrations.image"] = {},
-          -- ["core.latex.renderer"] = {},
         },
-      })
+        ["core.summary"] = {},
+        ["core.completion"] = {
+          config = {
+            engine = "nvim-cmp",
+          },
+        },
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/notes",
+              test_notes = "~/test_notes",
+            },
+            default_workspace = "notes",
+          },
+        },
+        ["core.integrations.telescope"] = {},
+        -- NOTE: these require nvim 0.10 (nightly at the time of writing)
+      }
+
+      if nightly then
+        load["core.ui.calendar"] = {}
+        load["core.integrations.image"] = {}
+        load["core.latex.renderer"] = {}
+      end
+
+      require("neorg").setup({ load = load })
 
       local neorg_callbacks = require("neorg.core.callbacks")
 

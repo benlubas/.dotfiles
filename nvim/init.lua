@@ -55,6 +55,9 @@ require("lazy").setup(plugins, {
     -- try to load one of these colorschemes when starting an installation during startup
     colorscheme = { "moonfly", "carbonfox" },
   },
+  performance = {
+    reset_packpath = false, -- if we install some plugins with nix this would break them
+  },
   change_detection = {
     enabled = false,
   },

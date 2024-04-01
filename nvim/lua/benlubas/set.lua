@@ -69,6 +69,8 @@ vim.opt.autoindent = true
 vim.opt.wrap = false
 vim.opt.textwidth = 100 -- break comment lines and others at 100 chars
 
+vim.opt.formatoptions:append("l")
+
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 

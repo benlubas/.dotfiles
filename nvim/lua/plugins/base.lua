@@ -1,4 +1,5 @@
 return {
+  { "nvim-neotest/nvim-nio" },
   {
     "benlubas/wrapping-paper.nvim",
     -- dev = true,

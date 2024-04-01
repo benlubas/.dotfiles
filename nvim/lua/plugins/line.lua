@@ -9,9 +9,6 @@ end
 return {
   {
     "MunifTanjim/nougat.nvim",
-    dependencies = {
-      "benlubas/molten-nvim",
-    },
     config = function()
       local nougat = require("nougat")
       local core = require("nougat.core")
@@ -124,11 +121,13 @@ return {
           sep_left = sep.left_lower_triangle_solid(true),
           prefix = " ",
           content = function(_)
-            local s = require("molten.status").kernels()
-            if s == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
+            local ok, s = pcall(require, "molten.status")
+            if not ok then return "" end
+            local str = s.kernels()
+            if str == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
               return ""
             end
-            return s
+            return str
           end,
           suffix = " ",
         }),
