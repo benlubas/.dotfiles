@@ -41,7 +41,7 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   # homebrew
   eval "$(/opt/homebrew/bin/brew shellenv)"
   # allow the magick rock to find ImageMagick
-  export DYLD_LIBRARY_PATH=/opt/homebrew/lib/
+  export DYLD_LIBRARY_PATH=/opt/homebrew/lib/:$DYLD_LIBRARY_PATH
 else
   echo "[.zshrc] unknown OS - please add this OS to the ~/.zshrc file"
   exit 1
