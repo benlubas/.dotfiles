@@ -140,7 +140,7 @@ return {
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
     -- ft = { "quarto", "markdown", "norg" },
-    -- enabled = false,
+    enabled = false,
     event = "VeryLazy",
     config = function()
       local custom = {

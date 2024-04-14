@@ -144,6 +144,14 @@ return {
         },
       })
 
+      ---@type lsp.ClientCapabilities
+      local typ_cap = vim.deepcopy(capabilities)
+      typ_cap.textDocument.completion.completionItem.snippetSupport = false
+      require("lspconfig")["typst_lsp"].setup({
+        on_attach = on_attach,
+        capabilities = typ_cap,
+      })
+
       -- require("lspconfig")["solargraph"].setup({
       --   on_attach = on_attach,
       --   capabilities = capabilities,

@@ -2,7 +2,7 @@ return {
   {
     "GCBallesteros/jupytext.nvim",
     -- enabled = false,
-    -- dev = true,
+    dev = true,
     opts = {
       style = "markdown",
       output_extension = "md",
@@ -18,7 +18,7 @@ return {
         lsp = {
           hover = { border = "none" },
         },
-      }, dev = true },
+      }, dev = false },
       "nvim-cmp",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",

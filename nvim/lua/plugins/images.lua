@@ -3,7 +3,7 @@ return {
   {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
-    dev = false,
+    dev = true,
     cond = not MarkdownMode(),
     -- enabled = false,
     config = function()
@@ -34,7 +34,7 @@ return {
         window_overlap_clear_enabled = true,    -- toggles images when windows are overlapped
         editor_only_render_when_focused = true, -- auto show/hide images when the editor gains/looses focus
         tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "fidget", "" },
       })
     end,
   },

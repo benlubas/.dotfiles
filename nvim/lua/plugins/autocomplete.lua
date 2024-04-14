@@ -81,7 +81,7 @@ return {
             start_index = 0,
             end_index = 9,
           },
-          fields = { "num", "abbr", "kind", "menu" },
+          fields = { "num", "abbr", "kind" },
           format = function(entry, vim_item)
             local label = vim_item.abbr
             local truncated_label = vim.fn.strcharpart(label, 0, MAX_LABEL_WIDTH)
