@@ -166,21 +166,21 @@ return {
 
       local load = {
         -- ["core.refactor"] = {},
-        -- ["core.integrations.otter"] = {
-        --   config = {
-        --     auto_start = true,
-        --     languages = { "python", "lua" },
-        --     keys = {
-        --       hover = "H",
-        --       definition = "gd",
-        --       type_definition = "gt",
-        --       references = "gr",
-        --       rename = "<leader>rn",
-        --       format = "<leader>gf",
-        --       document_symbols = "gs",
-        --     },
-        --   },
-        -- },
+        ["core.integrations.otter"] = {
+          config = {
+            auto_start = false,
+            languages = { "python", "lua" },
+            keys = {
+              hover = "H",
+              definition = "gd",
+              type_definition = "gt",
+              references = "gr",
+              rename = "<leader>rn",
+              format = "<leader>gf",
+              document_symbols = "gs",
+            },
+          },
+        },
         ["core.defaults"] = {},
         ["core.esupports.metagen"] = {
           config = {
@@ -315,12 +315,12 @@ return {
           },
         },
         ["core.integrations.telescope"] = {},
-        -- NOTE: these require nvim 0.10 (nightly at the time of writing)
-        -- ["core.ui.calendar"] = {},
-        -- These two are broken.. not sure what's wrong
-        -- ["core.integrations.image"] = {},
-        -- ["core.latex.renderer"] = {},
       }
+      if vim.version.gt(vim.version(), "0.9.5") then
+        load["core.ui.calendar"] = {}
+        load["core.integrations.image"] = {}
+        load["core.latex.renderer"] = {}
+      end
       require("neorg").setup({ load = load })
 
       local neorg_callbacks = require("neorg.core.callbacks")
