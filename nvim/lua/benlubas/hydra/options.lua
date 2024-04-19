@@ -8,7 +8,7 @@ _w_ %{wrap} wrap
 _l_ %{cul} cursor line
 _n_ %{nu} number
 _r_ %{rnu} relative number
-_c_ %{con} conceal
+_c_ %{con} conceal (%{conl})
 _t_ %{twe} textwidth (%{tw})
 ^
 ^^^^                _<Esc>_
@@ -37,6 +37,9 @@ Hydra({
         ["tw"] = function()
           return vim.o.textwidth
         end,
+        ["conl"] = function()
+          return vim.o.conceallevel
+        end
       },
     },
   },
@@ -126,11 +129,20 @@ Hydra({
       "c",
       function()
         if vim.o.conceallevel == 0 then
-          vim.o.conceallevel = 1
+          vim.o.conceallevel = 2
         else
           vim.o.conceallevel = 0
         end
       end,
+    },
+    {
+      "C",
+      function()
+        local c = vim.o.conceallevel
+        c = (c + 1) % 4
+        vim.o.conceallevel = c
+      end,
+      { desc = false }
     },
     {
       "t",
@@ -141,6 +153,11 @@ Hydra({
           vim.o.textwidth = 0
         end
       end,
+    },
+    {
+      "T",
+      ":set tw=",
+      { exit = true, desc = false },
     },
     { "<Esc>", nil, { exit = true } },
   },
