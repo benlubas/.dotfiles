@@ -115,7 +115,7 @@ return {
         keep_roots = false,
         update_events = { "TextChanged", "TextChangedI" },
       })
-      require("snippets") -- loading custom snippets
+      vim.cmd.runtime({ args = { "lua/snippets/*.lua" }, bang = true }) -- load custom snippets
 
       vim.keymap.set({ "i", "s" }, "<C-j>", function()
         if ls.expand_or_jumpable() then
