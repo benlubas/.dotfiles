@@ -60,3 +60,9 @@ vim.keymap.set("n", "<leader>St", "<cmd>set spell!<CR>")
 -- remove trailing spaces. Only affect the current line in markdown files
 vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']],
   { desc = "remove trailing spaces", expr = true, silent = true })
+
+-- Conveniently open all the TS dev stuff
+vim.api.nvim_create_user_command("TSPlayground", function ()
+  vim.cmd.InspectTree()
+  vim.cmd.EditQuery()
+end, {})

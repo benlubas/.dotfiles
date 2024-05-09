@@ -15,6 +15,7 @@ return {
 
       -- vim.g.molten_cover_empty_lines = true
       -- vim.g.molten_comment_string = "# %%"
+      vim.keymap.set({ "v", "n" }, "<leader><leader>R", "<Cmd>MoltenEvaluateVisual<CR>")
 
       -- vim.g.molten_auto_image_popup = true
       -- vim.g.molten_show_mimetype_debug = true

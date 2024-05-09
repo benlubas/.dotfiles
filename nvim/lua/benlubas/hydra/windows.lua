@@ -25,6 +25,12 @@ local show = function()
   end
 end
 
+-- remove these new default mappings
+if vim.version.gt(vim.version(), { 0, 9, 5 }) then
+  vim.keymap.del("n", "<c-w>d")
+  vim.keymap.del("n", "<c-w><c-d>")
+end
+
 h = Hydra({
   name = "Windows",
   hint = window_hint,

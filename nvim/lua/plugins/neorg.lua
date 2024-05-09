@@ -1,111 +1,4 @@
-local function new_thought()
-  vim.schedule(function()
-    vim.ui.input({ default = "thoughts/" }, function(text)
-      require("neorg.modules.core.dirman.module").public.create_file(text)
-    end)
-  end)
-end
-
-local function project_note()
-  -- get the current directory
-  local cwd = vim.fn.getcwd()
-  local proj_name = cwd:match("github/(.*)")
-  if not proj_name then
-    vim.notify("[Neorg-Projects] Not in a project.")
-    return
-  end
-  local prefix = "~/notes/projects/" .. proj_name
-  local _, exists = io.open(prefix .. ".norg", "r")
-  if exists then
-    vim.cmd.e(prefix .. ".norg")
-  else
-    require("neorg.modules.core.dirman.module").public.create_file(prefix)
-  end
-end
-
-local file_exists_and_is_empty = function(filepath)
-  local file = io.open(filepath, "r") -- Open the file in read mode
-  if file ~= nil then
-    local content = file:read("*all") -- Read the entire content of the file
-    file:close()                      -- Close the file
-    return content == ""              -- Check if the content is empty
-  else
-    return false
-  end
-end
-
-local function template(pattern, template_name)
-  vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
-    desc = "Autoload template for notes/journal",
-    pattern = pattern,
-    callback = function(args)
-      local index = "index.norg"
-
-      vim.schedule(function()
-        if vim.fn.fnamemodify(args.file, ":t") == index then
-          return
-        end
-        if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
-          vim.api.nvim_cmd({ cmd = "Neorg", args = { "templates", "fload", template_name } }, {})
-        end
-      end)
-    end,
-  })
-end
-
--- -- NOTE: this is currently broken for seemingly no reason
-local get_carryover_todos = function()
-  return ""
---   local queryString = [[
---       (heading2
---         (heading2_prefix)
---         title: (_)
---         content: (generic_list
---                    (unordered_list1
---                      state: (detached_modifier_extension [
---                        (todo_item_undone)
---                        (todo_item_pending)
---                      ])
---                      content: (_)
---                    ) @list
---                  ))
---   ]]
---
---   local todos = {}
---
---   local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
---   local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
---   local yesterday = os.date("%Y/%m/%d", time - 86400)
---   local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()
---   ws_path = ws_path[2]
---   local yesterday_path = ws_path .. "/journal/" .. yesterday .. ".norg"
---   local f = io.open(yesterday_path, "r")
---   if not f then
---     return {}
---   end
---   local content = f:read("*a")
---
---   local parser = vim.treesitter.get_string_parser(content, "norg")
---   local tree = parser:parse()[1]
---   local root = tree:root()
---   local lang = parser:lang()
---   local query = vim.treesitter.query.parse(lang, queryString)
---
---   local i = 0
---   ---@diagnostic disable-next-line: missing-parameter
---   for _, matches, _ in query:iter_matches(root, 0) do
---     local m = vim.treesitter.get_node_text(matches[1], content)
---     m = m:match("^.*[^\n]")
---     for _, line in ipairs(vim.split(m, "\n")) do
---       if i > 0 then
---         line = "   " .. line -- just hard coding the correct indent for me. idk how to dynamically set this
---       end
---       table.insert(todos, line)
---     end
---     i = i + 1
---   end
---   return todos
-end
+local extras = require("benlubas.neorg.extras")
 
 return {
   {
@@ -123,19 +16,19 @@ return {
     cond = not MarkdownMode(),
     dependencies = {
       { "luarocks.nvim" },
-      { "pysan3/neorg-templates",     dependencies = { "L3MON4D3/LuaSnip" } },
+      { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-lua/plenary.nvim" },
       { "nvim-neorg/neorg-telescope", dev = true },
       { "image.nvim" },
       { "otter.nvim" },
     },
     keys = {
-      { "<leader>ni", ":Neorg index<CR>",                             desc = "Neorg Index",        silent = true },
-      { "<leader>ns", ":e ~/notes/school/index.norg<CR>",             desc = "Neorg School Index", silent = true },
-      { "<leader>nw", ":e ~/notes/work/index.norg<CR>",               desc = "Neorg Work Index",   silent = true },
-      { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note",           silent = true },
-      { "<leader>nt", new_thought,                                    desc = "New Thought",        silent = true },
-      { "<leader>np", project_note,                                   desc = "Project Note",       silent = true },
+      { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
+      { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
+      { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
+      { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note", silent = true },
+      { "<leader>nt", extras.new_thought, desc = "New Thought", silent = true },
+      { "<leader>np", extras.project_note, desc = "Project Note", silent = true },
       {
         "<A-CR>",
         ":Neorg keybind norg core.itero.next-iteration<CR>",
@@ -143,7 +36,7 @@ return {
         silent = true,
         mode = "i",
       },
-      { "<leader>jt", ":Neorg journal today<CR>",     desc = "Journal Today",     silent = true },
+      { "<leader>jt", ":Neorg journal today<CR>", desc = "Journal Today", silent = true },
       { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
     },
     config = function()
@@ -173,7 +66,16 @@ return {
             },
           },
         },
-        ["core.defaults"] = {},
+        ["core.defaults"] = {
+          config = {
+            disable = { "core.todo-introspector" },
+          },
+        },
+        ["core.tangle"] = {
+          config = {
+            tangle_on_write = true,
+          },
+        },
         ["core.esupports.metagen"] = {
           config = {
             undojoin_updates = true,
@@ -271,7 +173,7 @@ return {
               end,
               CARRY_OVER_TODOS = function()
                 -- local todos = table.concat(get_carryover_todos(), "\n")
-                return require("luasnip").text_node(P(get_carryover_todos()))
+                return require("luasnip").text_node(extras.get_carryover_todos())
               end,
               INSERT_2 = function()
                 return require("luasnip").insert_node(1)
@@ -304,6 +206,7 @@ return {
               test_notes = "~/test_notes",
             },
             default_workspace = "notes",
+            -- default_workspace = "test_notes",
           },
         },
         ["core.integrations.telescope"] = {},
@@ -317,7 +220,6 @@ return {
 
       local neorg_callbacks = require("neorg.core.callbacks")
 
-      ---@diagnostic disable-next-line: missing-parameter
       neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
         -- Map all the below keybinds only when the "norg" mode is active
         keybinds.map_event_to_mode("norg", {
@@ -336,8 +238,8 @@ return {
         })
       end)
 
-      template("*/notes/journal/*.norg", "journal")
-      template("*/notes/thoughts/*.norg", "thought")
+      extras.template("*/notes/journal/*.norg", "journal")
+      extras.template("*/notes/thoughts/*.norg", "thought")
     end,
   },
 }
