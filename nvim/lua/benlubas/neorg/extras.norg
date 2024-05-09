@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-05-03T23:08:10-0500
+updated: 2024-05-09T16:12:02-0500
 version: 1.1.1
 @end
 
@@ -154,58 +154,69 @@ version: 1.1.1
 
    /Currently, this is broken. TS is acting strange/
 
+   *This will work:*
+   @code norg
+   * heading
+     - ( ) items
+   @end
+   *This will not:*
+   @code norg
+   * heading
+
+     - ( ) item
+   @end
+
    @code lua
    local get_carryover_todos = function()
-     return ""
-     --   local queryString = [[
-     --       (heading2
-     --         (heading2_prefix)
-     --         title: (_)
-     --         content: (generic_list
-     --                    (unordered_list1
-     --                      state: (detached_modifier_extension [
-     --                        (todo_item_undone)
-     --                        (todo_item_pending)
-     --                      ])
-     --                      content: (_)
-     --                    ) @list
-     --                  ))
-     --   ]]
-     --
-     --   local todos = {}
-     --
-     --   local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
-     --   local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
-     --   local yesterday = os.date("%Y/%m/%d", time - 86400)
-     --   local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()
-     --   ws_path = ws_path[2]
-     --   local yesterday_path = ws_path .. "/journal/" .. yesterday .. ".norg"
-     --   local f = io.open(yesterday_path, "r")
-     --   if not f then
-     --     return {}
-     --   end
-     --   local content = f:read("*a")
-     --
-     --   local parser = vim.treesitter.get_string_parser(content, "norg")
-     --   local tree = parser:parse()[1]
-     --   local root = tree:root()
-     --   local lang = parser:lang()
-     --   local query = vim.treesitter.query.parse(lang, queryString)
-     --
-     --   local i = 0
-     --   ---@diagnostic disable-next-line: missing-parameter
-     --   for _, matches, _ in query:iter_matches(root, 0) do
-     --     local m = vim.treesitter.get_node_text(matches[1], content)
-     --     m = m:match("^.*[^\n]")
-     --     for _, line in ipairs(vim.split(m, "\n")) do
-     --       if i > 0 then
-     --         line = "   " .. line -- just hard coding the correct indent for me. idk how to dynamically set this
-     --       end
-     --       table.insert(todos, line)
-     --     end
-     --     i = i + 1
-     --   end
-     --   return todos
+     local queryString = [[
+           (heading2
+             (heading2_prefix)
+             title: (_)
+             content: (generic_list
+                        (unordered_list1
+                          state: (detached_modifier_extension [
+                            (todo_item_undone)
+                            (todo_item_pending)
+                          ])
+                          content: (_)
+                        ) @list
+                      ))
+       ]]
+
+     local todos = {}
+
+     local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+     local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
+     local yesterday = os.date("%Y/%m/%d", time - 86400)
+     local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()
+     ws_path = ws_path[2]
+     local yesterday_path = ws_path .. "/journal/" .. yesterday .. ".norg"
+     local f = io.open(yesterday_path, "r")
+     if not f then
+       return {}
+     end
+     local content = f:read("*a")
+
+     local parser = vim.treesitter.get_string_parser(content, "norg")
+     local tree = parser:parse()[1]
+     local root = tree:root()
+     local lang = parser:lang()
+     local query = vim.treesitter.query.parse(lang, queryString)
+
+     local i = 0
+     ---@diagnostic disable-next-line: missing-parameter
+     for _, matches, _ in query:iter_matches(root, 0) do
+       local m = vim.treesitter.get_node_text(matches[1], content)
+       m = m:match("^.*[^\n]")
+       for _, line in ipairs(vim.split(m, "\n")) do
+         if i > 0 then
+           line = "   " .. line   -- just hard coding the correct indent for me. idk how to dynamically set this
+         end
+         table.insert(todos, line)
+       end
+       i = i + 1
+     end
+     return todos
    end
    @end
 
