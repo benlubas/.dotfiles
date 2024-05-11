@@ -1,3 +1,4 @@
+-- from ./../benlubas/neorg/extras.norg
 local extras = require("benlubas.neorg.extras")
 
 return {
@@ -66,11 +67,7 @@ return {
             },
           },
         },
-        ["core.defaults"] = {
-          config = {
-            disable = { "core.todo-introspector" },
-          },
-        },
+        ["core.defaults"] = {},
         ["core.tangle"] = {
           config = {
             tangle_on_write = true,
