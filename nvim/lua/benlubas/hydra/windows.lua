@@ -70,6 +70,7 @@ h = Hydra({
     { "o", "<C-w>o", { exit = true, desc = "remain only" } },
 
     { "i", show, { desc = false } },
+    { "?", show, { desc = false } },
 
     {
       "b",

@@ -12,14 +12,14 @@ return {
   {
     "nvim-neorg/neorg",
     dev = true,
-    ft = "norg",
     lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
       { "luarocks.nvim" },
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-lua/plenary.nvim" },
-      { "nvim-neorg/neorg-telescope", dev = true },
+      { "nvim-neorg/neorg-telescope" },
+      { "benlubas/neorg-conceal-wrap", dev = true },
       { "image.nvim" },
       { "otter.nvim" },
     },
@@ -101,6 +101,11 @@ return {
               keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
               keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
               keybinds.unmap("norg", "n", "gd")
+
+              keybinds.remap_event("norg", { "o", "x" }, "iT", "core.text-objects.textobject.tag.inner")
+
+              keybinds.remap_event("norg", "n", "<up>", "core.text-objects.item_up")
+              keybinds.remap_event("norg", "n", "<down>", "core.text-objects.item_down")
             end,
           },
         },
@@ -190,23 +195,6 @@ return {
             snippets_overwrite = {},
           },
         },
-        ["core.summary"] = {},
-        ["core.completion"] = {
-          config = {
-            engine = "nvim-cmp",
-          },
-        },
-        ["core.dirman"] = {
-          config = {
-            workspaces = {
-              notes = "~/notes",
-              test_notes = "~/test_notes",
-            },
-            default_workspace = "notes",
-            -- default_workspace = "test_notes",
-          },
-        },
-        ["core.integrations.telescope"] = {},
       }
       if vim.version.gt(vim.version(), "0.9.5") then
         load["core.ui.calendar"] = {}

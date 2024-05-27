@@ -10,6 +10,7 @@ return {
       vim.keymap.set("n", "<leader>Fo", require("ufo").openAllFolds, { desc = "open all folds" })
       vim.keymap.set("n", "<leader>Fc", require("ufo").closeAllFolds, { desc = "close all folds" })
       vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
+      vim.keymap.set("v", "<leader>i", "zf")
 
       -- Need to disable this plugin in some files. Specifically ones that have custom folds or
       -- don't need folds

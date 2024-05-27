@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.deprecate = function() end
+
 vim.g.mapleader = " "
 
 -- ensure that P() and R() are available in plugins

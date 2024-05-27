@@ -13,12 +13,16 @@ return {
     "quarto-dev/quarto-nvim",
     -- dev = true,
     dependencies = {
-      { "jmbuhr/otter.nvim", opts = {
-        handle_leading_whitespace = true,
-        lsp = {
-          hover = { border = "none" },
+      {
+        "jmbuhr/otter.nvim",
+        opts = {
+          handle_leading_whitespace = true,
+          lsp = {
+            hover = { border = "none" },
+          },
         },
-      }, dev = false },
+        dev = false,
+      },
       "nvim-cmp",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",

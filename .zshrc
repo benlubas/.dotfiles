@@ -108,6 +108,7 @@ alias push="git push"
 
 alias ls="ls --color"
 alias la="ls -la"
+alias testit="cargo test --workspace --test tests --" # quick cargo tests in typst repo
 
 # grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything
 grg() {

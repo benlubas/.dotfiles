@@ -5,6 +5,7 @@ return {
     -- dev = true,
     dependencies = {
       "MunifTanjim/nui.nvim",
+      -- commit = "a3597dc88b53489d3fddbddbbd13787355253bb0",
     },
     keys = { {
       "gww",

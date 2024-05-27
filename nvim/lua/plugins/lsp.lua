@@ -19,7 +19,8 @@ local servers = {
 }
 
 return {
-  { "leafOfTree/vim-svelte-plugin" },
+  -- { "leafOfTree/vim-svelte-plugin" },
+  -- { "evanleck/vim-svelte" },
   { "williamboman/mason.nvim", config = true },
   {
     "j-hui/fidget.nvim",

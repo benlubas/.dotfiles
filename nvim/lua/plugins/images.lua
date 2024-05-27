@@ -5,6 +5,7 @@ return {
     -- "benlubas/image.nvim",
     dev = true,
     cond = not MarkdownMode(),
+    dependencies = { "luarocks.nvim" },
     -- enabled = false,
     config = function()
       local image = require("image")
