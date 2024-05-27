@@ -92,14 +92,12 @@ return {
       require("nvim-treesitter.configs").setup({
         highlight = {
           enable = true,
-          -- disable = { "rust" },
           additional_vim_regex_highlighing = { "typst" },
         },
         indent = {
           enable = true,
           disable = {
             "ruby",
-            -- "rust",
           },
         },
         autotag = {

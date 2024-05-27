@@ -91,6 +91,7 @@ alias v=nvim
 alias kvm="ssh benlubas@login.ccs.neu.edu"
 alias kvnvim="nvim oil-ssh://benlubas@login.ccs.neu.edu//home/benlubas/README.md"
 
+# Git Aliases
 alias gh="MD_MODE=1 gh" # pass this to nvim so that I can set a few custom config options
 alias gs="git status"
 alias gd="git diff"
@@ -105,6 +106,8 @@ alias gcam="git commit -am"
 alias amend="git commit --amend"
 alias pull="git pull"
 alias push="git push"
+
+# JJ Aliases
 
 alias ls="ls --color"
 alias la="ls -la"
