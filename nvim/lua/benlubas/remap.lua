@@ -5,8 +5,8 @@ vim.keymap.set("i", "kj", "<esc>")
 
 -- just a reminder that <C-w> in insert mode deletes a word at a time.
 
-vim.keymap.del("n", "<C-w>d")
-vim.keymap.del("n", "<C-w><c-d>")
+pcall(vim.keymap.del, "n", "<C-w>d")
+pcall(vim.keymap.del, "n", "<C-w><c-d>")
 
 -- move things up and down and tab format as you go
 vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })

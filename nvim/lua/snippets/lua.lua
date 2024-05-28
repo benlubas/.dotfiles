@@ -11,6 +11,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("lua", {
   s("pr", fmt("print({})", {
-    c(1, { fmt('"{}:", {}', { rep(1), i(1) }), i(0) })
+    c(1, { fmt('"{}:", {}', { rep(1), i(1) }), fmt('"{}"', i(1)) })
   })),
 })

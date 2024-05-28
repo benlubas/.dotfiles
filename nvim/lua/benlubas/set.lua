@@ -87,5 +87,5 @@ vim.opt.spellcapcheck = "" -- this is the pattern to determine what's the end of
 -- so no pattern = no capital letter check after .
 
 -- misc
-vim.opt.swapfile = false
+-- vim.opt.swapfile = false
 vim.opt.undofile = true

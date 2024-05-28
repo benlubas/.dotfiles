@@ -108,9 +108,15 @@ alias pull="git pull"
 alias push="git push"
 
 # JJ Aliases
+alias js="jj status"
+alias jd="jj diff"
+alias jl="jj log"
+alias je="jj edit"
+alias jab="jj abandon"
 
 alias ls="ls --color"
-alias la="ls -la"
+alias l="ls -lah"
+
 alias testit="cargo test --workspace --test tests --" # quick cargo tests in typst repo
 
 # grep only the files that changed on this branch from main, useful for making sure you're not forgetting anything

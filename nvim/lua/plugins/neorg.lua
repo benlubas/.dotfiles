@@ -52,6 +52,7 @@ return {
 
       local load = {
         -- ["core.refactor"] = {},
+        ["external.conceal-wrap"] = {},
         ["core.integrations.otter"] = {
           config = {
             auto_start = false,
@@ -68,6 +69,7 @@ return {
           },
         },
         ["core.defaults"] = {},
+        ["core.text-objects"] = {},
         ["core.tangle"] = {
           config = {
             tangle_on_write = true,
@@ -79,12 +81,14 @@ return {
             type = "empty",
           },
         },
+        ["core.completion"] = { config = { engine = "nvim-cmp" } },
         ["core.keybinds"] = {
           config = {
             hook = function(keybinds)
               -- Map \c to edit the code block in another buffer.
               keybinds.remap_event("norg", "n", "<localleader>l", "core.looking-glass.magnify-code-block")
               keybinds.map("norg", "n", "<localleader>R", ":Neorg return<CR>")
+              keybinds.map("traverse-heading", "n", "<esc>", ":Neorg mode norg<CR>")
               keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
               keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true })
               keybinds.map("norg", "n", "u", function()
@@ -146,6 +150,15 @@ return {
             },
           },
         },
+        ["core.dirman"] = {
+          config = {
+            workspaces = {
+              notes = "~/notes",
+              test = "~/test_notes",
+            },
+            default_workspace = "notes",
+          },
+        },
         ["core.journal"] = {
           config = {
             workspace = "notes",
@@ -198,8 +211,8 @@ return {
       }
       if vim.version.gt(vim.version(), "0.9.5") then
         load["core.ui.calendar"] = {}
-        load["core.integrations.image"] = {}
-        load["core.latex.renderer"] = {}
+        load["core.math.renderer"] = {}
+        load["core.math.renderer.latex"] = {}
       end
       require("neorg").setup({ load = load })
 
