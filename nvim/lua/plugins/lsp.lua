@@ -10,7 +10,6 @@ local servers = {
   "lua_ls",
   -- "marksman",
   "pyright", -- it's the best b/c it's the only one that gives me auto complete, even tho it's really slow
-  "rust_analyzer",
   "nil_ls",
   "r_language_server",
   "svelte",
@@ -19,8 +18,11 @@ local servers = {
 }
 
 return {
-  -- { "leafOfTree/vim-svelte-plugin" },
-  -- { "evanleck/vim-svelte" },
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+  },
   { "williamboman/mason.nvim", config = true },
   {
     "j-hui/fidget.nvim",
@@ -65,7 +67,6 @@ return {
           setup_jsonls = false,
         },
       },
-      { "simrat39/rust-tools.nvim" },
     },
     config = function()
       -- adding autocomplete capabilities...
@@ -157,13 +158,6 @@ return {
       --   on_attach = on_attach,
       --   capabilities = capabilities,
       -- })
-
-      require("rust-tools").setup({
-        server = {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        },
-      })
 
       if vim.fn.getcwd() == vim.fn.expand("~/github/technical_writing") then
         require("lspconfig").ltex.setup({
