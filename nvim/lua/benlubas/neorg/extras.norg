@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-05-10T17:35:26-0500
+updated: 2024-06-18T11:57:21-0500
 version: 1.1.1
 @end
 
@@ -22,6 +22,7 @@ version: 1.1.1
 
 * Neorg Customizations
 
+  Adding a warning to the top of the generated file.
   @code lua
   -- IMPORTANT: This file is generated (tangled) from extras.norg. Please edit that
   -- file instead of this one

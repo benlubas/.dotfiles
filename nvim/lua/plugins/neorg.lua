@@ -238,7 +238,7 @@ return {
         })
       end)
 
-      extras.template("*/notes/journal/*.norg", "journal")
+      extras.template("*/notes/journal/%d%d%d%d/%d%d/%d%d.norg", "journal")
       extras.template("*/notes/thoughts/*.norg", "thought")
     end,
   },
