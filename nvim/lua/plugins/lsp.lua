@@ -24,10 +24,10 @@ return {
     lazy = false, -- This plugin is already lazy
   },
   { "williamboman/mason.nvim", config = true },
-  {
-    "j-hui/fidget.nvim",
-    config = true,
-  },
+  -- { -- disabled, using noice
+  --   "j-hui/fidget.nvim",
+  --   config = true,
+  -- },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

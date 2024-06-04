@@ -1,0 +1,7 @@
+[user]
+name = "Ben Lubas"
+email = "benmlubas@gmail.com"
+
+[ui]
+pager = "delta"
+diff.format = "git"

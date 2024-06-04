@@ -85,6 +85,9 @@ export COLOR_THEME="carbonfox"
 export MANROFFOPT="-c"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# have to set this on macOS otherwise it looks in some random mac-specific folder
+export JJ_CONFIG=${XDG_CONFIG_HOME:-"$HOME/.config"}/jj/config.toml
+
 # ==== Aliases ==== #
 
 alias v=nvim

@@ -38,3 +38,5 @@ bindsym $mod+Shift+r move container to workspace number $ws9
 # get the class with xprop and look in the output for WM_CLASS
 assign [class="^steam_app_0$"] $ws9
 assign [class="^heroic$"] $ws9
+assign [class="^steam$"] $ws9
+assign [class="^steamwebhelper$"] $ws9

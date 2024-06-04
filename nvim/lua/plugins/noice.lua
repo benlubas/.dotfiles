@@ -48,10 +48,7 @@ return {
       popupmenu = {
         enabled = true,  -- enables the Noice popupmenu UI
         ---@type 'nui'|'cmp'
-        backend = "cmp", -- backend to use to show regular cmdline completions
-        ---@type NoicePopupmenuItemKind|false
-        -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
-        kind_icons = {}, -- set to `false` to disable icons
+        backend = "nui", -- backend to use to show regular cmdline completions
       },
       -- default options for require('noice').redirect
       -- see the section on Command Redirection
@@ -143,7 +140,7 @@ return {
             enabled = true,
             trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
             luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-            throttle = 50,  -- Debounce lsp signature help request by 50ms
+            throttle = 20,  -- Debounce lsp signature help request (50ms default)
           },
           view = nil,       -- when nil, use defaults from documentation
           ---@type NoiceViewOptions
@@ -164,7 +161,7 @@ return {
             replace = true,
             render = "plain",
             format = { "{message}" },
-            win_options = { concealcursor = "n", conceallevel = 3 },
+            win_options = { concealcursor = "nc", conceallevel = 3 },
           },
         },
       },
@@ -182,9 +179,6 @@ return {
       --     ["{%S-}"] = "@parameter",
       --   },
       -- },
-      health = {
-        checker = true, -- Disable if you don't want health checks to run
-      },
       smart_move = {
         -- noice tries to move out of the way of existing floating windows.
         enabled = true, -- you can disable this behaviour here

@@ -18,7 +18,7 @@ return {
       { "luarocks.nvim" },
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-lua/plenary.nvim" },
-      { "nvim-neorg/neorg-telescope" },
+      { "nvim-neorg/neorg-telescope", dev = true },
       { "benlubas/neorg-conceal-wrap", dev = true },
       { "image.nvim" },
       { "otter.nvim" },
@@ -51,7 +51,7 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
-        -- ["core.refactor"] = {},
+        ["core.refactor"] = {},
         ["external.conceal-wrap"] = {},
         ["core.integrations.otter"] = {
           config = {
@@ -82,6 +82,7 @@ return {
           },
         },
         ["core.completion"] = { config = { engine = "nvim-cmp" } },
+        ["core.integrations.telescope"] = {},
         ["core.keybinds"] = {
           config = {
             hook = function(keybinds)
