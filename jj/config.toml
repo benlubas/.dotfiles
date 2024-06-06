@@ -5,3 +5,4 @@ email = "benmlubas@gmail.com"
 [ui]
 pager = "delta"
 diff.format = "git"
+default-command = ["log", "--limit", "15"]

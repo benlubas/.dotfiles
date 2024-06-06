@@ -108,7 +108,8 @@ return {
               keybinds.unmap("norg", "n", "gd")
 
               keybinds.remap_event("norg", { "o", "x" }, "iT", "core.text-objects.textobject.tag.inner")
-
+              keybinds.remap_event("norg", { "o", "x" }, "aH", "core.text-objects.textobject.heading.outer")
+              keybinds.remap_event("norg", { "o", "x" }, "iH", "core.text-objects.textobject.heading.inner")
               keybinds.remap_event("norg", "n", "<up>", "core.text-objects.item_up")
               keybinds.remap_event("norg", "n", "<down>", "core.text-objects.item_down")
             end,
