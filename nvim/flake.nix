@@ -1,5 +1,5 @@
 {
-  description = "Portable Neovim Flake";
+  description = "Portable Neovim Flake, Kinda unmaintained/unused";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -22,7 +22,7 @@
           stylua
           lua # required for luarocks.nvim to work
           nil # nix-ls
-          nixfmt
+          nixfmt-rfc-style
 
           nodePackages.prettier
           nodePackages.pyright
@@ -40,7 +40,6 @@
               ipython
               nbformat
             ];
-          extraPackages = p: with p; [ imagemagick gcc ];
           withNodeJs = true;
           withRuby = true;
           withPython3 = true;

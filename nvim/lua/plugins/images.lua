@@ -5,7 +5,7 @@ return {
     -- "benlubas/image.nvim",
     dev = true,
     cond = not MarkdownMode(),
-    dependencies = { "luarocks.nvim" },
+    dependencies = { "https://github.com/leafo/magick" },
     -- enabled = false,
     config = function()
       local image = require("image")

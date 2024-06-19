@@ -3,23 +3,14 @@ local extras = require("benlubas.neorg.extras")
 
 return {
   {
-    "vhyrro/luarocks.nvim",
-    priority = 1001,
-    opts = {
-      rocks = { "magick" },
-    },
-  },
-  {
     "nvim-neorg/neorg",
     dev = true,
     lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
-      { "luarocks.nvim" },
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
-      { "nvim-lua/plenary.nvim" },
-      { "nvim-neorg/neorg-telescope", dev = true },
-      { "benlubas/neorg-conceal-wrap", dev = true },
+      { "nvim-neorg/neorg-telescope" },
+      { "benlubas/neorg-conceal-wrap" },
       { "image.nvim" },
       { "otter.nvim" },
     },
@@ -51,7 +42,7 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
-        ["core.refactor"] = {},
+        -- ["core.refactor"] = {},
         ["external.conceal-wrap"] = {},
         ["core.integrations.otter"] = {
           config = {
@@ -79,6 +70,14 @@ return {
           config = {
             undojoin_updates = true,
             type = "empty",
+          },
+        },
+        ["core.qol.toc"] = {
+          config = {
+            auto_toc = {
+              open = true,
+              close = true,
+            },
           },
         },
         ["core.completion"] = { config = { engine = "nvim-cmp" } },
@@ -164,6 +163,19 @@ return {
         ["core.journal"] = {
           config = {
             workspace = "notes",
+            journals = {
+              sprint = {
+                period = { day = 14 },
+                start_date = os.time({ year = 2024, month = 06, day = 17 }),
+                path_format_strategy = function(date)
+                  local sprint_number = math.floor(os.difftime(os.time(date), os.time({ year = 2024, month = 06, day = 17 })) / 60 / 60 / 24 / 14) + 1
+                  return ("work/sprints/sprint-%d_%d-%d-%d"):format(sprint_number, date.year, date.month, date.day)
+                end,
+              },
+              daily = {
+                start_date = os.time({ year = 2024, month = 06, day = 17, hour = 1 }),
+              },
+            },
           },
         },
         ["external.templates"] = {
@@ -213,8 +225,8 @@ return {
       }
       if vim.version.gt(vim.version(), "0.9.5") then
         load["core.ui.calendar"] = {}
-        load["core.math.renderer"] = {}
-        load["core.math.renderer.latex"] = {}
+        -- load["core.math.renderer"] = {}
+        -- load["core.math.renderer.latex"] = {}
       end
       require("neorg").setup({ load = load })
 
@@ -238,7 +250,7 @@ return {
         })
       end)
 
-      extras.template("*/notes/journal/%d%d%d%d/%d%d/%d%d.norg", "journal")
+      extras.template("*/notes/journal/*.norg", "journal", ".*/notes/journal/%d%d%d%d/%d%d/%d%d%.norg")
       extras.template("*/notes/thoughts/*.norg", "thought")
     end,
   },

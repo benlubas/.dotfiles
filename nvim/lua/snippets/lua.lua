@@ -13,4 +13,12 @@ ls.add_snippets("lua", {
   s("pr", fmt("print({})", {
     c(1, { fmt('"{}:", {}', { rep(1), i(1) }), fmt('"{}"', i(1)) })
   })),
+
+  ------ busted snippets -------
+  s("des", fmt([[describe("{}", function()
+  {}
+end)]], { i(1), i(0) })),
+  s("it", fmt([[it("{}", function()
+  {}
+end)]], { i(1), i(0) })),
 })

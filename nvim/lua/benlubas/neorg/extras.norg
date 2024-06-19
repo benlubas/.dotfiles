@@ -80,13 +80,17 @@ version: 1.1.1
      end
    end
 
-   local function template(pattern, template_name)
+   local function template(pattern, template_name, additional_pattern)
      vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
        desc = "Autoload template for notes/journal",
        pattern = pattern,
        callback = function(args)
          local index = "index.norg"
          vim.schedule(function()
+           if additional_pattern then
+             local m = { args.file:match(additional_pattern) }
+             if not args.file:match(additional_pattern) then return end
+           end
            if vim.fn.fnamemodify(args.file, ":t") == index then
              return
            end
@@ -189,6 +193,7 @@ version: 1.1.1
      local todos = {}
 
      local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+     if not buf[1] then return {} end
      local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
      local yesterday = os.date("%Y/%m/%d", time - 86400)
      local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()

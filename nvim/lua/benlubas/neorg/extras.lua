@@ -1,7 +1,7 @@
 -- Neorg Customizations
 
--- This file is generated (tangled) from extras.norg. Please edit that file instead
--- of this one
+-- IMPORTANT: This file is generated (tangled) from extras.norg. Please edit that
+-- file instead of this one
 
 -- Save Folds
 
@@ -35,24 +35,33 @@ local file_exists_and_is_empty = function(filepath)
   local file = io.open(filepath, "r") -- Open the file in read mode
   if file ~= nil then
     local content = file:read("*all") -- Read the entire content of the file
-    file:close() -- Close the file
-    return content == "" -- Check if the content is empty
+    file:close()                      -- Close the file
+    return content == ""              -- Check if the content is empty
   else
     return false
   end
 end
 
-local function template(pattern, template_name)
+local function template(pattern, template_name, additional_pattern)
   vim.api.nvim_create_autocmd({ "BufNew", "BufNewFile" }, {
     desc = "Autoload template for notes/journal",
     pattern = pattern,
     callback = function(args)
       local index = "index.norg"
       vim.schedule(function()
+        print("additional_pattern", additional_pattern)
+        if additional_pattern then
+          local m = { args.file:match(additional_pattern) }
+          print("m:")
+          P(m)
+          if not args.file:match(additional_pattern) then return end
+        end
         if vim.fn.fnamemodify(args.file, ":t") == index then
           return
         end
-        if args.event == "BufNewFile" or (args.event == "BufNew" and file_exists_and_is_empty(args.file)) then
+        if args.event == "BufNewFile"
+          or (args.event == "BufNew"
+          and file_exists_and_is_empty(args.file)) then
           vim.api.nvim_cmd({
             cmd = "Neorg",
             args = { "templates", "fload", template_name },
@@ -93,6 +102,7 @@ local function project_note()
   end
 end
 
+
 -- TODO item Continuation
 
 local get_carryover_todos = function()
@@ -114,6 +124,7 @@ local get_carryover_todos = function()
   local todos = {}
 
   local buf = { vim.api.nvim_buf_get_name(0):match("(%d%d%d%d)/(%d%d)/(%d%d)%.norg$") }
+  if not buf[1] then return {} end
   local time = os.time({ year = buf[1], month = buf[2], day = buf[3] })
   local yesterday = os.date("%Y/%m/%d", time - 86400)
   local ws_path = require("neorg.modules.core.dirman.module").public.get_current_workspace()
@@ -138,7 +149,7 @@ local get_carryover_todos = function()
     m = m:match("^.*[^\n]")
     for _, line in ipairs(vim.split(m, "\n")) do
       if i > 0 then
-        line = "   " .. line -- just hard coding the correct indent for me. idk how to dynamically set this
+        line = "   " .. line   -- just hard coding the correct indent for me. idk how to dynamically set this
       end
       table.insert(todos, line)
     end

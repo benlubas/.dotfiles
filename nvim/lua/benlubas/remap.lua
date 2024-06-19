@@ -27,7 +27,7 @@ vim.keymap.set("n", "^", "<C-^>", { desc = "alternate file" }) -- _ does the sam
 
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "quit" })
 
-vim.keymap.set("n", "M", ":M<CR>", { desc = "open messages in a float", silent = true })
+vim.keymap.set("n", "M", ":mes<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>yp", function()
   vim.cmd.let("@+=", 'expand("%:p")')

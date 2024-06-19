@@ -7,8 +7,9 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
     return
   end
   local client = vim.lsp.get_client_by_id(ctx.client_id)
+  if not client then return end
 
-  if vim.tbl_islist(result) then
+  if vim.islist(result) then
     local results = vim.lsp.util.locations_to_items(result, client.offset_encoding)
     local lnum, filename = results[1].lnum, results[1].filename
     for _, val in pairs(results) do
@@ -25,3 +26,21 @@ end
 vim.lsp.handlers["textDocument/references"] = function(_, _, _)
   require("telescope.builtin").lsp_references()
 end
+
+-- filter out diagnostics that complain about unused variable names if those variable names start
+-- with an underscore. Rust does it right.
+-- idea from: https://www.reddit.com/r/neovim/comments/108tjy0/nvimlspconfig_how_to_disable_hints_for_unused/
+-- code is /very/ heavily modified
+local function custom_on_publish_diagnostics(a, params, client_id, c)
+  params.diagnostics = vim
+    .iter(params.diagnostics)
+    :filter(function(diag)
+      --                 lua                    pyright
+      local patterns = { "Unused local `_.+`.", '"_.+" is not accessed' }
+      return not vim.iter(patterns):any(function(pat) return string.match(diag.message, pat) end)
+    end)
+    :totable()
+  vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c)
+end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
