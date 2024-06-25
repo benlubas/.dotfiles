@@ -1,12 +1,24 @@
 return {
-  { "nvim-neotest/nvim-nio" },
+  {
+    "mrshmllow/open-handlers.nvim",
+    config = function()
+      local oh = require("open-handlers")
+
+      oh.setup({
+        -- In order, each handler is tried.
+        -- The first handler to successfully open will be used.
+        handlers = {
+          oh.gh_repo,
+          oh.issue,  -- A builtin which handles github and gitlab issues
+          oh.commit, -- A builtin which handles git commits
+          oh.native, -- Default native handler. Should always be last
+        },
+      })
+    end,
+  },
   {
     "benlubas/wrapping-paper.nvim",
     -- dev = true,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      -- commit = "a3597dc88b53489d3fddbddbbd13787355253bb0",
-    },
     keys = { {
       "gww",
       function()

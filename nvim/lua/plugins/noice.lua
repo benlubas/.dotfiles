@@ -3,7 +3,7 @@
 return {
   {
     "folke/noice.nvim",
-    -- enabled = false,
+    enabled = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
@@ -13,7 +13,7 @@ return {
         view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
         opts = {
           border = {
-            style = "none",
+            -- style = "none", -- this line breaks lsp-rename...
             padding = { 0, 1 },
           },
           filter_options = {},
@@ -110,7 +110,7 @@ return {
       },
       lsp = {
         progress = {
-          enabled = true,
+          enabled = false, -- this is insanely buggy
           -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
           -- See the section on formatting for more details on how to customize.
           --- @type NoiceFormat|string

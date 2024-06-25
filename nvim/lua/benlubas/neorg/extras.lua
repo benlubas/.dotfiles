@@ -6,14 +6,12 @@
 -- Save Folds
 
 local view_group = vim.api.nvim_create_augroup("auto_view", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
+vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
   desc = "Save view with mkview for real files",
   group = view_group,
   pattern = "*.norg",
-  callback = function(args)
-    if vim.b[args.buf].view_activated then
-      vim.cmd.mkview({ mods = { emsg_silent = true } })
-    end
+  callback = function()
+    vim.cmd.mkview({ mods = { emsg_silent = true } })
   end,
 })
 
@@ -21,11 +19,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "Load file view if available and enable view saving for real files",
   group = view_group,
   pattern = "*.norg",
-  callback = function(args)
-    if not vim.b[args.buf].view_activated then
-      vim.b[args.buf].view_activated = true
-      vim.cmd.loadview({ mods = { emsg_silent = true } })
-    end
+  callback = function()
+    vim.schedule(function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end)
   end,
 })
 
@@ -49,19 +44,16 @@ local function template(pattern, template_name, additional_pattern)
     callback = function(args)
       local index = "index.norg"
       vim.schedule(function()
-        print("additional_pattern", additional_pattern)
         if additional_pattern then
           local m = { args.file:match(additional_pattern) }
-          print("m:")
-          P(m)
           if not args.file:match(additional_pattern) then return end
         end
         if vim.fn.fnamemodify(args.file, ":t") == index then
           return
         end
         if args.event == "BufNewFile"
-          or (args.event == "BufNew"
-          and file_exists_and_is_empty(args.file)) then
+            or (args.event == "BufNew"
+              and file_exists_and_is_empty(args.file)) then
           vim.api.nvim_cmd({
             cmd = "Neorg",
             args = { "templates", "fload", template_name },
@@ -149,7 +141,7 @@ local get_carryover_todos = function()
     m = m:match("^.*[^\n]")
     for _, line in ipairs(vim.split(m, "\n")) do
       if i > 0 then
-        line = "   " .. line   -- just hard coding the correct indent for me. idk how to dynamically set this
+        line = "   " .. line -- just hard coding the correct indent for me. idk how to dynamically set this
       end
       table.insert(todos, line)
     end

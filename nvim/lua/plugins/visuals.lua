@@ -180,14 +180,5 @@ return {
       })
     end,
   },
-  {
-    "folke/todo-comments.nvim",
-    opts = {
-      highlight = {
-        before = "fg",
-        keyword = "bg",
-        after = "",
-      },
-    },
-  },
+  { "folke/todo-comments.nvim", opts = {} },
 }

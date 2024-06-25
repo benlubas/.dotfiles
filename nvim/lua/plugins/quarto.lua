@@ -10,23 +10,24 @@ return {
     },
   },
   {
+    "jmbuhr/otter.nvim",
+    dev = true,
+    opts = {
+      handle_leading_whitespace = true,
+      lsp = {
+        hover = { border = "none" },
+      },
+    },
+  },
+  {
     "quarto-dev/quarto-nvim",
     -- dev = true,
     dependencies = {
-      {
-        "jmbuhr/otter.nvim",
-        opts = {
-          handle_leading_whitespace = true,
-          lsp = {
-            hover = { border = "none" },
-          },
-        },
-        dev = false,
-      },
       "nvim-cmp",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
-      { "nvimtools/hydra.nvim" },
+      "nvimtools/hydra.nvim",
+      "otter.nvim",
     },
     ft = { "quarto", "markdown", "norg" },
     config = function()

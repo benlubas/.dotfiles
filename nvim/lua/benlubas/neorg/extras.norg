@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-06-18T11:57:21-0500
+updated: 2024-07-08T11:52:06-0500
 version: 1.1.1
 @end
 
@@ -40,26 +40,25 @@ version: 1.1.1
 
    @code lua
    local view_group = vim.api.nvim_create_augroup("auto_view", { clear = true })
-   vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
+   vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
      desc = "Save view with mkview for real files",
      group = view_group,
      pattern = "*.norg",
-     callback = function(args)
-       if vim.b[args.buf].view_activated then
-         vim.cmd.mkview({ mods = { emsg_silent = true } })
-       end
+     callback = function()
+       vim.cmd.mkview({ mods = { emsg_silent = true } })
      end,
    })
+
+   -- something new
 
    vim.api.nvim_create_autocmd("BufWinEnter", {
      desc = "Load file view if available and enable view saving for real files",
      group = view_group,
      pattern = "*.norg",
-     callback = function(args)
-       if not vim.b[args.buf].view_activated then
-         vim.b[args.buf].view_activated = true
+     callback = function()
+       vim.schedule(function()
          vim.cmd.loadview({ mods = { emsg_silent = true } })
-       end
+       end)
      end,
    })
    @end
