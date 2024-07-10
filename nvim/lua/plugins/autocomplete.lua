@@ -46,7 +46,9 @@ return {
         local key = table.concat({ "<M-", i, ">" })
         keys[key] = function(fallback)
           if cmp.visible() and #cmp.get_entries() > i then
-            return cmp.select_nth(i + 1)
+            cmp.select_nth(i + 1)
+            cmp.confirm()
+            return
           end
 
           return fallback()
