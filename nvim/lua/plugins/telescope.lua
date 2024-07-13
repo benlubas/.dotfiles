@@ -28,6 +28,7 @@ return {
               ["<c-s>"] = require("benlubas.telescope.harpoon").mark_file,
               ["<C-h>"] = require("telescope.actions").cycle_history_prev,
               ["<C-l>"] = require("telescope.actions").cycle_history_next,
+              ["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
             },
             n = {
               ["<c-s>"] = require("benlubas.telescope.harpoon").mark_file,
@@ -36,16 +37,10 @@ return {
         },
         pickers = {
           live_grep = {
-            mappings = {
-              i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
-            },
             prompt_prefix = "rg > ",
             prompt_title = "",
           },
           current_buffer_fuzzy_find = {
-            mappings = {
-              i = { ["<c-f>"] = require("telescope.actions").to_fuzzy_refine },
-            },
             prompt_prefix = "fzf > ",
             prompt_title = "",
           },
@@ -54,7 +49,7 @@ return {
             prompt_title = "",
           },
           git_status = {
-            prompt_prefix = "./",
+            prompt_prefix = "git st > ",
             prompt_title = "",
             on_complete = { },
           },

@@ -3,6 +3,57 @@
 -- IMPORTANT: This file is generated (tangled) from extras.norg. Please edit that
 -- file instead of this one
 
+-- Keybinds
+
+local key_options = { silent = true, buffer = true }
+local function m(m, r, l)
+  vim.keymap.set(m, r, l, key_options)
+end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "norg",
+  callback = function()
+    m("n", "<localleader>R", ":Neorg return<CR>")
+    m("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)")
+    m("n", "<localleader>nm", ":Neorg inject-metadata<CR>")
+    m("n", "u", function()
+      require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+      local pos = vim.api.nvim_win_get_cursor(0)
+      vim.cmd.undo()
+      vim.api.nvim_win_set_cursor(0, pos)
+    end)
+    m("n", "U", function()
+      require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+      local pos = vim.api.nvim_win_get_cursor(0)
+      vim.cmd.redo()
+      vim.api.nvim_win_set_cursor(0, pos)
+    end)
+    m("i", "-(", "- ( ) ")
+    m("i", "*(", "* ( ) ")
+    m("n", "<localleader>d", "<Plug>(core.tempus.insert-date)")
+    m("i", "\\date", "<Plug>(core.tempus.insert-date-insert-mode)")
+
+    m("n", "<localleader>lt", "<Plug>(core.pivot.toggle-list-type)")
+    m("n", "<localleader>li", "<Plug>(core.pivot.invert-list-type)")
+
+    m({ "o", "x" }, "iT", "<Plug>(core.text-objects.textobject.tag.inner)")
+    m({ "o", "x" }, "aH", "<Plug>(core.text-objects.textobject.heading.outer)")
+    m({ "o", "x" }, "iH", "<Plug>(core.text-objects.textobject.heading.inner)")
+    m("n", "<up>", "<Plug>(core.text-objects.item_up)")
+    m("n", "<down>", "<Plug>(core.text-objects.item_down)")
+
+    -- Telescope mappings:
+    m("n", "<localleader>bf", "<Plug>(neorg.telescope.backlinks.file_backlinks)")
+    m("n", "<localleader>bh", "<Plug>(neorg.telescope.backlinks.header_backlinks)")
+
+    m("n", "<localleader>fl", "<Plug>(neorg.telescope.find_linkable)")
+    m("n", "<localleader>ff", "<Plug>(neorg.telescope.find_norg_files)")
+    m("n", "<localleader>if", "<Plug>(neorg.telescope.insert_file_link)")
+    m("n", "<localleader>il", "<Plug>(neorg.telescope.insert_link)")
+    m("n", "<localleader>fh", "<Plug>(neorg.telescope.search_headings)")
+    m("n", "<localleader>sw", "<Plug>(neorg.telescope.switch_workspace)")
+  end
+})
+
 -- Save Folds
 
 local view_group = vim.api.nvim_create_augroup("auto_view", { clear = true })
@@ -15,12 +66,16 @@ vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
   end,
 })
 
+-- something new
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
   desc = "Load file view if available and enable view saving for real files",
   group = view_group,
   pattern = "*.norg",
   callback = function()
-    vim.schedule(function() vim.cmd.loadview({ mods = { emsg_silent = true } }) end)
+    vim.schedule(function()
+      vim.cmd.loadview({ mods = { emsg_silent = true } })
+    end)
   end,
 })
 
@@ -52,8 +107,8 @@ local function template(pattern, template_name, additional_pattern)
           return
         end
         if args.event == "BufNewFile"
-            or (args.event == "BufNew"
-              and file_exists_and_is_empty(args.file)) then
+          or (args.event == "BufNew"
+          and file_exists_and_is_empty(args.file)) then
           vim.api.nvim_cmd({
             cmd = "Neorg",
             args = { "templates", "fload", template_name },
@@ -95,7 +150,7 @@ local function project_note()
 end
 
 
--- TODO item Continuation
+-- Testing
 
 local get_carryover_todos = function()
   local queryString = [[
@@ -141,7 +196,7 @@ local get_carryover_todos = function()
     m = m:match("^.*[^\n]")
     for _, line in ipairs(vim.split(m, "\n")) do
       if i > 0 then
-        line = "   " .. line -- just hard coding the correct indent for me. idk how to dynamically set this
+        line = "   " .. line   -- just hard coding the correct indent for me. idk how to dynamically set this
       end
       table.insert(todos, line)
     end

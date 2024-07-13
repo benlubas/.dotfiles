@@ -28,10 +28,10 @@ return {
         desc = "open harpoon menu",
       },
 
-      { mode = { "n", "v" }, "<C-h>", function() require("harpoon.ui").nav_file(1) end },
-      { mode = { "n", "v" }, "<C-j>", function() require("harpoon.ui").nav_file(2) end },
-      { mode = { "n", "v" }, "<C-k>", function() require("harpoon.ui").nav_file(3) end },
-      { mode = { "n", "v" }, "<C-l>", function() require("harpoon.ui").nav_file(4) end },
+      { mode = { "n" }, "<C-h>", function() require("harpoon.ui").nav_file(1) end },
+      { mode = { "n" }, "<C-j>", function() require("harpoon.ui").nav_file(2) end },
+      { mode = { "n" }, "<C-k>", function() require("harpoon.ui").nav_file(3) end },
+      { mode = { "n" }, "<C-l>", function() require("harpoon.ui").nav_file(4) end },
     },
   },
 }

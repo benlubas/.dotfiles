@@ -1,27 +1,17 @@
 return {
   {
     "GCBallesteros/jupytext.nvim",
-    -- enabled = false,
-    dev = true,
+    enabled = false,
     opts = {
       style = "markdown",
       output_extension = "md",
       force_ft = "markdown",
     },
   },
-  {
-    "jmbuhr/otter.nvim",
-    dev = true,
-    opts = {
-      handle_leading_whitespace = true,
-      lsp = {
-        hover = { border = "none" },
-      },
-    },
-  },
+  { "jmbuhr/otter.nvim" },
   {
     "quarto-dev/quarto-nvim",
-    -- dev = true,
+    enabled = false,
     dependencies = {
       "nvim-cmp",
       "neovim/nvim-lspconfig",

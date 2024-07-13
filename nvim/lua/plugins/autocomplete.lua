@@ -37,11 +37,8 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-c>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = false,
-        }),
+        ["<C-e>"] = cmp.mapping.close(),
+        ["<c-y>"] = cmp.mapping.confirm(),
       }
 
       -- key mappings for Alt+number to select, have to press enter after to confirm though
@@ -94,7 +91,6 @@ return {
         -- Installed sources
         sources = {
           { name = "git" },
-          -- { name = "neorg" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "luasnip" },
@@ -114,27 +110,37 @@ return {
         keep_roots = false,
         update_events = { "TextChanged", "TextChangedI" },
       })
+      local c = ls.choice_node
+      ls.choice_node = function(pos, choices, opts)
+        if opts then
+          opts.restore_cursor = true
+        else
+          opts = { restore_cursor = true }
+        end
+        return c(pos, choices, opts)
+      end
+
       vim.cmd.runtime({ args = { "lua/snippets/*.lua" }, bang = true }) -- load custom snippets
 
-      vim.keymap.set({ "i", "s" }, "<C-j>", function()
+      vim.keymap.set({ "i", "x" }, "<C-j>", function()
         if ls.expand_or_jumpable() then
           ls.expand_or_jump()
         end
       end, { silent = true, desc = "expand snippet or jump to the next snippet node" })
 
-      vim.keymap.set({ "i", "s" }, "<C-k>", function()
+      vim.keymap.set({ "i", "x" }, "<C-k>", function()
         if ls.jumpable(-1) then
           ls.jump(-1)
         end
       end, { silent = true, desc = "previous spot in the snippet" })
 
-      vim.keymap.set({ "i", "s" }, "<C-l>", function()
+      vim.keymap.set({ "i", "x" }, "<C-l>", function()
         if ls.choice_active() then
           ls.change_choice(1)
         end
       end, { silent = true, desc = "next snippet choice" })
 
-      vim.keymap.set({ "i", "s" }, "<C-h>", function()
+      vim.keymap.set({ "i", "x" }, "<C-h>", function()
         if ls.choice_active() then
           ls.change_choice(-1)
         end
@@ -150,12 +156,12 @@ return {
       require("nvim-autopairs").setup({
         check_ts = true,
         fast_wrap = {
-          map = '<A-e>',
-          chars = { '{', '[', '(', '"', "'", "`" },
+          map = "<A-e>",
+          chars = { "{", "[", "(", '"', "'", "`" },
           pattern = [=[[%'%"%>%]%)%}%,]]=],
-          end_key = '$',
+          end_key = "$",
           cursor_pos_before = true,
-          keys = 'qwertyuiopzxcvbnmasdfghjkl',
+          keys = "qwertyuiopzxcvbnmasdfghjkl",
           manual_position = false,
         },
       })

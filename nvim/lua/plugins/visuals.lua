@@ -95,16 +95,18 @@ return {
       end,
     },
   },
-  -- fork for better register viewing (hard coded though)
   {
-    "benlubas/which-key.nvim",
+    "folke/which-key.nvim",
+    event = "VeryLazy",
     opts = {
+      win = {
+        height = { min = 4, max = 15 },
+      },
+      expand = 2,
       layout = {
-        height = { min = 4, max = 50 },  -- min and max height of the columns
-        width = { min = 20, max = 100 }, -- min and max width of the columns
+        width = { min = 20, max = 50 }, -- min and max width of each column
       },
     },
-    lazy = false,
   },
   {
     "luukvbaal/statuscol.nvim",
@@ -180,5 +182,4 @@ return {
       })
     end,
   },
-  { "folke/todo-comments.nvim", opts = {} },
 }

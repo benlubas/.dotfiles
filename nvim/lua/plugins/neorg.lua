@@ -12,26 +12,19 @@ return {
       { "nvim-neorg/neorg-telescope" },
       { "benlubas/neorg-conceal-wrap" },
       { "benlubas/neorg-interim-ls",  dev = true },
-      { "benlubas/neorg-se",          dev = true },
+      { "benlubas/neorg-se" },
       { "image.nvim" },
       { "otter.nvim" },
     },
     keys = {
-      { "<leader>ni", ":Neorg index<CR>",                             desc = "Neorg Index",        silent = true },
-      { "<leader>ns", ":e ~/notes/school/index.norg<CR>",             desc = "Neorg School Index", silent = true },
-      { "<leader>nw", ":e ~/notes/work/index.norg<CR>",               desc = "Neorg Work Index",   silent = true },
-      { "<leader>nn", ":Neorg keybind norg core.dirman.new.note<CR>", desc = "New Note",           silent = true },
-      { "<leader>nt", extras.new_thought,                             desc = "New Thought",        silent = true },
-      { "<leader>np", extras.project_note,                            desc = "Project Note",       silent = true },
-      {
-        "<A-CR>",
-        ":Neorg keybind norg core.itero.next-iteration<CR>",
-        desc = "next iteration",
-        silent = true,
-        mode = "i",
-      },
-      { "<leader>jt", ":Neorg journal today<CR>",     desc = "Journal Today",     silent = true },
-      { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
+      { "<leader>ni", ":Neorg index<CR>",                 desc = "Neorg Index",        silent = true },
+      { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
+      { "<leader>nw", ":e ~/notes/work/index.norg<CR>",   desc = "Neorg Work Index",   silent = true },
+      { "<leader>nn", "<Plug>(neorg.dirman.new-note)",    desc = "New Note",           silent = true },
+      { "<leader>nt", extras.new_thought,                 desc = "New Thought",        silent = true },
+      { "<leader>np", extras.project_note,                desc = "Project Note",       silent = true },
+      { "<leader>jt", ":Neorg journal today<CR>",         desc = "Journal Today",      silent = true },
+      { "<leader>jy", ":Neorg journal yesterday<CR>",     desc = "Journal Yesterday",  silent = true },
     },
     config = function()
       local theme = require("benlubas.color").neorg
@@ -44,13 +37,18 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
-        ["external.interim-ls"] = {},
+        -- load["core.math.renderer"] = {}
+        ["external.interim-ls"] = {
+          config = {
+            completion_provider = { categories = true },
+          },
+        },
         ["external.search"] = {},
         ["external.conceal-wrap"] = {},
         ["core.integrations.otter"] = {
           config = {
             auto_start = false,
-            languages = { "python", "lua" },
+            languages = { "python", "lua", "rust" },
           },
         },
         ["core.defaults"] = {},
@@ -59,6 +57,7 @@ return {
           config = {
             tangle_on_write = true,
             indent_errors = "print",
+            report_on_empty = false,
           },
         },
         ["core.esupports.metagen"] = {
@@ -82,44 +81,7 @@ return {
           config = { engine = { module_name = "external.lsp-completion" } },
         },
         ["core.integrations.telescope"] = {},
-        ["core.keybinds"] = {
-          config = {
-            hook = function(keybinds)
-              -- Map \c to edit the code block in another buffer.
-              keybinds.map("norg", "n", "<localleader>R", ":Neorg return<CR>")
-              keybinds.map("traverse-heading", "n", "<esc>", ":Neorg mode norg<CR>")
-              keybinds.map("traverse-link", "n", "<esc>", ":Neorg mode norg<CR>")
-              keybinds.map("norg", "n", "<localleader>nm", ":Neorg inject-metadata<CR>")
-              keybinds.map("norg", "n", "<localleader>c", "ocode<C-j>", { remap = true }) -- triggers a snippet
-              keybinds.map("norg", "n", "u", function()
-                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
-                local pos = vim.api.nvim_win_get_cursor(0)
-                vim.cmd.undo()
-                vim.api.nvim_win_set_cursor(0, pos)
-              end)
-              keybinds.map("norg", "n", "U", function()
-                require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
-                local pos = vim.api.nvim_win_get_cursor(0)
-                vim.cmd.redo()
-                vim.api.nvim_win_set_cursor(0, pos)
-              end)
-              keybinds.map("norg", "i", "-(", "- ( ) ")
-              keybinds.map("norg", "i", "*(", "* ( ) ")
-              keybinds.remap_event("norg", "n", "<localleader>d", "core.tempus.insert-date")
-              keybinds.remap_event("norg", "i", "\\date", "core.tempus.insert-date-insert-mode")
-              keybinds.unmap("norg", "n", "gd")
-
-              keybinds.remap_event("norg", "n", "<localleader>lt", "core.pivot.toggle-list-type")
-              keybinds.remap_event("norg", "n", "<localleader>li", "core.pivot.invert-list-type")
-
-              keybinds.remap_event("norg", { "o", "x" }, "iT", "core.text-objects.textobject.tag.inner")
-              keybinds.remap_event("norg", { "o", "x" }, "aH", "core.text-objects.textobject.heading.outer")
-              keybinds.remap_event("norg", { "o", "x" }, "iH", "core.text-objects.textobject.heading.inner")
-              keybinds.remap_event("norg", "n", "<up>", "core.text-objects.item_up")
-              keybinds.remap_event("norg", "n", "<down>", "core.text-objects.item_down")
-            end,
-          },
-        },
+        ["core.keybinds"] = {},
         ["core.concealer"] = {
           config = {
             icon_preset = "diamond",
@@ -230,31 +192,7 @@ return {
           },
         },
       }
-      if vim.version.gt(vim.version(), "0.9.5") then
-        load["core.ui.calendar"] = {}
-        -- load["core.math.renderer"] = {}
-      end
       require("neorg").setup({ load = load })
-
-      local neorg_callbacks = require("neorg.core.callbacks")
-
-      neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
-        -- Map all the below keybinds only when the "norg" mode is active
-        keybinds.map_event_to_mode("norg", {
-          n = { -- Bind keys in normal mode
-            { "<localleader>fl", "core.integrations.telescope.find_linkable" },
-            { "<localleader>fb", "core.integrations.telescope.find_backlinks" },
-            { "<localleader>fh", "core.integrations.telescope.find_header_backlinks" },
-          },
-
-          i = { -- Bind in insert mode
-            { "<localleader>li", "core.integrations.telescope.insert_link" },
-          },
-        }, {
-          silent = true,
-          noremap = true,
-        })
-      end)
 
       extras.template("*/notes/journal/*.norg", "journal", ".*/notes/journal/%d%d%d%d/%d%d/%d%d%.norg")
       extras.template("*/notes/thoughts/*.norg", "thought")

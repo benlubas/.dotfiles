@@ -1,4 +1,5 @@
 return {
+  { "neotest/nvim-nio" },
   {
     "mrshmllow/open-handlers.nvim",
     config = function()

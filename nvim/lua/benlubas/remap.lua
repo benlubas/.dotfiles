@@ -1,9 +1,29 @@
--- I have sneak installed that that remaps s and S to sneak
--- I use better escape. so in base.lua, jk and kj are remapped to esc
 vim.keymap.set("i", "jk", "<esc>")
 vim.keymap.set("i", "kj", "<esc>")
 
+-- I have sneak installed that that remaps s and S to sneak
+
 -- just a reminder that <C-w> in insert mode deletes a word at a time.
+
+-- "smart tab". Tab as far as necessary on a blank line
+vim.keymap.set("i", "<Tab>", function()
+  local line = vim.api.nvim_get_current_line()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  if line:match("^%s*$") then
+    vim.v.lnum = row
+    local indent = vim.fn.eval(vim.bo.indentexpr)
+    local tabs = vim.fn.shiftwidth()
+    local tabbed = line:gsub("\t", (" "):rep(tabs))
+    if indent * tabs > #tabbed then
+      local new_line = (" "):rep(indent)
+      vim.api.nvim_buf_set_lines(0, row - 1, row, true, { new_line })
+      vim.api.nvim_win_set_cursor(0, { row, #new_line })
+      return
+    end
+  end
+  local key = vim.api.nvim_replace_termcodes("<tab>", true, false, true)
+  vim.api.nvim_feedkeys(key, 'n', false)
+end)
 
 pcall(vim.keymap.del, "n", "<C-w>d")
 pcall(vim.keymap.del, "n", "<C-w><c-d>")
@@ -61,11 +81,10 @@ vim.keymap.set("n", "<leader>Sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>St", "<cmd>set spell!<CR>")
 
 -- remove trailing spaces. Only affect the current line in markdown files
-vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']],
-  { desc = "remove trailing spaces", expr = true, silent = true })
+vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']], { desc = "remove trailing spaces", expr = true, silent = true })
 
 -- Conveniently open all the TS dev stuff
-vim.api.nvim_create_user_command("TSPlayground", function ()
+vim.api.nvim_create_user_command("TSPlayground", function()
   vim.cmd.InspectTree()
   vim.cmd.EditQuery()
 end, {})

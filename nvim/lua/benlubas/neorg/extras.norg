@@ -9,12 +9,12 @@ categories: [
 ]
 tangle: {
   languages: {
-    lua: ./extras.lua
+    lua: ~/github/.dotfiles/nvim/lua/benlubas/neorg/extras.lua
   }
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-07-08T11:52:06-0500
+updated: 2024-07-16T17:59:56-0500
 version: 1.1.1
 @end
 
@@ -30,6 +30,58 @@ version: 1.1.1
 
   Here are my extra Neorg customizations, in a literate configuration (for fun, not
   practicality).
+
+** Keybinds
+   @code lua
+   local key_options = { silent = true, buffer = true }
+   local function m(m, r, l)
+     vim.keymap.set(m, r, l, key_options)
+   end
+   vim.api.nvim_create_autocmd("FileType", {
+     pattern = "norg",
+     callback = function()
+       m("n", "<localleader>R", ":Neorg return<CR>")
+       m("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)")
+       m("n", "<localleader>nm", ":Neorg inject-metadata<CR>")
+       m("n", "u", function()
+         require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+         local pos = vim.api.nvim_win_get_cursor(0)
+         vim.cmd.undo()
+         vim.api.nvim_win_set_cursor(0, pos)
+       end)
+       m("n", "U", function()
+         require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
+         local pos = vim.api.nvim_win_get_cursor(0)
+         vim.cmd.redo()
+         vim.api.nvim_win_set_cursor(0, pos)
+       end)
+       m("i", "-(", "- ( ) ")
+       m("i", "*(", "* ( ) ")
+       m("n", "<localleader>d", "<Plug>(core.tempus.insert-date)")
+       m("i", "\\date", "<Plug>(core.tempus.insert-date-insert-mode)")
+
+       m("n", "<localleader>lt", "<Plug>(core.pivot.toggle-list-type)")
+       m("n", "<localleader>li", "<Plug>(core.pivot.invert-list-type)")
+
+       m({ "o", "x" }, "iT", "<Plug>(core.text-objects.textobject.tag.inner)")
+       m({ "o", "x" }, "aH", "<Plug>(core.text-objects.textobject.heading.outer)")
+       m({ "o", "x" }, "iH", "<Plug>(core.text-objects.textobject.heading.inner)")
+       m("n", "<up>", "<Plug>(core.text-objects.item_up)")
+       m("n", "<down>", "<Plug>(core.text-objects.item_down)")
+
+       -- Telescope mappings:
+       m("n", "<localleader>bf", "<Plug>(neorg.telescope.backlinks.file_backlinks)")
+       m("n", "<localleader>bh", "<Plug>(neorg.telescope.backlinks.header_backlinks)")
+
+       m("n", "<localleader>fl", "<Plug>(neorg.telescope.find_linkable)")
+       m("n", "<localleader>ff", "<Plug>(neorg.telescope.find_norg_files)")
+       m("n", "<localleader>if", "<Plug>(neorg.telescope.insert_file_link)")
+       m("n", "<localleader>il", "<Plug>(neorg.telescope.insert_link)")
+       m("n", "<localleader>fh", "<Plug>(neorg.telescope.search_headings)")
+       m("n", "<localleader>sw", "<Plug>(neorg.telescope.switch_workspace)")
+     end
+   })
+   @end
 
 ** Save Folds
 
@@ -171,6 +223,13 @@ version: 1.1.1
 
      - ( ) item
    @end
+
+** Testing
+
+   - ( ) One
+   - ( ) Two
+   -- ( ) Three
+   - (x) Done
 
    @code lua
    local get_carryover_todos = function()
