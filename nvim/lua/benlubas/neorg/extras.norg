@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-07-16T17:59:56-0500
+updated: 2024-07-21T12:23:19-0500
 version: 1.1.1
 @end
 
@@ -57,17 +57,17 @@ version: 1.1.1
        end)
        m("i", "-(", "- ( ) ")
        m("i", "*(", "* ( ) ")
-       m("n", "<localleader>d", "<Plug>(core.tempus.insert-date)")
-       m("i", "\\date", "<Plug>(core.tempus.insert-date-insert-mode)")
+       m("n", "<localleader>d", "<Plug>(neorg.tempus.insert-date)")
+       m("i", "\\date", "<Plug>(neorg.tempus.insert-date-insert-mode)")
 
-       m("n", "<localleader>lt", "<Plug>(core.pivot.toggle-list-type)")
-       m("n", "<localleader>li", "<Plug>(core.pivot.invert-list-type)")
+       m("n", "<localleader>lt", "<Plug>(neorg.pivot.toggle-list-type)")
+       m("n", "<localleader>li", "<Plug>(neorg.pivot.invert-list-type)")
 
-       m({ "o", "x" }, "iT", "<Plug>(core.text-objects.textobject.tag.inner)")
-       m({ "o", "x" }, "aH", "<Plug>(core.text-objects.textobject.heading.outer)")
-       m({ "o", "x" }, "iH", "<Plug>(core.text-objects.textobject.heading.inner)")
-       m("n", "<up>", "<Plug>(core.text-objects.item_up)")
-       m("n", "<down>", "<Plug>(core.text-objects.item_down)")
+       m({ "o", "x" }, "iT", "<Plug>(neorg.text-objects.textobject.tag.inner)")
+       m({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)")
+       m({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)")
+       m("n", "<up>", "<Plug>(neorg.text-objects.item_up)")
+       m("n", "<down>", "<Plug>(neorg.text-objects.item_down)")
 
        -- Telescope mappings:
        m("n", "<localleader>bf", "<Plug>(neorg.telescope.backlinks.file_backlinks)")
@@ -82,6 +82,11 @@ version: 1.1.1
      end
    })
    @end
+
+*** Surround
+    I have a custom surround via nvim-surround that surrounds with a link, but it
+    handles norg and markdown, so it's just in my normal configuration, you can find
+    that in {/ ../../plugins/base.lua}[this file].
 
 ** Save Folds
 
@@ -225,11 +230,6 @@ version: 1.1.1
    @end
 
 ** Testing
-
-   - ( ) One
-   - ( ) Two
-   -- ( ) Three
-   - (x) Done
 
    @code lua
    local get_carryover_todos = function()

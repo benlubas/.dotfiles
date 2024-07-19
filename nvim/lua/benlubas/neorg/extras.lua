@@ -29,17 +29,17 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
     m("i", "-(", "- ( ) ")
     m("i", "*(", "* ( ) ")
-    m("n", "<localleader>d", "<Plug>(core.tempus.insert-date)")
-    m("i", "\\date", "<Plug>(core.tempus.insert-date-insert-mode)")
+    m("n", "<localleader>d", "<Plug>(neorg.tempus.insert-date)")
+    m("i", "\\date", "<Plug>(neorg.tempus.insert-date-insert-mode)")
 
-    m("n", "<localleader>lt", "<Plug>(core.pivot.toggle-list-type)")
-    m("n", "<localleader>li", "<Plug>(core.pivot.invert-list-type)")
+    m("n", "<localleader>lt", "<Plug>(neorg.pivot.toggle-list-type)")
+    m("n", "<localleader>li", "<Plug>(neorg.pivot.invert-list-type)")
 
-    m({ "o", "x" }, "iT", "<Plug>(core.text-objects.textobject.tag.inner)")
-    m({ "o", "x" }, "aH", "<Plug>(core.text-objects.textobject.heading.outer)")
-    m({ "o", "x" }, "iH", "<Plug>(core.text-objects.textobject.heading.inner)")
-    m("n", "<up>", "<Plug>(core.text-objects.item_up)")
-    m("n", "<down>", "<Plug>(core.text-objects.item_down)")
+    m({ "o", "x" }, "iT", "<Plug>(neorg.text-objects.textobject.tag.inner)")
+    m({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)")
+    m({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)")
+    m("n", "<up>", "<Plug>(neorg.text-objects.item_up)")
+    m("n", "<down>", "<Plug>(neorg.text-objects.item_down)")
 
     -- Telescope mappings:
     m("n", "<localleader>bf", "<Plug>(neorg.telescope.backlinks.file_backlinks)")
