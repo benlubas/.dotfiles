@@ -13,15 +13,9 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
-      {
-        "petertriho/cmp-git",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        opts = {
-          filetypes = { "gitcommit", "gitrebase", "markdown" }, -- markdown covers gh edits, which are markdown files
-        },
-      },
       { "L3MON4D3/LuaSnip" },
     },
+    event = "VeryLazy",
     config = function()
       vim.api.nvim_set_hl(0, "CmpItemAbbr", {})
       local cmp = require("cmp")
@@ -38,7 +32,7 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<c-y>"] = cmp.mapping.confirm(),
+        ["<c-y>"] = cmp.mapping.confirm({ select = true }),
       }
 
       -- key mappings for Alt+number to select, have to press enter after to confirm though
@@ -104,6 +98,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     config = function()
       local ls = require("luasnip")
       ls.setup({
@@ -114,6 +109,7 @@ return {
       })
       local c = ls.choice_node
       ls.choice_node = function(pos, choices, opts)
+        P(opts)
         if opts then
           opts.restore_cursor = true
         else
@@ -154,8 +150,10 @@ return {
     dependencies = {
       { "benlubas/nvim-cmp" },
     },
+    event = "VeryLazy",
     config = function()
       require("nvim-autopairs").setup({
+        map_bs = false,
         check_ts = true,
         fast_wrap = {
           map = "<A-e>",

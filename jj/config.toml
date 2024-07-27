@@ -6,3 +6,5 @@ email = "benmlubas@gmail.com"
 pager = "delta"
 diff.format = "git"
 default-command = ["log", "--limit", "15"]
+# using julienvincent/hunk.nvim
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]

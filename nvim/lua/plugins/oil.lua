@@ -2,6 +2,7 @@ return {
   {
     "stevearc/oil.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = { { "-" } },
     config = function()
       local theme = require("benlubas.color").oil
       local permission_hlgroups = {
@@ -67,20 +68,24 @@ return {
         keymaps = {
           ["g?"] = "actions.show_help",
           ["<CR>"] = "actions.select",
-          ["<C-s>"] = { callback = function()
-            local dir = require("oil").get_current_dir()
-            local entry = require("oil").get_cursor_entry()
-            ---@diagnostic disable-next-line: undefined-field
-            if entry == nil or entry.type ~= "file" then
-              return
-            end
+          ["<C-s>"] = {
+            callback = function()
+              local dir = require("oil").get_current_dir()
+              local entry = require("oil").get_cursor_entry()
+              ---@diagnostic disable-next-line: undefined-field
+              if entry == nil or entry.type ~= "file" then
+                return
+              end
 
-            ---@diagnostic disable-next-line: undefined-field
-            local path = dir .. entry.name
-            local cwd = vim.fn.getcwd() .. "/"
-            path = path:gsub(cwd, "")
-            require("harpoon.mark").add_file(path)
-          end, desc = "harpoon file", mode = "n" },
+              ---@diagnostic disable-next-line: undefined-field
+              local path = dir .. entry.name
+              local cwd = vim.fn.getcwd() .. "/"
+              path = path:gsub(cwd, "")
+              require("harpoon.mark").add_file(path)
+            end,
+            desc = "harpoon file",
+            mode = "n",
+          },
           ["<C-h>"] = false,
           ["<C-t>"] = false,
           ["<C-p>"] = false,

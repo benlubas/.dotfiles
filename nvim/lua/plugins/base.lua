@@ -1,31 +1,17 @@
 return {
-  { "neotest/nvim-nio" },
+  { "benlubas/auto-save.nvim", cond = not MarkdownMode() },
   {
-    "mrshmllow/open-handlers.nvim",
-    config = function()
-      local oh = require("open-handlers")
-
-      oh.setup({
-        -- In order, each handler is tried.
-        -- The first handler to successfully open will be used.
-        handlers = {
-          oh.gh_repo,
-          oh.issue,  -- A builtin which handles github and gitlab issues
-          oh.commit, -- A builtin which handles git commits
-          oh.native, -- Default native handler. Should always be last
-        },
-      })
-    end,
+    "mbbill/undotree",
+    keys = {
+      { "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "toggle undotree", silent = true },
+    },
   },
   {
     "benlubas/wrapping-paper.nvim",
-    -- dev = true,
     keys = { {
       "gww",
-      function()
-        require("wrapping-paper").wrap_line()
-      end,
-      desc = "fake wrap current line",
+      function() require("wrapping-paper").wrap_line() end,
+      desc = "wrap current line",
     } },
   },
   {
@@ -51,20 +37,9 @@ return {
             end
             return config.get_selection({ node = "inline_link" })
           end,
+          -- TODO: add support for norg links
           delete = "(%[)().-(%]%(.-%))()",
         },
-      },
-    },
-  },
-  { "benlubas/auto-save.nvim", cond = not MarkdownMode() },
-  {
-    "mbbill/undotree",
-    keys = {
-      {
-        "<leader>u",
-        ":UndotreeToggle<CR>:UndotreeFocus<CR>",
-        desc = "toggle undotree",
-        silent = true,
       },
     },
   },
@@ -77,7 +52,6 @@ return {
         "lsp",
         "treesitter",
         "syntax",
-        -- "matchparen", -- I'm not sure about this having a large impact on perf, and it stays disabled, so I'm going to comment it out
         "vimopts",
         "filetype",
         {
@@ -89,10 +63,4 @@ return {
       },
     },
   },
-  -- {
-  --   "max397574/better-escape.nvim",
-  --   opts = {
-  --     mapping = { "jk", "kj" }, -- why not both
-  --   },
-  -- },
 }

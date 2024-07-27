@@ -1,9 +1,6 @@
 return {
   {
     "mfussenegger/nvim-dap",
-    dependencies = {
-      "jbyuki/one-small-step-for-vimkind",
-    },
     config = function()
       local dap = require("dap")
       -- open dap automatically (auto close was missfiring, use <leader>.u to toggle ui)
@@ -46,15 +43,15 @@ return {
       { "<leader>.nv", function() require("osv").launch({ port = 8086 }) end, desc = "Launch osv nvim debugger" },
     },
   },
-  { "theHamsta/nvim-dap-virtual-text", config = true },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-    opts = {
-      ensure_installed = { "codelldb" },
-      handlers = {},
-    },
-  },
+  { "theHamsta/nvim-dap-virtual-text", config = true, lazy = true },
+  -- {
+  --   "jay-babu/mason-nvim-dap.nvim",
+  --   dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+  --   opts = {
+  --     ensure_installed = { "codelldb" },
+  --     handlers = {},
+  --   },
+  -- },
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap" },
@@ -115,38 +112,38 @@ return {
       })
     end,
   },
-  {
-    "mxsdev/nvim-dap-vscode-js",
-    config = function()
-      require("dap-vscode-js").setup({
-        -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-        debugger_path = os.getenv("HOME") .. "/dev/microsoft/js-debug", -- Path to vscode-js-debug installation.
-        -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
-        adapters = { "pwa-node" }, -- which adapters to register in nvim-dap
-        -- other adapters that I'm not using right now: ` 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'
-      })
-
-      for _, language in ipairs({ "typescript", "javascript" }) do
-        require("dap").configurations[language] = {
-          {
-            {
-              type = "pwa-node",
-              request = "launch",
-              name = "Debug Jest Tests",
-              -- trace = true, -- include debugger info
-              runtimeExecutable = "node",
-              runtimeArgs = {
-                "./node_modules/jest/bin/jest.js",
-                "--runInBand",
-              },
-              rootPath = "${workspaceFolder}",
-              cwd = "${workspaceFolder}",
-              console = "integratedTerminal",
-              internalConsoleOptions = "neverOpen",
-            },
-          },
-        }
-      end
-    end,
-  },
+  -- {
+  --   "mxsdev/nvim-dap-vscode-js",
+  --   config = function()
+  --     require("dap-vscode-js").setup({
+  --       -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+  --       debugger_path = os.getenv("HOME") .. "/dev/microsoft/js-debug", -- Path to vscode-js-debug installation.
+  --       -- debugger_cmd = { "js-debug-adapter" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+  --       adapters = { "pwa-node" }, -- which adapters to register in nvim-dap
+  --       -- other adapters that I'm not using right now: ` 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost'
+  --     })
+  --
+  --     for _, language in ipairs({ "typescript", "javascript" }) do
+  --       require("dap").configurations[language] = {
+  --         {
+  --           {
+  --             type = "pwa-node",
+  --             request = "launch",
+  --             name = "Debug Jest Tests",
+  --             -- trace = true, -- include debugger info
+  --             runtimeExecutable = "node",
+  --             runtimeArgs = {
+  --               "./node_modules/jest/bin/jest.js",
+  --               "--runInBand",
+  --             },
+  --             rootPath = "${workspaceFolder}",
+  --             cwd = "${workspaceFolder}",
+  --             console = "integratedTerminal",
+  --             internalConsoleOptions = "neverOpen",
+  --           },
+  --         },
+  --       }
+  --     end
+  --   end,
+  -- },
 }

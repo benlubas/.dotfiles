@@ -44,7 +44,7 @@ return {
         options = {
           transparent = false,
           dim_inactive = true,
-          styles = {           -- Style to be applied to different syntax groups
+          styles = { -- Style to be applied to different syntax groups
             comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
             conditionals = "NONE",
             constants = "NONE",
@@ -96,19 +96,6 @@ return {
     },
   },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      win = {
-        height = { min = 4, max = 15 },
-      },
-      expand = 2,
-      layout = {
-        width = { min = 20, max = 50 }, -- min and max width of each column
-      },
-    },
-  },
-  {
     "luukvbaal/statuscol.nvim",
     cond = not MarkdownMode(),
     config = function()
@@ -124,7 +111,9 @@ return {
             sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
             click = "v:lua.ScSa",
           },
-          { text = { builtin.lnumfunc } },
+          {
+            text = { '%{%foldclosed(v:lnum)==v:lnum?"%#Italic#%#DiagnosticVirtualTextWarn#":""%}', builtin.lnumfunc },
+          },
           { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
         },
       })
@@ -137,49 +126,5 @@ return {
       scope = { enabled = false },
       indent = { highlight = "NonText" },
     },
-  },
-  {
-    "lukas-reineke/headlines.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    -- ft = { "quarto", "markdown", "norg" },
-    enabled = false,
-    event = "VeryLazy",
-    config = function()
-      local custom = {
-        codeblock_highlight = false,
-        dash_string = "━",
-        bullets = {},
-      }
-      local qmd = vim.tbl_deep_extend("force", custom, { treesitter_language = "markdown" })
-      local norg = vim.tbl_deep_extend("force", custom, {
-        query = vim.treesitter.query.parse(
-          "norg",
-          [[
-                [
-                    (heading1_prefix)
-                    (heading2_prefix)
-                ] @headline
-
-                (weak_paragraph_delimiter) @dash
-                (strong_paragraph_delimiter) @doubledash
-
-                ([(ranged_tag
-                    name: (tag_name) @_name
-                    (#eq? @_name "code")
-                )
-                (ranged_verbatim_tag
-                    name: (tag_name) @_name
-                    (#eq? @_name "code")
-                )] @codeblock (#offset! @codeblock 0 0 1 0))
-            ]]
-        ),
-      })
-
-      require("headlines").setup({
-        markdown = custom,
-        quarto = vim.tbl_deep_extend("force", require("headlines").config.markdown, qmd),
-        norg = norg,
-      })
-    end,
   },
 }

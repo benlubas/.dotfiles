@@ -3,14 +3,14 @@ vim.g.maplocalleader = "\\"
 vim.g.vim_json_conceal = false
 
 if not IsLinux() then
-  vim.g.python3_host_prog=vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
+  vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python3")
 end
 
 vim.opt.mouse = "a"
 
 vim.o.linebreak = true
 vim.o.breakindent = true
-vim.o.showbreak = '|'
+vim.o.showbreak = "|"
 
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -26,6 +26,13 @@ vim.opt.foldcolumn = "1"
 vim.opt.signcolumn = "yes:2"
 
 vim.opt.laststatus = 3
+
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldtext = ""
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
 
 vim.opt.fillchars = {
   eob = " ",
@@ -60,9 +67,9 @@ vim.opt.listchars = "trail:,tab: "
 
 -- search
 vim.opt.hlsearch = true
-vim.opt.incsearch = true -- show the currently matched pattern
+vim.opt.incsearch = true       -- show the currently matched pattern
 vim.opt.shortmess:append("Ss") -- don't show search count, don't show 'search hit bottom'
-vim.opt.infercase = true -- case insensitive search until you use a capital letter
+vim.opt.infercase = true       -- case insensitive search until you use a capital letter
 
 -- formatting
 vim.opt.autoindent = true

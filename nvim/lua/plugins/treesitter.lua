@@ -2,17 +2,21 @@ return {
   {
     "benlubas/nvim-treesitter-context",
     branch = "collapse_context",
+    event = "FileType",
+    dev = true,
     dependencies = {
       "nvim-treesitter",
     },
   },
   {
     "echasnovski/mini.ai",
+    event = "FileType",
     opts = {
       custom_textobjects = {
         -- these two are handled by TS text objects
         f = false,
         a = false,
+        -- These ones have annoying behavior
         ["{"] = false,
         ["}"] = false,
         ["("] = false,
@@ -38,6 +42,7 @@ return {
   },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "FileType",
     opts = {
       enable_autocmd = false,
     },
@@ -58,6 +63,7 @@ return {
       "nvim-treesitter",
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
+    event = "FileType",
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("Comment").setup({
@@ -80,11 +86,6 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
     lazy = false,
     -- build = ":TSUpdate",
     config = function()

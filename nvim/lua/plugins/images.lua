@@ -4,12 +4,14 @@ return {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
     dev = true,
+    -- enabled = false,
     cond = not MarkdownMode(),
     dependencies = { "https://github.com/leafo/magick" },
-    -- enabled = false,
+    ft = { "markdown", "norg" },
     config = function()
       local image = require("image")
 
+      ---@diagnostic disable-next-line: missing-fields
       image.setup({
         backend = "kitty",
         integrations = {

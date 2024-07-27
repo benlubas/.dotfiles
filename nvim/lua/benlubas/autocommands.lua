@@ -3,11 +3,12 @@
 -- I have other auto commands in:
 -- color.lua - highlight on yank
 
--- TODO: remove this when https://github.com/neovim/neovim/issues/21856 is fixed
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
+vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
-    vim.fn.jobstart('notify-send "hello"', { detach = true })
-  end,
+    print("making things skinny")
+    vim.o.guicursor = "a:ver25"
+    print("that's done")
+  end
 })
 
 -- when in a comment and you press o to go into a new line, don't make that line a comment line.

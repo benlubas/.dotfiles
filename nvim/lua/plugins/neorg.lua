@@ -5,36 +5,29 @@ return {
   {
     "nvim-neorg/neorg",
     dev = true,
-    lazy = false,
+    -- lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-neorg/neorg-telescope" },
       { "benlubas/neorg-conceal-wrap" },
-      { "benlubas/neorg-interim-ls",  dev = true },
-      { "benlubas/neorg-se",          dev = true },
-      { "benlubas/neorg-se" },
       { "benlubas/neorg-interim-ls", dev = true },
-      { "image.nvim" },
+      { "benlubas/neorg-se", dev = true },
+      -- { "image.nvim" },
       { "otter.nvim" },
     },
+    cmd = "Neorg",
+    ft = "norg",
     keys = {
-      { "<leader>ni", ":Neorg index<CR>",                 desc = "Neorg Index",        silent = true },
+      { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
       { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
-      { "<leader>nw", ":e ~/notes/work/index.norg<CR>",   desc = "Neorg Work Index",   silent = true },
-      { "<leader>nn", "<Plug>(neorg.dirman.new-note)",    desc = "New Note",           silent = true },
-      { "<leader>nt", extras.new_thought,                 desc = "New Thought",        silent = true },
-      { "<leader>np", extras.project_note,                desc = "Project Note",       silent = true },
-      { "<leader>jt", ":Neorg journal today<CR>",         desc = "Journal Today",      silent = true },
-      { "<leader>jy", ":Neorg journal yesterday<CR>",     desc = "Journal Yesterday",  silent = true },
-      {
-        "<A-CR>",
-        ":Neorg keybind norg core.itero.next-iteration<CR>",
-        desc = "next iteration",
-        silent = true,
-        mode = "i",
-      },
-      { "<leader>jt", ":Neorg journal today<CR>",     desc = "Journal Today",     silent = true },
+      { "<leader>nw", ":e ~/notes/work/index.norg<CR>", desc = "Neorg Work Index", silent = true },
+      { "<leader>nn", "<Plug>(neorg.dirman.new-note)", desc = "New Note", silent = true },
+      { "<leader>nt", function() extras.new_thought() end, desc = "New Thought" },
+      { "<leader>np", function() extras.project_note() end, desc = "Project Note" },
+      { "<leader>jt", ":Neorg journal today<CR>", desc = "Journal Today", silent = true },
+      { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
+      { "<leader>jt", ":Neorg journal today<CR>", desc = "Journal Today", silent = true },
       { "<leader>jy", ":Neorg journal yesterday<CR>", desc = "Journal Yesterday", silent = true },
     },
     config = function()
@@ -48,13 +41,13 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
-        -- load["core.math.renderer"] = {}
+        -- ["core.math.renderer"] = {},
+        ["external.search"] = {},
         ["external.interim-ls"] = {
           config = {
             completion_provider = { categories = true },
           },
         },
-        ["external.search"] = {},
         ["external.conceal-wrap"] = {},
         ["core.integrations.otter"] = {
           config = {
@@ -148,12 +141,15 @@ return {
                 period = { day = 14 },
                 start_date = os.time({ year = 2024, month = 06, day = 17 }),
                 path_format_strategy = function(date)
-                  local sprint_number = math.floor(os.difftime(os.time(date), os.time({ year = 2024, month = 06, day = 17 })) / 60 / 60 / 24 / 14) + 1
+                  local sprint_number = math.floor(os.difftime(os.time(date),
+                    os.time({ year = 2024, month = 06, day = 17 })) / 60 / 60 / 24 / 14) + 1
                   return ("work/sprints/sprint-%d_%d-%d-%d"):format(sprint_number, date.year, date.month, date.day)
                 end,
                 parse_journal_path = function(full_path)
                   local match = { full_path:match("work/sprints/sprint%-%d+_(%d%d%d%d)%-(%d%d)%-(%d%d)%.norg$") }
-                  if not vim.tbl_isempty(match) then return match end
+                  if not vim.tbl_isempty(match) then
+                    return match
+                  end
                 end,
               },
               daily = {

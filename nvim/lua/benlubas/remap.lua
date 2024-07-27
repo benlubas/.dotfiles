@@ -9,10 +9,10 @@ vim.keymap.set("i", "kj", "<esc>")
 vim.keymap.set("i", "<Tab>", function()
   local line = vim.api.nvim_get_current_line()
   local row = vim.api.nvim_win_get_cursor(0)[1]
+  local tabs = vim.fn.shiftwidth()
   if line:match("^%s*$") then
     vim.v.lnum = row
     local indent = vim.fn.eval(vim.bo.indentexpr)
-    local tabs = vim.fn.shiftwidth()
     local tabbed = line:gsub("\t", (" "):rep(tabs))
     if indent * tabs > #tabbed then
       local new_line = (" "):rep(indent)
@@ -21,12 +21,23 @@ vim.keymap.set("i", "<Tab>", function()
       return
     end
   end
-  local key = vim.api.nvim_replace_termcodes("<tab>", true, false, true)
+  local key = vim.api.nvim_replace_termcodes(("<space>"):rep(tabs), true, false, true)
   vim.api.nvim_feedkeys(key, 'n', false)
 end)
 
-pcall(vim.keymap.del, "n", "<C-w>d")
-pcall(vim.keymap.del, "n", "<C-w><c-d>")
+-- and similarly "smart backspace"
+-- NOTE: you need to configure nvim-autopairs with `map_bs = false` otherwise it will override the
+-- keybind on buf enter
+vim.keymap.set("i", "<bs>", function()
+  local line = vim.api.nvim_get_current_line()
+  if line:match("%s%s+$") then
+    return "<c-w>"
+  end
+  return "<bs>"
+end, { expr = true })
+
+vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
+vim.keymap.set("v", "<leader>i", "zf")
 
 -- move things up and down and tab format as you go
 vim.keymap.set("v", "J", ":m '>+1<CR>gv==kgvo<esc>=kgvo", { desc = "move highlighted text down" })

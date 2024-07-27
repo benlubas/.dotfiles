@@ -10,6 +10,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       "MunifTanjim/nui.nvim",
+      "hydra.nvim",
     },
     config = function()
       require("telescope").setup({
@@ -19,7 +20,7 @@ return {
           dynamic_preview_title = true,
           sorting_strategy = "ascending",
           cache_picker = {
-            num_pickers = 15,    -- default 1
+            num_pickers = 15, -- default 1
             limit_entries = 500, -- default 500
           },
           mappings = {
@@ -51,7 +52,7 @@ return {
           git_status = {
             prompt_prefix = "git st > ",
             prompt_title = "",
-            on_complete = { },
+            on_complete = {},
           },
         },
       })

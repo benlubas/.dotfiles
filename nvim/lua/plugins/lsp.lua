@@ -13,6 +13,7 @@ local servers = {
   "nil_ls",
   "r_language_server",
   "svelte",
+  "taplo",
   "tsserver",
   "typst_lsp",
 }
@@ -107,13 +108,7 @@ return {
       { "H",          vim.lsp.buf.hover,        desc = "open hover information" },
     },
     dependencies = {
-      {
-        "folke/neodev.nvim",
-        ft = "lua",
-        opts = {
-          setup_jsonls = false,
-        },
-      },
+      { "folke/lazydev.nvim", ft = "lua", opts = {} },
     },
     config = function()
       -- adding autocomplete capabilities...

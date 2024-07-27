@@ -4,10 +4,9 @@
 return {
   {
     "benlubas/molten-nvim",
-    dependencies = { "3rd/image.nvim", dev = true },
-    -- dependencies = { "3rd/image.nvim" },
+    dependencies = { "image.nvim" },
+    ft = { "python", "norg", "markdown", "quarto" }, -- this is just to avoid loading image.nvim, loading molten at the start has minimal startup time impact
     dev = true,
-    build = ":UpdateRemotePlugins",
     init = function()
       if IsLinux() then -- xdg-open doesn't work on NixOS from within programs
         vim.g.molten_open_cmd = "firefox"
@@ -135,36 +134,30 @@ return {
       end
 
       -- we have to do this as well so that we catch files opened like nvim ./hi.ipynb
-    --   vim.api.nvim_create_autocmd("BufEnter", {
-    --     pattern = { "*.ipynb" },
-    --     callback = function(e)
-    --       if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then
-    --         imb(e)
-    --       end
-    --     end,
-    --   })
-    --
-    --   -- automatically import output chunks from a jupyter notebook
-    --   vim.api.nvim_create_autocmd("BufAdd", {
-    --     pattern = { "*.ipynb" },
-    --     callback = imb,
-    --   })
-    --
-    --   -- automatically export output chunks to a jupyter notebook
-    --   vim.api.nvim_create_autocmd("BufWritePost", {
-    --     pattern = { "*.ipynb" },
-    --     callback = function()
-    --       if require("molten.status").initialized() == "Molten" then
-    --         vim.cmd("MoltenExportOutput!")
-    --       end
-    --     end,
-    --   })
+      --   vim.api.nvim_create_autocmd("BufEnter", {
+      --     pattern = { "*.ipynb" },
+      --     callback = function(e)
+      --       if vim.api.nvim_get_vvar("vim_did_enter") ~= 1 then
+      --         imb(e)
+      --       end
+      --     end,
+      --   })
+      --
+      --   -- automatically import output chunks from a jupyter notebook
+      --   vim.api.nvim_create_autocmd("BufAdd", {
+      --     pattern = { "*.ipynb" },
+      --     callback = imb,
+      --   })
+      --
+      --   -- automatically export output chunks to a jupyter notebook
+      --   vim.api.nvim_create_autocmd("BufWritePost", {
+      --     pattern = { "*.ipynb" },
+      --     callback = function()
+      --       if require("molten.status").initialized() == "Molten" then
+      --         vim.cmd("MoltenExportOutput!")
+      --       end
+      --     end,
+      --   })
     end,
   },
-  -- {
-  --   "jpalardy/vim-slime",
-  --   init = function()
-  --     vim.g.slime_target = "neovim"
-  --   end,
-  -- },
 }
