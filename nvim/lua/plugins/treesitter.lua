@@ -3,7 +3,6 @@ return {
     "benlubas/nvim-treesitter-context",
     branch = "collapse_context",
     event = "FileType",
-    dev = true,
     dependencies = {
       "nvim-treesitter",
     },

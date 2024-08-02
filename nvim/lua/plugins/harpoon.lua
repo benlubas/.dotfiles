@@ -1,7 +1,6 @@
 return {
   {
     "benlubas/harpoon", -- fork that caches the git branch key, and adds some highlights and stuff
-    dev = true,
     config = function()
       local theme = require("benlubas.color")
       vim.api.nvim_set_hl(0, "HarpoonBorder", theme.fancy_float.border)
@@ -17,7 +16,6 @@ return {
           end)(),
           borderchars = Border,
         },
-        mark_branch = true,
         excluded_filetypes = { "harpoon", "starter", "oil", "molten_output" },
       })
     end,
