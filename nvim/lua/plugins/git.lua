@@ -2,7 +2,6 @@ return {
   {
     "julienvincent/hunk.nvim",
     cmd = { "DiffEditor" },
-    dev = true,
     config = function()
       -- track all the lines of leaf nodes so we don't have to recompute them on each key press
       local jumpable_lines

@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-07-21T12:23:19-0500
+updated: 2024-08-03T17:28:51-0500
 version: 1.1.1
 @end
 
@@ -58,7 +58,7 @@ version: 1.1.1
        m("i", "-(", "- ( ) ")
        m("i", "*(", "* ( ) ")
        m("n", "<localleader>d", "<Plug>(neorg.tempus.insert-date)")
-       m("i", "\\date", "<Plug>(neorg.tempus.insert-date-insert-mode)")
+       m("i", "\\date", "<Plug>(neorg.tempus.insert-date.insert-mode)")
 
        m("n", "<localleader>lt", "<Plug>(neorg.pivot.toggle-list-type)")
        m("n", "<localleader>li", "<Plug>(neorg.pivot.invert-list-type)")

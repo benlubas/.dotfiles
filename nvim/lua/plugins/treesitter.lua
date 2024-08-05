@@ -1,92 +1,7 @@
 return {
   {
-    "benlubas/nvim-treesitter-context",
-    branch = "collapse_context",
-    event = "FileType",
-    dependencies = {
-      "nvim-treesitter",
-    },
-  },
-  {
-    "echasnovski/mini.ai",
-    event = "FileType",
-    opts = {
-      custom_textobjects = {
-        -- these two are handled by TS text objects
-        f = false,
-        a = false,
-        -- These ones have annoying behavior
-        ["{"] = false,
-        ["}"] = false,
-        ["("] = false,
-        [")"] = false,
-        ["["] = false,
-        ["]"] = false,
-      },
-
-      mappings = {
-        around_next = "",
-        inside_next = "",
-        around_last = "",
-        inside_last = "",
-
-        goto_left = "",
-        goto_right = "",
-      },
-
-      -- Number of lines within which textobject is searched
-      n_lines = 0,
-    },
-    version = "*",
-  },
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "FileType",
-    opts = {
-      enable_autocmd = false,
-    },
-  },
-  {
-    "Wansmer/treesj",
-    keys = {
-      { "<leader>sh", ":TSJJoin<CR>", silent = true },
-      { "<leader>sl", ":TSJSplit<CR>", silent = true },
-    },
-    opts = {
-      use_default_keymaps = false,
-    },
-  },
-  {
-    "numToStr/Comment.nvim",
-    dependencies = {
-      "nvim-treesitter",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    event = "FileType",
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-        toggler = {
-          line = "glg", -- Line-comment toggle keymap
-          block = "gaa", -- Block-comment toggle keymap
-        },
-        opleader = {
-          line = "gl",
-          block = "ga",
-        },
-        extra = {
-          above = "glO", -- Add comment on the line above
-          below = "glo", -- Add comment on the line below
-          eol = "glA", -- Add comment at the end of line
-        },
-      })
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    lazy = false,
-    -- build = ":TSUpdate",
+    "nvim-treesitter",
+    dir = vim.g.nix_packdir .. "/nvim-treesitter",
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup({
@@ -149,6 +64,87 @@ return {
               ["<leader>snh"] = "@number.outer",
             },
           },
+        },
+      })
+      require("nvim-treesitter").setup()
+    end,
+  },
+  {
+    "benlubas/nvim-treesitter-context",
+    branch = "collapse_context",
+    event = "FileType",
+  },
+  {
+    "echasnovski/mini.ai",
+    event = "FileType",
+    opts = {
+      custom_textobjects = {
+        -- these two are handled by TS text objects
+        f = false,
+        a = false,
+        -- These ones have annoying behavior
+        ["{"] = false,
+        ["}"] = false,
+        ["("] = false,
+        [")"] = false,
+        ["["] = false,
+        ["]"] = false,
+      },
+
+      mappings = {
+        around_next = "",
+        inside_next = "",
+        around_last = "",
+        inside_last = "",
+
+        goto_left = "",
+        goto_right = "",
+      },
+
+      -- Number of lines within which textobject is searched
+      n_lines = 0,
+    },
+    version = "*",
+  },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "FileType",
+    opts = {
+      enable_autocmd = false,
+    },
+  },
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "<leader>sh", ":TSJJoin<CR>", silent = true },
+      { "<leader>sl", ":TSJSplit<CR>", silent = true },
+    },
+    opts = {
+      use_default_keymaps = false,
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    event = "FileType",
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require("Comment").setup({
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        toggler = {
+          line = "glg", -- Line-comment toggle keymap
+          block = "gaa", -- Block-comment toggle keymap
+        },
+        opleader = {
+          line = "gl",
+          block = "ga",
+        },
+        extra = {
+          above = "glO", -- Add comment on the line above
+          below = "glo", -- Add comment on the line below
+          eol = "glA", -- Add comment at the end of line
         },
       })
     end,

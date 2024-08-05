@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
     m("i", "-(", "- ( ) ")
     m("i", "*(", "* ( ) ")
     m("n", "<localleader>d", "<Plug>(neorg.tempus.insert-date)")
-    m("i", "\\date", "<Plug>(neorg.tempus.insert-date-insert-mode)")
+    m("i", "\\date", "<Plug>(neorg.tempus.insert-date.insert-mode)")
 
     m("n", "<localleader>lt", "<Plug>(neorg.pivot.toggle-list-type)")
     m("n", "<localleader>li", "<Plug>(neorg.pivot.invert-list-type)")

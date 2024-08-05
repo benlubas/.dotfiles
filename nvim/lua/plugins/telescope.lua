@@ -8,12 +8,14 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-fzf-native.nvim",
+      -- "nvim-telescope/telescope-fzf-native.nvim",
+      { "natecraddock/telescope-zf-native.nvim" },
       "MunifTanjim/nui.nvim",
       "hydra.nvim",
     },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+      telescope.setup({
         defaults = {
           create_layout = require("benlubas.telescope.layouts.default"),
           path_display = { shorten = { len = 3, exclude = { 1, 2, -1, -2 } } },
@@ -56,6 +58,8 @@ return {
           },
         },
       })
+
+      telescope.load_extension("zf-native")
 
       local theme = require("benlubas.color")
       local tel_theme = theme.telescope

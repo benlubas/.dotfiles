@@ -147,13 +147,14 @@ return {
   },
   {
     "windwp/nvim-autopairs",
+    dev = true,
     dependencies = {
       { "benlubas/nvim-cmp" },
     },
     event = "VeryLazy",
     config = function()
       require("nvim-autopairs").setup({
-        map_bs = false,
+        -- map_bs = false,
         check_ts = true,
         fast_wrap = {
           map = "<A-e>",

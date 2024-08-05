@@ -1,11 +1,12 @@
 -- from ./../benlubas/neorg/extras.norg
 local extras = require("benlubas.neorg.extras")
 
+
 return {
   {
     "nvim-neorg/neorg",
     dev = true,
-    -- lazy = false,
+    lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
@@ -16,8 +17,6 @@ return {
       -- { "image.nvim" },
       { "otter.nvim" },
     },
-    cmd = "Neorg",
-    ft = "norg",
     keys = {
       { "<leader>ni", ":Neorg index<CR>", desc = "Neorg Index", silent = true },
       { "<leader>ns", ":e ~/notes/school/index.norg<CR>", desc = "Neorg School Index", silent = true },
@@ -89,6 +88,14 @@ return {
         ["core.concealer"] = {
           config = {
             icon_preset = "diamond",
+            ordered_icons = {
+              ["1"] = function(i)
+                if i < 10 then
+                  return "0" .. i
+                end
+                return tostring(i)
+              end,
+            },
             icons = {
               todo = {
                 undone = {

@@ -14,9 +14,8 @@ return {
     -- enabled = false,
     dependencies = {
       "nvim-cmp",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-      "nvimtools/hydra.nvim",
+      "nvim-lspconfig",
+      "hydra.nvim",
       "otter.nvim",
     },
     ft = { "quarto", "markdown", "norg" },
