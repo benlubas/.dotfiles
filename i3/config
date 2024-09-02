@@ -58,7 +58,7 @@ mouse_warping output
 focus_follows_mouse no
 
 ### LAUNCH THINGS ###
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec ghostty
 bindsym $mod+a exec brave-browser
 bindsym $mod+o exec nemo # files
 

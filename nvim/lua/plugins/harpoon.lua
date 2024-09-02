@@ -1,6 +1,7 @@
 return {
   {
     "benlubas/harpoon", -- fork that caches the git branch key, and adds some highlights and stuff
+    -- enabled = false,
     config = function()
       local theme = require("benlubas.color")
       vim.api.nvim_set_hl(0, "HarpoonBorder", theme.fancy_float.border)
@@ -10,10 +11,10 @@ return {
 
       require("harpoon").setup({
         menu = {
-          width = (function()
+          width = function()
             local width = vim.api.nvim_win_get_width(0) - 4
             return math.floor(width - width * 0.55)
-          end)(),
+          end,
           borderchars = Border,
         },
         excluded_filetypes = { "harpoon", "starter", "oil", "molten_output" },

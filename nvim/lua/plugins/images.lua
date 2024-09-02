@@ -1,5 +1,10 @@
 return {
-  { "benlubas/image-save.nvim", dev = true, cmd = "SaveImage" },
+  {
+    "benlubas/image-save.nvim",
+    -- enabled = false,
+    dev = true,
+    cmd = "SaveImage",
+  },
   {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
@@ -34,11 +39,12 @@ return {
         max_height = 8,
         max_height_window_percentage = math.huge,
         max_width_window_percentage = math.huge,
-        window_overlap_clear_enabled = true,    -- toggles images when windows are overlapped
+        window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
         editor_only_render_when_focused = true, -- auto show/hide images when the editor gains/looses focus
         tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
         window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "fidget", "" },
       })
     end,
   },
+  { "3rd/diagram.nvim", dependencies = { "image.nvim" }, enabled = false, dev = true, opts = {} },
 }

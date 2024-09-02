@@ -12,17 +12,37 @@ vim.keymap.set("i", "<Tab>", function()
   local tabs = vim.fn.shiftwidth()
   if line:match("^%s*$") then
     vim.v.lnum = row
-    local indent = vim.fn.eval(vim.bo.indentexpr)
+    local ok, indent = pcall(vim.fn.eval, vim.bo.indentexpr)
+    if not ok then
+      goto default
+    end
     local tabbed = line:gsub("\t", (" "):rep(tabs))
-    if indent * tabs > #tabbed then
+    if indent > #tabbed then
       local new_line = (" "):rep(indent)
       vim.api.nvim_buf_set_lines(0, row - 1, row, true, { new_line })
       vim.api.nvim_win_set_cursor(0, { row, #new_line })
       return
     end
   end
+  ::default::
   local key = vim.api.nvim_replace_termcodes(("<space>"):rep(tabs), true, false, true)
-  vim.api.nvim_feedkeys(key, 'n', false)
+  vim.api.nvim_feedkeys(key, "n", false)
+end)
+
+vim.keymap.set("i", "<m-i>", function()
+  local c = vim.api.nvim_win_get_cursor(0)
+  local line = vim.api.nvim_get_current_line()
+  local indent = line:match("^(%s*)")
+  indent = #indent
+  vim.v.lnum = c[1]
+  local ok, correct_indent = pcall(vim.fn.eval, vim.bo.indentexpr)
+  if not ok then
+    return
+  end
+
+  line = line:gsub("^%s*", (" "):rep(correct_indent))
+  vim.api.nvim_buf_set_lines(0, c[1] - 1, c[1], false, { line })
+  vim.api.nvim_win_set_cursor(0, { c[1], c[2] + correct_indent - indent })
 end)
 
 -- and similarly "smart backspace"
@@ -31,10 +51,18 @@ end)
 vim.keymap.set("i", "<bs>", function()
   local line = vim.api.nvim_get_current_line()
   if line:match("%s%s+$") then
-    return "<c-w>"
+    line = line:gsub("%s+$", "")
+    return vim.api.nvim_set_current_line(line)
   end
-  return "<bs>"
-end, { expr = true })
+  local ok, autopairs = pcall(require, "nvim-autopairs")
+  local keys
+  if ok then
+    keys = autopairs.autopairs_bs()
+  else
+    keys = vim.api.nvim_replace_termcodes("<bs>", true, false, true)
+  end
+  vim.api.nvim_feedkeys(keys, "n", false)
+end)
 
 vim.keymap.set("n", "<leader>i", "za", { desc = "toggle fold" })
 vim.keymap.set("v", "<leader>i", "zf")
@@ -92,10 +120,17 @@ vim.keymap.set("n", "<leader>Sa", "zg", { desc = "add word to dictionary" })
 vim.keymap.set("n", "<leader>St", "<cmd>set spell!<CR>")
 
 -- remove trailing spaces. Only affect the current line in markdown files
-vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']], { desc = "remove trailing spaces", expr = true, silent = true })
+vim.keymap.set("n", "<leader>ds", [['m`:'. (&ft == "markdown" ? '' : '%') .'s/\s\+$//e<CR>``']],
+  { desc = "remove trailing spaces", expr = true, silent = true })
 
 -- Conveniently open all the TS dev stuff
 vim.api.nvim_create_user_command("TSPlayground", function()
   vim.cmd.InspectTree()
   vim.cmd.EditQuery()
+end, {})
+
+vim.api.nvim_create_user_command("Scratch", function()
+  vim.cmd.enew()
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "hide"
 end, {})

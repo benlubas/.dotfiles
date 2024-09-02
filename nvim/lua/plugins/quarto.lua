@@ -1,7 +1,7 @@
 return {
   {
     "GCBallesteros/jupytext.nvim",
-    ft = { "ipynb" },
+    -- ft = { "ipynb" },
     opts = {
       style = "markdown",
       output_extension = "md",
@@ -11,9 +11,7 @@ return {
   { "jmbuhr/otter.nvim", ft = { "markdown", "quarto", "norg" } },
   {
     "quarto-dev/quarto-nvim",
-    -- enabled = false,
     dependencies = {
-      "nvim-cmp",
       "nvim-lspconfig",
       "hydra.nvim",
       "otter.nvim",

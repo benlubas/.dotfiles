@@ -6,6 +6,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    dev = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- "nvim-telescope/telescope-fzf-native.nvim",
@@ -15,6 +16,7 @@ return {
     },
     config = function()
       local telescope = require("telescope")
+
       telescope.setup({
         defaults = {
           create_layout = require("benlubas.telescope.layouts.default"),

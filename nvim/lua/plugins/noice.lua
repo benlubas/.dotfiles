@@ -110,7 +110,7 @@ return {
       },
       lsp = {
         progress = {
-          enabled = false, -- this is insanely buggy
+          enabled = true, -- this is insanely buggy
           -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
           -- See the section on formatting for more details on how to customize.
           --- @type NoiceFormat|string
@@ -122,11 +122,11 @@ return {
         },
         override = {
           -- override the default lsp markdown formatter with Noice
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
           -- override the lsp markdown formatter with Noice
-          ["vim.lsp.util.stylize_markdown"] = false,
+          ["vim.lsp.util.stylize_markdown"] = true,
           -- override cmp documentation with Noice (needs the other options to work)
-          ["cmp.entry.get_documentation"] = false,
+          ["cmp.entry.get_documentation"] = true,
         },
         hover = {
           enabled = true,

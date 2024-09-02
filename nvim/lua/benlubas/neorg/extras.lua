@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
     m("n", "<localleader>R", ":Neorg return<CR>")
     m("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)")
     m("n", "<localleader>nm", ":Neorg inject-metadata<CR>")
+    m("n", "<localleader><cr>", "<Plug>(neorg.esupports.hop.hop-link.tab-drop)")
     m("n", "u", function()
       require("neorg.modules.core.esupports.metagen.module").public.skip_next_update()
       local pos = vim.api.nvim_win_get_cursor(0)
@@ -38,8 +39,8 @@ vim.api.nvim_create_autocmd("FileType", {
     m({ "o", "x" }, "iT", "<Plug>(neorg.text-objects.textobject.tag.inner)")
     m({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)")
     m({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)")
-    m("n", "<up>", "<Plug>(neorg.text-objects.item_up)")
-    m("n", "<down>", "<Plug>(neorg.text-objects.item_down)")
+    m("n", "<up>", "<Plug>(neorg.text-objects.item-up)")
+    m("n", "<down>", "<Plug>(neorg.text-objects.item-down)")
 
     -- Telescope mappings:
     m("n", "<localleader>bf", "<Plug>(neorg.telescope.backlinks.file_backlinks)")

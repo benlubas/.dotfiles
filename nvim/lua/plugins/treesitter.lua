@@ -2,7 +2,9 @@ return {
   {
     "nvim-treesitter",
     dir = vim.g.nix_packdir .. "/nvim-treesitter",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
+      require("nvim-treesitter").setup()
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup({
         highlight = {
@@ -66,7 +68,6 @@ return {
           },
         },
       })
-      require("nvim-treesitter").setup()
     end,
   },
   {
@@ -74,38 +75,38 @@ return {
     branch = "collapse_context",
     event = "FileType",
   },
-  {
-    "echasnovski/mini.ai",
-    event = "FileType",
-    opts = {
-      custom_textobjects = {
-        -- these two are handled by TS text objects
-        f = false,
-        a = false,
-        -- These ones have annoying behavior
-        ["{"] = false,
-        ["}"] = false,
-        ["("] = false,
-        [")"] = false,
-        ["["] = false,
-        ["]"] = false,
-      },
-
-      mappings = {
-        around_next = "",
-        inside_next = "",
-        around_last = "",
-        inside_last = "",
-
-        goto_left = "",
-        goto_right = "",
-      },
-
-      -- Number of lines within which textobject is searched
-      n_lines = 0,
-    },
-    version = "*",
-  },
+  -- {
+  --   "echasnovski/mini.ai",
+  --   event = "FileType",
+  --   opts = {
+  --     custom_textobjects = {
+  --       -- these two are handled by TS text objects
+  --       f = false,
+  --       a = false,
+  --       -- These ones have annoying behavior
+  --       ["{"] = false,
+  --       ["}"] = false,
+  --       ["("] = false,
+  --       [")"] = false,
+  --       ["["] = false,
+  --       ["]"] = false,
+  --     },
+  --
+  --     mappings = {
+  --       around_next = "",
+  --       inside_next = "",
+  --       around_last = "",
+  --       inside_last = "",
+  --
+  --       goto_left = "",
+  --       goto_right = "",
+  --     },
+  --
+  --     -- Number of lines within which textobject is searched
+  --     n_lines = 0,
+  --   },
+  --   version = "*",
+  -- },
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
     event = "FileType",

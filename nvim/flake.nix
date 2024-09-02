@@ -39,6 +39,8 @@
               cairosvg
               ipython
               nbformat
+              ipywidgets
+              pyperclip
             ];
           withNodeJs = true;
           withRuby = true;

@@ -11,7 +11,7 @@ return {
     dependencies = {
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-neorg/neorg-telescope" },
-      { "benlubas/neorg-conceal-wrap" },
+      { "benlubas/neorg-conceal-wrap", dev = true },
       { "benlubas/neorg-interim-ls", dev = true },
       { "benlubas/neorg-se", dev = true },
       -- { "image.nvim" },
@@ -40,7 +40,11 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
-        -- ["core.math.renderer"] = {},
+        ["core.latex.renderer"] = {
+        --   config = {
+        --     -- render_on_enter = true,
+        --   }
+        },
         ["external.search"] = {},
         ["external.interim-ls"] = {
           config = {
@@ -58,7 +62,7 @@ return {
         ["core.text-objects"] = {},
         ["core.tangle"] = {
           config = {
-            tangle_on_write = true,
+            -- tangle_on_write = true,
             indent_errors = "print",
             report_on_empty = false,
           },
@@ -80,8 +84,14 @@ return {
             },
           },
         },
+        ["core.qol.todo_items"] = {
+          config = {
+            update_todo_parents = false,
+          }
+        },
         ["core.completion"] = {
           config = { engine = { module_name = "external.lsp-completion" } },
+          -- config = { engine = "nvim-cmp" },
         },
         ["core.integrations.telescope"] = {},
         ["core.keybinds"] = {},
@@ -104,6 +114,9 @@ return {
               },
               heading = {
                 icons = { "◆", "❖", "◈", "◇", "⟡", "⋄" },
+              },
+              delimiter = {
+                horizontal_line = { right = "textwidth" },
               },
               code_block = {
                 conceal = true,

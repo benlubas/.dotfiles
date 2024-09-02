@@ -116,21 +116,6 @@ return {
       }))
 
       local common_right = {
-        Item({
-          hl = line_theme.molten,
-          sep_left = sep.left_lower_triangle_solid(true),
-          prefix = " ",
-          content = function(_)
-            local ok, s = pcall(require, "molten.status")
-            if not ok then return "" end
-            local str = s.kernels()
-            if str == vim.NIL then -- nougat can't handle this. I think that's probably a bug.
-              return ""
-            end
-            return str
-          end,
-          suffix = " ",
-        }),
         nut.buf.filetype({
           hl = line_theme.filetype,
           sep_left = sep.left_lower_triangle_solid(true),

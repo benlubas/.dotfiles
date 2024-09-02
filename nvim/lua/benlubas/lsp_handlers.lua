@@ -23,10 +23,6 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result, ctx)
   end
 end
 
-vim.lsp.handlers["textDocument/references"] = function(_, _, _)
-  require("telescope.builtin").lsp_references()
-end
-
 -- filter out diagnostics that complain about unused variable names if those variable names start
 -- with an underscore. Rust does it right.
 -- idea from: https://www.reddit.com/r/neovim/comments/108tjy0/nvimlspconfig_how_to_disable_hints_for_unused/

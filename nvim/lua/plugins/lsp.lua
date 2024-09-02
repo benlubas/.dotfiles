@@ -6,6 +6,7 @@ local servers = {
   "clojure_lsp",
   -- "cssls",
   "emmet_language_server",
+  "gopls",
   "html",
   "lua_ls",
   -- "marksman",
@@ -112,7 +113,8 @@ return {
     },
     config = function()
       -- adding autocomplete capabilities...
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true,
@@ -142,7 +144,7 @@ return {
           vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, other)
           vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, other)
           vim.keymap.set("n", "<leader>l", vim.lsp.buf.code_action, other)
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, other)
+          vim.keymap.set("n", "gr", function() require("telescope.builtin").lsp_references() end, other)
           vim.keymap.set("n", "<leader>gf", function()
             vim.lsp.buf.format({ async = true })
           end, other)
