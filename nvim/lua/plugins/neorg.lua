@@ -1,19 +1,20 @@
 -- from ./../benlubas/neorg/extras.norg
 local extras = require("benlubas.neorg.extras")
 
+package.cpath = package.cpath .. ";/home/benlubas/github/neorg-query/?.so"
 
 return {
   {
     "nvim-neorg/neorg",
-    dev = true,
+    -- dev = true,
     lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-neorg/neorg-telescope" },
-      { "benlubas/neorg-conceal-wrap", dev = true },
-      { "benlubas/neorg-interim-ls", dev = true },
-      { "benlubas/neorg-se", dev = true },
+      { "benlubas/neorg-conceal-wrap", dev = false },
+      { "benlubas/neorg-interim-ls", dev = false },
+      -- { "benlubas/neorg-query", dev = true },
       -- { "image.nvim" },
       { "otter.nvim" },
     },
@@ -40,15 +41,18 @@ return {
       vim.api.nvim_set_hl(0, "NeorgH6", theme.heading6)
 
       local load = {
+        ["core.defaults"] = {},
+        ["core.summary"] = {},
         ["core.latex.renderer"] = {
         --   config = {
         --     -- render_on_enter = true,
         --   }
         },
-        ["external.search"] = {},
+        -- ["external.query"] = {},
+        ["core.export"] = {},
         ["external.interim-ls"] = {
           config = {
-            completion_provider = { categories = true },
+            completion_provider = { categories = true, people = { enable = true } },
           },
         },
         ["external.conceal-wrap"] = {},
@@ -58,7 +62,6 @@ return {
             languages = { "python", "lua", "rust" },
           },
         },
-        ["core.defaults"] = {},
         ["core.text-objects"] = {},
         ["core.tangle"] = {
           config = {
@@ -91,7 +94,6 @@ return {
         },
         ["core.completion"] = {
           config = { engine = { module_name = "external.lsp-completion" } },
-          -- config = { engine = "nvim-cmp" },
         },
         ["core.integrations.telescope"] = {},
         ["core.keybinds"] = {},
@@ -147,6 +149,7 @@ return {
           config = {
             workspaces = {
               notes = "~/notes",
+              blog = "~/github/lith/content",
               test = "~/test_notes",
             },
             default_workspace = "notes",

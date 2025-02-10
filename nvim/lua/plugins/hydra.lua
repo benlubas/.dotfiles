@@ -1,7 +1,7 @@
 return {
   "nvimtools/hydra.nvim",
   dependencies = { "MunifTanjim/nougat.nvim" },
-  dev = true,
+  -- dev = true,
   config = function()
     local theme = require('benlubas.color')
 

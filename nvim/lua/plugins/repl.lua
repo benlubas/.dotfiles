@@ -7,9 +7,8 @@ return {
     -- enabled = false,
     dependencies = { "image.nvim" },
     ft = { "python", "norg", "markdown", "quarto" }, -- this is just to avoid loading image.nvim, loading molten at the start has minimal startup time impact
-    dev = true,
+    -- dev = true,
     init = function()
-      print("molten setup")
       if IsLinux() then -- xdg-open doesn't work on NixOS from within programs
         vim.g.molten_open_cmd = "firefox"
       end

@@ -2,13 +2,13 @@ return {
   {
     "benlubas/image-save.nvim",
     -- enabled = false,
-    dev = true,
+    -- dev = true,
     cmd = "SaveImage",
   },
   {
     "3rd/image.nvim",
     -- "benlubas/image.nvim",
-    dev = true,
+    -- dev = true,
     -- enabled = false,
     cond = not MarkdownMode(),
     dependencies = { "https://github.com/leafo/magick" },
@@ -46,5 +46,5 @@ return {
       })
     end,
   },
-  { "3rd/diagram.nvim", dependencies = { "image.nvim" }, enabled = false, dev = true, opts = {} },
+  { "3rd/diagram.nvim", dependencies = { "image.nvim" }, enabled = false, opts = {} },
 }

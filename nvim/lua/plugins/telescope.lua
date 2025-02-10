@@ -6,7 +6,6 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    dev = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       -- "nvim-telescope/telescope-fzf-native.nvim",

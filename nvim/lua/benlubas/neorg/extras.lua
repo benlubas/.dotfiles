@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     m("n", "<localleader>R", ":Neorg return<CR>")
     m("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)")
+    m("n", "<M-o>", "A<Plug>(neorg.itero.next-iteration)")
     m("n", "<localleader>nm", ":Neorg inject-metadata<CR>")
     m("n", "<localleader><cr>", "<Plug>(neorg.esupports.hop.hop-link.tab-drop)")
     m("n", "u", function()
@@ -75,7 +76,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
   pattern = "*.norg",
   callback = function()
     vim.schedule(function()
+      local cursor = vim.api.nvim_win_get_cursor(0)
       vim.cmd.loadview({ mods = { emsg_silent = true } })
+      vim.api.nvim_win_set_cursor(0, cursor)
     end)
   end,
 })

@@ -14,7 +14,7 @@ tangle: {
   delimiter: heading
 }
 created: 2024-05-03T13:36:42-0500
-updated: 2024-10-27T11:12:32-0500
+updated: 2025-01-30T17:20:18-0500
 version: 1.1.1
 @end
 
@@ -42,6 +42,7 @@ version: 1.1.1
      callback = function()
        m("n", "<localleader>R", ":Neorg return<CR>")
        m("i", "<M-CR>", "<Plug>(neorg.itero.next-iteration)")
+       m("n", "<M-o>", "A<Plug>(neorg.itero.next-iteration)")
        m("n", "<localleader>nm", ":Neorg inject-metadata<CR>")
        m("n", "<localleader><cr>", "<Plug>(neorg.esupports.hop.hop-link.tab-drop)")
        m("n", "u", function()
@@ -115,7 +116,9 @@ version: 1.1.1
      pattern = "*.norg",
      callback = function()
        vim.schedule(function()
+         local cursor = vim.api.nvim_win_get_cursor(0)
          vim.cmd.loadview({ mods = { emsg_silent = true } })
+         vim.api.nvim_win_set_cursor(0, cursor)
        end)
      end,
    })

@@ -412,6 +412,7 @@ return {
         -- Installed sources
         sources = {
           { name = "git" },
+          { name = "neorg" },
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
           { name = "luasnip" },
@@ -431,10 +432,10 @@ return {
         link_roots = false,
         keep_roots = false,
         update_events = { "TextChanged", "TextChangedI" },
+        enable_autosnippets = true,
       })
       local c = ls.choice_node
       ls.choice_node = function(pos, choices, opts)
-        P(opts)
         if opts then
           opts.restore_cursor = true
         else
@@ -472,7 +473,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    dev = true,
+    -- dev = true,
     dependencies = {
       { "benlubas/nvim-cmp" },
     },

@@ -1588,7 +1588,7 @@ linux-cgroup-hard-fail = false
 #
 # Note that debug builds of Ghostty have a separate single-instance ID
 # so you can test single instance without conflicting with release builds.
-gtk-single-instance = desktop
+gtk-single-instance = true
 
 # When enabled, the full GTK titlebar is displayed instead of your window
 # manager's simple titlebar. The behavior of this option will vary with your

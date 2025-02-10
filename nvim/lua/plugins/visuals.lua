@@ -3,6 +3,12 @@
 
 return {
   {
+    "catgoose/nvim-colorizer.lua",
+    enabled = false,
+    event = "BufReadPre",
+    opts = {},
+  },
+  {
     "bluz71/vim-moonfly-colors",
     lazy = false,
     priority = 1000,
