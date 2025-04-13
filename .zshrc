@@ -117,6 +117,10 @@ alias jl="jj log"
 alias je="jj edit"
 alias jab="jj abandon"
 
+puch () {
+  jj git push -c $1 2>&1 | tee /dev/tty | awk '/https:/ {print $2}' | copy
+}
+
 alias ls="ls --color"
 alias l="ls -lah"
 

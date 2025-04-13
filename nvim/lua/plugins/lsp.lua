@@ -19,26 +19,18 @@ local servers = {
   "typst_lsp",
 }
 
+local on = true
+vim.diagnostic.config({ virtual_text = on, virtual_lines = not on })
+vim.keymap.set("n", "<Leader>k", function()
+  vim.diagnostic.config({ virtual_text = on, virtual_lines = not on })
+  on = not on
+end, { desc = "Toggle lsp_lines" })
+
 return {
   {
     "mrcjkb/rustaceanvim",
     version = "^4", -- Recommended
     lazy = false,   -- This plugin is already lazy
-  },
-  { -- this is really useful when there are a ton of diagnostics for different parts of a single line
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      local lspl = require("lsp_lines")
-      lspl.setup()
-      lspl.toggle()
-
-      local on = false
-      vim.keymap.set("n", "<Leader>k", function()
-        vim.diagnostic.config({ virtual_text = on })
-        on = not on
-        lspl.toggle()
-      end, { desc = "Toggle lsp_lines" })
-    end,
   },
   { "williamboman/mason.nvim", config = true },
   {
@@ -173,7 +165,7 @@ return {
         },
       })
 
-      require("lspconfig")["tsserver"].setup({
+      require("lspconfig")["ts_ls"].setup({
         on_attach = function(client, bufnr)
           client.server_capabilities.semanticTokensProvider = function()
             return {}
@@ -198,13 +190,13 @@ return {
         },
       })
 
-      ---@type lsp.ClientCapabilities
-      local typ_cap = vim.deepcopy(capabilities)
-      typ_cap.textDocument.completion.completionItem.snippetSupport = false
-      require("lspconfig")["typst_lsp"].setup({
-        -- on_attach = on_attach,
-        capabilities = typ_cap,
-      })
+      -- ---@type lsp.ClientCapabilities
+      -- local typ_cap = vim.deepcopy(capabilities)
+      -- typ_cap.textDocument.completion.completionItem.snippetSupport = false
+      -- require("lspconfig")["typst_lsp"].setup({
+      --   -- on_attach = on_attach,
+      --   capabilities = typ_cap,
+      -- })
 
       -- require("lspconfig")["solargraph"].setup({
       --   on_attach = on_attach,
