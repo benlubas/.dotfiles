@@ -6,15 +6,15 @@ package.cpath = package.cpath .. ";/home/benlubas/github/neorg-query/?.so"
 return {
   {
     "nvim-neorg/neorg",
-    -- dev = true,
+    dev = true,
     lazy = false,
     cond = not MarkdownMode(),
     dependencies = {
       { "pysan3/neorg-templates", dependencies = { "L3MON4D3/LuaSnip" } },
       { "nvim-neorg/neorg-telescope" },
       { "benlubas/neorg-conceal-wrap", dev = false },
-      { "benlubas/neorg-interim-ls", dev = false },
-      -- { "benlubas/neorg-query", dev = true },
+      { "benlubas/neorg-interim-ls", dev = true },
+      { "benlubas/neorg-query", dev = true },
       -- { "image.nvim" },
       { "otter.nvim" },
     },
@@ -48,7 +48,7 @@ return {
         --     -- render_on_enter = true,
         --   }
         },
-        -- ["external.query"] = {},
+        ["external.query"] = {},
         ["core.export"] = {},
         ["external.interim-ls"] = {
           config = {
@@ -81,8 +81,8 @@ return {
             enter = true,
             fixed_width = 26,
             auto_toc = {
-              open = true,
-              close = true,
+              -- open = true,
+              -- close = true,
               -- exit = false,
             },
           },

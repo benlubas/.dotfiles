@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter",
-    dir = vim.g.nix_packdir .. "/nvim-treesitter",
+    dir = vim.g.nix_packdir .. "/pack/myNeovimPackages/start" .. "/nvim-treesitter",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
       require("nvim-treesitter").setup()
@@ -71,8 +71,7 @@ return {
     end,
   },
   {
-    "benlubas/nvim-treesitter-context",
-    branch = "collapse_context",
+    "nvim-treesitter/nvim-treesitter-context",
     event = "FileType",
   },
   -- {
